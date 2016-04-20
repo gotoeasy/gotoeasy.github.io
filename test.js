@@ -1,17 +1,10 @@
 
-define([ 'domReady', 'gotoEasy'], function(domReady, $easy) {
+define(['gotoEasy'], function($easy) {
 
-	domReady(function() {
-		
+	return function(){
 		var data = {};
 
 		$easy.bind(data);
-
-	});
-
-
-
-
-	return {};
+	};
 
 });

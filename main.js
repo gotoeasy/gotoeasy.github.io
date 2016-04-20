@@ -9,4 +9,9 @@ require.config({
 
 var url = location.href.split("?")[0];
 var page = url.substring(url.lastIndexOf('/') + 1).split(".")[0];
-require([ page ]);
+
+require(['domReady', page], function(domReady, fn){
+	domReady(function() {
+		fn();
+	});
+});
