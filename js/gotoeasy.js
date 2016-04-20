@@ -119,7 +119,7 @@
 		return isObject(objOrStr) ? JSON.stringify(objOrStr) : JSON.parse(objOrStr)
 	}
 	function isArray(ary) {
-		return (Array.isArray && Array.isArray(ary)) || ary instanceof Array || Object.prototype.toString.call(a) == '[object Array]'
+		return (Array.isArray && Array.isArray(ary)) || ary instanceof Array || Object.prototype.toString.call(ary) == '[object Array]'
 	}
 	function isPlainObject(obj) {
 		return obj && Object.prototype.toString.call(obj) === S_OBJECT_OBJECT
