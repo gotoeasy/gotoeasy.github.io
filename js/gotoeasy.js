@@ -842,6 +842,6 @@
 			return api
 		})
 	} else {
-		window.gotoEasy = api
+		window.gotoEasy = window.$easy = api
 	}
 })(window, document);

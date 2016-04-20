@@ -3,7 +3,7 @@ define([ 'domReady', 'gotoEasy'], function(domReady, $easy) {
 
 	domReady(function() {
 		
-		var data = {name:''};
+		var data = {};
 
 		$easy.bind(data);
 
