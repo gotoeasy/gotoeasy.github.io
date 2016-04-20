@@ -441,11 +441,12 @@
 			tmplSels.push(S_LEFT_ZKH + DOM_ATTR_BIND + S_XING_EQ + tmplKeys[i] + S_RIGHT_ZKH)
 		}
 		each(els, function(el) {
-			var key, bindInfo = getBindInfo(getAttr(el, DOM_ATTR_BIND));
-			for (key in bindInfo) {
-				if (tmplKeys.indexOf(key) >= 0) break
+			var bindInfo = getBindInfo(getAttr(el, DOM_ATTR_BIND));
+			var hasTemplate = 0;
+			for (var key in bindInfo) {
+				if (tmplKeys.indexOf(key) >= 0) hasTemplate = 1
 			}
-			if (key) {
+			if (hasTemplate) {
 				for (var i = 0; i < tmplKeys.length; i++) {
 					if (hasBindSubTemplate(el, tmplSels[i], tmplKeys[i])) {
 						parseTemplate(el)
