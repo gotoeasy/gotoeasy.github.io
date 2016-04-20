@@ -2,7 +2,7 @@
 define(['gotoEasy'], function($easy) {
 
 	return function(){
-		var data = {};
+		var data = {name: ''};
 
 		$easy.bind(data);
 	};
