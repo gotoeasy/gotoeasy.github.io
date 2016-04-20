@@ -4,7 +4,7 @@ require.config({
 		domReady : "js/domReady",
 		gotoEasy : "js/gotoeasy",
 	},
-	urlArgs : "ver=0.1" //+ (new Date()).getTime()
+	urlArgs : "ver=" + (new Date()).getTime()
 });
 
 var url = location.href.split("?")[0];
