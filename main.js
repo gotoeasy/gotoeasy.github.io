@@ -1,8 +1,8 @@
 require.config({
 	baseUrl : '',
 	paths : {
-		domReady : "js/domReady",
-		gotoEasy : "js/gotoeasy",
+		domReady : "csjs/domReady",
+		gotoEasy : "csjs/gotoeasy",
 	},
 	urlArgs : "ver=" + (new Date()).getTime()
 });
