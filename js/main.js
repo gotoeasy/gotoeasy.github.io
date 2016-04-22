@@ -29,7 +29,12 @@
 		$(".logo-top-margin").animate({marginLeft:'0'}, "slow");
 
 
-		swal({   title: "Auto close alert!",   text: "I will close in 2 seconds.",   timer: 2000,   showConfirmButton: false });
+		swal({
+			title: "太假了，不断更新中......", 
+			text: "I will close in 2 seconds.",
+			timer: 2000,
+			showConfirmButton: false });
+
 		return false;
 	});
 
@@ -38,6 +43,13 @@
 		$("#menu-container .gallery-section").slideDown('slow');
 		$(".logo-top-margin").animate({marginTop:'0'}, "slow");
 		$(".logo-top-margin").animate({marginLeft:'0'}, "slow");
+
+		swal({
+			title: "太假了，不断更新中......", 
+			text: "I will close in 2 seconds.",
+			timer: 2000,
+			showConfirmButton: false });
+
 		return false;
 	});
 
@@ -46,6 +58,13 @@
 		$("#menu-container .contact-section").slideDown('slow');
 		$(".logo-top-margin").animate({marginTop:'0'}, "slow");
 		$(".logo-top-margin").animate({marginLeft:'0'}, "slow");
+
+		swal({
+			title: "太假了，不断更新中......", 
+			text: "I will close in 2 seconds.",
+			timer: 2000,
+			showConfirmButton: false });
+
 		return false;
 	});
 
