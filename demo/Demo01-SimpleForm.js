@@ -4,7 +4,9 @@ define(['gotoEasy'], function($easy) {
 	return function(){
 
 		// 定义数据
-		var data = {};
+		var data = {fnSubmit: function(){
+			alert(JSON.stringify(data, null, '  '));
+		}};
 
 		// 绑定数据
 		$easy.bind(data);
