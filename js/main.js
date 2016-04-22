@@ -27,6 +27,9 @@
 		$("#menu-container .about-section").slideDown('slow');
 		$(".logo-top-margin").animate({marginTop:'0'}, "slow");
 		$(".logo-top-margin").animate({marginLeft:'0'}, "slow");
+
+
+		swal({   title: "Auto close alert!",   text: "I will close in 2 seconds.",   timer: 2000,   showConfirmButton: false });
 		return false;
 	});
 
