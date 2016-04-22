@@ -900,6 +900,17 @@ function elementRender(el, bindInfo, dataField){
 
 	// 按优先顺序渲染
 	each(_renders, function(render){
+
+		/* 定义有名函数避免被重复绑定 */
+		function functionToBind(){
+			try{
+				var fn = getBindValue(data, bindText, 0, 1); // 1:function
+				fn(data);
+			}catch(e){
+				error('#3', el, bindText, e);
+			}
+		}
+
 		var bindText = bindInfo[render[S_RENDER_KEY]];
 		if (bindText){
 			if (dataField && bindText.indexOf(dataField) < 0){
@@ -915,16 +926,6 @@ function elementRender(el, bindInfo, dataField){
 				var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 				var value = getBindValue(data, bindText);
 				render[S_RENDER_FN](el, value, data, bindText);		// TODO 可能if做了显示被with覆盖再被foreach覆盖，做if时判断后面有无。。。？
-			}
-
-			/* 定义有名函数避免被重复绑定 */
-			function functionToBind(){
-				try{
-					var fn = getBindValue(data, bindText, 0, 1); // 1:function
-					fn(data);
-				}catch(e){
-					error('#3', el, bindText, e);
-				}
 			}
 
 		}
