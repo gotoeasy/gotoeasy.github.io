@@ -30,7 +30,7 @@
 
 
 		swal({
-			title: "‘¾˜ï—¹C•s’fXV’†......", 
+			title: "å¤ªå‡äº†ï¼Œä¸æ–­æ›´æ–°ä¸­......", 
 			text: "I will close in 2 seconds.",
 			timer: 2000,
 			showConfirmButton: false });
@@ -45,7 +45,7 @@
 		$(".logo-top-margin").animate({marginLeft:'0'}, "slow");
 
 		swal({
-			title: "‘¾˜ï—¹C•s’fXV’†......", 
+			title: "å¤ªå‡äº†ï¼Œä¸æ–­æ›´æ–°ä¸­......", 
 			text: "I will close in 2 seconds.",
 			timer: 2000,
 			showConfirmButton: false });
@@ -60,7 +60,7 @@
 		$(".logo-top-margin").animate({marginLeft:'0'}, "slow");
 
 		swal({
-			title: "‘¾˜ï—¹C•s’fXV’†......", 
+			title: "å¤ªå‡äº†ï¼Œä¸æ–­æ›´æ–°ä¸­......", 
 			text: "I will close in 2 seconds.",
 			timer: 2000,
 			showConfirmButton: false });
