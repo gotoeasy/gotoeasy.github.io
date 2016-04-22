@@ -342,5 +342,5 @@ h6 { font-size: 14px; margin: 0 0 5px; padding: 0; }
 	padding: 0 20px 20px;
 	text-align: center;
 	color: #000;
-	background: url(../images/templatemo_footer.jpg) center top no-repeat;
+	-background: url(../images/templatemo_footer.jpg) center top no-repeat;
 }
