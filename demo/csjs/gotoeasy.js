@@ -427,7 +427,7 @@ function getBindValue(data, bindText, fields, isEvent){
 	}
 
 	var fnKey = getDataId(data) + '#' + bindText;
-	if (!_fns[fnKey]){
+	if (fields || !_fns[fnKey]){
 		// 字符串替换成{n}，替换值保存到repls中
 		var repls=[];
 		var body = bindText.replace(S_REG_QUOTE, function(match){
@@ -457,7 +457,7 @@ function getBindValue(data, bindText, fields, isEvent){
 			body = body.replace("{" + i + "}", repls[i]);
 		}
 
-		_fns[fnKey] = createFunction("return " + body);	// 创建函数
+		_fns[fnKey] = _fns[fnKey] || createFunction("return " + body);	// 创建函数
 	}
 
 	if (isEvent){
@@ -969,7 +969,7 @@ function datachangeEventListener(e){
 
 	if (el.type == 'checkbox'){
 		if (isArray(value)){
-			if (el[BIND_KEY_CHECKED]){
+			if (el.checked){
 				value.indexOf(el.value)<0 && value.push(el.value);
 			}else{
 				value.indexOf(el.value)>=0 && value.splice(value.indexOf(el.value), 1);

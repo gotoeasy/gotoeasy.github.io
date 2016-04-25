@@ -101,7 +101,7 @@
             
            <h4><font color="#cccc00">　　　// json string of data</font></h4>
            <div class="col_w320 float_r">
-                <div id="jsonStr">{}</div>
+                <div id="jsonStr"></div>
             </div>    	
 
 
@@ -154,22 +154,24 @@
 <pre class='brush: js'>
 define(['gotoEasy'], function($easy) {
 
-	return function() {
+	return function(){
 
 		// 定义数据
-		var data = {
-			fnSubmit: function() {
-				alert(JSON.stringify(data, null, '  '));
-			}
-		};
+		var data = {fnSubmit: function(){
+			alert(JSON.stringify(data, null, '  '));
+		}};
 
 		// 绑定数据
 		$easy.bind(data);
 
-		// 数据变更时，显示数据的JSON字符串
-		$easy.on('datachange', function() {
+		// ------------显示数据的JSON字符串--------------
+		// 初期显示数据的JSON字符串
+		document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
+		// 数据变更时，刷新显示数据的JSON字符串
+		$easy.on('datachange', function(){
 			document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
 		});
+		// ----------------------------------------------
 	};
 
 });

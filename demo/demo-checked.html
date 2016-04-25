@@ -76,26 +76,22 @@
                 <div id="contact_form">
                     <form method="post" name="contact" action="#">
                         
-                            <label>Name:</label> 
-                            <input type="text" data-bind="value:name" />
-                            <div class="cleaner h10"></div>
-                                                        
                             <label>CheckBox1:</label>
-							<input type="checkbox" name="chk1" value="value1" data-bind="checked:CheckBox1">
-							<input type="checkbox" name="chk1" value="value2" data-bind="checked:CheckBox1">
-							<input type="checkbox" name="chk1" value="value3" data-bind="checked:CheckBox1">
+							<input type="checkbox" value="勾选了大众" data-bind="checked:CheckBox1">
+							<input type="checkbox" value="勾选了丰田" data-bind="checked:CheckBox1">
+							<input type="checkbox" value="勾选了奔驰" data-bind="checked:CheckBox1">
                             <div class="cleaner h10"></div>
                                                 
                             <label>CheckBox2:</label>
-							<input type="checkbox" name="chk2" value="a" data-bind="checked:CheckBox2">
-							<input type="checkbox" name="chk2" value="b" data-bind="checked:CheckBox2">
-							<input type="checkbox" name="chk2" value="c" data-bind="checked:CheckBox2">
+							<input type="checkbox" value="check1" data-bind="checked:CheckBox2">
+							<input type="checkbox" value="check2" data-bind="checked:CheckBox2">
+							<input type="checkbox" value="check3" data-bind="checked:CheckBox2">
                             <div class="cleaner h10"></div>
                                 
                             <label>RadioButton:</label> 
-                            <input type="radio" name="rad1" value="radiovalue1" data-bind="checked:RadioButton">
-							<input type="radio" name="rad1" value="radiovalue2" data-bind="checked:RadioButton">
-							<input type="radio" name="rad1" value="radiovalue3" data-bind="checked:RadioButton">
+                            <input type="radio" value="1" data-bind="checked:RadioButton">
+							<input type="radio" value="2" data-bind="checked:RadioButton">
+							<input type="radio" value="3" data-bind="checked:RadioButton">
                             <div class="cleaner h10"></div>				
                                                     
                             <input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
@@ -107,7 +103,7 @@
             
            <h4><font color="#cccc00">　　　// json string of data</font></h4>
            <div class="col_w320 float_r">
-                <div id="jsonStr">{}</div>
+                <div id="jsonStr"></div>
             </div>    	
 
 
@@ -132,24 +128,25 @@
                 <h4>HTML</h4>
                 <div id="contact_form" style="width:700px">
 <pre class='brush: html'>
-&lt;label>Name:&lt;/label> 
-&lt;input type="text" data-bind="value:name" />
+&lt;label>CheckBox1:&lt;/label>
+&lt;input type="checkbox" value="勾选了大众" data-bind="checked:CheckBox1">
+&lt;input type="checkbox" value="勾选了丰田" data-bind="checked:CheckBox1">
+&lt;input type="checkbox" value="勾选了奔驰" data-bind="checked:CheckBox1">
 &lt;div class="cleaner h10">&lt;/div>
-			
-&lt;label>Email:&lt;/label> 
-&lt;input type="text" data-bind="value:email" />
+					
+&lt;label>CheckBox2:&lt;/label>
+&lt;input type="checkbox" value="check1" data-bind="checked:CheckBox2">
+&lt;input type="checkbox" value="check2" data-bind="checked:CheckBox2">
+&lt;input type="checkbox" value="check3" data-bind="checked:CheckBox2">
 &lt;div class="cleaner h10">&lt;/div>
-		
-&lt;label for="subject">Subject:&lt;/label> 
-&lt;input type="text" data-bind="value:subject"/>				               
-&lt;div class="cleaner h10">&lt;/div>
-
-&lt;label>Message:&lt;/label> 
-&lt;textarea style="height:60px" data-bind="value:message">&lt;/textarea>
+	
+&lt;label>RadioButton:&lt;/label> 
+&lt;input type="radio" value="1" data-bind="checked:RadioButton">
+&lt;input type="radio" value="2" data-bind="checked:RadioButton">
+&lt;input type="radio" value="3" data-bind="checked:RadioButton">
 &lt;div class="cleaner h10">&lt;/div>				
-		    
+						
 &lt;input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
-&lt;input type="button" value="Reset" id="reset" name="reset" class="submit_btn float_r" />
 </pre>
                 </div> 
             </div>
@@ -160,22 +157,26 @@
 <pre class='brush: js'>
 define(['gotoEasy'], function($easy) {
 
-	return function() {
+	return function(){
 
 		// 定义数据
 		var data = {
-			fnSubmit: function() {
-				alert(JSON.stringify(data, null, '  '));
-			}
-		};
+			CheckBox1 : ['勾选了奔驰'],
+			fnSubmit: function(){
+			alert(JSON.stringify(data, null, '  '));
+		}};
 
 		// 绑定数据
 		$easy.bind(data);
 
-		// 数据变更时，显示数据的JSON字符串
-		$easy.on('datachange', function() {
+		// ------------显示数据的JSON字符串--------------
+		// 初期显示数据的JSON字符串
+		document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
+		// 数据变更时，刷新显示数据的JSON字符串
+		$easy.on('datachange', function(){
 			document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
 		});
+		// ----------------------------------------------
 	};
 
 });
