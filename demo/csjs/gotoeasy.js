@@ -394,7 +394,6 @@
 		if (!bindInfo){
 			return;
 		}
-
 		bindInfo[S_BIND_INFO_PROP_DATA_ID] = getDataId(data);
 		if (cssFields) {
 			for (var key in bindInfo) {
