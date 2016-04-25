@@ -819,6 +819,8 @@ putRender(BIND_KEY_OPTIONS, function(el, val, data, bindText) {
 	each(val, function(option){
 		if (isPlainObject(option)){
 			opts[opts.length] = new Option(option.text, option.value);
+		}else if (option == null){
+			opts[opts.length] = new Option('', '');
 		}else{
 			opts[opts.length] = new Option(option, option);
 		}

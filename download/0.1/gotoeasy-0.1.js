@@ -325,7 +325,7 @@
 			return data[bindText]
 		}
 		var fnKey = getDataId(data) + '#' + bindText;
-		if (!_fns[fnKey]) {
+		if (fields || !_fns[fnKey]) {
 			var repls = [];
 			var body = bindText.replace(S_REG_QUOTE, function(match) {
 				var key = '{' + repls.length + "}";
@@ -348,7 +348,7 @@
 			for (i = 0; i < repls.length; i++) {
 				body = body.replace("{" + i + "}", repls[i])
 			}
-			_fns[fnKey] = createFunction("return " + body)
+			_fns[fnKey] = _fns[fnKey] || createFunction("return " + body)
 		}
 		if (isEvent) {
 			return _fns[fnKey]
@@ -605,6 +605,8 @@
 		each(val, function(option) {
 			if (isPlainObject(option)) {
 				opts[opts.length] = new Option(option.text, option.value)
+			} else if (option == null) {
+				opts[opts.length] = new Option('', '')
 			} else {
 				opts[opts.length] = new Option(option, option)
 			}
@@ -709,11 +711,11 @@
 			return
 		}
 		var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
-		var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_TEXT];
+		var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
 		var value = data[field];
 		if (el.type == 'checkbox') {
 			if (isArray(value)) {
-				if (el[BIND_KEY_CHECKED]) {
+				if (el.checked) {
 					value.indexOf(el.value) < 0 && value.push(el.value)
 				} else {
 					value.indexOf(el.value) >= 0 && value.splice(value.indexOf(el.value), 1)
