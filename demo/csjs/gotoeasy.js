@@ -964,7 +964,7 @@ function datachangeEventListener(e){
 	}
 
 	var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
-	var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_TEXT];
+	var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
 	var value = data[field];
 
 	if (el.type == 'checkbox'){

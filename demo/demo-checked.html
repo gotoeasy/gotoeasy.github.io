@@ -72,7 +72,7 @@
             <h2>Sample</h2>
             <div class="cleaner"></div>
             <div class="col_w320 float_l">
-                <h4>Simple Form</h4>
+                <h4>data-bind="checked:field"</h4>
                 <div id="contact_form">
                     <form method="post" name="contact" action="#">
                         
@@ -80,16 +80,22 @@
                             <input type="text" data-bind="value:name" />
                             <div class="cleaner h10"></div>
                                                         
-                            <label>Email:</label> 
-                            <input type="text" data-bind="value:email" />
+                            <label>CheckBox1:</label>
+							<input type="checkbox" name="chk1" value="value1" data-bind="checked:CheckBox1">
+							<input type="checkbox" name="chk1" value="value2" data-bind="checked:CheckBox1">
+							<input type="checkbox" name="chk1" value="value3" data-bind="checked:CheckBox1">
                             <div class="cleaner h10"></div>
                                                 
-                            <label for="subject">Subject:</label> 
-                            <input type="text" data-bind="value:subject"/>				               
+                            <label>CheckBox2:</label>
+							<input type="checkbox" name="chk2" value="a" data-bind="checked:CheckBox2">
+							<input type="checkbox" name="chk2" value="b" data-bind="checked:CheckBox2">
+							<input type="checkbox" name="chk2" value="c" data-bind="checked:CheckBox2">
                             <div class="cleaner h10"></div>
                                 
-                            <label>Message:</label> 
-                            <textarea style="height:60px" data-bind="value:message"></textarea>
+                            <label>RadioButton:</label> 
+                            <input type="radio" name="rad1" value="radiovalue1" data-bind="checked:RadioButton">
+							<input type="radio" name="rad1" value="radiovalue2" data-bind="checked:RadioButton">
+							<input type="radio" name="rad1" value="radiovalue3" data-bind="checked:RadioButton">
                             <div class="cleaner h10"></div>				
                                                     
                             <input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
@@ -205,7 +211,7 @@ define(['gotoEasy'], function($easy) {
         
 	</div> <!-- end of main -->
 <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Demo01-SimpleForm.html" data-title="在线示例1" data-url="http://gotoeasy.github.io/demo/Demo01-SimpleForm.html"></div>
+	<div class="ds-thread" data-thread-key="demo-checked.html" data-title="demo-checked" data-url="http://gotoeasy.github.io/demo/demo-checked.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -213,7 +219,7 @@ var duoshuoQuery = {short_name:"gotoeasy"};
 	(function() {
 		var ds = document.createElement('script');
 		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://www.lynx.im/res/embed.js'; //'http://gotoeasy.github.io/js/embed_ua.js'; //'http://static.duoshuo.com/embed.js'; 
+		ds.src = 'http://gotoeasy.github.io/js/embed_ua.js'; //'http://static.duoshuo.com/embed.js'; //'http://www.lynx.im/res/embed.js';
 		ds.charset = 'UTF-8';
 		(document.getElementsByTagName('head')[0] 
 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
