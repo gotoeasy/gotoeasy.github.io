@@ -391,6 +391,9 @@
 			return json(el[S_ELEMENT_PROP_BIND_INFO])
 		}
 		var bindInfo = getBindInfo(getAttr(el, DOM_ATTR_BIND));
+		if (!bindInfo) {
+			return 0
+		}
 		bindInfo[S_BIND_INFO_PROP_DATA_ID] = getDataId(data);
 		if (cssFields) {
 			for (var key in bindInfo) {
@@ -702,6 +705,9 @@
 	function datachangeEventListener(e) {
 		var el = e.target;
 		var bindInfo = getElementBindInfo(el);
+		if (!bindInfo) {
+			return
+		}
 		var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 		var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_TEXT];
 		var value = data[field];
