@@ -84,8 +84,11 @@
                             </select>
                             <div class="cleaner h10"></div>
                                                 
-                                                    
-                            <input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
+                            <select data-bind="options:sexlist, value:sex">
+                            </select>
+                            <div class="cleaner h10"></div>
+
+							<input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
                             
                     </form> 
                 
@@ -126,8 +129,11 @@
 &lt;select data-bind="options:booklist, value:book">
 &lt;/select>
 &lt;div class="cleaner h10">&lt;/div>
-		
-		    
+
+&lt;select data-bind="options:sexlist, value:sex">
+&lt;/select>
+&lt;div class="cleaner h10">&lt;/div>
+
 &lt;input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
 </pre>
                 </div> 
@@ -137,6 +143,7 @@
                 <h4>JavaScript</h4>
                 <div id="contact_form" style="width:700px">
 <pre class='brush: js'>
+
 define(['gotoEasy'], function($easy) {
 
 	return function(){
@@ -148,6 +155,7 @@ define(['gotoEasy'], function($easy) {
 
 			booklist : [{value:'',text:'请选择你最喜欢的书'},'《Java最佳实践》','《JavaScript最佳实践》','《.NET最佳实践》','《读死书不如无书》'],
 
+			sexlist : '男,女',
 			
 			fnSubmit: function(){
 			alert(JSON.stringify(data, null, '  '));

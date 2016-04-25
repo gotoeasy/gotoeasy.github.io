@@ -10,6 +10,7 @@ define(['gotoEasy'], function($easy) {
 
 			booklist : [{value:'',text:'请选择你最喜欢的书'},'《Java最佳实践》','《JavaScript最佳实践》','《.NET最佳实践》','《读死书不如无书》'],
 
+			sexlist : '男,女',
 			
 			fnSubmit: function(){
 			alert(JSON.stringify(data, null, '  '));
