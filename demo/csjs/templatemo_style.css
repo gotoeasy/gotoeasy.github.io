@@ -232,6 +232,7 @@ h6 { font-size: 14px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/templatemo_content_middle.png) repeat-y;
 }
 
+.col_w800 { width: 800px }
 .col_w320 { width: 320px }
 .col_w220 { width: 220px; float: left; }
 .col_mr30 { margin-right: 30px }

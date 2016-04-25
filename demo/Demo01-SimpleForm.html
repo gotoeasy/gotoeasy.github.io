@@ -4,6 +4,39 @@
 <title>代码示例</title>
 <link href="csjs/templatemo_style.css" rel="stylesheet" type="text/css" />
 <script src="csjs/require.js" data-main="main"></script>
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/brush.js"></script>
+<link type="text/css" rel="stylesheet" href="http://static.oschina.net/js/syntax-highlighter-2.1.382/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="http://static.oschina.net/js/syntax-highlighter-2.1.382/styles/shThemeDefault.css"/>
+<script type="text/javascript">
+	function documentReady(callback) {
+		///兼容FF,Google
+		if (document.addEventListener) {
+			document.addEventListener('DOMContentLoaded', function () {
+				document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+				callback();
+			}, false)
+		}
+		 //兼容IE
+		else if (document.attachEvent) {
+			document.attachEvent('onreadytstatechange', function () {
+				  if (document.readyState == "complete") {
+							document.detachEvent("onreadystatechange", arguments.callee);
+							callback();
+				   }
+			})
+		}
+		else if (document.lastChild == document.body) {
+			callback();
+		}
+	};
+
+	documentReady(function(){
+		SyntaxHighlighter.config.clipboardSwf = 'http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	});
+
+</script>
 </head>
 <body>
 
@@ -36,9 +69,8 @@
         <div class="content_box_top"></div>
 
         <div class="content_box">
-            <h2>表单示例</h2>
+            <h2>Sample</h2>
             <div class="cleaner"></div>
-            <div class="cleaner h30"></div>
             <div class="col_w320 float_l">
                 <h4>Simple Form</h4>
                 <div id="contact_form">
@@ -57,7 +89,7 @@
                             <div class="cleaner h10"></div>
                                 
                             <label>Message:</label> 
-                            <textarea data-bind="value:message"></textarea>
+                            <textarea style="height:60px" data-bind="value:message"></textarea>
                             <div class="cleaner h10"></div>				
                                                     
                             <input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
@@ -78,9 +110,80 @@
             <a class="gototop" href="#top">Go to Top</a>
             <div class="cleaner"></div>
             <div class="cleaner"></div>
+        </div>
+		<!-- end of a content box -->
+
+
+
+<br>
+
+
+        <div class="content_box_top"></div>
+
+        <div class="content_box">
+            <h2>Source Code</h2>
+            <div class="cleaner"></div>
+            <div class="col_w800 float_l">
+                <h4>HTML</h4>
+                <div id="contact_form" style="width:700px">
+<pre class='brush: html'>
+&lt;label>Name:&lt;/label> 
+&lt;input type="text" data-bind="value:name" />
+&lt;div class="cleaner h10">&lt;/div>
+			
+&lt;label>Email:&lt;/label> 
+&lt;input type="text" data-bind="value:email" />
+&lt;div class="cleaner h10">&lt;/div>
+		
+&lt;label for="subject">Subject:&lt;/label> 
+&lt;input type="text" data-bind="value:subject"/>				               
+&lt;div class="cleaner h10">&lt;/div>
+
+&lt;label>Message:&lt;/label> 
+&lt;textarea style="height:60px" data-bind="value:message">&lt;/textarea>
+&lt;div class="cleaner h10">&lt;/div>				
+		    
+&lt;input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
+&lt;input type="button" value="Reset" id="reset" name="reset" class="submit_btn float_r" />
+</pre>
+                </div> 
+            </div>
+            
+            <div class="col_w800 float_l">
+                <h4>JavaScript</h4>
+                <div id="contact_form" style="width:700px">
+<pre class='brush: js'>
+define(['gotoEasy'], function($easy) {
+
+	return function() {
+
+		// 定义数据
+		var data = {
+			fnSubmit: function() {
+				alert(JSON.stringify(data, null, '  '));
+			}
+		};
+
+		// 绑定数据
+		$easy.bind(data);
+
+		// 数据变更时，显示数据的JSON字符串
+		$easy.on('datachange', function() {
+			document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
+		});
+	};
+
+});
+</pre>
+                </div> 
+            </div>
+
+
+            <div class="cleaner h30"></div>
+            <a class="gototop" href="#top">Go to Top</a>
+            <div class="cleaner"></div>
+            <div class="cleaner"></div>
         </div> <!-- end of a content box -->
-
-
 
 
 
