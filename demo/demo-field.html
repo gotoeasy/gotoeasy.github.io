@@ -79,7 +79,7 @@
                             <label>价格:</label>
 							<input type="text" data-bind="value:price" readonly>
                             <label>数量:</label>
-							<select data-bind="options:'0;10;20;30',value:num"></select>
+							<select data-bind="options:'0;1;2;3',value:num"></select>
                             <label>最终价:</label>
                             <input type="text" data-bind="value:price*num*0.99,field:total" />
                             <div class="cleaner h10"></div>
@@ -125,7 +125,7 @@
 &lt;label>价格:&lt;/label>
 &lt;input type="text" data-bind="value:price">
 &lt;label>数量:&lt;/label>
-&lt;select data-bind="options:'10;20;30',value:num">&lt;/select>
+&lt;select data-bind="options:'0,1;2;3',value:num">&lt;/select>
 &lt;label>最终价:&lt;/label>
 &lt;input type="text" data-bind="value:price*num*0.99,field:total" />
 &lt;div class="cleaner h10">&lt;/div>
