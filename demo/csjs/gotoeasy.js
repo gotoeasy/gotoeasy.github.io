@@ -938,7 +938,7 @@ function elementRender(el, bindInfo, dataField){
 		if (_renderMap[bindKey] || bindKey == S_BIND_INFO_PROP_DATA_ID) continue;
 
 		var bindText = bindInfo[bindKey];
-		if (dataField && bindText.indexOf(dataField) < 0) return;	// 无关字段数据更新，不需要刷新
+		if (dataField && bindText.indexOf(dataField) < 0) continue;	// 无关字段数据更新，不需要刷新
 
 		var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 		var value = getBindValue(data, bindText);
