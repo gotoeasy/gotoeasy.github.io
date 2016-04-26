@@ -524,11 +524,25 @@ function getElementBindInfo(el, data, cssFields){
 	if (cssFields){
 		for (var key in bindInfo){
 			if (key != S_BIND_INFO_PROP_DATA_ID && key != BIND_KEY_FIELD && key != BIND_KEY_CLICK){	// TODO 排除页面刷新无关的FIELD和CLICK
-				var fields = [];
-				getBindValue(data, bindInfo[key], fields);
-				each(fields, function(field){
-					cssFields.push(field);
-				});
+
+				if (key == 'style'){ // TODO 硬编码改善
+					var kvs = bindInfo[key].split(';');
+					for (var i=0, kv; i<kvs.length; i++){
+						kv = kvs[i].split('=');
+
+						var fields = [];
+						getBindValue(data, kv[1], fields);
+						for (var j=0; j<fields.length; j++){
+							cssFields.push(fields[j]);
+						}
+					}
+				}else{
+					var fields = [];
+					getBindValue(data, bindInfo[key], fields);
+					for (var i=0; i<fields.length; i++){
+						cssFields.push(fields[i]);
+					}
+				}
 			}
 		}
 	}
@@ -664,7 +678,6 @@ var S_RENDER_PARAMS = "p";
 // order		:	渲染顺序，默认0顺序无关
 // template		:	是否模板，默认false
 // event		:	是否事件，默认false
-// params		:	自定义参数
 function putRender(key, func, order, template, event, params){
 	var render = {};
 	render[S_RENDER_KEY] = key;
@@ -672,7 +685,6 @@ function putRender(key, func, order, template, event, params){
 	render[S_RENDER_ORDER] = order || 0;		// 默认顺序无关
 	render[S_RENDER_TEMPLATE] = !!template;		// 默认不是模板
 	render[S_RENDER_EVENT] = !!event;			// 默认不是事件
-	render[S_RENDER_PARAMS] = params;
 	
 	// 保存
 	_renderMap[key] = render;
@@ -703,30 +715,33 @@ function getRenderKeys(type){
 	return rs;
 }
 
-// TODO src、href等的测试
-// 节点的普通属性，如src、href等
+// 节点的普通属性，如src、href等（有属性不能用setAttribute设定时则需拿出来单独实现）
 // 【'*'】表示未定义的都按普通属性处理
 putRender('*', function(el, prop, val) {
 	setAttr(el, prop, escapeHtml(nullToBlank(val)));
 });
 
 // value
-putRender(BIND_KEY_VALUE, function(el, val, data, bindText) {
+putRender(BIND_KEY_VALUE, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	el.value = nullToBlank(val);
 });
 
 // 节点的单纯属性 readonly
-putRender(BIND_KEY_READONLY, function(el, val, data, bindText) {
+putRender(BIND_KEY_READONLY, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	el.readOnly = !!val; // TODO 复选框、单选框、下拉框是否要特别对应？
 });
 
 // 节点的单纯属性 disabled
-putRender(BIND_KEY_DISABLED, function(el, val, data, bindText) {
+putRender(BIND_KEY_DISABLED, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	el.disabled = !!val;
 }, 5); // 渲染顺序:5
 
 // 节点的单纯属性 checked
-putRender(BIND_KEY_CHECKED, function(el, val, data, bindText) {
+putRender(BIND_KEY_CHECKED, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	if (isArray(val)){
 		el.checked = (val.indexOf(el.value) >=0);	// 绑定为数组
 	}else{
@@ -742,8 +757,9 @@ putRender(BIND_KEY_CHECKED, function(el, val, data, bindText) {
 });
 
 // 控制可视状态 visible
-putRender(BIND_KEY_VISIBLE, function(el, val, data, bindText) {
-	removeStyle(el, ['visibility', 'display']);	// 删除影响显示的指定样式值
+putRender(BIND_KEY_VISIBLE, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
+	editStyle(el, ['visibility', 'display']);	// 删除影响显示的指定样式值
 
 	if(!!val){
 		el.style.visibility = 'visible';		// 控制显示
@@ -753,47 +769,68 @@ putRender(BIND_KEY_VISIBLE, function(el, val, data, bindText) {
 }, 5);
 
 // style
-putRender(BIND_KEY_STYLE, function(el, val, names) {
-	removeStyle(el, ['visibility', 'display']);	// 删除影响显示的指定样式值
-
-	if(!!val){
-		el.style.visibility = 'visible';		// 控制显示
-	}else{
-		el.style.display = 'none';
+putRender(BIND_KEY_STYLE, function(el, data, bindText) {
+	// data-bind="style:font-size=$root.fontSize;color='#00F';bg-color=getBgColor();"
+	var kvs = bindText.split(';');	// 分号分割
+	var keys = [];
+	var txts = [];
+	for (var i=0, kv; i<kvs.length; i++){
+		kv = kvs[i].split('=');		// 等号分割
+		if (kv.length==2){
+			keys.push(trim(kv[0]).toLowerCase());
+			txts.push(trim(kv[1]));
+		}
 	}
-}, 5, 0, 0, '; ='); // TODO 定义分隔符，类似 data-bind="style:font-size=$root.fontSize;color='#00F';bg-color=getBgColor();"
 
-function removeStyle(el, styles){
-	var rs = [], style = el.getAttribute('style'), kvs, kv, k;
+	if (!keys.length) return; // 没设定或设定有误
+
+
+	var val, styles = [];
+	for (var i=0; i<keys.length; i++){
+		styles.push(keys[i] + ':' + getBindValue(data, txts[i]));
+	}
+
+	editStyle(el, keys, styles.join(';'));	// 更新样式
+
+
+}, 5);
+
+function editStyle(el, delStyleNames, addStyles){
+	var rs = [], style = getAttr(el, 'style'), kvs, kv, k;
 	if (!style)	return;
 
 	kvs = style.split(';');
 	for (var i=0; i< kvs.length; i++){
 		kv = kvs[i].split(':');
 		k = trim(kv[0]).toLowerCase();
-		if (styles.indexOf(k) < 0){
+		if (delStyleNames.indexOf(k) < 0){
 			rs.push(kvs[i]);
 		}
 	}
 
+	addStyles && rs.push(addStyles);
+
 	style = rs.join(';');
-	el.setAttribute('style', style );
+	setAttr(el, 'style', style );
 	return style;
 }
 
 // class
-putRender(BIND_KEY_CLASS, function(el, val, data, bindText) {
+putRender(BIND_KEY_CLASS, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	// TODO
 	console.warn('TODO: class render')
 });
 
 // innerText
-putRender(BIND_KEY_INNERTEXT, function(el, val, data, bindText) {
+putRender(BIND_KEY_INNERTEXT, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	el.textContent = (val == null ? '' : val);
 });
 
 // innerHTML	// TODO
-putRender(BIND_KEY_INNERHTML, function(el, val, data, bindText) {
+putRender(BIND_KEY_INNERHTML, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	el.innerHTML = (val == null ? '' : val);
 });
 
@@ -803,7 +840,8 @@ putRender(BIND_KEY_FIELD, function() {
 });
 
 // 下拉框的 options
-putRender(BIND_KEY_OPTIONS, function(el, val, data, bindText) {
+putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	// val可以是逗号分隔的字符串、或单纯数组、或对象{value:'value',text:'display text'}数组
 	el.length = 0;
 	if (val == null || isPlainObject(val)) return;
@@ -811,6 +849,9 @@ putRender(BIND_KEY_OPTIONS, function(el, val, data, bindText) {
 	var opts = el.options;
 	if (!isArray(val)) {
 		val = val.split(','); 
+		if (val.length == 1){
+			val = val[0].split(';'); 
+		}
 	}
 
 	each(val, function(option){
@@ -829,7 +870,8 @@ putRender(BIND_KEY_OPTIONS, function(el, val, data, bindText) {
 putRender(BIND_KEY_CLICK,null,0,0,1);
 
 // foreach
-putRender(BIND_KEY_FOREACH, function(el, val, data, bindText) {
+putRender(BIND_KEY_FOREACH, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	removeChilds(el);	// 清空
 	if (val && val.length){
 		el.appendChild(  createFragmentByTemplate(val, el, true)  );	// FOREACH有数据时显示
@@ -837,13 +879,15 @@ putRender(BIND_KEY_FOREACH, function(el, val, data, bindText) {
 }, 7, 1);	// 顺序7：次于WITH, 模板
 
 // with
-putRender(BIND_KEY_WITH, function(el, val, data, bindText) {
+putRender(BIND_KEY_WITH, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	removeChilds(el);	// 清空
 	el.appendChild(  createFragmentByTemplate(val, el)  );
 }, 8, 1);	// 顺序8：次于IF
 
 // if
-putRender(BIND_KEY_IF, function(el, val, data, bindText) {
+putRender(BIND_KEY_IF, function(el, data, bindText) {
+	var val = getBindValue(data, bindText);
 	removeChilds(el);	// 清空
 	if (val){
 		// TODO 如果后面还有模板，这里可能白干甚至出错，待优化！
@@ -904,30 +948,29 @@ function elementRender(el, bindInfo, dataField){
 	each(_renders, function(render){
 
 		/* 定义有名函数避免被重复绑定 */
-		function functionToBind(){
+		function functionOfBind(){
 			try{
 				var fn = getBindValue(data, bindText, 0, 1); // 1:function
 				fn(data);
 			}catch(e){
-				error('#3', el, bindText, e);
+				error('#3', el, bindText, data, e);
 			}
 		}
 
 		var bindText = bindInfo[render[S_RENDER_KEY]];
+		var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
+
 		if (bindText){
 			if (dataField && bindText.indexOf(dataField) < 0){
 				return;	// 无关字段数据更新，不需要刷新 TODO 优化？
 			}
 
-			var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 			if (render[S_RENDER_EVENT]){
 				// 事件
-				addEvent(render[S_RENDER_KEY], functionToBind, el);
+				addEvent(render[S_RENDER_KEY], functionOfBind, el);
 			}else{
 				// 显示
-				var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
-				var value = getBindValue(data, bindText);
-				render[S_RENDER_FN](el, value, data, bindText);		// TODO 可能if做了显示被with覆盖再被foreach覆盖，做if时判断后面有无。。。？
+				render[S_RENDER_FN](el, data, bindText);		// TODO 可能if做了显示被with覆盖再被foreach覆盖，做if时判断后面有无。。。？
 			}
 
 		}
