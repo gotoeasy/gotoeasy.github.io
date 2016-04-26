@@ -398,11 +398,23 @@
 		if (cssFields) {
 			for (var key in bindInfo) {
 				if (key != S_BIND_INFO_PROP_DATA_ID && key != BIND_KEY_FIELD && key != BIND_KEY_CLICK) {
-					var fields = [];
-					getBindValue(data, bindInfo[key], fields);
-					each(fields, function(field) {
-						cssFields.push(field)
-					})
+					if (key == 'style') {
+						var kvs = bindInfo[key].split(';');
+						for (var i = 0, kv; i < kvs.length; i++) {
+							kv = kvs[i].split('=');
+							var fields = [];
+							getBindValue(data, kv[1], fields);
+							for (var j = 0; j < fields.length; j++) {
+								cssFields.push(fields[j])
+							}
+						}
+					} else {
+						var fields = [];
+						getBindValue(data, bindInfo[key], fields);
+						for (var i = 0; i < fields.length; i++) {
+							cssFields.push(fields[i])
+						}
+					}
 				}
 			}
 		}
@@ -506,7 +518,6 @@
 		render[S_RENDER_ORDER] = order || 0;
 		render[S_RENDER_TEMPLATE] = !! template;
 		render[S_RENDER_EVENT] = !! event;
-		render[S_RENDER_PARAMS] = params;
 		_renderMap[key] = render;
 		_renderKeys.push(key);
 		_renders = [];
@@ -535,72 +546,95 @@
 	putRender('*', function(el, prop, val) {
 		setAttr(el, prop, escapeHtml(nullToBlank(val)))
 	});
-	putRender(BIND_KEY_VALUE, function(el, val, data, bindText) {
+	putRender(BIND_KEY_VALUE, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		el.value = nullToBlank(val)
 	});
-	putRender(BIND_KEY_READONLY, function(el, val, data, bindText) {
-		el[S_READONLY] = !! val
+	putRender(BIND_KEY_READONLY, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
+		el.readOnly = !! val
 	});
-	putRender(BIND_KEY_DISABLED, function(el, val, data, bindText) {
-		el['disabled'] = !! val
+	putRender(BIND_KEY_DISABLED, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
+		el.disabled = !! val
 	}, 5);
-	putRender(BIND_KEY_CHECKED, function(el, val, data, bindText) {
+	putRender(BIND_KEY_CHECKED, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		if (isArray(val)) {
 			el.checked = (val.indexOf(el.value) >= 0)
 		} else {
 			el.checked = (val == el.value)
 		}
 	});
-	putRender(BIND_KEY_VISIBLE, function(el, val, data, bindText) {
-		removeStyle(el, ['visibility', 'display']);
+	putRender(BIND_KEY_VISIBLE, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
+		editStyle(el, ['visibility', 'display']);
 		if ( !! val) {
 			el.style.visibility = 'visible'
 		} else {
 			el.style.display = 'none'
 		}
 	}, 5);
-	putRender(BIND_KEY_STYLE, function(el, val, names) {
-		removeStyle(el, ['visibility', 'display']);
-		if ( !! val) {
-			el.style.visibility = 'visible'
-		} else {
-			el.style.display = 'none'
+	putRender(BIND_KEY_STYLE, function(el, data, bindText) {
+		var kvs = bindText.split(';');
+		var keys = [];
+		var txts = [];
+		for (var i = 0, kv; i < kvs.length; i++) {
+			kv = kvs[i].split('=');
+			if (kv.length == 2) {
+				keys.push(trim(kv[0]).toLowerCase());
+				txts.push(trim(kv[1]))
+			}
 		}
-	}, 5, 0, 0, '; =');
+		if (!keys.length) return;
+		var val, styles = [];
+		for (var i = 0; i < keys.length; i++) {
+			styles.push(keys[i] + ':' + getBindValue(data, txts[i]))
+		}
+		editStyle(el, keys, styles.join(';'))
+	}, 5);
 
-	function removeStyle(el, styles) {
+	function editStyle(el, delStyleNames, addStyles) {
 		var rs = [],
-			style = el.getAttribute('style'),
+			style = getAttr(el, 'style'),
 			kvs, kv, k;
 		if (!style) return;
 		kvs = style.split(';');
 		for (var i = 0; i < kvs.length; i++) {
 			kv = kvs[i].split(':');
 			k = trim(kv[0]).toLowerCase();
-			if (styles.indexOf(k) < 0) {
+			if (delStyleNames.indexOf(k) < 0) {
 				rs.push(kvs[i])
 			}
 		}
+		addStyles && rs.push(addStyles);
 		style = rs.join(';');
-		el.setAttribute('style', style);
+		setAttr(el, 'style', style);
 		return style
 	}
-	putRender(BIND_KEY_CLASS, function(el, val, data, bindText) {
+	putRender(BIND_KEY_CLASS, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		console.warn('TODO: class render')
 	});
-	putRender(BIND_KEY_INNERTEXT, function(el, val, data, bindText) {
+	putRender(BIND_KEY_INNERTEXT, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		el.textContent = (val == null ? '' : val)
 	});
-	putRender(BIND_KEY_INNERHTML, function(el, val, data, bindText) {
+	putRender(BIND_KEY_INNERHTML, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		el.innerHTML = (val == null ? '' : val)
 	});
 	putRender(BIND_KEY_FIELD, function() {});
-	putRender(BIND_KEY_OPTIONS, function(el, val, data, bindText) {
+	putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		el.length = 0;
 		if (val == null || isPlainObject(val)) return;
 		var opts = el.options;
 		if (!isArray(val)) {
-			val = val.split(',')
+			val = val.split(',');
+			if (val.length == 1) {
+				val = val[0].split(';')
+			}
 		}
 		each(val, function(option) {
 			if (isPlainObject(option)) {
@@ -613,17 +647,20 @@
 		})
 	}, 5);
 	putRender(BIND_KEY_CLICK, null, 0, 0, 1);
-	putRender(BIND_KEY_FOREACH, function(el, val, data, bindText) {
+	putRender(BIND_KEY_FOREACH, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		removeChilds(el);
 		if (val && val.length) {
 			el.appendChild(createFragmentByTemplate(val, el, true))
 		}
 	}, 7, 1);
-	putRender(BIND_KEY_WITH, function(el, val, data, bindText) {
+	putRender(BIND_KEY_WITH, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		removeChilds(el);
 		el.appendChild(createFragmentByTemplate(val, el))
 	}, 8, 1);
-	putRender(BIND_KEY_IF, function(el, val, data, bindText) {
+	putRender(BIND_KEY_IF, function(el, data, bindText) {
+		var val = getBindValue(data, bindText);
 		removeChilds(el);
 		if (val) {
 			el.appendChild(createFragmentByTemplate(data, el))
@@ -666,33 +703,31 @@
 	function elementRender(el, bindInfo, dataField) {
 		bindInfo = bindInfo || getElementBindInfo(el);
 		each(_renders, function(render) {
-			function functionToBind() {
+			function functionOfBind() {
 				try {
 					var fn = getBindValue(data, bindText, 0, 1);
 					fn(data)
 				} catch (e) {
-					error('#3', el, bindText, e)
+					error('#3', el, bindText, data, e)
 				}
 			}
 			var bindText = bindInfo[render[S_RENDER_KEY]];
+			var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 			if (bindText) {
 				if (dataField && bindText.indexOf(dataField) < 0) {
 					return
 				}
-				var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 				if (render[S_RENDER_EVENT]) {
-					addEvent(render[S_RENDER_KEY], functionToBind, el)
+					addEvent(render[S_RENDER_KEY], functionOfBind, el)
 				} else {
-					var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
-					var value = getBindValue(data, bindText);
-					render[S_RENDER_FN](el, value, data, bindText)
+					render[S_RENDER_FN](el, data, bindText)
 				}
 			}
 		});
 		for (var bindKey in bindInfo) {
 			if (_renderMap[bindKey] || bindKey == S_BIND_INFO_PROP_DATA_ID) continue;
 			var bindText = bindInfo[bindKey];
-			if (dataField && bindText.indexOf(dataField) < 0) return;
+			if (dataField && bindText.indexOf(dataField) < 0) continue;
 			var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 			var value = getBindValue(data, bindText);
 			_renderMap['*'][S_RENDER_FN](el, bindKey, value)
@@ -710,8 +745,12 @@
 		if (!bindInfo) {
 			return
 		}
-		var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 		var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
+		if (field == null) {
+			log('[ignore datachange]', el);
+			return
+		}
+		var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 		var value = data[field];
 		if (el.type == 'checkbox') {
 			if (isArray(value)) {
@@ -721,7 +760,7 @@
 					value.indexOf(el.value) >= 0 && value.splice(value.indexOf(el.value), 1)
 				}
 			} else {
-				value = el.value
+				value = el.checked ? el.value : ''
 			}
 		} else {
 			value = el.value
