@@ -16,13 +16,6 @@ define(['gotoEasy'], function($easy) {
 		// 绑定数据
 		$easy.bind(data);
 
-		// 数量修改时自动计算并更新总价
-		$easy.on('datachange', function(data, key, value){
-			if (key == 'num'){
-				data.set('total', data.price * value);
-			}
-		});
-
 		// ------------显示数据的JSON字符串--------------
 		// 初期显示数据的JSON字符串
 		document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'

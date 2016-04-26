@@ -81,10 +81,10 @@
                             <label>数量:</label>
 							<select data-bind="options:'0;10;20;30',value:num"></select>
                             <label>最终价:</label>
-                            <input type="text" data-bind="value:price*num,field:total" />
+                            <input type="text" data-bind="value:price*num*0.99,field:total" />
                             <div class="cleaner h10"></div>
                                                         
-                            <div style="height:100px">最终价=价格*数量<br>最终价也可以直接修改（比如优惠去掉零头）<br>&nbsp;<br>最终价无法识别绑定到哪个字段，所以通过field指定</div>
+                            <div style="height:100px">最终价=价格*数量*0.99<br>最终价辅助计算后可以直接修改（如优惠去零头）<br>&nbsp;<br>最终价无法识别绑定到哪个字段，可通过field指定</div>
                             <div class="cleaner h10"></div>
                                                 
                                                     
@@ -127,10 +127,10 @@
 &lt;label>数量:&lt;/label>
 &lt;select data-bind="options:'10;20;30',value:num">&lt;/select>
 &lt;label>最终价:&lt;/label>
-&lt;input type="text" data-bind="value:price*num,field:total" />
+&lt;input type="text" data-bind="value:price*num*0.99,field:total" />
 &lt;div class="cleaner h10">&lt;/div>
 
-&lt;div style="height:100px">最终价=价格*数量&lt;br>最终价也可以直接修改（比如优惠去掉零头）&lt;br>&nbsp;&lt;br>最终价无法识别绑定到哪个字段，所以通过field指定&lt;/div>
+&lt;div style="height:100px">最终价=价格*数量*0.99&lt;br>最终价辅助计算后可以直接修改（如优惠去零头）&lt;br>&nbsp;&lt;br>最终价无法识别绑定到哪个字段，可通过field指定&lt;/div>
 &lt;div class="cleaner h10">&lt;/div>
 
 
@@ -159,13 +159,6 @@ define(['gotoEasy'], function($easy) {
 
 		// 绑定数据
 		$easy.bind(data);
-
-		// 数量修改时自动计算并更新总价
-		$easy.on('datachange', function(data, key, value){
-			if (key == 'num'){
-				data.set('total', data.price * value);
-			}
-		});
 
 		// ------------显示数据的JSON字符串--------------
 		// 初期显示数据的JSON字符串
