@@ -717,12 +717,12 @@ putRender(BIND_KEY_VALUE, function(el, val, data, bindText) {
 
 // 节点的单纯属性 readonly
 putRender(BIND_KEY_READONLY, function(el, val, data, bindText) {
-	el[S_READONLY] = !!val;
+	el.readOnly = !!val; // TODO 复选框、单选框、下拉框是否要特别对应？
 });
 
 // 节点的单纯属性 disabled
 putRender(BIND_KEY_DISABLED, function(el, val, data, bindText) {
-	el['disabled'] = !!val;
+	el.disabled = !!val;
 }, 5); // 渲染顺序:5
 
 // 节点的单纯属性 checked
@@ -977,7 +977,7 @@ function datachangeEventListener(e){
 				value.indexOf(el.value)>=0 && value.splice(value.indexOf(el.value), 1);
 			}
 		}else{
-			value = el.value;
+			value = el.checked ? el.value : '';
 		}
 	}else{
 		value = el.value;
