@@ -733,14 +733,11 @@ putRender(BIND_KEY_CHECKED, function(el, val, data, bindText) {
 		el.checked = (val == el.value);				// 绑定为普通值
 	}
 
-	/* TODO
-					setTimeout(function () {
-						//IE8 checkbox, radio是使用defaultChecked控制选中状态，
-						//并且要先设置defaultChecked后设置checked
-						//并且必须设置延迟
-						element.defaultChecked = checked
-						element.checked = checked
-					}, 31)
+	/* TODO IE8确认效果
+		setTimeout(function () {
+			element.defaultChecked = checked
+			element.checked = checked
+		}, 31)
 	*/
 });
 
@@ -959,14 +956,18 @@ function updateviewEventListener(data, key){
 
 // 页面上变更数据时更新数据
 function datachangeEventListener(e){
-	var el = e.target;	// TODO 仅针对有绑定的控件做处理
+	var el = e.target;
 	var bindInfo = getElementBindInfo(el);
 	if (!bindInfo){
 		return; // 忽略无关控件的编辑事件
 	}
 
-	var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 	var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
+	if (field == null){
+		log('没有或无法识别绑定字段，不做数据更新处理。', el)
+		return;
+	}
+	var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 	var value = data[field];
 
 	if (el.type == 'checkbox'){
