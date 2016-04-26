@@ -333,7 +333,7 @@
 				return key
 			});
 			body = body.replace(S_REG_PROP, function(match) {
-				if (/^\d+$/g.test(match) || match == 'true' || match == 'false' || match == 'null' || startsWith(match, ']')) {
+				if (/^\d+(\.\d+)?$/g.test(match) || match == 'true' || match == 'false' || match == 'null' || match == 'alert' || startsWith(match, ']')) {
 					return match
 				} else {
 					match = match.split(S_FUN_PARENT).join(S_FUN_PARENT).split(S_FUN_ROOT).join(S_FUN_ROOT);
