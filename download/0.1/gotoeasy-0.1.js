@@ -30,7 +30,7 @@
 	var BIND_KEY_VISIBLE = Options.bindKeyVisible = 'visible';
 	var BIND_KEY_CHECKED = Options.bindKeyChecked = 'checked';
 	var BIND_KEY_STYLE = Options.bindKeyStyle = 'style';
-	var BIND_KEY_CLASS = Options.bindKeyClass = 'class';
+	var BIND_KEY_CSS = Options.bindKeyCss = 'css';
 	var BIND_KEY_TEMPLATE = Options.bindKeyTemplate = 'template';
 	var BIND_KEY_FOREACH = Options.bindKeyForeach = 'foreach';
 	var BIND_KEY_WITH = Options.bindKeyWith = 'with';
@@ -65,7 +65,7 @@
 		BIND_KEY_VISIBLE = Options.bindKeyVisible;
 		BIND_KEY_CHECKED = Options.bindKeyChecked;
 		BIND_KEY_STYLE = Options.bindKeyStyle;
-		BIND_KEY_CLASS = Options.bindKeyClass;
+		BIND_KEY_CSS = Options.bindKeyCss;
 		BIND_KEY_TEMPLATE = Options.bindKeyTemplate;
 		BIND_KEY_FOREACH = Options.bindKeyForeach;
 		BIND_KEY_WITH = Options.bindKeyWith;
@@ -398,7 +398,7 @@
 		if (cssFields) {
 			for (var key in bindInfo) {
 				if (key != S_BIND_INFO_PROP_DATA_ID && key != BIND_KEY_FIELD && key != BIND_KEY_CLICK) {
-					if (key == 'style') {
+					if (key == BIND_KEY_STYLE || key == BIND_KEY_CSS) {
 						var kvs = bindInfo[key].split(';');
 						for (var i = 0, kv; i < kvs.length; i++) {
 							kv = kvs[i].split('=');
@@ -612,9 +612,26 @@
 		setAttr(el, 'style', style);
 		return style
 	}
-	putRender(BIND_KEY_CLASS, function(el, data, bindText) {
-		var val = getBindValue(data, bindText);
-		console.warn('TODO: class render')
+	putRender(BIND_KEY_CSS, function(el, data, bindText) {
+		var kvs = bindText.split(';');
+		var keys = [];
+		var txts = [];
+		for (var i = 0, kv; i < kvs.length; i++) {
+			kv = kvs[i].split('=');
+			if (kv.length == 2) {
+				keys.push(trim(kv[0]).toLowerCase());
+				txts.push(trim(kv[1]))
+			}
+		}
+		if (!keys.length) return;
+		var val, csses = [];
+		for (var i = 0; i < keys.length; i++) {
+			if (getBindValue(data, txts[i])) {
+				addClass(el, keys[i])
+			} else {
+				removeClass(el, keys[i])
+			}
+		}
 	});
 	putRender(BIND_KEY_INNERTEXT, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);

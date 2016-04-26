@@ -43,7 +43,7 @@ var BIND_KEY_DISABLED = Options.bindKeyDisabled = 'disabled';									// bind na
 var BIND_KEY_VISIBLE = Options.bindKeyVisible = 'visible';									// bind name of visible
 var BIND_KEY_CHECKED = Options.bindKeyChecked = 'checked';									// bind name of checked
 var BIND_KEY_STYLE = Options.bindKeyStyle = 'style';											// bind name of style
-var BIND_KEY_CLASS = Options.bindKeyClass = 'class';											// bind name of class
+var BIND_KEY_CSS = Options.bindKeyCss = 'css';											// bind name of class
 var BIND_KEY_TEMPLATE = Options.bindKeyTemplate = 'template';											// bind name of class
 var BIND_KEY_FOREACH = Options.bindKeyForeach = 'foreach';									// bind name of foreach
 var BIND_KEY_WITH = Options.bindKeyWith = 'with';												// bind name of with
@@ -89,7 +89,7 @@ function settings(opt){
 	BIND_KEY_VISIBLE = Options.bindKeyVisible;
 	BIND_KEY_CHECKED = Options.bindKeyChecked;
 	BIND_KEY_STYLE = Options.bindKeyStyle;
-	BIND_KEY_CLASS = Options.bindKeyClass;
+	BIND_KEY_CSS = Options.bindKeyCss;
 	BIND_KEY_TEMPLATE = Options.bindKeyTemplate;
 	BIND_KEY_FOREACH = Options.bindKeyForeach;
 	BIND_KEY_WITH = Options.bindKeyWith;
@@ -525,7 +525,7 @@ function getElementBindInfo(el, data, cssFields){
 		for (var key in bindInfo){
 			if (key != S_BIND_INFO_PROP_DATA_ID && key != BIND_KEY_FIELD && key != BIND_KEY_CLICK){	// TODO 排除页面刷新无关的FIELD和CLICK
 
-				if (key == 'style'){ // TODO 硬编码改善
+				if (key == BIND_KEY_STYLE || key == BIND_KEY_CSS){ // TODO 硬编码改善
 					var kvs = bindInfo[key].split(';');
 					for (var i=0, kv; i<kvs.length; i++){
 						kv = kvs[i].split('=');
@@ -815,11 +815,30 @@ function editStyle(el, delStyleNames, addStyles){
 	return style;
 }
 
-// class
-putRender(BIND_KEY_CLASS, function(el, data, bindText) {
-	var val = getBindValue(data, bindText);
-	// TODO
-	console.warn('TODO: class render')
+// css
+putRender(BIND_KEY_CSS, function(el, data, bindText) {
+	// data-bind="css:hide=hide;color='#00F';bg-color=getBgColor();"
+	var kvs = bindText.split(';');	// 分号分割
+	var keys = [];
+	var txts = [];
+	for (var i=0, kv; i<kvs.length; i++){
+		kv = kvs[i].split('=');		// 等号分割
+		if (kv.length==2){
+			keys.push(trim(kv[0]).toLowerCase());
+			txts.push(trim(kv[1]));
+		}
+	}
+
+	if (!keys.length) return; // 没设定或设定有误
+
+	var val, csses = [];
+	for (var i=0; i<keys.length; i++){
+		if (getBindValue(data, txts[i])){
+			addClass(el, keys[i]);
+		}else{
+			removeClass(el, keys[i]);
+		}
+	}
 });
 
 // innerText
@@ -1007,7 +1026,7 @@ function datachangeEventListener(e){
 
 	var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
 	if (field == null){
-		log('没有或无法识别绑定字段，不做数据更新处理。', el)
+		log('[ignore datachange]', el);
 		return;
 	}
 	var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
