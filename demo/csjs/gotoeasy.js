@@ -726,6 +726,9 @@ putRender('*', function(el, prop, val) {
 putRender(BIND_KEY_VALUE, function(el, data, bindText) {
 	var val = getBindValue(data, bindText);
 	el.value = nullToBlank(val);
+
+	// bindText不是直接绑定字段而是表达式运算得出时，若指定了field则调用field渲染器处理
+	_renderMap[BIND_KEY_FIELD][S_RENDER_FN](el, data, bindText, val);
 });
 
 // 节点的单纯属性 readonly
@@ -856,7 +859,11 @@ putRender(BIND_KEY_INNERHTML, function(el, data, bindText) {
 
 // 仅用于指定绑定的字段名，不需要控制显示
 // 如【data-bind="value: price*num, field:total"】，由于value关联了两个字段无法自动识别，若要自动回绑则需用field指定字段名
-putRender(BIND_KEY_FIELD, function() {
+putRender(BIND_KEY_FIELD, function(el, data, bindText, bindValue) {
+	var field = getElementBindInfo(el)[BIND_KEY_FIELD];
+	if (field && field != bindText){
+		set(data, field, bindValue);
+	}
 });
 
 // 下拉框的 options
