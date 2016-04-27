@@ -29,7 +29,8 @@ var DEBUG_MODE = Options.debugMode = 1;
 
 var DATA_KEY_FN_ID = Options.dataKeyFnId = '_$id';													// 数据的ID属性名
 var DATA_KEY_FN_PARENT = Options.dataKeyFnParent = '_$parent';										// 数据的父对象属性名
-var DATA_KEY_FN_ROOT = Options.dataKeyFnRoot = '_$root';												// 数据的根对象属性名
+var DATA_KEY_FN_ROOT = Options.dataKeyFnRoot = '_$root';											// 数据的根对象属性名
+var DATA_KEY_FN_DATA = Options.dataKeyFnData = '_$data';											// 当前数据对象
 
 var DOM_ATTR_BIND = Options.domAttrBind = 'data-bind';											// 控件的数据绑定属性名
 
@@ -52,6 +53,7 @@ var BIND_KEY_CLICK = Options.bindKeyClick = 'click';											// bind name of c
 
 var BIND_REF_ROOT = Options.bindRefRoot = '$root';
 var BIND_REF_PARENT = Options.bindRefParent = '$parent';
+var BIND_REF_DATA = Options.bindRefParent = '$data';
 
 var EVENT_DATA_CHAGE = Options.eventDataChage = 'datachange';									// datachange event name
 var EVENT_UPDATE_VIEW = Options.eventUpdateView = 'updaueview';								// updaueview event name
@@ -62,6 +64,7 @@ var UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate = 'tuid-';
 
 var S_FUN_ROOT = DATA_KEY_FN_ROOT + '()';
 var S_FUN_PARENT = DATA_KEY_FN_PARENT + '()';
+var S_FUN_DATA = DATA_KEY_FN_DATA + '()';
 
 var S_BIND_INFO_PROP_DATA_ID = '_dataid';
 
@@ -372,7 +375,8 @@ function defineData(data, parent){
 	// 给数据对象加上函数
 	data[DATA_KEY_FN_ID] = function(){ return dataid; };					// data.$id()
 	data[DATA_KEY_FN_PARENT] = function(){ return getData(parentid); };		// data.$parent()	// TODO 支持多父节点？
-	data[DATA_KEY_FN_ROOT] = function(){ return getData(rootid); };			// data.$root()	// TODO 支持多根节点？
+	data[DATA_KEY_FN_ROOT] = function(){ return getData(rootid); };			// data.$root()		// TODO 支持多根节点？
+	data[DATA_KEY_FN_DATA] = function(){ return this; };					// data.$data()
 
 	data.set = function(key, value, forceUpdate){							// data.set(key, value, forceUpdate)
 		set(this, key, value, forceUpdate);
@@ -419,7 +423,7 @@ function defineArrayMethod(ary, parent, key){
 }
 
 // ------------------------------------------------------------------------------------
-
+var S_IGNORE_KEY = 'true false null alert this _'.split(' ');
 function getBindValue(data, bindText, fields, isEvent){
 	if( hasKey(data, bindText)){
 		fields && fields.push(getDataId(data) + '-' + bindText);	// 保存字段CSS名
@@ -438,11 +442,12 @@ function getBindValue(data, bindText, fields, isEvent){
 		// 匹配为字段时，加前缀“_.”
 		body = body.replace(S_REG_PROP, function(match){
 								//if ( /^\d+$/g.test(match) || match=='true' || match=='false' || match=='null' || startsWith(match,']') ){
-								if ( /^\d+(\.\d+)?$/g.test(match) || match=='true' || match=='false' || match=='null' || match=='alert' || startsWith(match,']') ){
+								if ( /^\d+(\.\d+)?$/g.test(match) || S_IGNORE_KEY.indexOf(match) >= 0 || startsWith(match,']') ){
 									return match;
 								}else{
-									match = match.split(S_FUN_PARENT).join(S_FUN_PARENT).split(S_FUN_ROOT).join(S_FUN_ROOT);
-									match = match.split(BIND_REF_PARENT).join(S_FUN_PARENT).split(BIND_REF_ROOT).join(S_FUN_ROOT);
+									match = match.split(BIND_REF_ROOT).join(S_FUN_ROOT);
+									match = match.split(BIND_REF_PARENT).join(S_FUN_PARENT);
+									match = match.split(BIND_REF_DATA).join(S_FUN_DATA);
 
 									if (fields) {
 										var field = getDataFieldCss(data, "return _." + match);	// 解析字段CSS名
@@ -819,7 +824,7 @@ function editStyle(el, delStyleNames, addStyles){
 	return style;
 }
 
-// css
+// class
 putRender(BIND_KEY_CLASS, function(el, data, bindText) {
 	// data-bind="class:hide=hide;color='#00F';bg-color=getBgColor();"
 	var kvs = bindText.split(';');	// 分号分割
@@ -976,7 +981,7 @@ function elementRender(el, bindInfo, dataField){
 		function functionOfBind(){
 			try{
 				var fn = getBindValue(data, bindText, 0, 1); // 1:function
-				fn(data);
+				fn.call(data, data);
 			}catch(e){
 				error('#3', el, bindText, data, e);
 			}
