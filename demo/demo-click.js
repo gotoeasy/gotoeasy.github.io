@@ -18,7 +18,7 @@ define(['gotoEasy'], function($easy) {
 					if (name != null){
 						$data.name = name;
 
-						$easy.notify('updaueview', $data, 'name', name); // 通知页面显示最新数据
+						$easy.notify('updaueview', $data, 'name', name); // 通知显示最新数据
 					}
 				}
 			},
