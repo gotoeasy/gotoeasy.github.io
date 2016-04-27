@@ -378,12 +378,12 @@ function defineData(data, parent){
 	data[DATA_KEY_FN_ROOT] = function(){ return getData(rootid); };			// data.$root()		// TODO 支持多根节点？
 	data[DATA_KEY_FN_DATA] = function(){ return this; };					// data.$data()
 
-	data.set = function(key, value, forceUpdate){							// data.set(key, value, forceUpdate)
-		set(this, key, value, forceUpdate);
-	};
-	data.get = function(key, defaultValue){									// data.get(key, defaultValue)
-		return get(this, key, defaultValue);
-	};
+//	data.set = function(key, value, forceUpdate){							// data.set(key, value, forceUpdate)
+//		set(this, key, value, forceUpdate);
+//	};
+//	data.get = function(key, defaultValue){									// data.get(key, defaultValue)
+//		return get(this, key, defaultValue);
+//	};
 }
 
 
@@ -1175,9 +1175,9 @@ function trigger(eventNames, eventObj){
 	});
 };
 
-// 延迟触发事件，默认延迟30毫秒，例：notify("datachange", data, "fieldName", value); notify(1000, "datachange", data, "fieldName", value)
+// 延迟触发事件，默认延迟1毫秒，例：notify("datachange", data, "fieldName", value); notify(1000, "datachange", data, "fieldName", value)
 function notify(delay, eventNames, eventObj){
-	var delaytime = isNaN(delay) ? 30 : delay;
+	var delaytime = isNaN(delay) ? 1 : delay;
 	var args = isNaN(delay) ? slice.call(arguments, 0) : slice.call(arguments, 1);
 	async(function(){
 			trigger.apply(null, args);
@@ -1220,12 +1220,12 @@ api.settings = settings;
 // 数据绑定接口
 api.bind = bind;
 api.set = set;
-//api.get = get;
 
 // 事件接口
 api.on = on;
 api.off = off;
-api.trigger = trigger;
+//api.trigger = trigger;
+api.notify = notify;
 
 
 if (typeof define === 'function' && define.amd) {

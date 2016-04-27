@@ -172,8 +172,10 @@ define(['gotoEasy'], function($easy) {
 			fns : {
 				edit : function ($data){
 					var name = prompt('请修改名称', $data.name);
-					if (name){
-						$data.set('name', name);
+					if (name != null){
+						$data.name = name;
+
+						$easy.notify('updaueview', $data, 'name', name); // 通知页面显示最新数据
 					}
 				}
 			},
