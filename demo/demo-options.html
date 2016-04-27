@@ -76,15 +76,21 @@
                 <div id="contact_form">
                     <form method="post" name="contact" action="#">
                         
+                            <label>对象数组</label>
                             <select data-bind="options:citylist, value:city">
                             </select>
                             <div class="cleaner h10"></div>
 
+                            <label>混合数组</label>
                             <select data-bind="options:booklist, value:book">
                             </select>
                             <div class="cleaner h10"></div>
                                                 
-                            <select data-bind="options:sexlist, value:sex">
+                            <label>字符串1</label>
+                            <select data-bind="options:':分号分割字符串演示;男;女', value:sex">
+                            </select>
+                            <label>字符串2</label>
+                            <select data-bind="options:':分号冒号分割字符串演示;1:Yes;0:No', value:yesOrNo">
                             </select>
                             <div class="cleaner h10"></div>
 
@@ -122,15 +128,21 @@
                 <h4>HTML</h4>
                 <div id="contact_form" style="width:700px">
 <pre class='brush: html'>
+&lt;label>对象数组&lt;/label>
 &lt;select data-bind="options:citylist, value:city">
 &lt;/select>
 &lt;div class="cleaner h10">&lt;/div>
 
+&lt;label>混合数组&lt;/label>
 &lt;select data-bind="options:booklist, value:book">
 &lt;/select>
 &lt;div class="cleaner h10">&lt;/div>
 
-&lt;select data-bind="options:sexlist, value:sex">
+&lt;label>字符串1&lt;/label>
+&lt;select data-bind="options:':分号分割字符串演示;男;女', value:sex">
+&lt;/select>
+&lt;label>字符串2&lt;/label>
+&lt;select data-bind="options:':分号冒号分割字符串演示;1:Yes;0:No', value:yesOrNo">
 &lt;/select>
 &lt;div class="cleaner h10">&lt;/div>
 
@@ -143,7 +155,6 @@
                 <h4>JavaScript</h4>
                 <div id="contact_form" style="width:700px">
 <pre class='brush: js'>
-
 define(['gotoEasy'], function($easy) {
 
 	return function(){
@@ -153,9 +164,7 @@ define(['gotoEasy'], function($easy) {
 			citylist : [null,{value:'beijin',text:'北京'},{value:'sahnghai',text:'上海'},{value:'guangzhou',text:'广州'}],
 			city : 'sahnghai',
 
-			booklist : [{value:'',text:'请选择你最喜欢的书'},'《Java最佳实践》','《JavaScript最佳实践》','《.NET最佳实践》','《读死书不如无书》'],
-
-			sexlist : '男,女',
+			booklist : [{value:'',text:'请选择你最喜欢的书'},'Java:《Java最佳实践》','JavaScript:《JavaScript最佳实践》','《.NET最佳实践》','《读死书不如无书》'],
 			
 			fnSubmit: function(){
 			alert(JSON.stringify(data, null, '  '));

@@ -8,9 +8,7 @@ define(['gotoEasy'], function($easy) {
 			citylist : [null,{value:'beijin',text:'北京'},{value:'sahnghai',text:'上海'},{value:'guangzhou',text:'广州'}],
 			city : 'sahnghai',
 
-			booklist : [{value:'',text:'请选择你最喜欢的书'},'《Java最佳实践》','《JavaScript最佳实践》','《.NET最佳实践》','《读死书不如无书》'],
-
-			sexlist : '男,女',
+			booklist : [{value:'',text:'请选择你最喜欢的书'},'Java:《Java最佳实践》','JavaScript:《JavaScript最佳实践》','《.NET最佳实践》','《读死书不如无书》'],
 			
 			fnSubmit: function(){
 			alert(JSON.stringify(data, null, '  '));

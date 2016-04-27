@@ -869,16 +869,13 @@ putRender(BIND_KEY_FIELD, function(el, data, bindText, bindValue) {
 // 下拉框的 options
 putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
 	var val = getBindValue(data, bindText);
-	// val可以是逗号分隔的字符串、或单纯数组、或对象{value:'value',text:'display text'}数组
+	// val可以是分号分隔的字符串、或单纯数组、或对象{value:'value',text:'display text'}数组
 	el.length = 0;
 	if (val == null || isPlainObject(val)) return;
 
 	var opts = el.options;
 	if (!isArray(val)) {
-		val = val.split(','); 
-		if (val.length == 1){
-			val = val[0].split(';'); 
-		}
+		val = val.split(';').join(',').split(',');			// 字符串时逗号或分号都作为分割符
 	}
 
 	each(val, function(option){
@@ -887,7 +884,8 @@ putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
 		}else if (option == null){
 			opts[opts.length] = new Option('', '');
 		}else{
-			opts[opts.length] = new Option(option, option);
+			var kv = option.split(':');						// value和text可以用冒号分割
+			opts[opts.length] = new Option(kv.length>1?kv[1]:option, kv[0]);
 		}
 	});
 
