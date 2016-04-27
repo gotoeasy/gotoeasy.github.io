@@ -19,6 +19,7 @@
 	var DATA_KEY_FN_ID = Options.dataKeyFnId = '_$id';
 	var DATA_KEY_FN_PARENT = Options.dataKeyFnParent = '_$parent';
 	var DATA_KEY_FN_ROOT = Options.dataKeyFnRoot = '_$root';
+	var DATA_KEY_FN_DATA = Options.dataKeyFnData = '_$data';
 	var DOM_ATTR_BIND = Options.domAttrBind = 'data-bind';
 	var BIND_KEY_FIELD = Options.bindKeyField = 'field';
 	var BIND_KEY_VALUE = Options.bindKeyValue = 'value';
@@ -38,6 +39,7 @@
 	var BIND_KEY_CLICK = Options.bindKeyClick = 'click';
 	var BIND_REF_ROOT = Options.bindRefRoot = '$root';
 	var BIND_REF_PARENT = Options.bindRefParent = '$parent';
+	var BIND_REF_DATA = Options.bindRefParent = '$data';
 	var EVENT_DATA_CHAGE = Options.eventDataChage = 'datachange';
 	var EVENT_UPDATE_VIEW = Options.eventUpdateView = 'updaueview';
 	var EVENT_ARRAY_CHAGE = Options.eventArrayChage = 'arraychange';
@@ -45,6 +47,7 @@
 	var UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate = 'tuid-';
 	var S_FUN_ROOT = DATA_KEY_FN_ROOT + '()';
 	var S_FUN_PARENT = DATA_KEY_FN_PARENT + '()';
+	var S_FUN_DATA = DATA_KEY_FN_DATA + '()';
 	var S_BIND_INFO_PROP_DATA_ID = '_dataid';
 
 	function settings(opt) {
@@ -290,11 +293,8 @@
 		data[DATA_KEY_FN_ROOT] = function() {
 			return getData(rootid)
 		};
-		data.set = function(key, value, forceUpdate) {
-			set(this, key, value, forceUpdate)
-		};
-		data.get = function(key, defaultValue) {
-			return get(this, key, defaultValue)
+		data[DATA_KEY_FN_DATA] = function() {
+			return this
 		}
 	}
 	function defineArrayMethod(ary, parent, key) {
@@ -319,6 +319,8 @@
 		});
 		ary.x = 1
 	}
+	var S_IGNORE_KEY = 'true false null alert this _'.split(' ');
+
 	function getBindValue(data, bindText, fields, isEvent) {
 		if (hasKey(data, bindText)) {
 			fields && fields.push(getDataId(data) + '-' + bindText);
@@ -333,11 +335,12 @@
 				return key
 			});
 			body = body.replace(S_REG_PROP, function(match) {
-				if (/^\d+(\.\d+)?$/g.test(match) || match == 'true' || match == 'false' || match == 'null' || match == 'alert' || startsWith(match, ']')) {
+				if (/^\d+(\.\d+)?$/g.test(match) || S_IGNORE_KEY.indexOf(match) >= 0 || startsWith(match, ']')) {
 					return match
 				} else {
-					match = match.split(S_FUN_PARENT).join(S_FUN_PARENT).split(S_FUN_ROOT).join(S_FUN_ROOT);
-					match = match.split(BIND_REF_PARENT).join(S_FUN_PARENT).split(BIND_REF_ROOT).join(S_FUN_ROOT);
+					match = match.split(BIND_REF_ROOT).join(S_FUN_ROOT);
+					match = match.split(BIND_REF_PARENT).join(S_FUN_PARENT);
+					match = match.split(BIND_REF_DATA).join(S_FUN_DATA);
 					if (fields) {
 						var field = getDataFieldCss(data, "return _." + match);
 						field && fields.push(field)
@@ -727,7 +730,7 @@
 			function functionOfBind() {
 				try {
 					var fn = getBindValue(data, bindText, 0, 1);
-					fn(data)
+					fn.call(data, data)
 				} catch (e) {
 					error('#3', el, bindText, data, e)
 				}
@@ -882,7 +885,7 @@
 	};
 
 	function notify(delay, eventNames, eventObj) {
-		var delaytime = isNaN(delay) ? 30 : delay;
+		var delaytime = isNaN(delay) ? 1 : delay;
 		var args = isNaN(delay) ? slice.call(arguments, 0) : slice.call(arguments, 1);
 		async(function() {
 			trigger.apply(null, args)
@@ -904,7 +907,7 @@
 	api.set = set;
 	api.on = on;
 	api.off = off;
-	api.trigger = trigger;
+	api.notify = notify;
 	if (typeof define === 'function' && define.amd) {
 		define(function() {
 			return api
