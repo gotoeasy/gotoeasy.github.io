@@ -43,7 +43,7 @@ var BIND_KEY_DISABLED = Options.bindKeyDisabled = 'disabled';									// bind na
 var BIND_KEY_VISIBLE = Options.bindKeyVisible = 'visible';									// bind name of visible
 var BIND_KEY_CHECKED = Options.bindKeyChecked = 'checked';									// bind name of checked
 var BIND_KEY_STYLE = Options.bindKeyStyle = 'style';											// bind name of style
-var BIND_KEY_CSS = Options.bindKeyCss = 'css';											// bind name of class
+var BIND_KEY_CLASS = Options.bindKeyClass = 'class';											// bind name of class
 var BIND_KEY_TEMPLATE = Options.bindKeyTemplate = 'template';											// bind name of class
 var BIND_KEY_FOREACH = Options.bindKeyForeach = 'foreach';									// bind name of foreach
 var BIND_KEY_WITH = Options.bindKeyWith = 'with';												// bind name of with
@@ -89,7 +89,7 @@ function settings(opt){
 	BIND_KEY_VISIBLE = Options.bindKeyVisible;
 	BIND_KEY_CHECKED = Options.bindKeyChecked;
 	BIND_KEY_STYLE = Options.bindKeyStyle;
-	BIND_KEY_CSS = Options.bindKeyCss;
+	BIND_KEY_CLASS = Options.bindKeyClass;
 	BIND_KEY_TEMPLATE = Options.bindKeyTemplate;
 	BIND_KEY_FOREACH = Options.bindKeyForeach;
 	BIND_KEY_WITH = Options.bindKeyWith;
@@ -526,7 +526,7 @@ function getElementBindInfo(el, data, cssFields){
 		for (var key in bindInfo){
 			if (key != S_BIND_INFO_PROP_DATA_ID && key != BIND_KEY_FIELD && key != BIND_KEY_CLICK){	// TODO 排除页面刷新无关的FIELD和CLICK
 
-				if (key == BIND_KEY_STYLE || key == BIND_KEY_CSS){ // TODO 硬编码改善
+				if (key == BIND_KEY_STYLE || key == BIND_KEY_CLASS){ // TODO 硬编码改善
 					var kvs = bindInfo[key].split(';');
 					for (var i=0, kv; i<kvs.length; i++){
 						kv = kvs[i].split('=');
@@ -820,8 +820,8 @@ function editStyle(el, delStyleNames, addStyles){
 }
 
 // css
-putRender(BIND_KEY_CSS, function(el, data, bindText) {
-	// data-bind="css:hide=hide;color='#00F';bg-color=getBgColor();"
+putRender(BIND_KEY_CLASS, function(el, data, bindText) {
+	// data-bind="class:hide=hide;color='#00F';bg-color=getBgColor();"
 	var kvs = bindText.split(';');	// 分号分割
 	var keys = [];
 	var txts = [];
