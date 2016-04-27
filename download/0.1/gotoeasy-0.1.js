@@ -30,7 +30,7 @@
 	var BIND_KEY_VISIBLE = Options.bindKeyVisible = 'visible';
 	var BIND_KEY_CHECKED = Options.bindKeyChecked = 'checked';
 	var BIND_KEY_STYLE = Options.bindKeyStyle = 'style';
-	var BIND_KEY_CSS = Options.bindKeyCss = 'css';
+	var BIND_KEY_CLASS = Options.bindKeyClass = 'class';
 	var BIND_KEY_TEMPLATE = Options.bindKeyTemplate = 'template';
 	var BIND_KEY_FOREACH = Options.bindKeyForeach = 'foreach';
 	var BIND_KEY_WITH = Options.bindKeyWith = 'with';
@@ -65,7 +65,7 @@
 		BIND_KEY_VISIBLE = Options.bindKeyVisible;
 		BIND_KEY_CHECKED = Options.bindKeyChecked;
 		BIND_KEY_STYLE = Options.bindKeyStyle;
-		BIND_KEY_CSS = Options.bindKeyCss;
+		BIND_KEY_CLASS = Options.bindKeyClass;
 		BIND_KEY_TEMPLATE = Options.bindKeyTemplate;
 		BIND_KEY_FOREACH = Options.bindKeyForeach;
 		BIND_KEY_WITH = Options.bindKeyWith;
@@ -398,7 +398,7 @@
 		if (cssFields) {
 			for (var key in bindInfo) {
 				if (key != S_BIND_INFO_PROP_DATA_ID && key != BIND_KEY_FIELD && key != BIND_KEY_CLICK) {
-					if (key == BIND_KEY_STYLE || key == BIND_KEY_CSS) {
+					if (key == BIND_KEY_STYLE || key == BIND_KEY_CLASS) {
 						var kvs = bindInfo[key].split(';');
 						for (var i = 0, kv; i < kvs.length; i++) {
 							kv = kvs[i].split('=');
@@ -548,7 +548,8 @@
 	});
 	putRender(BIND_KEY_VALUE, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);
-		el.value = nullToBlank(val)
+		el.value = nullToBlank(val);
+		_renderMap[BIND_KEY_FIELD][S_RENDER_FN](el, data, bindText, val)
 	});
 	putRender(BIND_KEY_READONLY, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);
@@ -612,7 +613,7 @@
 		setAttr(el, 'style', style);
 		return style
 	}
-	putRender(BIND_KEY_CSS, function(el, data, bindText) {
+	putRender(BIND_KEY_CLASS, function(el, data, bindText) {
 		var kvs = bindText.split(';');
 		var keys = [];
 		var txts = [];
@@ -641,17 +642,19 @@
 		var val = getBindValue(data, bindText);
 		el.innerHTML = (val == null ? '' : val)
 	});
-	putRender(BIND_KEY_FIELD, function() {});
+	putRender(BIND_KEY_FIELD, function(el, data, bindText, bindValue) {
+		var field = getElementBindInfo(el)[BIND_KEY_FIELD];
+		if (field && field != bindText) {
+			set(data, field, bindValue)
+		}
+	});
 	putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);
 		el.length = 0;
 		if (val == null || isPlainObject(val)) return;
 		var opts = el.options;
 		if (!isArray(val)) {
-			val = val.split(',');
-			if (val.length == 1) {
-				val = val[0].split(';')
-			}
+			val = val.split(';').join(',').split(',')
 		}
 		each(val, function(option) {
 			if (isPlainObject(option)) {
@@ -659,7 +662,8 @@
 			} else if (option == null) {
 				opts[opts.length] = new Option('', '')
 			} else {
-				opts[opts.length] = new Option(option, option)
+				var kv = option.split(':');
+				opts[opts.length] = new Option(kv.length > 1 ? kv[1] : option, kv[0])
 			}
 		})
 	}, 5);
