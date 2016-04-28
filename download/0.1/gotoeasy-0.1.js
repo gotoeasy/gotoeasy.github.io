@@ -4,83 +4,6 @@
 * Licensed under the MIT license
 */
 (function(window, document) {
-	var $isIE = (window == document && document != window);
-	var $isModernBrowser = (typeof window.screenX === "number");
-	if (!Array.prototype.indexOf) {
-		Array.prototype.indexOf = function(item, start) {
-			for (var i = start || 0; i < this.length; i++) {
-				if (this[i] === item) return i
-			}
-			return -1
-		}
-	}
-	var Options = {};
-	var DEBUG_MODE = Options.debugMode = 1;
-	var DATA_KEY_FN_ID = Options.dataKeyFnId = '_$id';
-	var DATA_KEY_FN_PARENT = Options.dataKeyFnParent = '_$parent';
-	var DATA_KEY_FN_ROOT = Options.dataKeyFnRoot = '_$root';
-	var DATA_KEY_FN_DATA = Options.dataKeyFnData = '_$data';
-	var DOM_ATTR_BIND = Options.domAttrBind = 'data-bind';
-	var BIND_KEY_FIELD = Options.bindKeyField = 'field';
-	var BIND_KEY_VALUE = Options.bindKeyValue = 'value';
-	var BIND_KEY_INNERTEXT = Options.bindKeyInnerText = 'text';
-	var BIND_KEY_INNERHTML = Options.bindKeyInnerHtml = 'html';
-	var BIND_KEY_OPTIONS = Options.bindKeyOptions = 'options';
-	var BIND_KEY_READONLY = Options.bindKeyReadonly = 'readonly';
-	var BIND_KEY_DISABLED = Options.bindKeyDisabled = 'disabled';
-	var BIND_KEY_VISIBLE = Options.bindKeyVisible = 'visible';
-	var BIND_KEY_CHECKED = Options.bindKeyChecked = 'checked';
-	var BIND_KEY_STYLE = Options.bindKeyStyle = 'style';
-	var BIND_KEY_CLASS = Options.bindKeyClass = 'class';
-	var BIND_KEY_TEMPLATE = Options.bindKeyTemplate = 'template';
-	var BIND_KEY_FOREACH = Options.bindKeyForeach = 'foreach';
-	var BIND_KEY_WITH = Options.bindKeyWith = 'with';
-	var BIND_KEY_IF = Options.bindKeyIf = 'if';
-	var BIND_KEY_CLICK = Options.bindKeyClick = 'click';
-	var BIND_REF_ROOT = Options.bindRefRoot = '$root';
-	var BIND_REF_PARENT = Options.bindRefParent = '$parent';
-	var BIND_REF_DATA = Options.bindRefParent = '$data';
-	var EVENT_DATA_CHAGE = Options.eventDataChage = 'datachange';
-	var EVENT_UPDATE_VIEW = Options.eventUpdateView = 'updaueview';
-	var EVENT_ARRAY_CHAGE = Options.eventArrayChage = 'arraychange';
-	var UID_PREFIX_DATA = Options.uidPrefixData = 'duid-';
-	var UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate = 'tuid-';
-	var S_FUN_ROOT = DATA_KEY_FN_ROOT + '()';
-	var S_FUN_PARENT = DATA_KEY_FN_PARENT + '()';
-	var S_FUN_DATA = DATA_KEY_FN_DATA + '()';
-	var S_BIND_INFO_PROP_DATA_ID = '_dataid';
-
-	function settings(opt) {
-		if (!opt) return copyObject(Options);
-		overwrite(Options, opt);
-		DEBUG_MODE = Options.debugMode;
-		DATA_KEY_FN_ID = Options.dataKeyFnId;
-		DATA_KEY_FN_PARENT = Options.dataKeyFnParent;
-		DATA_KEY_FN_ROOT = Options.dataKeyFnRoot;
-		DOM_ATTR_BIND = Options.domAttrBind;
-		BIND_KEY_FIELD = Options.bindKeyField;
-		BIND_KEY_VALUE = Options.bindKeyValue;
-		BIND_KEY_INNERTEXT = Options.bindKeyInnerText;
-		BIND_KEY_INNERHTML = Options.bindKeyInnerHtml;
-		BIND_KEY_OPTIONS = Options.bindKeyOptions;
-		BIND_KEY_READONLY = Options.bindKeyReadonly;
-		BIND_KEY_DISABLED = Options.bindKeyDisabled;
-		BIND_KEY_VISIBLE = Options.bindKeyVisible;
-		BIND_KEY_CHECKED = Options.bindKeyChecked;
-		BIND_KEY_STYLE = Options.bindKeyStyle;
-		BIND_KEY_CLASS = Options.bindKeyClass;
-		BIND_KEY_TEMPLATE = Options.bindKeyTemplate;
-		BIND_KEY_FOREACH = Options.bindKeyForeach;
-		BIND_KEY_WITH = Options.bindKeyWith;
-		BIND_KEY_IF = Options.bindKeyIf;
-		BIND_KEY_CLICK = Options.bindKeyClick;
-		BIND_REF_ROOT = Options.bindRefRoot;
-		BIND_REF_PARENT = Options.bindRefParent;
-		EVENT_DATA_CHAGE = Options.eventDataChage;
-		EVENT_UPDATE_VIEW = Options.eventUpdateView;
-		PREFIX_DATA_UID = Options.prefixDataUid;
-		return copyObject(Options)
-	}
 	var S_LEFT_ZKH = '[';
 	var S_XING_EQ = '*=';
 	var S_RIGHT_ZKH = ']';
@@ -93,6 +16,8 @@
 	var S_COLON = ':';
 	var S_DOT = '.';
 	var S_SEMICOLON = ';';
+	var S_EQUAL = '=';
+	var S_BLANK = '';
 	var S_STYLE = 'style';
 	var S_CLASS = 'class';
 	var S_DISABLED = 'disabled';
@@ -100,7 +25,90 @@
 	var S_CHECKED = 'checked';
 	var S_VISIBLE = 'visible';
 	var S_NONE = 'none';
-	var SELECTOR_DATA_BIND = S_LEFT_ZKH + DOM_ATTR_BIND + S_RIGHT_ZKH;
+	var S_TBODY = 'TBODY';
+	var S_STAR = '*';
+	var S_MINUS = '-';
+	var $isIE = (window == document && document != window);
+	var $isModernBrowser = (typeof window.screenX === "number");
+	if (!Array.prototype.indexOf) {
+		Array.prototype.indexOf = function(item, start) {
+			for (var i = start || 0; i < this.length; i++) {
+				if (this[i] === item) return i
+			}
+			return -1
+		}
+	}
+	var Options = {};
+	var DEBUG;
+	var DOM_ATTR_BIND;
+	var SELECTOR_DATA_BIND;
+	var DATA_KEY_FN_ID;
+	var DATA_KEY_FN_PARENT;
+	var DATA_KEY_FN_ROOT;
+	var DATA_KEY_FN_DATA;
+	var BIND_REF_ROOT;
+	var BIND_REF_PARENT;
+	var BIND_REF_DATA;
+	var BIND_KEY_FIELD;
+	var BIND_KEY_VALUE;
+	var BIND_KEY_INNERTEXT;
+	var BIND_KEY_INNERHTML;
+	var BIND_KEY_OPTIONS;
+	var BIND_KEY_READONLY;
+	var BIND_KEY_DISABLED;
+	var BIND_KEY_VISIBLE;
+	var BIND_KEY_CHECKED;
+	var BIND_KEY_STYLE;
+	var BIND_KEY_CLASS;
+	var BIND_KEY_FOREACH;
+	var BIND_KEY_WITH;
+	var BIND_KEY_IF;
+	var BIND_KEY_CLICK;
+	var EVENT_DATA_CHAGE;
+	var EVENT_UPDATE_VIEW;
+	var UID_PREFIX_DATA;
+	var UID_PREFIX_TEMPLATE;
+	var S_BIND_INFO_PROP_DATA_ID = '$d';
+	var S_BIND_INFO_PROP_TEMPLATE_ID = '$t';
+	initOptionValues();
+
+	function initOptionValues() {
+		DEBUG = (Options.debug == null ? 1 : Options.debug);
+		DOM_ATTR_BIND = Options.domAttrBind || 'data-bind';
+		SELECTOR_DATA_BIND = S_LEFT_ZKH + DOM_ATTR_BIND + S_RIGHT_ZKH;
+		DATA_KEY_FN_ID = Options.dataKeyFnId || '_$id';
+		DATA_KEY_FN_PARENT = Options.dataKeyFnParent || '_$parent';
+		DATA_KEY_FN_ROOT = Options.dataKeyFnRoot || '_$root';
+		DATA_KEY_FN_DATA = Options.dataKeyFnData || '_$data';
+		BIND_REF_ROOT = Options.bindRefRoot || '$root';
+		BIND_REF_PARENT = Options.bindRefParent || '$parent';
+		BIND_REF_DATA = Options.bindRefData || '$data';
+		BIND_KEY_FIELD = Options.bindKeyField || 'field';
+		BIND_KEY_VALUE = Options.bindKeyValue || 'value';
+		BIND_KEY_INNERTEXT = Options.bindKeyInnerText || 'text';
+		BIND_KEY_INNERHTML = Options.bindKeyInnerHtml || 'html';
+		BIND_KEY_OPTIONS = Options.bindKeyOptions || 'options';
+		BIND_KEY_READONLY = Options.bindKeyReadonly || 'readonly';
+		BIND_KEY_DISABLED = Options.bindKeyDisabled || 'disabled';
+		BIND_KEY_VISIBLE = Options.bindKeyVisible || 'visible';
+		BIND_KEY_CHECKED = Options.bindKeyChecked || 'checked';
+		BIND_KEY_STYLE = Options.bindKeyStyle || 'style';
+		BIND_KEY_CLASS = Options.bindKeyClass || 'class';
+		BIND_KEY_FOREACH = Options.bindKeyForeach || 'foreach';
+		BIND_KEY_WITH = Options.bindKeyWith || 'with';
+		BIND_KEY_IF = Options.bindKeyIf || 'if';
+		BIND_KEY_CLICK = Options.bindKeyClick || 'click';
+		EVENT_DATA_CHAGE = Options.eventDataChage || 'datachange';
+		EVENT_UPDATE_VIEW = Options.eventUpdateView || 'updaueview';
+		UID_PREFIX_DATA = Options.uidPrefixData || 'd';
+		UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate || 't'
+	}
+	function settings(opt) {
+		if (!opt) return copyObject(Options);
+		overwrite(Options, opt);
+		initOptionValues();
+		return copyObject(Options)
+	}
 	var slice = Array.prototype.slice;
 	var async = setTimeout;
 
@@ -128,6 +136,9 @@
 	}
 	function isObject(obj) {
 		return obj !== null && typeof obj === S_OBJECT
+	}
+	function isFunction(obj) {
+		return (typeof obj == S_FUNCTION) && obj.constructor == Function
 	}
 	function hasKey(plainObject, key) {
 		return isPlainObject(plainObject) && plainObject[key] !== undefined
@@ -175,9 +186,6 @@
 		}
 		return rs
 	}
-	function isFunction(obj) {
-		return (typeof obj == S_FUNCTION) && obj.constructor == Function
-	}
 	function each(ary, callback) {
 		for (var i = 0; i < ary.length; i++) {
 			if (callback(ary[i], i) === false) {
@@ -196,13 +204,13 @@
 		return new Option(str).innerHTML.replace(/"/g, "&quot;")
 	}
 	function log() {
-		executeConsole('log', slice.call(arguments), DEBUG_MODE)
+		executeConsole('log', slice.call(arguments), DEBUG)
 	}
 	function info() {
-		executeConsole('info', slice.call(arguments), DEBUG_MODE)
+		executeConsole('info', slice.call(arguments), DEBUG)
 	}
 	function warn() {
-		executeConsole('warn', slice.call(arguments), DEBUG_MODE)
+		executeConsole('warn', slice.call(arguments), DEBUG)
 	}
 	function error() {
 		executeConsole('error', slice.call(arguments), 1)
@@ -319,7 +327,7 @@
 		});
 		ary.x = 1
 	}
-	var S_IGNORE_KEY = 'true false null alert this _'.split(' ');
+	var S_IGNORE_KEY = 'true false null alert this _ if else'.split(' ');
 
 	function getBindValue(data, bindText, fields, isEvent) {
 		if (hasKey(data, bindText)) {
@@ -338,9 +346,9 @@
 				if (/^\d+(\.\d+)?$/g.test(match) || S_IGNORE_KEY.indexOf(match) >= 0 || startsWith(match, ']')) {
 					return match
 				} else {
-					match = match.split(BIND_REF_ROOT).join(S_FUN_ROOT);
-					match = match.split(BIND_REF_PARENT).join(S_FUN_PARENT);
-					match = match.split(BIND_REF_DATA).join(S_FUN_DATA);
+					match = match.split(BIND_REF_ROOT).join(DATA_KEY_FN_ROOT + '()');
+					match = match.split(BIND_REF_PARENT).join(DATA_KEY_FN_PARENT + '()');
+					match = match.split(BIND_REF_DATA).join(DATA_KEY_FN_DATA + '()');
 					if (fields) {
 						var field = getDataFieldCss(data, "return _." + match);
 						field && fields.push(field)
@@ -393,7 +401,7 @@
 		if (el[S_ELEMENT_PROP_BIND_INFO]) {
 			return json(el[S_ELEMENT_PROP_BIND_INFO])
 		}
-		var bindInfo = getBindInfo(getAttr(el, DOM_ATTR_BIND));
+		var bindInfo = parseBindInfo(el);
 		if (!bindInfo) {
 			return 0
 		}
@@ -423,13 +431,16 @@
 		}
 		return bindInfo
 	}
-	function getBindInfo(databind) {
+	function parseBindInfo(el) {
 		var rs = {},
-			kvs, kv;
-		if (!databind) {
+			kvs, kv, bindText = getAttr(el, DOM_ATTR_BIND);
+		if (!bindText) {
 			return null
 		}
-		kvs = databind.split(S_COMMA);
+		var tmpTxt = bindText.replace(/,{1}\s*\w+\s*:{1}/g, function(match) {
+			return '\n' + match.substring(1)
+		});
+		kvs = tmpTxt.split('\n');
 		each(kvs, function(item) {
 			kv = item.split(S_COLON);
 			rs[trim(kv[0]).toLowerCase()] = trim(item.substring(item.indexOf(S_COLON) + 1))
@@ -458,7 +469,7 @@
 			tmplSels.push(S_LEFT_ZKH + DOM_ATTR_BIND + S_XING_EQ + tmplKeys[i] + S_RIGHT_ZKH)
 		}
 		each(els, function(el) {
-			var bindInfo = getBindInfo(getAttr(el, DOM_ATTR_BIND));
+			var bindInfo = parseBindInfo(el);
 			var hasTemplate = 0;
 			for (var key in bindInfo) {
 				if (tmplKeys.indexOf(key) >= 0) hasTemplate = 1
@@ -484,7 +495,7 @@
 	function hasBindSubTemplate(dom, selector, bindKey) {
 		var els = dom.querySelectorAll(selector);
 		for (var i = 0; i < els.length; i++) {
-			var bindInfo = getBindInfo(getAttr(els[i], DOM_ATTR_BIND));
+			var bindInfo = parseBindInfo(el);
 			if (bindInfo[bindKey]) {
 				return true
 			}
@@ -505,8 +516,7 @@
 		})
 	}
 	var _renderMap = {},
-		_renders = [],
-		_renderKeys = [];
+		_renders;
 	var S_RENDER_KEY = "k";
 	var S_RENDER_FN = "f";
 	var S_RENDER_ORDER = "o";
@@ -521,16 +531,7 @@
 		render[S_RENDER_ORDER] = order || 0;
 		render[S_RENDER_TEMPLATE] = !! template;
 		render[S_RENDER_EVENT] = !! event;
-		_renderMap[key] = render;
-		_renderKeys.push(key);
-		_renders = [];
-		for (k in _renderMap) {
-			_renders.push(_renderMap[k])
-		}
-		_renders.sort(function(o1, o2) {
-			if (o1[S_RENDER_ORDER] == o2[S_RENDER_ORDER]) return 0;
-			return o1[S_RENDER_ORDER] < o2[S_RENDER_ORDER] ? 1 : -1
-		})
+		_renderMap[key] = render
 	}
 	function getRenderKeys(type) {
 		var rs = [],
@@ -572,63 +573,57 @@
 	});
 	putRender(BIND_KEY_VISIBLE, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);
-		editStyle(el, ['visibility', 'display']);
+		editStyle(el, [S_VISIBILITY, S_DISPLAY]);
 		if ( !! val) {
-			el.style.visibility = 'visible'
+			el.style.visibility = S_VISIBLE
 		} else {
-			el.style.display = 'none'
+			el.style.display = S_NONE
 		}
 	}, 5);
 	putRender(BIND_KEY_STYLE, function(el, data, bindText) {
-		var kvs = bindText.split(';');
-		var keys = [];
-		var txts = [];
-		for (var i = 0, kv; i < kvs.length; i++) {
-			kv = kvs[i].split('=');
-			if (kv.length == 2) {
-				keys.push(trim(kv[0]).toLowerCase());
-				txts.push(trim(kv[1]))
-			}
-		}
+		var keys = [],
+			txts = [];
+		parseSubBindText(bindText, keys, txts);
 		if (!keys.length) return;
 		var val, styles = [];
 		for (var i = 0; i < keys.length; i++) {
-			styles.push(keys[i] + ':' + getBindValue(data, txts[i]))
+			styles.push(keys[i] + S_COLON + getBindValue(data, txts[i]))
 		}
-		editStyle(el, keys, styles.join(';'))
+		editStyle(el, keys, styles.join(S_SEMICOLON))
 	}, 5);
 
-	function editStyle(el, delStyleNames, addStyles) {
-		var rs = [],
-			style = getAttr(el, 'style'),
-			kvs, kv, k;
-		if (!style) return;
-		kvs = style.split(';');
-		for (var i = 0; i < kvs.length; i++) {
-			kv = kvs[i].split(':');
-			k = trim(kv[0]).toLowerCase();
-			if (delStyleNames.indexOf(k) < 0) {
-				rs.push(kvs[i])
-			}
-		}
-		addStyles && rs.push(addStyles);
-		style = rs.join(';');
-		setAttr(el, 'style', style);
-		return style
-	}
-	putRender(BIND_KEY_CLASS, function(el, data, bindText) {
-		var kvs = bindText.split(';');
-		var keys = [];
-		var txts = [];
-		for (var i = 0, kv; i < kvs.length; i++) {
-			kv = kvs[i].split('=');
+	function parseSubBindText(bindText, keys, txts) {
+		var i, kv, kvs = bindText.split(S_SEMICOLON);
+		for (i = 0; i < kvs.length; i++) {
+			kv = kvs[i].split(S_EQUAL);
 			if (kv.length == 2) {
-				keys.push(trim(kv[0]).toLowerCase());
+				keys.push(trim(kv[0]));
 				txts.push(trim(kv[1]))
 			}
 		}
+	}
+	function editStyle(el, delStyleNames, addStyles) {
+		var rs = [],
+			style = getAttr(el, S_STYLE);
+		if (!style) return;
+		var keys = [],
+			txts = [];
+		parseSubBindText(style, keys, txts);
+		for (var i = 0; i < keys.length; i++) {
+			if (delStyleNames.indexOf(k) < 0) {
+				rs.push(keys[i] + S_COLON + txts[i])
+			}
+		}
+		addStyles && rs.push(addStyles);
+		style = rs.join(S_SEMICOLON);
+		setAttr(el, S_STYLE, style);
+		return style
+	}
+	putRender(BIND_KEY_CLASS, function(el, data, bindText) {
+		var keys = [],
+			txts = [];
+		parseSubBindText(bindText, keys, txts);
 		if (!keys.length) return;
-		var val, csses = [];
 		for (var i = 0; i < keys.length; i++) {
 			if (getBindValue(data, txts[i])) {
 				addClass(el, keys[i])
@@ -639,11 +634,11 @@
 	});
 	putRender(BIND_KEY_INNERTEXT, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);
-		el.textContent = (val == null ? '' : val)
+		el.textContent = (val == null ? S_BLANK : val)
 	});
 	putRender(BIND_KEY_INNERHTML, function(el, data, bindText) {
 		var val = getBindValue(data, bindText);
-		el.innerHTML = (val == null ? '' : val)
+		el.innerHTML = (val == null ? S_BLANK : val)
 	});
 	putRender(BIND_KEY_FIELD, function(el, data, bindText, bindValue) {
 		var field = getElementBindInfo(el)[BIND_KEY_FIELD];
@@ -657,15 +652,15 @@
 		if (val == null || isPlainObject(val)) return;
 		var opts = el.options;
 		if (!isArray(val)) {
-			val = val.split(';').join(',').split(',')
+			val = val.split(S_SEMICOLON).join(S_COMMA).split(S_COMMA)
 		}
 		each(val, function(option) {
 			if (isPlainObject(option)) {
 				opts[opts.length] = new Option(option.text, option.value)
 			} else if (option == null) {
-				opts[opts.length] = new Option('', '')
+				opts[opts.length] = new Option(S_BLANK, S_BLANK)
 			} else {
-				var kv = option.split(':');
+				var kv = option.split(S_COLON);
 				opts[opts.length] = new Option(kv.length > 1 ? kv[1] : option, kv[0])
 			}
 		})
@@ -702,7 +697,7 @@
 					if (!dt) return;
 					var tbody, fragment = createFragmentByTemplate(dt, el);
 					for (var i = 0; i < fragment.childNodes.length; i++) {
-						if (fragment.childNodes[i].tagName == 'TBODY') {
+						if (fragment.childNodes[i].tagName == S_TBODY) {
 							tbody = fragment.childNodes[i]
 						}
 					}
@@ -726,6 +721,16 @@
 	}
 	function elementRender(el, bindInfo, dataField) {
 		bindInfo = bindInfo || getElementBindInfo(el);
+		if (!_renders) {
+			_renders = [];
+			for (k in _renderMap) {
+				_renders.push(_renderMap[k])
+			}
+			_renders.sort(function(o1, o2) {
+				if (o1[S_RENDER_ORDER] == o2[S_RENDER_ORDER]) return 0;
+				return o1[S_RENDER_ORDER] < o2[S_RENDER_ORDER] ? 1 : -1
+			})
+		}
 		each(_renders, function(render) {
 			function functionOfBind() {
 				try {
@@ -754,13 +759,13 @@
 			if (dataField && bindText.indexOf(dataField) < 0) continue;
 			var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
 			var value = getBindValue(data, bindText);
-			_renderMap['*'][S_RENDER_FN](el, bindKey, value)
+			_renderMap[S_STAR][S_RENDER_FN](el, bindKey, value)
 		}
 	}
 	function updateviewEventListener(data, key) {
-		var els = document.querySelectorAll('.' + getDataId(data) + '-' + key);
+		var els = document.querySelectorAll(S_DOT + getDataId(data) + S_MINUS + key);
 		for (var i = 0; i < els.length; i++) {
-			elementRender(els[i], '', key)
+			elementRender(els[i], S_BLANK, key)
 		}
 	}
 	function datachangeEventListener(e) {
@@ -784,7 +789,7 @@
 					value.indexOf(el.value) >= 0 && value.splice(value.indexOf(el.value), 1)
 				}
 			} else {
-				value = el.checked ? el.value : ''
+				value = el.checked ? el.value : S_BLANK
 			}
 		} else {
 			value = el.value
@@ -885,7 +890,7 @@
 	};
 
 	function notify(delay, eventNames, eventObj) {
-		var delaytime = isNaN(delay) ? 1 : delay;
+		var delaytime = isNaN(delay) ? 0 : delay;
 		var args = isNaN(delay) ? slice.call(arguments, 0) : slice.call(arguments, 1);
 		async(function() {
 			trigger.apply(null, args)
@@ -901,6 +906,13 @@
 		on(EVENT_UPDATE_VIEW, updateviewEventListener);
 		addEvent('change', datachangeEventListener, document)
 	}
+	window.addEventListener("beforeunload", function(event) {
+		_mapDataIdDataObject = null;
+		_renderMap = null;
+		_renders = null;
+		_callbacks = null;
+		_fns = null
+	});
 	var api = {};
 	api.settings = settings;
 	api.bind = bind;
@@ -908,7 +920,9 @@
 	api.on = on;
 	api.off = off;
 	api.notify = notify;
-	if (typeof define === 'function' && define.amd) {
+	if (typeof exports == 'object') {
+		module.exports = api
+	} else if (typeof define == 'function' && define.amd) {
 		define(function() {
 			return api
 		})
