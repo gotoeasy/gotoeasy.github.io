@@ -52,7 +52,7 @@ define(['gotoEasy'], function($easy) {
 				alert(JSON.stringify(data, null, '  '));
 			}
 			,selectAll: function() {
-				var checkeVal = event.srcElement.checked? '1':'0';
+				var checkeVal = event.target.checked? '1':'0';
 				var ary = data.details;
 				for (var i=0; i<ary.length; i++){
 					$easy.set(ary[i], 'checked', checkeVal);
