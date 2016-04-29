@@ -178,6 +178,7 @@
                 <h4>JavaScript</h4>
                 <div id="contact_form" style="width:700px">
 <pre class='brush: js'>
+
 define(['gotoEasy'], function($easy) {
 
 	return function(){
@@ -233,7 +234,7 @@ define(['gotoEasy'], function($easy) {
 			,selectAll: function() {
 				var checkeVal = event.srcElement.checked? '1':'0';
 				var ary = data.details;
-				for(var i=0; i&lt;ary.length; i++) {
+				for (var i=0; i&lt;ary.length; i++){
 					$easy.set(ary[i], 'checked', checkeVal);
 				}
 			}
@@ -254,6 +255,7 @@ define(['gotoEasy'], function($easy) {
 	};
 
 });
+
 </pre>
                 </div> 
             </div>
