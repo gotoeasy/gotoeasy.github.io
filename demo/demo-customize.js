@@ -51,13 +51,6 @@ define(['gotoEasy'], function($easy) {
 			fnSubmit: function() {
 				alert(JSON.stringify(data, null, '  '));
 			}
-			,selectAll: function() {
-				var checkeVal = event.target.checked? '1':'0';
-				var ary = data.details;
-				for (var i=0; i<ary.length; i++){
-					$easy.set(ary[i], 'checked', checkeVal);
-				}
-			}
 		};
 
 		// 绑定数据（按自定义配置进行绑定）
@@ -72,6 +65,15 @@ define(['gotoEasy'], function($easy) {
 			bindKeyChecked : 'chk',
 		});
 
+		$easy.on('datachange', function(data, key, value){
+			if (key == 'selectAll'){
+				var checkeVal = data['selectAll']? '1':'0';
+				var ary = data.details;
+				for (var i=0; i<ary.length; i++){
+					$easy.set(ary[i], 'checked', checkeVal);
+				}
+			}
+		});
 	};
 
 });

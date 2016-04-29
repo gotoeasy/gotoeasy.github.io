@@ -79,7 +79,7 @@
 							<table style="width:800px">
 								<thead>
 									<tr>
-										<td width="10%"><input type="checkbox" bind-key-as-you-like="clk:selectAll()"></td>
+										<td width="10%"><input type="checkbox" bind-key-as-you-like="chk:selectAll"></td>
 										<td width="10%">编号</td>
 										<td width="30%">名称</td>
 										<td width="10%">价格</td>
@@ -140,7 +140,7 @@
 &lt;table style="width:800px">
 	&lt;thead>
 		&lt;tr>
-			&lt;td width="10%">&lt;input type="checkbox" bind-key-as-you-like="clk:selectAll()">&lt;/td>
+			&lt;td width="10%">&lt;input type="checkbox" bind-key-as-you-like="chk:selectAll">&lt;/td>
 			&lt;td width="10%">编号&lt;/td>
 			&lt;td width="30%">名称&lt;/td>
 			&lt;td width="10%">价格&lt;/td>
@@ -231,13 +231,6 @@ define(['gotoEasy'], function($easy) {
 			fnSubmit: function() {
 				alert(JSON.stringify(data, null, '  '));
 			}
-			,selectAll: function() {
-				var checkeVal = event.srcElement.checked? '1':'0';
-				var ary = data.details;
-				for (var i=0; i&lt;ary.length; i++){
-					$easy.set(ary[i], 'checked', checkeVal);
-				}
-			}
 		};
 
 		// 绑定数据（按自定义配置进行绑定）
@@ -252,10 +245,18 @@ define(['gotoEasy'], function($easy) {
 			bindKeyChecked : 'chk',
 		});
 
+		$easy.on('datachange', function(data, key, value){
+			if (key == 'selectAll'){
+				var checkeVal = data['selectAll']? '1':'0';
+				var ary = data.details;
+				for (var i=0; i&lt;ary.length; i++){
+					$easy.set(ary[i], 'checked', checkeVal);
+				}
+			}
+		});
 	};
 
 });
-
 </pre>
                 </div> 
             </div>
