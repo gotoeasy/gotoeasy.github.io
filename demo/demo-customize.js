@@ -65,7 +65,7 @@ define(['gotoEasy'], function($easy) {
 			bindKeyChecked : 'chk',
 		});
 
-		$easy.on('datachange', function(data, key, value){
+		/*$easy.on('datachange', function(data, key, value){
 			if (key == 'selectAll'){
 				var checkeVal = data['selectAll']? '1':'0';
 				var ary = data.details;
@@ -73,7 +73,7 @@ define(['gotoEasy'], function($easy) {
 					$easy.set(ary[i], 'checked', checkeVal);
 				}
 			}
-		});
+		});*/
 	};
 
 });
