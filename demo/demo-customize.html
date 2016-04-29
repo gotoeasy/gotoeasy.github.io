@@ -140,7 +140,7 @@
 &lt;table style="width:800px">
 	&lt;thead>
 		&lt;tr>
-			&lt;td width="10%">&lt;input type="checkbox" bind-key-as-you-like="chk:selectAll">&lt;/td>
+			&lt;td width="10%">&lt;input type="checkbox" bind-key-as-you-like="chk:!!selectAll,field:checked">&lt;/td>
 			&lt;td width="10%">编号&lt;/td>
 			&lt;td width="30%">名称&lt;/td>
 			&lt;td width="10%">价格&lt;/td>
@@ -245,15 +245,6 @@ define(['gotoEasy'], function($easy) {
 			bindKeyChecked : 'chk',
 		});
 
-		$easy.on('datachange', function(data, key, value){
-			if (key == 'selectAll'){
-				var checkeVal = data['selectAll']? '1':'0';
-				var ary = data.details;
-				for (var i=0; i&lt;ary.length; i++){
-					$easy.set(ary[i], 'checked', checkeVal);
-				}
-			}
-		});
 	};
 
 });
