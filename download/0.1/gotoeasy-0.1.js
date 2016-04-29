@@ -1,24 +1,29 @@
 /* gotoEasy 0.1, (c) 2016 Zhang Ming, @license MIT (http://gotoeasy.github.io) */
 !function(window, document) {
     function initOptionValues() {
-        DEBUG = null == Options.debug ? 1 : Options.debug, DOM_ATTR_BIND = Options.domAttrBind || "data-bind", 
-        SELECTOR_DATA_BIND = S_LEFT_ZKH + DOM_ATTR_BIND + S_RIGHT_ZKH, DATA_KEY_FN_ID = Options.dataKeyFnId || "_$id", 
-        DATA_KEY_FN_PARENT = Options.dataKeyFnParent || "_$parent", DATA_KEY_FN_ROOT = Options.dataKeyFnRoot || "_$root", 
-        DATA_KEY_FN_DATA = Options.dataKeyFnData || "_$data", BIND_REF_ROOT = Options.bindRefRoot || "$root", 
-        BIND_REF_PARENT = Options.bindRefParent || "$parent", BIND_REF_DATA = Options.bindRefData || "$data", 
-        BIND_KEY_FIELD = Options.bindKeyField || "field", BIND_KEY_VALUE = Options.bindKeyValue || "value", 
-        BIND_KEY_INNERTEXT = Options.bindKeyInnerText || "text", BIND_KEY_INNERHTML = Options.bindKeyInnerHtml || "html", 
-        BIND_KEY_OPTIONS = Options.bindKeyOptions || "options", BIND_KEY_READONLY = Options.bindKeyReadonly || "readonly", 
-        BIND_KEY_DISABLED = Options.bindKeyDisabled || "disabled", BIND_KEY_VISIBLE = Options.bindKeyVisible || "visible", 
-        BIND_KEY_CHECKED = Options.bindKeyChecked || "checked", BIND_KEY_STYLE = Options.bindKeyStyle || "style", 
-        BIND_KEY_CLASS = Options.bindKeyClass || "class", BIND_KEY_FOREACH = Options.bindKeyForeach || "foreach", 
-        BIND_KEY_WITH = Options.bindKeyWith || "with", BIND_KEY_IF = Options.bindKeyIf || "if", 
-        BIND_KEY_CLICK = Options.bindKeyClick || "click", EVENT_DATA_CHAGE = Options.eventDataChage || "datachange", 
-        EVENT_UPDATE_VIEW = Options.eventUpdateView || "updaueview", UID_PREFIX_DATA = Options.uidPrefixData || "d", 
-        UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate || "t";
+        DEBUG = null == Options.debug ? 1 : Options.debug, DOM_ATTR_BIND = Options.domAttrBind || (Options.domAttrBind = "data-bind"), 
+        SELECTOR_DATA_BIND = S_LEFT_ZKH + DOM_ATTR_BIND + S_RIGHT_ZKH, DATA_KEY_FN_ID = Options.dataKeyFnId || (Options.dataKeyFnId = "_$id"), 
+        DATA_KEY_FN_PARENT = Options.dataKeyFnParent || (Options.dataKeyFnParent = "_$parent"), 
+        DATA_KEY_FN_ROOT = Options.dataKeyFnRoot || (Options.dataKeyFnRoot = "_$root"), 
+        DATA_KEY_FN_DATA = Options.dataKeyFnData || (Options.dataKeyFnData = "_$data"), 
+        BIND_REF_ROOT = Options.bindRefRoot || (Options.bindRefRoot = "$root"), BIND_REF_PARENT = Options.bindRefParent || (Options.bindRefParent = "$parent"), 
+        BIND_REF_DATA = Options.bindRefData || (Options.bindRefData = "$data"), BIND_KEY_FIELD = Options.bindKeyField || (Options.bindKeyField = "field"), 
+        BIND_KEY_VALUE = Options.bindKeyValue || (Options.bindKeyValue = "value"), BIND_KEY_INNERTEXT = Options.bindKeyInnerText || (Options.bindKeyInnerText = "text"), 
+        BIND_KEY_INNERHTML = Options.bindKeyInnerHtml || (Options.bindKeyInnerHtml = "html"), 
+        BIND_KEY_OPTIONS = Options.bindKeyOptions || (Options.bindKeyOptions = "options"), 
+        BIND_KEY_READONLY = Options.bindKeyReadonly || (Options.bindKeyReadonly = "readonly"), 
+        BIND_KEY_DISABLED = Options.bindKeyDisabled || (Options.bindKeyDisabled = "disabled"), 
+        BIND_KEY_VISIBLE = Options.bindKeyVisible || (Options.bindKeyVisible = "visible"), 
+        BIND_KEY_CHECKED = Options.bindKeyChecked || (Options.bindKeyChecked = "checked"), 
+        BIND_KEY_STYLE = Options.bindKeyStyle || (Options.bindKeyStyle = "style"), BIND_KEY_CLASS = Options.bindKeyClass || (Options.bindKeyClass = "class"), 
+        BIND_KEY_FOREACH = Options.bindKeyForeach || (Options.bindKeyForeach = "foreach"), 
+        BIND_KEY_WITH = Options.bindKeyWith || (Options.bindKeyWith = "with"), BIND_KEY_IF = Options.bindKeyIf || (Options.bindKeyIf = "if"), 
+        BIND_KEY_CLICK = Options.bindKeyClick || (Options.bindKeyClick = "click"), EVENT_DATA_CHAGE = Options.eventDataChage || (Options.eventDataChage = "datachange"), 
+        EVENT_UPDATE_VIEW = Options.eventUpdateView || (Options.eventUpdateView = "updaueview"), 
+        UID_PREFIX_DATA = Options.uidPrefixData || (Options.uidPrefixData = "d"), UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate || (Options.uidPrefixTemplate = "t");
     }
     function settings(opt) {
-        return opt ? (overwrite(Options, opt), initOptionValues(), copyObject(Options)) : copyObject(Options);
+        return opt ? (extend(Options, opt), initOptionValues(), copyObject(Options)) : copyObject(Options);
     }
     function uid(prefix) {
         return uid[prefix] = uid[prefix] || 1, prefix + uid[prefix]++;
@@ -50,10 +55,10 @@
     function hasKey(plainObject, key) {
         return isPlainObject(plainObject) && void 0 !== plainObject[key];
     }
-    function overwrite(to, from) {
+    function extend(to, from) {
         if (isPlainObject(from)) {
-            var keys = Object.keys(to);
-            for (var key in from) keys.indexOf(key) >= 0 && (to[key] = from[key]);
+            Object.keys(to);
+            for (var key in from) to[key] = from[key];
         }
     }
     function copyObject(obj) {
@@ -80,9 +85,6 @@
     }
     function escapeHtml(str) {
         return new Option(str).innerHTML.replace(/"/g, "&quot;");
-    }
-    function log() {
-        executeConsole("log", slice.call(arguments), DEBUG);
     }
     function warn() {
         executeConsole("warn", slice.call(arguments), DEBUG);
@@ -242,9 +244,9 @@
             }
         });
     }
-    function hasBindSubTemplate(dom, selector, bindKey) {
-        for (var els = dom.querySelectorAll(selector), i = 0; i < els.length; i++) {
-            var bindInfo = parseBindInfo(el);
+    function hasBindSubTemplate(el, selector, bindKey) {
+        for (var els = el.querySelectorAll(selector), i = 0; i < els.length; i++) {
+            var bindInfo = parseBindInfo(els[i]);
             if (bindInfo[bindKey]) return !0;
         }
         return !1;
@@ -262,15 +264,73 @@
             elementRender(el);
         });
     }
-    function putRender(key, func, order, template, event, params) {
+    function putRender(key, func, order, template, eventName, params) {
         var render = {};
         render[S_RENDER_KEY] = key, render[S_RENDER_FN] = func, render[S_RENDER_ORDER] = order || 0, 
-        render[S_RENDER_TEMPLATE] = !!template, render[S_RENDER_EVENT] = !!event, _renderMap[key] = render;
+        render[S_RENDER_TEMPLATE] = !!template, render[S_RENDER_EVENT] = eventName, _renderMap[key] = render;
     }
     function getRenderKeys(type) {
         var key, rs = [];
         for (key in _renderMap) type ? _renderMap[key][type] && rs.push(key) : rs.push(key);
         return rs;
+    }
+    function installRenders() {
+        _renderMap || (_renderMap = {}, putRender("*", function(el, prop, val) {
+            setAttr(el, prop, escapeHtml(nullToBlank(val)));
+        }), putRender(BIND_KEY_VALUE, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            el.value = nullToBlank(val), _renderMap[BIND_KEY_FIELD][S_RENDER_FN](el, data, bindText, val);
+        }), putRender(BIND_KEY_READONLY, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            el.readOnly = !!val;
+        }), putRender(BIND_KEY_DISABLED, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            el.disabled = !!val;
+        }, 5), putRender(BIND_KEY_CHECKED, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            isArray(val) ? el.checked = val.indexOf(el.value) >= 0 : el.checked = val == el.value;
+        }), putRender(BIND_KEY_VISIBLE, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            editStyle(el, [ S_VISIBILITY, S_DISPLAY ]), val ? el.style.visibility = S_VISIBLE : el.style.display = S_NONE;
+        }, 5), putRender(BIND_KEY_STYLE, function(el, data, bindText) {
+            var keys = [], txts = [];
+            if (parseSubBindText(bindText, keys, txts), keys.length) {
+                for (var styles = [], i = 0; i < keys.length; i++) styles.push(keys[i] + S_COLON + getBindValue(data, txts[i]));
+                editStyle(el, keys, styles.join(S_SEMICOLON));
+            }
+        }, 5), putRender(BIND_KEY_CLASS, function(el, data, bindText) {
+            var keys = [], txts = [];
+            if (parseSubBindText(bindText, keys, txts), keys.length) for (var i = 0; i < keys.length; i++) getBindValue(data, txts[i]) ? addClass(el, keys[i]) : removeClass(el, keys[i]);
+        }), putRender(BIND_KEY_INNERTEXT, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            el.textContent = null == val ? S_BLANK : val;
+        }), putRender(BIND_KEY_INNERHTML, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            el.innerHTML = null == val ? S_BLANK : val;
+        }), putRender(BIND_KEY_FIELD, function(el, data, bindText, bindValue) {
+            var field = getElementBindInfo(el)[BIND_KEY_FIELD];
+            field && field != bindText && set(data, field, bindValue);
+        }), putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            if (el.length = 0, null != val && !isPlainObject(val)) {
+                var opts = el.options;
+                isArray(val) || (val = val.split(S_SEMICOLON).join(S_COMMA).split(S_COMMA)), each(val, function(option) {
+                    if (isPlainObject(option)) opts[opts.length] = new Option(option.text, option.value); else if (null == option) opts[opts.length] = new Option(S_BLANK, S_BLANK); else {
+                        var kv = option.split(S_COLON);
+                        opts[opts.length] = new Option(kv.length > 1 ? kv[1] : option, kv[0]);
+                    }
+                });
+            }
+        }, 5), putRender(BIND_KEY_CLICK, null, 0, 0, "click"), putRender(BIND_KEY_FOREACH, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            removeChilds(el), val && val.length && el.appendChild(createFragmentByTemplate(val, el, !0));
+        }, 7, 1), putRender(BIND_KEY_WITH, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            removeChilds(el), el.appendChild(createFragmentByTemplate(val, el));
+        }, 8, 1), putRender(BIND_KEY_IF, function(el, data, bindText) {
+            var val = getBindValue(data, bindText);
+            return removeChilds(el), val ? void el.appendChild(createFragmentByTemplate(data, el)) : !1;
+        }, 9, 1));
     }
     function parseSubBindText(bindText, keys, txts) {
         var i, kv, kvs = bindText.split(S_SEMICOLON);
@@ -318,7 +378,7 @@
             var bindText = bindInfo[render[S_RENDER_KEY]], data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
             if (bindText) {
                 if (dataField && bindText.indexOf(dataField) < 0) return;
-                render[S_RENDER_EVENT] ? addEvent(render[S_RENDER_KEY], functionOfBind, el) : render[S_RENDER_FN](el, data, bindText);
+                render[S_RENDER_EVENT] ? addEvent(render[S_RENDER_EVENT], functionOfBind, el) : render[S_RENDER_FN](el, data, bindText);
             }
         });
         for (var bindKey in bindInfo) if (!_renderMap[bindKey] && bindKey != S_BIND_INFO_PROP_DATA_ID) {
@@ -336,10 +396,11 @@
         var el = e.target, bindInfo = getElementBindInfo(el);
         if (bindInfo) {
             var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
-            if (null == field) return void log("[ignore datachange]", el);
-            var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]), value = data[field];
-            "checkbox" == el.type ? isArray(value) ? el.checked ? value.indexOf(el.value) < 0 && value.push(el.value) : value.indexOf(el.value) >= 0 && value.splice(value.indexOf(el.value), 1) : value = el.checked ? el.value : S_BLANK : value = el.value, 
-            set(data, field, value);
+            if (null != field) {
+                var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]), value = data[field];
+                "checkbox" == el.type ? isArray(value) ? el.checked ? value.indexOf(el.value) < 0 && value.push(el.value) : value.indexOf(el.value) >= 0 && value.splice(value.indexOf(el.value), 1) : value = el.checked ? el.value : S_BLANK : value = el.value, 
+                set(data, field, value);
+            }
         }
     }
     function addEvent(ev, fun, el) {
@@ -396,7 +457,7 @@
         }, delay);
     }
     function bind(data, selector, opt) {
-        opt && settings(opt), observe(data);
+        opt && settings(opt), installRenders(), observe(data);
         var dom = selector ? document.querySelector(selector) : document;
         parseHtml(data, dom), showHtml(dom), on(EVENT_UPDATE_VIEW, updateviewEventListener), 
         addEvent("change", datachangeEventListener, document);
@@ -409,64 +470,7 @@
     });
     var DEBUG, DOM_ATTR_BIND, SELECTOR_DATA_BIND, DATA_KEY_FN_ID, DATA_KEY_FN_PARENT, DATA_KEY_FN_ROOT, DATA_KEY_FN_DATA, BIND_REF_ROOT, BIND_REF_PARENT, BIND_REF_DATA, BIND_KEY_FIELD, BIND_KEY_VALUE, BIND_KEY_INNERTEXT, BIND_KEY_INNERHTML, BIND_KEY_OPTIONS, BIND_KEY_READONLY, BIND_KEY_DISABLED, BIND_KEY_VISIBLE, BIND_KEY_CHECKED, BIND_KEY_STYLE, BIND_KEY_CLASS, BIND_KEY_FOREACH, BIND_KEY_WITH, BIND_KEY_IF, BIND_KEY_CLICK, EVENT_DATA_CHAGE, EVENT_UPDATE_VIEW, UID_PREFIX_DATA, UID_PREFIX_TEMPLATE, Options = {}, S_BIND_INFO_PROP_DATA_ID = "$d";
     initOptionValues();
-    var _renders, slice = Array.prototype.slice, async = setTimeout, _mapDataIdDataObject = {}, S_REG_QUOTE = /(['"])[^'"]*\1/g, S_REG_PROP = /([\w$_\.\[\]]+)/g, _fns = {}, S_ELEMENT_PROP_BIND_INFO = "_bindInfo", S_ELEMENT_ATTR_TEMPLATE = "_template", S_IGNORE_KEY = "true false null alert this _ if else".split(" "), _renderMap = {}, S_RENDER_KEY = "k", S_RENDER_FN = "f", S_RENDER_ORDER = "o", S_RENDER_TEMPLATE = "t", S_RENDER_EVENT = "e";
-    putRender("*", function(el, prop, val) {
-        setAttr(el, prop, escapeHtml(nullToBlank(val)));
-    }), putRender(BIND_KEY_VALUE, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        el.value = nullToBlank(val), _renderMap[BIND_KEY_FIELD][S_RENDER_FN](el, data, bindText, val);
-    }), putRender(BIND_KEY_READONLY, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        el.readOnly = !!val;
-    }), putRender(BIND_KEY_DISABLED, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        el.disabled = !!val;
-    }, 5), putRender(BIND_KEY_CHECKED, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        isArray(val) ? el.checked = val.indexOf(el.value) >= 0 : el.checked = val == el.value;
-    }), putRender(BIND_KEY_VISIBLE, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        editStyle(el, [ S_VISIBILITY, S_DISPLAY ]), val ? el.style.visibility = S_VISIBLE : el.style.display = S_NONE;
-    }, 5), putRender(BIND_KEY_STYLE, function(el, data, bindText) {
-        var keys = [], txts = [];
-        if (parseSubBindText(bindText, keys, txts), keys.length) {
-            for (var styles = [], i = 0; i < keys.length; i++) styles.push(keys[i] + S_COLON + getBindValue(data, txts[i]));
-            editStyle(el, keys, styles.join(S_SEMICOLON));
-        }
-    }, 5), putRender(BIND_KEY_CLASS, function(el, data, bindText) {
-        var keys = [], txts = [];
-        if (parseSubBindText(bindText, keys, txts), keys.length) for (var i = 0; i < keys.length; i++) getBindValue(data, txts[i]) ? addClass(el, keys[i]) : removeClass(el, keys[i]);
-    }), putRender(BIND_KEY_INNERTEXT, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        el.textContent = null == val ? S_BLANK : val;
-    }), putRender(BIND_KEY_INNERHTML, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        el.innerHTML = null == val ? S_BLANK : val;
-    }), putRender(BIND_KEY_FIELD, function(el, data, bindText, bindValue) {
-        var field = getElementBindInfo(el)[BIND_KEY_FIELD];
-        field && field != bindText && set(data, field, bindValue);
-    }), putRender(BIND_KEY_OPTIONS, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        if (el.length = 0, null != val && !isPlainObject(val)) {
-            var opts = el.options;
-            isArray(val) || (val = val.split(S_SEMICOLON).join(S_COMMA).split(S_COMMA)), each(val, function(option) {
-                if (isPlainObject(option)) opts[opts.length] = new Option(option.text, option.value); else if (null == option) opts[opts.length] = new Option(S_BLANK, S_BLANK); else {
-                    var kv = option.split(S_COLON);
-                    opts[opts.length] = new Option(kv.length > 1 ? kv[1] : option, kv[0]);
-                }
-            });
-        }
-    }, 5), putRender(BIND_KEY_CLICK, null, 0, 0, 1), putRender(BIND_KEY_FOREACH, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        removeChilds(el), val && val.length && el.appendChild(createFragmentByTemplate(val, el, !0));
-    }, 7, 1), putRender(BIND_KEY_WITH, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        removeChilds(el), el.appendChild(createFragmentByTemplate(val, el));
-    }, 8, 1), putRender(BIND_KEY_IF, function(el, data, bindText) {
-        var val = getBindValue(data, bindText);
-        return removeChilds(el), val ? void el.appendChild(createFragmentByTemplate(data, el)) : !1;
-    }, 9, 1);
-    var REG_EVENT = /\S+/g, _callbacks = {};
+    var _renderMap, _renders, slice = Array.prototype.slice, async = setTimeout, _mapDataIdDataObject = {}, S_REG_QUOTE = /(['"])[^'"]*\1/g, S_REG_PROP = /([\w$_\.\[\]]+)/g, _fns = {}, S_ELEMENT_PROP_BIND_INFO = "_bindInfo", S_ELEMENT_ATTR_TEMPLATE = "_template", S_IGNORE_KEY = "true false null alert this _ if else".split(" "), S_RENDER_KEY = "k", S_RENDER_FN = "f", S_RENDER_ORDER = "o", S_RENDER_TEMPLATE = "t", S_RENDER_EVENT = "e", REG_EVENT = /\S+/g, _callbacks = {};
     window.addEventListener("beforeunload", function(event) {
         _mapDataIdDataObject = null, _renderMap = null, _renders = null, _callbacks = null, 
         _fns = null;
