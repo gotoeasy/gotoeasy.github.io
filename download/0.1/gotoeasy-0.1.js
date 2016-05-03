@@ -288,7 +288,8 @@
             el.disabled = !!val;
         }, 5), putRender(BIND_KEY_CHECKED, function(el, data, bindText) {
             var val = getBindValue(data, bindText);
-            isArray(val) ? el.checked = val.indexOf(el.value) >= 0 : el.checked = val == el.value;
+            isArray(val) ? el.checked = val.indexOf(el.value) >= 0 : el.checked = val == el.value, 
+            _renderMap[BIND_KEY_FIELD][S_RENDER_FN](el, data, bindText, val);
         }), putRender(BIND_KEY_VISIBLE, function(el, data, bindText) {
             var val = getBindValue(data, bindText);
             editStyle(el, [ S_VISIBILITY, S_DISPLAY ]), val ? el.style.visibility = S_VISIBLE : el.style.display = S_NONE;
