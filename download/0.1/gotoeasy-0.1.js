@@ -211,9 +211,9 @@
         var kvs, kv, rs = {}, bindText = getAttr(el, DOM_ATTR_BIND);
         if (!bindText) return null;
         var tmpTxt = bindText.replace(/,{1}\s*\w+\s*:{1}/g, function(match) {
-            return "\n" + match.substring(1);
+            return "	" + match.substring(1);
         });
-        return kvs = tmpTxt.split("\n"), each(kvs, function(item) {
+        return kvs = tmpTxt.split("	"), each(kvs, function(item) {
             kv = item.split(S_COLON), rs[trim(kv[0]).toLowerCase()] = trim(item.substring(item.indexOf(S_COLON) + 1));
         }), rs;
     }
