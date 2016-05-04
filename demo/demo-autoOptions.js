@@ -36,9 +36,10 @@ define(['gotoEasy'], function($easy) {
 		// 数据变更时，刷新显示数据的JSON字符串
 		$easy.on('datachange', function(data, key, value, oldValue){
 			// 省变化时，市待选
-			if(key == 'sheng') data.shi = '0';
+			key == 'sheng' && $easy.set(data, 'shi', '0');
 			// 市变化时，县待选
-			if(key == 'shi') data.xian = '0';
+			key == 'shi' && $easy.set(data, 'xian', '0');
+
 			// 数据变更时，刷新显示数据的JSON字符串
 			document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
 		});
