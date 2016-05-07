@@ -1276,7 +1276,7 @@ if (addEventListener){
 		_renders = null;
 		_callbacks = null;
 		_fns = null;
-	});
+	}); 
 }
 
 // ---------------------------
