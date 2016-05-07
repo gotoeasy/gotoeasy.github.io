@@ -1,0 +1,230 @@
+<!doctype html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代码示例</title>
+<link href="csjs/templatemo_style.css" rel="stylesheet" type="text/css" />
+<script src="csjs/require.js" data-main="main"></script>
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/brush.js"></script>
+<link type="text/css" rel="stylesheet" href="http://static.oschina.net/js/syntax-highlighter-2.1.382/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="http://static.oschina.net/js/syntax-highlighter-2.1.382/styles/shThemeDefault.css"/>
+<script type="text/javascript">
+	function documentReady(callback) {
+		///兼容FF,Google
+		if (document.addEventListener) {
+			document.addEventListener('DOMContentLoaded', function () {
+				document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+				callback();
+			}, false)
+		}
+		 //兼容IE
+		else if (document.attachEvent) {
+			document.attachEvent('onreadytstatechange', function () {
+				  if (document.readyState == "complete") {
+							document.detachEvent("onreadystatechange", arguments.callee);
+							callback();
+				   }
+			})
+		}
+		else if (document.lastChild == document.body) {
+			callback();
+		}
+	};
+
+	documentReady(function(){
+		SyntaxHighlighter.config.clipboardSwf = 'http://static.oschina.net/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	});
+
+</script>
+</head>
+<body>
+
+<span id="top"></span>
+<div id="templatemo_wrapper">
+	<div id="templatemo_header">
+        <div id="site_title">
+            <h1><a href="./index.html">Demo</a></h1>
+        </div>
+        <div id="templatemo_menu">
+            <ul>
+                <li><a href="http://gotoeasy.github.io/index.html">Home</a></li>
+                <li><a href="https://github.com/gotoeasy/gotoeasy">Repository</a></li>
+                <li class="last"><a href="#templatemo_footer">Comment</a></li>
+            </ul>    	
+        </div> <!-- end of templatemo_menu -->
+	</div> <!-- end of header -->
+    
+     <div id="templatemo_main">
+     
+
+
+
+
+
+
+
+
+        <div id="contact"></div>
+        <div class="content_box_top"></div>
+
+        <div class="content_box">
+            <h2>Sample</h2>
+            <div class="cleaner"></div>
+            <div class="col_w320 float_l">
+                <h4>data-bind="field:field"</h4>
+                <div id="contact_form">
+                    <form method="post" name="contact" action="#">
+                        
+                            <label>价格:</label>
+							<input type="text" data-bind="value:price" readonly>
+                            <label>数量:</label>
+							<select data-bind="options:'0:请选择数量;1:就一件;2;3',value:num"></select>
+                            <label>最终价:</label>
+                            <input type="text" data-bind="value:price*num*0.99,field:total" />
+                            <div class="cleaner h10"></div>
+                                                        
+                            <div style="height:100px">最终价=价格*数量*0.99<br>最终价辅助计算后可以直接修改（如优惠去零头）<br>&nbsp;<br>最终价无法识别绑定到哪个字段，可通过field指定</div>
+                            <div class="cleaner h10"></div>
+                                                
+                                                    
+                            <input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
+                            
+                    </form> 
+                
+                </div> 
+            </div>
+            
+           <h4><font color="#cccc00">　　　// json string of data</font></h4>
+           <div class="col_w320 float_r">
+                <div id="jsonStr"></div>
+            </div>    	
+
+
+            <div class="cleaner h30"></div>
+            <a class="gototop" href="#top">Go to Top</a>
+            <div class="cleaner"></div>
+            <div class="cleaner"></div>
+        </div>
+		<!-- end of a content box -->
+
+
+
+<br>
+
+
+        <div class="content_box_top"></div>
+
+        <div class="content_box">
+            <h2>Source Code</h2>
+            <div class="cleaner"></div>
+            <div class="col_w800 float_l">
+                <h4>HTML</h4>
+                <div id="contact_form" style="width:700px">
+<pre class='brush: html'>
+&lt;label>价格:&lt;/label>
+&lt;input type="text" data-bind="value:price" readonly>
+&lt;label>数量:&lt;/label>
+&lt;select data-bind="options:'0;1;2;3',value:num">&lt;/select>
+&lt;label>最终价:&lt;/label>
+&lt;input type="text" data-bind="value:price*num*0.99,field:total" />
+&lt;div class="cleaner h10">&lt;/div>
+
+&lt;div style="height:100px">最终价=价格*数量*0.99&lt;br>最终价辅助计算后可以直接修改（如优惠去零头）&lt;br>&nbsp;&lt;br>最终价无法识别绑定到哪个字段，可通过field指定&lt;/div>
+&lt;div class="cleaner h10">&lt;/div>
+
+
+&lt;input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
+</pre>
+                </div> 
+            </div>
+            
+            <div class="col_w800 float_l">
+                <h4>JavaScript</h4>
+                <div id="contact_form" style="width:700px">
+<pre class='brush: js'>
+define(['gotoEasy'], function($easy) {
+
+	return function(){
+
+		// 定义数据
+		var data = {
+			price : 101,
+			num : 0,
+			total : 0,
+
+			fnSubmit: function(){
+			alert(JSON.stringify(data, null, '  '));
+		}};
+
+		// 绑定数据
+		$easy.bind(data);
+
+		// ------------显示数据的JSON字符串--------------
+		// 初期显示数据的JSON字符串
+		document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
+		// 数据变更时，刷新显示数据的JSON字符串
+		$easy.on('datachange', function(){
+			document.getElementById('jsonStr').innerHTML = '<pre>' + JSON.stringify(data, null, '  ') + '</pre>'
+		});
+		// ----------------------------------------------
+	};
+
+});
+</pre>
+                </div> 
+            </div>
+
+
+            <div class="cleaner h30"></div>
+            <a class="gototop" href="#top">Go to Top</a>
+            <div class="cleaner"></div>
+            <div class="cleaner"></div>
+        </div> <!-- end of a content box -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="content_box_bottom"></div>
+        
+	</div> <!-- end of main -->
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="demo-field.html" data-title="demo-field" data-url="http://gotoeasy.github.io/demo/demo-field.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gotoeasy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://gotoeasy.github.io/js/embed_ua.js'; //'http://static.duoshuo.com/embed.js'; //'http://www.lynx.im/res/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+    
+    <div id="templatemo_footer">
+    
+        &copy; 2016 Zhang Ming, Licensed under the MIT license
+        
+	</div>
+</div> <!-- end of wrapper -->
+
+</body>
+</html>
