@@ -1269,7 +1269,7 @@ function bind(data, selector, opt){
 // destroy
 // ---------------------------
 // 有必要？
-if ($isModernBrowser){
+if (addEventListener){
 	window.addEventListener("beforeunload", function (event) {
 		_mapDataIdDataObject = null;
 		_renderMap = null;
