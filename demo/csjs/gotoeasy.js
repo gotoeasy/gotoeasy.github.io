@@ -1269,6 +1269,7 @@ function bind(data, selector, opt){
 // destroy
 // ---------------------------
 // 有必要？
+/*
 if (window.addEventListener){
 	window.addEventListener("beforeunload", function (event) {
 		_mapDataIdDataObject = null;
@@ -1278,7 +1279,7 @@ if (window.addEventListener){
 		_fns = null;
 	}); 
 }
-
+*/
 // ---------------------------
 // 接口
 // ---------------------------
