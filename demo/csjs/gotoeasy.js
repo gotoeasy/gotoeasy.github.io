@@ -1277,7 +1277,6 @@ if ($isModernBrowser){
 		_callbacks = null;
 		_fns = null;
 	});
-
 }
 
 // ---------------------------
