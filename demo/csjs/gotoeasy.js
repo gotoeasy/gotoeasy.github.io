@@ -441,6 +441,7 @@ function defineArrayMethod(ary, parent, key){
 				// TODO 数据删除时资源释放影响？从根节点扫描更新_mapIdData
 			}
 
+/*del*/ log("数组被更改，触发事件", EVENT_DATA_CHAGE, EVENT_UPDATE_VIEW);
 			trigger(EVENT_DATA_CHAGE + ' ' + EVENT_UPDATE_VIEW, parent, key, ary); // 触发数据更新、视图更新事件
 
 			return result;
@@ -451,7 +452,7 @@ function defineArrayMethod(ary, parent, key){
 }
 
 // ------------------------------------------------------------------------------------
-// TODO 优化？逗号影响解析结果？
+// TODO 优化？
 var S_IGNORE_KEY = 'true false null alert this _ if else'.split(' ');
 function getBindValue(data, bindText, fields, isEvent){
 	if( hasKey(data, bindText)){
@@ -459,7 +460,7 @@ function getBindValue(data, bindText, fields, isEvent){
 		return data[bindText];
 	}
 
-	var fnKey = getDataId(data) + '#' + bindText;
+	var fnKey = getDataId(data) + '&' + bindText;
 	if (fields || !_fns[fnKey]){
 		// 字符串替换成{n}，替换值保存到repls中
 		var repls=[];
@@ -503,7 +504,7 @@ function getBindValue(data, bindText, fields, isEvent){
 		try{
 			return _fns[fnKey](data);		// 调用函数取值
 		}catch(e){
-			error('#2', _fns[fnKey], data, bindText, e);
+			error('@2', _fns[fnKey], data, bindText, e);
 			return undefined;
 		}
 	}
@@ -513,7 +514,7 @@ function createFunction(body){
 	try{
 		return new Function("_", body);
 	}catch(e){
-		error('#1', body);				// 绑定写法有误
+		error('@1', body, e);				// 绑定写法有误
 	}
 }
 
@@ -590,8 +591,8 @@ function parseBindInfo(el){
 		return null;
 	}
 
-	var tmpTxt = bindText.replace(/,{1}\s*\w+\s*:{1}/g, function(match){  return '\t' + match.substring(1);	});	// 逗号+任意空格+类字母+任意空格+冒号  ->  【换行】+任意空格+类字母+任意空格+冒号
-	kvs = tmpTxt.split('\t');										// 按【换行】区分不同的绑定
+	var tmpTxt = bindText.replace(/,{1}\s*\w+\s*:{1}/g, function(match){  return '^' + match.substring(1);	});	// 逗号+任意空格+类字母+任意空格+冒号  ->  【^】+任意空格+类字母+任意空格+冒号
+	kvs = tmpTxt.split('^');										// 按【^】区分不同的绑定
 
 	each(kvs, function(item){
 		kv = item.split(S_COLON);	// ':'
@@ -623,8 +624,6 @@ function defineElement(el, data){
 
 	// 给页面Dom节点加上绑定信息
 	el[S_ELEMENT_PROP_BIND_INFO] = json(bindInfo);
-	
-	// TODO 保存绑定信息、关联字段
 }
 
 function parseTemplate(dom, selector){
@@ -662,8 +661,8 @@ function parseTemplate(dom, selector){
 			});
 
 			var templateid = uid(UID_PREFIX_TEMPLATE);
-			document[templateid] = template;					// 模板Fragment挂到document上保存
-			setAttr(el, S_ELEMENT_ATTR_TEMPLATE, templateid);	// 模板ID保存到节点上便于节点克隆后再次取得
+			setAttr(el, S_ELEMENT_ATTR_TEMPLATE, templateid);			// 模板ID保存到节点上便于节点克隆后再次取得
+			document[templateid] = template;							// 模板Fragment挂到document上保存
 
 			// 清空内容
 			removeChilds(el);
@@ -916,6 +915,7 @@ function installRenders(){
 		if (val){
 			// TODO 如果后面还有模板，这里可能白干甚至出错，待优化！
 			el.appendChild(  createFragmentByTemplate(data, el)  );
+			//el.removeAttribute(S_ELEMENT_ATTR_TEMPLATE)
 		}else{
 			return false;		// false表示不想显示子节点
 		}
@@ -958,6 +958,12 @@ function editStyle(el, delStyleNames, addStyles){
 
 // 循环模板时，data必须是数组且foreach为true
 function createFragmentByTemplate(data, el, foreach){
+
+	var templateid = el['$t'] || (el['$t'] = getAttr(el, S_ELEMENT_ATTR_TEMPLATE));
+	el.removeAttribute(S_ELEMENT_ATTR_TEMPLATE);	// 不输出模板ID属性
+
+/*del*/ log('[createFragmentByTemplate] templateid:', templateid, el);
+
 	var rs;
 	if (foreach){
 		// 循环模板
@@ -984,8 +990,7 @@ function createFragmentByTemplate(data, el, foreach){
 
 	}else{
 		// 单纯模板
-		rs = document[getAttr(el, S_ELEMENT_ATTR_TEMPLATE)].cloneNode(true);
-
+		rs = document[templateid].cloneNode(true);
 		each(rs.querySelectorAll(SELECTOR_DATA_BIND), function(node){
 			defineElement(node, data);	// 写入绑定信息
 			elementRender(node);		// 显示去吧
@@ -1026,7 +1031,7 @@ function elementRender(el, bindInfo, dataField){
 				var fn = getBindValue(data, bindText, 0, 1); // 1:function
 				fn.call(data, data);
 			}catch(e){
-				error('#3', el, bindText, data, e);
+				error('@3', el, bindText, data, e);
 			}
 		}
 
@@ -1051,7 +1056,7 @@ function elementRender(el, bindInfo, dataField){
 
 	// 未定义的用属性值渲染器渲染
 	for (var bindKey in bindInfo){
-		if (_renderMap[bindKey] || bindKey == S_BIND_INFO_PROP_DATA_ID) continue;
+		if (_renderMap[bindKey] || bindKey == S_BIND_INFO_PROP_DATA_ID || bindKey == S_BIND_INFO_PROP_TEMPLATE_ID) continue;
 
 		var bindText = bindInfo[bindKey];
 		if (dataField && bindText.indexOf(dataField) < 0) continue;	// 无关字段数据更新，不需要刷新
@@ -1080,7 +1085,7 @@ function datachangeEventListener(e){
 
 	var field = bindInfo[BIND_KEY_FIELD] || bindInfo[BIND_KEY_VALUE] || bindInfo[BIND_KEY_CHECKED];
 	if (field == null){
-/*del*/		warn('[无更新绑定]', el, bindInfo,BIND_KEY_VALUE);
+/*del*/		warn('[datachangeEventListener][无更新绑定]', el, bindInfo,BIND_KEY_VALUE);
 		return;
 	}
 	var data = getData(bindInfo[S_BIND_INFO_PROP_DATA_ID]);
@@ -1269,17 +1274,15 @@ function bind(data, selector, opt){
 // destroy
 // ---------------------------
 // 有必要？
-/*
-if (window.addEventListener){
-	window.addEventListener("beforeunload", function (event) {
-		_mapDataIdDataObject = null;
-		_renderMap = null;
-		_renders = null;
-		_callbacks = null;
-		_fns = null;
-	}); 
-}
-*/
+window.addEventListener("beforeunload", function (event) {
+	_mapDataIdDataObject = null;
+	_renderMap = null;
+	_renders = null;
+	_callbacks = null;
+	_fns = null;
+});
+
+
 // ---------------------------
 // 接口
 // ---------------------------
