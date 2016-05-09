@@ -51,7 +51,7 @@ input:focus, select:focus { outline: 2px solid #c1c1c1; outline: 2px solid rgba(
 .LayoutFrame { margin: 0 auto; width: 100%; display: block; }
 
 /* <<< Body >>> */
-body { -background: #fff; background: url(../img/bg.jpg)}
+body { -background: #fff; background: url(../img/bg.jpg) top center no-repeat;}
 
 /* <<< Header >>> */
 header { width: 100%; position: fixed; top: 0px; left: 0px; height: 105px; background: rgba(0, 0, 0, 0.5); z-index: 9; }
