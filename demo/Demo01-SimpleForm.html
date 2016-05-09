@@ -1,0 +1,130 @@
+<!doctype html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>代码示例</title>
+<link href="csjs/templatemo_style.css" rel="stylesheet" type="text/css" />
+<script src="csjs/require.js" data-main="main"></script>
+</head>
+<body>
+
+<span id="top"></span>
+<div id="templatemo_wrapper">
+	<div id="templatemo_header">
+        <div id="site_title">
+            <h1><a href="./index.html">Demo</a></h1>
+        </div>
+        <div id="templatemo_menu">
+            <ul>
+                <li><a href="http://gotoeasy.github.io">Home</a></li>
+                <li><a href="https://github.com/gotoeasy/gotoeasy">Repository</a></li>
+                <li class="last"><a href="#templatemo_footer">Comment</a></li>
+            </ul>    	
+        </div> <!-- end of templatemo_menu -->
+	</div> <!-- end of header -->
+    
+     <div id="templatemo_main">
+     
+
+
+
+
+
+
+
+
+        <div id="contact"></div>
+        <div class="content_box_top"></div>
+
+        <div class="content_box">
+            <h2>表单示例</h2>
+            <div class="cleaner"></div>
+            <div class="cleaner h30"></div>
+            <div class="col_w320 float_l">
+                <h4>Simple Form</h4>
+                <div id="contact_form">
+                    <form method="post" name="contact" action="#">
+                        
+                            <label>Name:</label> 
+                            <input type="text" data-bind="value:name" />
+                            <div class="cleaner h10"></div>
+                                                        
+                            <label>Email:</label> 
+                            <input type="text" data-bind="value:email" />
+                            <div class="cleaner h10"></div>
+                                                
+                            <label for="subject">Subject:</label> 
+                            <input type="text" data-bind="value:subject"/>				               
+                            <div class="cleaner h10"></div>
+                                
+                            <label>Message:</label> 
+                            <textarea data-bind="value:message"></textarea>
+                            <div class="cleaner h10"></div>				
+                                                    
+                            <input type="button" value="Send" class="submit_btn float_l" data-bind="click:fnSubmit()" />
+                            <input type="button" value="Reset" id="reset" name="reset" class="submit_btn float_r" />
+                            
+                    </form> 
+                
+                </div> 
+            </div>
+            
+           <h4><font color="#cccc00">　　　// json string of data</font></h4>
+           <div class="col_w320 float_r">
+                <div id="jsonStr">{}</div>
+            </div>    	
+
+
+            <div class="cleaner h30"></div>
+            <a class="gototop" href="#top">Go to Top</a>
+            <div class="cleaner"></div>
+            <div class="cleaner"></div>
+        </div> <!-- end of a content box -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="content_box_bottom"></div>
+        
+	</div> <!-- end of main -->
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Demo01-SimpleForm.html" data-title="在线示例1" data-url="http://gotoeasy.github.io/demo/Demo01-SimpleForm.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"gotoeasy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+    
+    <div id="templatemo_footer">
+    
+        &copy; 2016 Zhang Ming, Licensed under the MIT license
+        
+	</div>
+</div> <!-- end of wrapper -->
+
+</body>
+</html>
