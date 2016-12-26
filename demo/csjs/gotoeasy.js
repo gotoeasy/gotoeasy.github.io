@@ -108,14 +108,14 @@ initOptionValues();
 
 function initOptionValues(){
 	// Options的属性会被作为外部访问的属性名
-	DEBUG = (Options.debug == null? 1 : Options.debug);						// 是否调试模式(默认true)
+	DEBUG = (Options.debug == null? 1 : Options.debug);													// 是否调试模式(默认true)
 	IS_REMOVE_ATTR_BIND = (Options.removeAttrDataBind == null? 1 : Options.removeAttrDataBind);			// 是否最终要删除数据绑定声明(默认true)
 
 	DOM_ATTR_BIND = Options.domAttrBind || (Options.domAttrBind = 'data-bind');							// 控件的数据绑定属性名
-	SELECTOR_DATA_BIND = S_LEFT_ZKH + DOM_ATTR_BIND + S_RIGHT_ZKH;				// data-bind选择器
+	SELECTOR_DATA_BIND = S_LEFT_ZKH + DOM_ATTR_BIND + S_RIGHT_ZKH;										// data-bind选择器[data-bind]
 
 	DATA_KEY_FN_ID = Options.dataKeyFnId || (Options.dataKeyFnId = '_$id');								// 取数据的ID的方法名
-	DATA_KEY_FN_PARENT = Options.dataKeyFnParent || (Options.dataKeyFnParent = '_$parent');					// 取父数据对象的方法名
+	DATA_KEY_FN_PARENT = Options.dataKeyFnParent || (Options.dataKeyFnParent = '_$parent');				// 取父数据对象的方法名
 	DATA_KEY_FN_ROOT = Options.dataKeyFnRoot || (Options.dataKeyFnRoot = '_$root');						// 取根数据对象的方法名
 	DATA_KEY_FN_DATA = Options.dataKeyFnData || (Options.dataKeyFnData = '_$data');						// 取本数据对象的方法名
 
@@ -125,26 +125,26 @@ function initOptionValues(){
 
 	BIND_KEY_FIELD = Options.bindKeyField || (Options.bindKeyField = 'field');							// 绑定键，用于指定回写数据的字段
 	BIND_KEY_VALUE = Options.bindKeyValue || (Options.bindKeyValue = 'value');							// 绑定键，用于绑定value
-	BIND_KEY_INNERTEXT = Options.bindKeyInnerText || (Options.bindKeyInnerText = 'text');						// 绑定键，用于绑定InnerText
-	BIND_KEY_INNERHTML = Options.bindKeyInnerHtml || (Options.bindKeyInnerHtml = 'html');						// 绑定键，用于绑定InnerHtml
-	BIND_KEY_OPTIONS = Options.bindKeyOptions || (Options.bindKeyOptions = 'options');						// 绑定键，用于绑定下拉框的option选项
-	BIND_KEY_READONLY = Options.bindKeyReadonly || (Options.bindKeyReadonly = 'readonly');					// 绑定键，用于绑定readonly
-	BIND_KEY_DISABLED = Options.bindKeyDisabled || (Options.bindKeyDisabled = 'disabled');					// 绑定键，用于绑定disabled
-	BIND_KEY_VISIBLE = Options.bindKeyVisible || (Options.bindKeyVisible = 'visible');						// 绑定键，用于绑定控件是否可见
-	BIND_KEY_CHECKED = Options.bindKeyChecked || (Options.bindKeyChecked = 'checked');						// 绑定键，用于绑定复选框和单选框的选中状态
+	BIND_KEY_INNERTEXT = Options.bindKeyInnerText || (Options.bindKeyInnerText = 'text');				// 绑定键，用于绑定InnerText
+	BIND_KEY_INNERHTML = Options.bindKeyInnerHtml || (Options.bindKeyInnerHtml = 'html');				// 绑定键，用于绑定InnerHtml
+	BIND_KEY_OPTIONS = Options.bindKeyOptions || (Options.bindKeyOptions = 'options');					// 绑定键，用于绑定下拉框的option选项
+	BIND_KEY_READONLY = Options.bindKeyReadonly || (Options.bindKeyReadonly = 'readonly');				// 绑定键，用于绑定readonly
+	BIND_KEY_DISABLED = Options.bindKeyDisabled || (Options.bindKeyDisabled = 'disabled');				// 绑定键，用于绑定disabled
+	BIND_KEY_VISIBLE = Options.bindKeyVisible || (Options.bindKeyVisible = 'visible');					// 绑定键，用于绑定控件是否可见
+	BIND_KEY_CHECKED = Options.bindKeyChecked || (Options.bindKeyChecked = 'checked');					// 绑定键，用于绑定复选框和单选框的选中状态
 	BIND_KEY_STYLE = Options.bindKeyStyle || (Options.bindKeyStyle = 'style');							// 绑定键，用于绑定style
 	BIND_KEY_CLASS = Options.bindKeyClass || (Options.bindKeyClass = 'class');							// 绑定键，用于绑定class
 //	BIND_KEY_TEMPLATE = Options.bindKeyTemplate || (Options.bindKeyTemplate = 'template');	// 绑定键，用于绑定template
-	BIND_KEY_FOREACH = Options.bindKeyForeach || (Options.bindKeyForeach = 'foreach');						// 绑定键，用于绑定数组循环
+	BIND_KEY_FOREACH = Options.bindKeyForeach || (Options.bindKeyForeach = 'foreach');					// 绑定键，用于绑定数组循环
 	BIND_KEY_WITH = Options.bindKeyWith || (Options.bindKeyWith = 'with');								// 绑定键，用于绑定对象作用域
 	BIND_KEY_IF = Options.bindKeyIf || (Options.bindKeyIf = 'if');										// 绑定键，用于控制子节点是否显示
 	BIND_KEY_CLICK = Options.bindKeyClick || (Options.bindKeyClick = 'click');							// 绑定键，用于绑定点击事件
 
-	EVENT_DATA_CHAGE = Options.eventDataChage || (Options.eventDataChage = 'datachange');					// 定义数据变化的事件名
-	EVENT_UPDATE_VIEW = Options.eventUpdateView || (Options.eventUpdateView = 'updaueview');					// 定义更新视图的事件名
+	EVENT_DATA_CHAGE = Options.eventDataChage || (Options.eventDataChage = 'datachange');				// 定义数据变化的事件名
+	EVENT_UPDATE_VIEW = Options.eventUpdateView || (Options.eventUpdateView = 'updateview');			// 定义更新视图的事件名
 
-	UID_PREFIX_DATA = Options.uidPrefixData || (Options.uidPrefixData = '_D');								// 定义数据UID使用的前缀
-	UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate || (Options.uidPrefixTemplate = '_T');						// 定义模板UID使用的前缀
+	UID_PREFIX_DATA = Options.uidPrefixData || (Options.uidPrefixData = '_D');							// 定义数据UID使用的前缀
+	UID_PREFIX_TEMPLATE = Options.uidPrefixTemplate || (Options.uidPrefixTemplate = '_T');				// 定义模板UID使用的前缀
 }
 
 
@@ -186,7 +186,7 @@ function nullToBlank(str){
 
 // 参数为字符串时转成json对象，参数为对象时转成json字符串
 function json(objOrStr) {
-	return isObject(objOrStr) ? JSON.stringify(objOrStr) : JSON.parse(objOrStr);	// TODO 要支持不支持的浏览器？
+	return isObject(objOrStr) ? JSON.stringify(objOrStr) : JSON.parse(objOrStr);
 }
 
 function isArray(ary) {
@@ -340,18 +340,16 @@ function set(data, key, value, forceUpdate){
 		return;
 	}
 
-	if (isObject(oldValue)){
+	if (isObject(oldValue) && value !== oldValue){
 /*del*/ log("被覆盖的旧数据是对象，注册并启动内存脏数据清除事件");
 		once(EVENT_CHECK_MEMORY, checkMapDataIdDataObject);
 		notify(2000, EVENT_CHECK_MEMORY); // 稍后再自动执行
 	}
 
-	observe(value, data, key); // 确保key被监视，值为对象时确保值对象也被监视
+	observe(oldValue, data, key); // 确保key被监视，值为对象时确保值对象也被监视
 	data[key] = value;
 
-/*del*/ log("触发数据更新", EVENT_DATA_CHAGE, key, value);
-	trigger(EVENT_DATA_CHAGE, data, key, value, oldValue); // 即刻触发数据更新事件
-
+/*
 	if (isArray(data)){
 		// 直接按下标更新数组元素时，按整个数组刷新通知显示
 		var parent = data[DATA_KEY_FN_PARENT]();
@@ -363,6 +361,7 @@ function set(data, key, value, forceUpdate){
 	}else{
 		notify(EVENT_UPDATE_VIEW, data, key, value, oldValue);			// 延时触发视图更新事件
 	}
+*/
 }
 
 function checkMapDataIdDataObject(){
@@ -441,7 +440,7 @@ function defineData(data, parent){
 	data[DATA_KEY_FN_DATA] = function(){ return this; };					// data.$data()
 }
 
-function defineDataProperty(data, key, val){
+function defineDataProperty(data, key, value){
 	if (isFunction(data[key])) return; // 值为函数时忽略
 
 	var property = Object.getOwnPropertyDescriptor(data, key);
@@ -454,22 +453,41 @@ function defineDataProperty(data, key, val){
     Object.defineProperty(data, key,{
 		enumerable: true,		// 可枚举
 		configurable: false,	// 不可再次定义
-        set: function(newVal){
-            var oldVal = getter ? getter.call(data) : val;
-			if (oldVal == newVal) {
+        set: function(newValue){
+            var oldValue = getter ? getter.call(data) : value;
+			if (oldValue == newValue) {
 				return;
 			}
 
+			observe(newValue, data, key); // 确保key被监视，值为对象时确保值对象也被监视
+
 			if (setter) {
-				setter.call(data, newVal);
+				setter.call(data, newValue);
 			} else {
-				val = newVal;
+				value = newValue;
 			}
 
-			set(data, key, newVal, true);
+			observe(newValue, data, key); // 确保key被监视，值为对象时确保值对象也被监视
+
+			// ----------------------------------
+/*del*/ log("触发数据更新", EVENT_DATA_CHAGE, key, value);
+			trigger(EVENT_DATA_CHAGE, data, key, value, oldValue); // 即刻触发数据更新事件
+
+			if (isArray(data)){
+				// 直接按下标更新数组元素时，按整个数组刷新通知显示
+				var parent = data[DATA_KEY_FN_PARENT]();
+				for (k in parent){
+					if (parent[k] === data){
+						notify(EVENT_UPDATE_VIEW, parent, k, value, oldValue);	// 延时触发视图更新事件
+					}
+				}
+			}else{
+				notify(EVENT_UPDATE_VIEW, data, key, value, oldValue);			// 延时触发视图更新事件
+			}
+			// ----------------------------------
         },
         get: function(){
-          return getter ? getter.call(data) : val;
+          return getter ? getter.call(data) : value;
         }
     });
 
@@ -511,8 +529,11 @@ function defineArrayMethod(ary, parent, key){
 	ary.x = 1;  // flag
 }
 
-// ------------------------------------------------------------------------------------
-// TODO 优化？
+
+// ---------------------------
+// 视图 Observe
+// ---------------------------
+
 var S_IGNORE_KEY = 'true false null alert this _ if else'.split(' ');
 function getBindValue(data, bindText, fields, isEvent){
 	if( hasKey(data, bindText)){
@@ -1394,7 +1415,7 @@ function bind(data, selector, opt){
 /*del*/	log('当前配置', Options);
 /*del*/	log('当前渲染器', _renderMap);
 
-	// 监视数据对象，并为数据对象添加get/set等方法
+	// 监视数据对象，并为数据对象添加相关方法
 	observe(data);
 
 	// 按指定选择器绑定控件或按默认绑定整个页面
