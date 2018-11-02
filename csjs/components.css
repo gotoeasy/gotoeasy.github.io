@@ -40,11 +40,76 @@
     display: none;
 }
 
-._9862d90db5c60d935badce559ed28e87 {
-    border: solid 1px #ff9408;
-    height: 2px;
-    width: 252px;
-    margin: auto;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+body {
+    background: url(../images/bg.jpg) top center no-repeat;
+}
+._ca2d8121d9b72ad6d27022e348a799f8 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size: cover;
+
+    display: table;
+
+    //  background-image:linear-gradient(5deg, #252233, #3c3b52); // http://www.runoob.com/css3/css3-gradients.html
+    // background-image:radial-gradient(ellipse ,red, #3c3b52 10%,black  30%,#252233);
+    //background: url(../images/bg.jpg) top center no-repeat;
+}
+._03984be15b8b7a46214f0806255fe666 {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+._c0c391e5783d7d67ac00ab1aade15bdd {
+    font-size: 56px;
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
+    margin: 0px;
+    text-transform: uppercase;
+    line-height: 60px;
+}
+._9e16083d714226b76da48b9a133ecefb {
+    padding: 25px 0px 35px 0px;
+    font-size: 14px;
+    color: #d8dfe5;
+    margin: 0px;
+    font-family: "Open Sans", sans-serif;
+    line-height: 25px;
+    font-weight: 400;
+}
+._9e16083d714226b76da48b9a133ecefb span {
+    color: #ff9000;
+}
+._c8caf94205105bac5833ab31cc2129d7 {
+    padding: 30px 0px 30px 0px;
+    width: 100%;
+    overflow: hidden;
+}
+._c8caf94205105bac5833ab31cc2129d7 a {
+    padding: 11px 16px;
+    font-size: 14px;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    border: solid 1px #b0bdc8;
+    background: rgba(64, 93, 118, 0.8);
+    transition: all 0.3s ease;
+}
+._c8caf94205105bac5833ab31cc2129d7 a:hover {
+    background: #ff9000;
+    color: #fff;
+    border: solid 1px #ff9000;
 }
 
 ._15967a6998a0bc92436dc68a1bc0a38d {
@@ -180,18 +245,18 @@ body {
     height: 100%;
     width: 100%;
 }
-._3d2fe37e0295aedd192d0a26f8cad904 {
+
+._465bea86865625b65d826d0d3995fed4 {
     width: 100%;
     height: 100%;
     overflow: hidden;
     background-size: cover;
-    background: url(../imgs/bg.jpg) top center no-repeat;
+    display: table;
+    background: url(../images/bg.jpg) top center no-repeat;
 }
 ._7099db55c77fab95e929adc37bde48e7 {
-    padding: 100px 0px 35px 0px;
-    max-width: 1100px;
-    margin: auto;
-    overflow: hidden;
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
 }
 ._3e53aba28b9661e9c06b18feaa179996 {
@@ -216,7 +281,7 @@ body {
     color: #ff9000;
 }
 ._0ab8ef476b3d3b6509eafc43a5626eab {
-    padding: 76px 0px 30px 0px;
+    padding: 30px 0px 30px 0px;
     width: 100%;
     overflow: hidden;
 }
