@@ -1,0 +1,17 @@
+[html]
+<div style="height:100vh">
+    <layout-page>
+        <template slot="header">
+            <div style="background-color: cadetblue;height:100%">header</div>
+        </template>
+        <template slot="content">
+            <div>content</div>
+        </template>
+        <template slot="footer">
+            <div style="background-color: gainsboro;height:100%">footer</div>
+        </template>
+    </layout-page>
+</div>
+
+[mount]
+body

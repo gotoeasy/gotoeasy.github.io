@@ -1,0 +1,8 @@
+[api]
+tag = highlight-code
+
+[html]
+<pre>
+    <code class="language-{=$options.lang}"><slot name="code"/></code>
+</pre>
+
