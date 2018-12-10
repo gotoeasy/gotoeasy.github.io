@@ -1,0 +1,30 @@
+[view]
+<div align="center">
+<span>{$state.msg}</span><p/>
+<ui-button onclick="btnClick1" value="按钮1"/><p/>
+<ui-button onclick="btnClick2" value="按钮2"/>
+</div>
+
+[state]
+{
+  msg:'请点按钮',
+  cnt1:0,
+  cnt2:0,
+}
+
+[actions]
+{
+    btnClick1: e=>{
+        this.$state.cnt1++;
+        this.$state.msg = '点击按钮1，共 ' + this.$state.cnt1 + ' 次';
+        this.render();
+    },
+    btnClick2: e=>{
+        this.$state.cnt2++;
+        this.$state.msg = '点击按钮2，共 ' + this.$state.cnt2 + ' 次';
+        this.render();
+    },
+}
+
+[mount]
+body

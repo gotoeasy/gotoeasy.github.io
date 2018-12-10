@@ -1,0 +1,69 @@
+[api]
+
+[view]
+<div class='layout'>
+    <div class='layout-header'><slot name="header"/></div> 
+    <div class='layout-main'>
+        <div class='layout-menu'><slot name="menu"/></div> 
+        <div class="layout-resizebar"/>
+        <div class='layout-page'><slot name="page"/></div> 
+    </div> 
+</div> 
+
+[less]
+// ----------- 布局变量 -----------
+@header_height:		    50px;		// 框架头部高度
+@side_left_width:       230px;		// 框架左侧宽度
+
+body{
+	margin: 0;
+}
+
+.layout {
+    height: 100vh;                  // 占满高度
+    .display(flex);                 // flex布局
+    .flex-direction(column);        // column表示子元素竖直方向从上到下排列，flex-direction: row|row-reverse|column|column-reverse|initial|inherit;
+    overflow: hidden;
+}
+
+.layout-header {
+    height: @header_height;                         // 头部高度固定
+    background-image: linear-gradient(to right, #6AA9CB, #DBEBF6);
+    .box-shadow(2px 2px 3px 0 #E6E6E6);
+    overflow: hidden;
+}
+
+.layout-main {
+    .calc(height, ~'100% - '@header_height);        // 计算自适应高度
+    .display(flex);                                 // flex布局
+    .flex-direction(row);                           // 子元素水平排列
+    overflow: hidden;
+}
+
+.layout-menu {
+    height: 100%;
+    max-width: 300px;
+    .flex(0 0 @side_left_width);                    // 左边栏固定宽度（不放大，不缩小，宽度指定）
+    .display(flex);
+    .flex-direction(column);
+    background-color: #F8F8F8;
+}
+
+.layout-resizebar {
+    //cursor: e-resize;
+    //min-width: 7px;
+    min-width: 2px;
+    right: -5px;
+    top: 0;
+    height: 100%;
+    background: #BFBFBF;
+}
+
+.layout-page {
+    .flex(1 0 auto);                                // 自适应剩余空间（可放大，不缩小，自动计算）
+   // min-width: @side_left_width * 2;              // 设定最小宽度
+    .display(flex);
+    .flex-direction(column);
+    overflow: hidden;
+    background-color: #F8F8F8;
+}

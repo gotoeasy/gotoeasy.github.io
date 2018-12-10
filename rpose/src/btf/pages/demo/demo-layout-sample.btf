@@ -1,0 +1,25 @@
+[view]
+<layout-main>
+    <div slot="header">
+        <div>top header</div>
+    </div>
+    <div slot="menu">
+        <div>side menu</div>
+    </div>
+    <div slot="page">
+        <layout-page>
+            <div slot="header">
+                <div style="background-color: cadetblue;height:100%">page header</div>
+            </div>
+            <div slot="content">
+                <div style="background-color: powderblue;height:60vh">page content</div>
+            </div>
+            <div slot="footer">
+                <div style="background-color: gainsboro;height:100%">page footer</div>
+            </div>
+        </layout-page>
+    </div>
+</layout-main>
+
+[mount]
+body

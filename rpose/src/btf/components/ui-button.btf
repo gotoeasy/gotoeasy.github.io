@@ -1,0 +1,25 @@
+[api]
+optionkeys = onclick, value  // 事件属性接口声明是否考虑省略？？？？
+
+[view]
+<button onclick={=$options.onclick} class="ui-button">{value}</button>
+
+[css]
+.ui-button {
+  min-width: 80px;
+  height: 30px;
+  border: 1px solid #999999;
+  font-weight: bold;
+  color: #333333;
+  border-radius: 3px;
+  background: linear-gradient(#fbfbfb 0%, #c8c8c8 100%);
+}
+
+.ui-button:hover,
+.ui-button:focus{
+  background: linear-gradient(#c8c8c8 0%, #fbfbfb 100%);
+}
+
+.ui-button:active{
+  background: linear-gradient(#aaaaaa 0%, #eeeeee 100%);
+}

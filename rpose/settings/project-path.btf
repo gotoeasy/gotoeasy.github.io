@@ -1,0 +1,18 @@
+// ------------------------------------------------
+// 本文件用于自定义目录配置
+// ------------------------------------------------
+[path]
+path.src                    = /src
+path.src_components         = /src/components
+path.src_pages              = /src/pages
+path.src_less               = /src/settings/less
+path.src_resources          = /src/resources
+path.src_resources_css      = /src/resources/css
+path.src_resources_js       = /src/resources/js
+
+path.build                  = /rpose
+path.build_temp             = /rpose/temp
+path.build_dist             = /rpose
+path.build_dist_components  = /rpose/components
+path.build_dist_pages       = /rpose
+path.build_libs             = /rpose/libs

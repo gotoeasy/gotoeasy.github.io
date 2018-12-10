@@ -1,0 +1,15 @@
+[view]
+<layout-main>
+    <div slot="header">
+        <div>header</div>
+    </div>
+    <div slot="menu">
+        <div>menu</div>
+    </div>
+    <div slot="page">
+        <div>page</div>
+    </div>
+</layout-main>
+
+[mount]
+body

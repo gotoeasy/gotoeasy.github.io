@@ -1,0 +1,11 @@
+[api]
+optionKeys = width  // 长度(默认50%)
+
+[view]
+<div style="border:solid 1px #ff9408;background-color:#ff9408;height:1px;margin:auto;width:{=$options.width}"></div>
+
+[options]
+{
+    width: '50%'
+}
+ 
