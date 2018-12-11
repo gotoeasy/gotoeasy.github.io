@@ -12,7 +12,7 @@
 
         <div class="group">
             <a href="https://github.com/gotoeasy/block-text-file" style="margin:5px;width:110px">BTF FILE SPEC</a>
-            <a href="https://gotoeasy.github.io/rpose/build/dist/rpose-demo-list.html" style="margin:5px;width:110px">RPOSE.JS</a>
+            <a href="./rpose-demo-list.html" style="margin:5px;width:110px">RPOSE.JS</a>
         </div>
 
     </div>                
