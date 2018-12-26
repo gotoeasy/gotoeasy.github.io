@@ -1,25 +1,32 @@
 [api]
-optionkeys = onclick, value  // 事件属性接口声明是否考虑省略？？？？
+optionkeys = value, disabled, onclick   // 允许配置的属性
+statekeys  = value, disabled            // 允许修改的状态属性
 
 [view]
-<button onclick={=$options.onclick} class="ui-button">{value}</button>
+<button onclick={=$options.onclick} class="ui-button" disabled={=!!$state.disabled}>{$state.value}</button>
 
-[css]
+[less]
 .ui-button {
-  min-width: 80px;
-  height: 30px;
-  border: 1px solid #999999;
-  font-weight: bold;
-  color: #333333;
-  border-radius: 3px;
-  background: linear-gradient(#fbfbfb 0%, #c8c8c8 100%);
+    min-width: @theme-button-width;
+    height: @theme-button-height;
+    border: 1px solid #999999;
+    font-weight: bold;
+    border-radius: 3px;
+    color: #333333;
+    background: @theme-button-bg;
 }
 
-.ui-button:hover,
+.ui-button:hover:not([disabled]),
 .ui-button:focus{
-  background: linear-gradient(#c8c8c8 0%, #fbfbfb 100%);
+    background: @theme-button-bg-hover;
 }
 
-.ui-button:active{
-  background: linear-gradient(#aaaaaa 0%, #eeeeee 100%);
+.ui-button:active:not([disabled]){
+    background: @theme-button-bg-active;
+}
+
+.ui-button[disabled]{
+    background: @theme-button-bg-disabled;
+    opacity: 0.6;
+    cursor: not-allowed;
 }

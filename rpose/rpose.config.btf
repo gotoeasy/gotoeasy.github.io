@@ -14,5 +14,6 @@ common_css          : src/common/css/common.css
 index_less          : src/common/less/index.less
 index_sass          : src/common/less/index.scss
 
-
+[theme] // 样式风格包
+rpose-theme-demo
 

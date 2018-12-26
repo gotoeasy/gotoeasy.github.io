@@ -28,9 +28,13 @@ body{
 
 .layout-header {
     height: @header_height;                         // 头部高度固定
-    background-image: linear-gradient(to right, #6AA9CB, #DBEBF6);
+    color: #fff;
+    background-image: linear-gradient(to right, #24292e, #24292e);
     .box-shadow(2px 2px 3px 0 #E6E6E6);
     overflow: hidden;
+}
+.layout-header > div {
+    padding: 12px 10px 2px 10px;
 }
 
 .layout-main {
@@ -47,6 +51,9 @@ body{
     .display(flex);
     .flex-direction(column);
     background-color: #F8F8F8;
+}
+.layout-menu > div {
+    padding: 5px 2px 5px 10px;
 }
 
 .layout-resizebar {

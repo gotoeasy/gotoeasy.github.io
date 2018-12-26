@@ -25,6 +25,7 @@
 // 页面标题部分
 .page-header {
     height: @header_height;                         // 标题高度固定
+    background-color: #d1d5da;
 }
 
 // 页面可滚动区域
@@ -41,7 +42,7 @@
     .flex(1 0 auto);                                // 自适应剩余空间（不使用计算方式，以达到页脚粘性效果）
     .display(flex);  
     .flex-direction(column); 
-    padding: 0 0.5rem 1rem 1rem;                    // 边距控制（上右下左）
+    padding: 0px 10px 10px 10px;                    // 边距控制（上右下左）
 }
 
 .page-footer {
