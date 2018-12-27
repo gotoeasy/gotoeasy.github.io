@@ -5,8 +5,8 @@
     </div>
     <div slot="menu">
         <div>
+            <a href="./demo-ui-highlight.html">demo-ui-highlight</a><br>
             <a href="./demo-ui-button.html">demo-ui-button</a><br>
-            <a href="./demo-ui-highlight.html">demo-ui-highlight</a>
         </div>
     </div>
     <div slot="page">
@@ -17,13 +17,51 @@
             <div slot="content">
                 <div>
 ```
- <div slot="code"> 
- 
- <ol>
- <li> dsadsas</li>
- <li> dsadsas</li>
- </ol>
- </div>
+\[view]
+<div style="text-align:center">
+<span>{$state.msg}</span><p/>
+<ui-button onclick="btnClick1" value="按钮1"/><p/>
+<ui-button onclick="btnClick2" value="按钮2"/><p/>
+<ui-button onclick="btnClick3" ref="btn3" value="模拟重试"/><p/>
+</div>
+
+\[state]
+{
+  msg:'点击按钮看效果',
+  cnt1:0,
+  cnt2:0,
+}
+
+\[actions]
+{
+    btnClick1: e=>{
+        this.$state.cnt1++;
+        this.$state.msg = '点击按钮1，共 ' + this.$state.cnt1 + ' 次';
+        this.render();
+    },
+    btnClick2: e=>{
+        this.$state.cnt2++;
+        this.$state.msg = '点击按钮2，共 ' + this.$state.cnt2 + ' 次';
+        this.render();
+    },
+    btnClick3: e=>{
+
+        let sec = 5;
+        let btn3 = this.getRefComponents("btn3")[0];
+       
+        btn3.setState({disabled:true, value: sec-- + '秒后重试'});
+        let tid = setInterval(()=>{
+            btn3.setState({disabled:true, value: sec-- + '秒后重试'});
+            if (sec < 0 ){
+                clearInterval(tid);
+                btn3.setState({disabled:false, value:'模拟重试'});
+            }
+        }, 1000);
+    },
+}
+
+\[mount]
+body
 ```
 
 <br>
@@ -32,12 +70,12 @@
 <span>{$state.msg}</span><p/>
 <ui-button onclick="btnClick1" value="按钮1"/><p/>
 <ui-button onclick="btnClick2" value="按钮2"/><p/>
-<ui-button onclick="btnClick3" ref="btn3" value="模拟重试"/>
+<ui-button onclick="btnClick3" ref="btn3" value="模拟重试"/><p/>
 </div>
                 </div>
             </div>
             <div slot="footer">
-                <div style="background-color: gainsboro;height:100%">fixme ...... </div>
+                <div ref="footer" style="background-color: gainsboro;height:100%">fixme ...... </div>
             </div>
         </layout-page>
     </div>
@@ -63,9 +101,10 @@
         this.render();
     },
     btnClick3: e=>{
+
         let sec = 5;
         let btn3 = this.getRefComponents("btn3")[0];
-        
+       
         btn3.setState({disabled:true, value: sec-- + '秒后重试'});
         let tid = setInterval(()=>{
             btn3.setState({disabled:true, value: sec-- + '秒后重试'});

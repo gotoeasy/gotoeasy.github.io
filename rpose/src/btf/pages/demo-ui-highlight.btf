@@ -5,31 +5,32 @@
     </div>
     <div slot="menu">
         <div>
+            <a href="./demo-ui-highlight.html">demo-ui-highlight</a><br>
             <a href="./demo-ui-button.html">demo-ui-button</a><br>
-            <a href="./demo-ui-highlight.html">demo-ui-highlight</a>
         </div>
     </div>
     <div slot="page">
         <layout-page>
             <div slot="header">
-                <div>代码块高亮 ```</div>
+                <div>代码高亮组件 ```</div>
             </div>
             <div slot="content">
 
-```js max-height=300px ref="highlight"
-\\\\\```sss
-const highlight = require('highlight.js');
-\```sss
-module.exports = function (code='', lang) {
-    lang = /^js$/i.test(lang) ? 'javascript' : lang;
-\```sss
-\```sss
-\```sss
+```js max-height=300px
+// 模仿md格式写法的一个内置代码高亮组件
+// 例：
+\```
+function hello(name){
+    return 'hello ' + name;
+}
+\```
+```
 
-    let rs = highlight.highlightAuto(code, lang);
-    let html = '<ol><li>' + rs.value.split(/\r?\n/).join('</li><li>') + '</li></ol>';
 
-    return html;
+<p/>效果
+```js max-height=300px
+function hello(name){
+    return 'hello ' + name;
 }
 ```
 
