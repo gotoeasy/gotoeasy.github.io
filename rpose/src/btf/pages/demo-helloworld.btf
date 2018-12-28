@@ -1,0 +1,13 @@
+[api]
+statekeys = name
+
+[view]
+<span>hello {$state.name}!</span>
+
+[state]
+{
+    name: 'world'
+}
+
+[mount]
+body

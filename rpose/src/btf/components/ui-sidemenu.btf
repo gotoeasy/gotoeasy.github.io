@@ -1,0 +1,79 @@
+[api]
+statekeys = show
+
+[view]
+<div class="side-menu" ref="sidemenu">
+    <ul class="menu-items">
+        <li><a href="#" class="btn-close" onclick="closeside">X</a></li>
+        <li><a href="#">NNNN</a></li>
+        <li><a href="#">NNNN</a></li>
+        <li><a href="#">NNNN</a></li>
+    </ul>
+</div>
+
+[state]
+{
+    show: false,
+}
+
+[actions]
+{
+    closeside: e => rpose.at('closeside')
+}
+
+[methods]
+{
+    init: () => {
+        rpose.on('openside', ()=>{
+            console.info('.......openside...........')
+            let el = this.getRefElements('sidemenu')[0];
+            el && (el.style.width = '250px');
+        });
+        rpose.on('closeside', ()=>{
+            console.info('.......closeside...........')
+            let el = this.getRefElements('sidemenu')[0];
+            el && (el.style.width = '0');
+        });
+    },
+}
+
+[css]
+.side-menu{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #222;
+    opacity: 0.9;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.side-menu a{
+    padding: 10px 10px 10px 30px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #ccc;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-menu a:hover{
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn-close{
+    position: absolute;
+    top: 0;
+    right: 22px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.menu-items{
+    list-style: none;
+}

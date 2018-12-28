@@ -12,15 +12,15 @@
         答：angular太复杂，react的jsx难以忍受，vue指令太多，(回答像是有点假) ......<br>
         
         <br>
-        问：能写得比那些框架还好？<br>
-        答：能写得更加舒服<br>
+        问：能写得比它们还好？<br>
+        答：应该能写得更加舒服<br>
 
         <br>
         问：rpose有什么特点？<br>
         答：精致（精力有限简化导致^-^）、更少的概念、更多的便易、换取更多的精力关注业务实现<br>
 
         <br>
-        问：能给个例子？<br>
+        问：有实际例子吗？<br>
         答：试试往下看<br>
 
 
@@ -134,7 +134,7 @@ body
 [css]
 body{
 	margin: 0;
-    background-color: #e5e5e5;
+    background-color: #F9F9F9;
 }
 
 .main{

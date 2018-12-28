@@ -1,0 +1,7 @@
+[view]
+<div class="main"><slot name="main"></slot></div>
+
+[css]
+.main{
+	margin: 10px;
+}
