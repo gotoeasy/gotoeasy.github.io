@@ -1,11 +1,14 @@
 [api]
-optionKeys = width  // 长度(默认50%)
+optionkeys = height, width, color, margin
 
 [view]
-<div style="border:solid 1px #ff9408;background-color:#ff9408;height:1px;margin:auto;width:{=$options.width}"></div>
+<div style="background-color:{=color};height:{=height};width:{=width};margin:{=margin}"></div>
 
 [options]
 {
-    width: '50%'
+    height: '1px',
+    width: '98%',
+    color: '#e6e6e6',
+    margin: '20px auto 20px auto',
 }
  

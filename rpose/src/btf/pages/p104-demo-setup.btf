@@ -1,0 +1,45 @@
+[view]
+<div>
+    <ui-navbar />
+    <ui-sidemenu />
+    <div class="main">
+
+<ui-blockquote text="4.1 安装rpose"/>
+
+
+
+<ui-line/>
+        <ui-button value="3 再几个组件熟悉一下" onclick="pre" />
+        <span style="margin:0 80px 0 0"></span>
+        <ui-button value="5 （TODO）" onclick="next" disabled />
+    </div>
+
+
+<ui-line/>
+    <div style="text-align:center;margin-bottom:20px">青松 2018.12</div>
+
+</div>
+
+[actions]
+{
+    pre:e=>{
+        location.href = 'p103-demo-component.html';
+    },
+    next:e=>{
+        location.href = 'xxxxxxxxxx.html';
+    },
+}
+
+
+[mount]
+body
+
+[css]
+body{
+	margin: 0;
+    background-color: #F9F9F9;
+}
+
+.main{
+	margin: 15px;
+}

@@ -1,0 +1,10 @@
+[api]
+statekeys = name   // 这里用的是statekeys，意思是说，组件接受一个状态属性项‘name’的修改
+
+[view]
+<span>hello {name}!</span>
+
+[state] // 默认的选项值，如果没有接收到name参数，显示的就是world了
+{
+    name: 'world'
+}

@@ -25,13 +25,11 @@ statekeys = show
 {
     init: () => {
         rpose.on('openside', ()=>{
-            console.info('.......openside...........')
-            let el = this.getRefElements('sidemenu')[0];
+            let el = this.getRefElement('sidemenu');
             el && (el.style.width = '250px');
         });
         rpose.on('closeside', ()=>{
-            console.info('.......closeside...........')
-            let el = this.getRefElements('sidemenu')[0];
+            let el = this.getRefElement('sidemenu');
             el && (el.style.width = '0');
         });
     },

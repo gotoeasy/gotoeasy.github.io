@@ -4,15 +4,15 @@
     <div class="center">
 
         <h2 class="title">GOTOEASY</h2>
-        <p class="text">WRITE BUSINESS, DONE <br>IT SHOULD BE SO EASY</p>		
+        <p class="text">WRITE BUSINESS, DONE <br>IT SHOULD BE SO EASY</p>	
 
-        <ui-line/>
-        <br>
+        <ui-line height="3px" width="50%" color="#ff9408"/>
+
         <span class="text">写业务，完成，就该这么简单</span>		
 
         <div class="group">
-            <a href="https://github.com/gotoeasy/block-text-file" style="margin:5px;width:110px">BTF FILE SPEC</a>
-            <a href="./pages/p100-rpose-start.html" style="margin:5px;width:110px">RPOSE.JS</a>
+            <a href="https://github.com/gotoeasy/block-text-file" style="margin:5px;width:110px">BTF SPEC</a>
+            <a href="./pages/p101-rpose-start.html" style="margin:5px;width:110px">RPOSE</a>
         </div>
 
     </div>                

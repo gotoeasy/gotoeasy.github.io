@@ -1,9 +1,9 @@
 [api]
-optionkeys = value, disabled, onclick   // 允许配置的属性
-statekeys  = value, disabled            // 允许修改的状态属性
+optionkeys = onclick
+statekeys  = value, disabled
 
 [view]
-<button onclick={=$options.onclick} class="ui-button" disabled={=!!$state.disabled}>{$state.value}</button>
+<button onclick={=$options.onclick} class="ui-button" disabled={!!$state.disabled}>{$state.value}</button>
 
 [less]
 .ui-button {
