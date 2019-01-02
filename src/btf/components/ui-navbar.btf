@@ -2,7 +2,7 @@
 
 [view]
 <nav class="nav">
-    <div class="nav-icon" onclick="openside">
+    <div class="nav-icon">
         <svg width="30" height="30">
             <path d="M0,5 30,5" stroke="#ddd" stroke-width="5"/>
             <path d="M0,14 30,14" stroke="#ddd" stroke-width="5"/>
@@ -10,7 +10,7 @@
         </svg>
     </div>
     <ul class="nav-link">
-        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../index.html">Home</a></li>
         <li><a href="https://github.com/gotoeasy/rpose">Repository</a></li>
         <li><a href="https://github.com/gotoeasy/rpose/issues">Issues</a></li>
     </ul>

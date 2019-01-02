@@ -113,7 +113,7 @@ rpose build -c -r
 <ui-line/>
         <ui-button value="3 再几个组件熟悉一下" onclick="pre" />
         <span style="margin:0 80px 0 0"></span>
-        <ui-button value="5 下一个关心点（TODO）" onclick="next" disabled />
+        <ui-button value="5 下一个姿势（TODO）" onclick="next" disabled />
     </div>
 
 
