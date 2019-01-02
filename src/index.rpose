@@ -1,9 +1,7 @@
 [view]
 <div class="page-section">
-	
-	<ui-loader section/>
 
-    <div class="center">
+	<div class="center">
         <h2 class="title">GOTOEASY</h2>
         <p class="text">WRITE BUSINESS, DONE <br>IT SHOULD BE SO EASY</p>	
 
@@ -16,6 +14,7 @@
             <a href="./pages/p101-rpose-start.html" style="margin:5px;width:110px">RPOSE</a>
         </div>
     </div>                
+
 </div>
 
 [mount]
