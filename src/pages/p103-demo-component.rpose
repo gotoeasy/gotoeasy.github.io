@@ -46,7 +46,7 @@ var hello = name => 'Hello ' + name + '!';
 <ui-blockquote text="3.2 本文使用的分隔行组件"/>
 这个组件概念上等同于无状态组件，因为没有声明statekeys的具体项，状态无法修改
 ```
-// 文件名 ui-line.btf
+// 文件名 ui-line.rpose
 
 \[api]
 optionkeys = height, width, color, margin
@@ -70,8 +70,8 @@ optionkeys = height, width, color, margin
 <ui-blockquote text="3.3 简单的按钮组件"/>
 这个按钮组件能修改状态<br>
 通过statekeys声明看出，仅有value和disabled能改，也就是只能改按钮文字以及是否禁用
-```btf 300px
-// 文件名 ui-button.btf
+```rpose 300px
+// 文件名 ui-button.rpose
 
 \[api]
 optionkeys = onclick
@@ -120,8 +120,8 @@ statekeys  = value, disabled
 
 <ui-line/>
 <ui-blockquote text="3.4 组装几个按钮到页面看效果"/>
-```btf 300px
-// 文件名 demo-3-4-button.btf
+```rpose 300px
+// 文件名 demo-3-4-button.rpose
 
 \[view]
 <div class="warp">

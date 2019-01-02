@@ -30,11 +30,11 @@
 <ui-line/>
 
         <ui-blockquote text="1.0 基于Block-Text-File的源码格式"/>
-        代码文件基于Block-Text-File格式，为了简化，不使用其中的多文档功能<br>
-        Block-Text-File格式定义详见 <a href="https://github.com/gotoeasy/block-text-file" target="_blank">链接</a><br>
+        代码文件基于Block-Text-File格式，格式定义详见 <a href="https://github.com/gotoeasy/block-text-file" target="_blank">链接</a><br>
+		出于简化目的不使用其中的多文档功能，所以源码文件的后缀名统一为".rpose"，以示区别<br>
         <br>
         大体形同ini文件，易读性高，就像下面这个
-```btf
+```rpose
 \[abc] // 块名后的内容自动忽略，可作注释用途
 NNNNNNNNNNNNNN
 NNNNNNNNNNNNNNNN
@@ -54,9 +54,9 @@ NNNNNNNNNNNNNNNN
 
         <ui-blockquote text="1.1 组件式开发，一个组件对应一个文件"/>
         流行习惯，rpose简化的把一切都作组件看待，比如页面也是组件<br>
-        代码文件目录组织上，可设定组件目录，主要是为了区分页面，因为页面最终是要打包的<br>
+        代码文件目录组织上，有组件目录，主要是为了区分页面，因为页面最终是要打包的<br>
         <br>
-        更多具体内容，详见工程配置<br>
+        更多文件目录结构内容，详见工程配置<br>
 
 
 <ui-line/>
@@ -66,13 +66,13 @@ NNNNNNNNNNNNNNNN
         注：当前版本尚未稳定，块名可能调整<br>
         <br>
         块名用途分别说明如下
-```btf
+```rpose
 \[api] // 用于声明组件接口特征
 // 就像写配置文件一样任性
 optionkeys = value, disabled, onclick   // 允许配置的属性
 statekeys  = value, disabled            // 允许修改的状态属性
 ```
-```btf
+```rpose
 \[view] // 写视图模板，亲近html标签的写法
 <div>
     <span>Hello {$state.name}, I am {$options.name}.</span>
@@ -88,19 +88,19 @@ statekeys  = value, disabled            // 允许修改的状态属性
 <div>{name}</div>
 {% } %}
 ```
-```btf
+```rpose
 \[options] // 写默认选项数据，通常是一经设定就不会修改的内容
 {
     name: 'rpose'
 }
 ```
-```btf
+```rpose
 \[state] // 写默认状态数据，通常是可以被修改的内容
 {
     name: ''
 }
 ```
-```btf
+```rpose
 \[actions] // 写事件响应函数，如按钮点击等
 {
     // 响应“确定”按钮点击事件，通过view中onclick的设定进行关联
@@ -109,13 +109,13 @@ statekeys  = value, disabled            // 允许修改的状态属性
     }
 }
 ```
-```btf
+```rpose
 \[css] // 写样式表
 .my-class{
     color: 'red'
 }
 ```
-```btf
+```rpose
 \[mount] // 本组件挂载点，常用于页面显示
 body
 ```

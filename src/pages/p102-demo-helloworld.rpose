@@ -5,8 +5,8 @@
     <div class="main">
 
 <ui-blockquote text="2.1 第一个 hello world 组件"/>
-```btf
-// 文件名 ui-helloworld.btf
+```rpose
+// 文件名 ui-helloworld.rpose
 
 \[api]
 statekeys = name   // 意思是说，组件的状态不是外部所能随便改的，这里声明仅接受‘name’的修改
@@ -29,7 +29,7 @@ statekeys = name   // 意思是说，组件的状态不是外部所能随便改�
 为了看到 hello world 的效果，简单写一个页面<br>
 页面也是组件，不过是多了个挂载显示
 ```
-// 文件名 demo-2-2-helloworld.btf
+// 文件名 demo-2-2-helloworld.rpose
 
 \[view]
 <ui-helloworld/>
@@ -45,7 +45,7 @@ body
 要修改组件状态，3个要素，什么组件？什么时机？改成什么？<br>
 下面代码演示，在输入框onchange时，拿到hello world组件对象，把它的name修改为输入框的值
 ```
-// 文件名 demo-2-3-helloworld.btf
+// 文件名 demo-2-3-helloworld.rpose
 
 \[view]
 <div>
@@ -81,8 +81,8 @@ body
 <ui-blockquote text="2.4 使用样式"/>
 三驾马车HTML/JS/CSS就剩下CSS了<br>
 没什么难的，rpose最讲究的是姿势，直接加就是
-```btf
-// 文件名 demo-2-4-helloworld.btf
+```rpose
+// 文件名 demo-2-4-helloworld.rpose
 
 \[view]
 <div>

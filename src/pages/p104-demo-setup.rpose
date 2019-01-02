@@ -33,20 +33,14 @@ rpose watch -clean
 
 <ui-line/>
 <ui-blockquote text="4.3 其实应该先看配置"/>
-首先是项目根目录下的配置文件 rpose.config.btf，内容直白不用解释<br>
+项目根目录下的配置文件 rpose.config.btf，内容很直白，目前是配置目录和样式风格包<br>
 ```btf
 // 项目配置文件 rpose.config.btf
 
 \[path]
 src                 : src
-src_btf             : src/btf
-src_components      : src/btf/components
-src_pages           : src/btf/pages
-src_resources       : src/resources
-
+src_components      : src/components
 build               : build
-build_temp          : build/temp
-build_dist          : build/dist
 
 \[theme] // 样式风格包
 rpose-theme-demo
@@ -79,13 +73,13 @@ ie 11
 <ui-line/>
 <ui-blockquote text="4.5 我们要打包了"/>
 我们要的打包效果是，按页面单位有文件html、js、css各一个<br>
-公共包抽取之类暂时不考虑，因为打包出来的文件实在是不够大
+公共包抽取之类暂时不考虑，因为目前打包出来的文件实在是太小还不值得分
 ```
 rpose build -c -r
 ```
 
 这里并没有提到打包的什么配置<br>
-因为，要打包，理论上给的需求已经充分，让它跑起来吧。鸣谢众多开源作者
+因为，要打包，理论上给的需求已经充分，好了，让它跑起来吧
 
 
 
@@ -94,7 +88,7 @@ rpose build -c -r
 <ui-line/>
 
         <ui-blockquote text="4.6 小结"/>
-        效果摆在那里，小结则是多余，必须再次鸣谢众多开源项目及其作者<br>
+        效果摆在那里，小结已是多余，在此鸣谢众多开源项目及其作者<br>
         <br>
         鸣谢node.js平台，确实方便了大家<br>
         鸣谢babel，7.x.x版本令人愉悦<br>
