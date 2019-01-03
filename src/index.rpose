@@ -9,7 +9,7 @@
 
         <span class="text">写业务，完成，就该这么简单</span>		
 
-        <div class="group">
+		<div class="group">
             <a href="https://github.com/gotoeasy/block-text-file" style="margin:5px;width:110px">BTF SPEC</a>
             <a href="./pages/p101-rpose-start.html" style="margin:5px;width:110px">RPOSE</a>
         </div>
