@@ -107,7 +107,7 @@ rpose build -c -r
 <ui-line/>
         <ui-button value="3 再几个组件熟悉一下" onclick="pre" />
         <span style="margin:0 80px 0 0"></span>
-        <ui-button value="5 下一个姿势（TODO）" onclick="next" disabled />
+        <ui-button value="5 简便的预渲染方案" onclick="next" />
     </div>
 
 
@@ -122,7 +122,7 @@ rpose build -c -r
         location.href = 'p103-demo-component.html';
     },
     next:e=>{
-        location.href = 'xxxxxxxxxx.html';
+        location.href = 'p105-demo-pre-render.html';
     },
 }
 

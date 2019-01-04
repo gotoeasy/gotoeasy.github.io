@@ -1,0 +1,9 @@
+// 文件名 demo-5-3-loader.rpose
+[api]
+prerender = loader-section
+
+[view]
+<img src="../resources/images/bg.jpg" />
+
+[mount]
+body

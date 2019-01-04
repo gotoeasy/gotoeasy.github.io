@@ -1,0 +1,154 @@
+[view]
+<div>
+    <ui-navbar />
+    <ui-sidemenu />
+    <div class="main">
+
+<ui-blockquote text="5.1 先看打包好的页面文件源码"/>
+这是个html文件源码，内容比较简单，有个缓存时间，js按defer方式下载执行<br>
+如果js文件比较大，可能会出现页面空白期，体验比较单调乏味<br>
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="max-age=18000"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./index.js" defer></script>
+<link href="./index.css" rel="stylesheet">
+</head>
+<body></body>
+</html>
+```
+
+可以添加个Loader，缺点是不知道要“等”多久，时间长时体验较差<br>
+或是加个骨架屏，缺点是不同页面的骨架屏可能不一样，要分别写<br>
+或是参考桌面应用写个类似舒服的Splash启动页面，个性化，等等<br>
+追根到底是审美疲劳的原因，看多了还会继续想换花样<br>
+<br>
+所以这个页面html源码的生成，自然的就有模块需求了
+
+<ui-line/>
+<ui-blockquote text="5.2 预渲染"/>
+响亮名称的预渲染，在rpose中是由生成html源码的模块负责<br>
+这个过程是个函数，一个npm包，目前为 @gotoeasy/pre-render<br>
+```js
+// @gotoeasy/pre-render
+
+// 传入源文件信息选项opts
+//   - srcPath，如 c:/test/project/src
+//   - file，绝对路径，如 c:/test/project/src/pages/demo-page.rpose
+//   - name，单纯文件名，如 demo-page
+//   - type，源文件中声明的预渲染类型，字符串如空白串''、loader、loader-section等
+module.exports = function defaultPreRender(opts){
+    ...
+}
+```
+
+这个 @gotoeasy/pre-render 是默认的，复杂需求，可能要定制个npm包来用<br>
+比如要填上关键字给搜索引擎啊、js/css想加个特别的版本号参数啊等等<br>
+定制预渲染器需要配置：
+```btf
+// rpose.config.btf
+
+\[prerender] // 预渲染器的npm包名，定制时替换掉就行
+@gotoeasy/pre-render
+```
+
+
+<ui-line/>
+<ui-blockquote text="5.3 不定制，就想加个Loader看效果"/>
+一句话的事<br>
+```btf
+// 文件名 demo-5-3-loader.rpose
+\[api]
+prerender = loader-section  // 就是这里，目前有loader和loader-section两种效果可选，一试便知
+
+\[view] // 图片相对路径是相对于源文件自身，也可以用绝对路径
+<img src="../resources/images/bg.jpg" />
+
+\[mount]
+body
+```
+<a href="demo-5-3-loader.html" target="_blank">点击看看效果</a>，相应的html会在body里会添加预渲染的相关pre-render节点
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="max-age=18000"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./demo-5-3-loader.js" defer></script>
+<link href="./demo-5-3-loader.css" rel="stylesheet">
+</head>
+<body>
+    <div class="pre-render loader-wrapper">
+	// 省略子节点源码
+    </div>
+</body>
+</html>
+```
+
+<ui-line/>
+<ui-blockquote text="5.4 简单好用，定制要注意什么"/>
+在浏览器触发window.onload事件时<br>
+rpose会按类名查找“.pre-render”节点，然后添加类“loaded”<br>
+再数秒后，会删除“.pre-render”节点，这就是框架内部做的事<br>
+<br>
+所以，预渲染的根节点添加类pre-render，再写个.loaded的相关样式，做隐藏或动画隐藏处理<br>
+这样rpose就会代劳隐藏和删除逻辑， @gotoeasy/pre-render 就是这么做的<br>
+<br>
+当然，也可以不管这些，自己写脚本实现是完全可以的<br>
+渲染效果的浏览器兼容性，目前是要自行处理的<br>
+
+
+
+
+
+
+<ui-line/>
+
+        <ui-blockquote text="5.5 小结"/>
+        提供一种预渲染方案<br>
+        无关业务的东西，希望声明一下就能实现，这是主要目的<br>
+        <br>
+        样式的link标签也是阻塞渲染的，如果css文件较大，也应异步加载，比如可以动态创建link标签实现<br>
+        
+<br>
+<ui-line/>
+        <ui-button value="4 安装，体验使用rpose" onclick="pre" />
+        <span style="margin:0 80px 0 0"></span>
+        <ui-button value="6 下一个姿势（TODO）" onclick="next" disabled />
+    </div>
+
+
+<ui-line/>
+    <div style="text-align:center;margin-bottom:20px">青松 2019.01</div>
+
+</div>
+
+[actions]
+{
+    pre:e=>{
+        location.href = 'p104-demo-setup.html';
+    },
+    next:e=>{
+        location.href = 'xxxxxxxxxx.html';
+    },
+}
+
+
+[mount]
+body
+
+[css]
+body{
+	margin: 0;
+    background-color: #F9F9F9;
+}
+
+.main{
+	margin: 15px;
+}
