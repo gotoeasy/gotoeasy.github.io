@@ -66,7 +66,7 @@ module.exports = function defaultPreRender(opts){
 prerender = loader-section  // 就是这里，目前有loader和loader-section两种效果可选，一试便知
 
 \[view] // 图片相对路径是相对于源文件自身，也可以用绝对路径
-<img src="../resources/images/bg.jpg" />
+<img src="../resources/images/bg.jpg" height="100" width="200" />
 
 \[mount]
 body
@@ -120,7 +120,7 @@ rpose会按类名查找“.pre-render”节点，然后添加类“loaded”<br>
 <ui-line/>
         <ui-button value="4 安装，体验使用rpose" onclick="pre" />
         <span style="margin:0 80px 0 0"></span>
-        <ui-button value="6 下一个姿势（TODO）" onclick="next" disabled />
+        <ui-button value="6 插槽与布局应用例子" onclick="next"/>
     </div>
 
 
@@ -135,7 +135,7 @@ rpose会按类名查找“.pre-render”节点，然后添加类“loaded”<br>
         location.href = 'p104-demo-setup.html';
     },
     next:e=>{
-        location.href = 'xxxxxxxxxx.html';
+        location.href = 'p106-demo-slot.html';
     },
 }
 

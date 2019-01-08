@@ -3,7 +3,7 @@
 prerender = loader-section
 
 [view]
-<img src="../resources/images/bg.jpg" />
+<img src="../resources/images/bg.jpg" height="100" width="200" />
 
 [mount]
 body

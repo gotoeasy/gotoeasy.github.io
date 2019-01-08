@@ -1,0 +1,5 @@
+[view]
+<ul>
+    <li><slot/></li>
+</ul>
+
