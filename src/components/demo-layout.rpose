@@ -23,7 +23,7 @@ body{
 .layout-header {
     height: 50px;
     color: #fff;
-    background-image: linear-gradient(to right, #333, #aaa);
+    background-image: linear-gradient(to right, #163174, #A4C8EE);
     .box-shadow(2px 2px 3px 0 #E6E6E6);
     overflow: hidden;
 }

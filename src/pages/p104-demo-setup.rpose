@@ -20,14 +20,12 @@ npm i -g @rpose/cli
 // 进入项目目录
 cd D:/test
 
-// 安装依赖包，就是那个rpose-theme-demo
-npm i rpose-theme-demo
-
 // 准备开始，初次启动，需要给点耐心，不出意外必定成功
 // 用watch模式比较直观，加上-clean是先清除build目录，方便看新生成的东西
 rpose watch -clean
 ```
-目前，watch模式有已知bug，可能也有未知bug，看有没有空改进了<br>
+
+目前，watch模式有已知bug，有空再改进<br>
 成功后是打开了浏览器显示了首页，接下去就可以对照源码看看build目录中的东西了
 
 
