@@ -1,0 +1,235 @@
+[view]
+<div>
+    <ui-navbar />
+    <ui-sidemenu />
+    <div class="main">
+
+<ui-blockquote text="7.1 有关前端路由"/>
+前端路由欣欣向荣的样子，太多了，这并不是什么大好消息<br>
+主要原因是没有标准，所以大家按自己经验喜好做，差异体现在不同的接口设计<br>
+各自造轮子的极端，一种是简陋，说这东西很简单几行代码就搞定，然后还有例子，这是讲原理层次<br>
+另一种是复杂，称之为过度设计，本来没有的东西被设计得一天都看不完文档<br>
+
+<br>
+rpose比较看重复杂度的控制，在前端路由上，rpose不会一股脑的支持各种功能<br>
+
+<br>
+为什么要前端路由？ —— 为了支持浏览器的前进后退按钮操作，让页面模拟跳转但不会跳出当前SPA页<br>
+这是最最本质的功能需求<br>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.2 准备素材页面"/>
+准备三个页面组件，共用一个布局组件，最后合并成一个SPA<br>
+
+<details>
+<summary>布局组件源码</summary>
+```rpose
+// demo-router-layout.rpose
+\[view]
+<div>
+    <nav class="nav">
+        <ui-navicon/>
+        <ul class="nav-link">
+            <li><router-link path="" text="Home" /></li>
+            <li><router-link path="products" text="Products" /></li>
+            <li><router-link path="about" text="About" /></li>
+        </ul>
+    </nav>
+    <div class="main">
+        <slot/>
+    </div>
+</div>
+
+\[css]
+// 代码省略
+```
+</details>
+
+
+<details>
+<summary>页面组件源码</summary>
+```rpose
+// demo-router-page1-home.rpose 模拟一个首页
+\[view]
+<demo-router-layout>
+    <div style="font-size:2rem;text-align:center">this is <b>Home</b> page</div>    
+</demo-router-layout>
+
+// demo-router-page2-products.rpose 模拟一个商品页
+\[view]
+<demo-router-layout>
+    <div style="font-size:2rem;text-align:center">this is <b>Products</b> page</div>    
+</demo-router-layout>
+
+// demo-router-page3-about.rpose 模拟一个关于页
+\[view]
+<demo-router-layout>
+    <div style="font-size:2rem;text-align:center">this is <b>About</b> page</div>    
+</demo-router-layout>
+```
+</details>
+
+
+
+```
+// demo-7-2-pages.rpose
+\[view]
+<div>
+    <demo-router-page1-home/>
+    <demo-router-page2-products/>
+    <demo-router-page3-about/>
+</div>
+
+\[mount]
+body
+```
+
+这是单纯的合并显示页面组件素材，有个感官认识，<a href="demo-7-2-pages.html" target="_blank">看看效果</a><br>
+上面的布局组件用到了一个内置标签： router-link，功能就是包装一下a标签<br>
+router-link的text属性指定链接文本，path属性指定路由地址（以http:或https:开头则跳转网页），不写则默认为空串“”<br>
+如果不用前端路由，直接控制三页面的隐藏/显示，那就是原始早期的SPA方式了
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.3 使用路由标签"/>
+现在希望支持路由功能，也就是要支持浏览器的前进后退等基本操作<br>
+使用内置的router标签，把目标内容包裹起来，指定path就行了，代码修改如下
+```rpose
+// demo-7-3-router-spa-simple.rpose
+\[view]
+<div>
+    <router path=""><demo-router-page1-home/></router>
+    <router path="products"><demo-router-page2-products/></router>
+    <router path="about"><demo-router-page3-about/></router>
+</div>
+
+\[mount]
+body
+```
+
+看似简单，如果是单纯的控制隐藏显示，那功能上是基本实现了，<a href="demo-7-3-router-spa-simple.html" target="_blank">看看效果</a><br>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.4 初期默认显示首页"/>
+如果打开浏览器，输入页面地址加上不存在的错误路由，按上面的写法，会空白<br>
+因为没有匹配的可以显示，所以，初期显示要加个默认页，要满足这个功能写上default声明为默认就行了<br>
+来者都是客，不认路的请走大门，大体是这个意思
+```rpose
+// demo-7-4-router-spa-default.rpose
+\[view]
+<div>
+    <router path="" default><demo-router-page1-home/></router>
+    <router path="products"><demo-router-page2-products/></router>
+    <router path="about"><demo-router-page3-about/></router>
+</div>
+
+\[mount]
+body
+```
+
+这样一来，初期的错误路由会就被改到默认的Home页上去，<a href="demo-7-4-router-spa-default.html#xxxxxxxxxxxxxxxxxxxxxxxx" target="_blank">看看效果</a><br>
+留意地址栏的地址，会被改成默认地址<br>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.5 指定notfound页面"/>
+如果页面已经显示，手动修改浏览器地址，输入一个不存在路由，应该模拟一个404页面<br>
+用属性notfound指定为404页面即可<br>
+```rpose
+// demo-7-5-router-spa-notfound.rpose
+\[view]
+<div>
+    <router path="" default><demo-router-page1-home/></router>
+    <router path="products"><demo-router-page2-products/></router>
+    <router path="about"><demo-router-page3-about/></router>
+    <router notfound>
+        <demo-router-layout>
+            <div style="color:red;font-size:5rem;text-align:center"><b>404</b></div>
+        </demo-router-layout>
+    </router>
+</div>
+
+\[mount]
+body
+```
+
+打开页面后输入错误路由地址可见效果，<a href="demo-7-5-router-spa-notfound.html" target="_blank">试试看</a><br>
+这里如果去掉default路由，初期错误输入就直接显示notfound页，那就是来者不善恕不接待的意思了，按需选用
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.6 匹配多路由显示"/>
+
+TODO <br>
+
+
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.7 参数传递"/>
+
+TODO <br>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.8 匹配多路由显示"/>
+
+TODO <br>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.9 NNNNNNN"/>
+
+TODO <br>
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+        <ui-blockquote text="7.n 小结"/>
+        NNNNNNNNNNNNNNNNNNNN<br>
+        NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN<br>
+        NNNNNNNNNNNNNNNNNNNNNNNNN<br>
+        <br>
+        
+<br>
+<ui-line/>
+        <ui-button value="6 插槽与布局应用例子" onclick="pre" />
+        <span style="margin:0 80px 0 0"></span>
+        <ui-button value="8 下一个姿势（TODO）" onclick="next" disabled />
+    </div>
+
+
+<ui-line/>
+    <div style="text-align:center;margin-bottom:20px">青松 2019.01</div>
+
+</div>
+
+[actions]
+{
+    pre:e=>{
+        location.href = 'p106-demo-slot.html';
+    },
+    next:e=>{
+        location.href = 'xxxxxxxxxx.html';
+    },
+}
+
+
+[mount]
+body
+
+[css]
+body{
+	margin: 0;
+    background-color: #F9F9F9;
+}
+
+.main{
+	margin: 15px;
+}

@@ -1,0 +1,14 @@
+[view]
+<div>
+    <router path="" default><demo-router-page1-home/></router>
+    <router path="products"><demo-router-page2-products/></router>
+    <router path="about"><demo-router-page3-about/></router>
+    <router notfound>
+        <demo-router-layout>
+            <div style="color:red;font-size:5rem;text-align:center"><b>404</b></div>
+        </demo-router-layout>
+    </router>
+</div>
+
+[mount]
+body

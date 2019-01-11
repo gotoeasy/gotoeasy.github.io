@@ -1,0 +1,9 @@
+[view]
+<div>
+    <demo-router-page1-home/>
+    <demo-router-page2-products/>
+    <demo-router-page3-about/>
+</div>
+
+[mount]
+body
