@@ -1,0 +1,25 @@
+// 文件名 p102-demo-helloworld-p2d4.btf
+
+[view]
+<div>
+    <input class="demo-input" onchange="fnChange">
+    <ui-helloworld ref="hello" name="rpose" />
+</div>
+
+[actions]
+{
+    fnChange: e=> {
+        let txt = e.target.value;
+        let helloworld = this.getRefComponent('hello');
+        helloworld.setState({name:txt});
+    }
+}
+
+[css]
+.demo-input{
+    margin: 10px;
+    background-color: gold;
+}
+
+[mount]
+body

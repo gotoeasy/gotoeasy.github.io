@@ -1,0 +1,14 @@
+[view]
+<div>
+    <ul style="list-style:none">
+        <li><a href="#helloworld">helloworld</a></li>
+        <li><a href="#component">component</a></li>
+        <li><a href="#slot">slot</a></li>
+    </ul>
+    <router path="helloworld" default><p102-demo-helloworld-p2d2/></router>
+    <router path="component"><p103-demo-component-p3d4/></router>
+    <router path="slot"><p106-demo-slot-p6d2/></router>
+</div>
+
+[mount]
+body

@@ -32,7 +32,7 @@ statekeys = name   // 意思是说，组件的状态不是外部所能随便改�
 为了看到 hello world 的效果，简单写一个页面<br>
 页面也是组件，不过是多了个挂载显示
 ```
-// 文件名 demo-2-2-helloworld.rpose
+// 文件名 p102-demo-helloworld-p2d2.rpose
 
 \[view]
 <ui-helloworld/>
@@ -40,7 +40,7 @@ statekeys = name   // 意思是说，组件的状态不是外部所能随便改�
 \[mount] // 挂载显示
 body
 ```
-这便是把 hello world 组件用起来了，效果用想，显示出“hello world!”而已，不信点 <a href="demo-2-2-helloworld.html" target="_blank">这里</a>
+这便是把 hello world 组件用起来了，效果用想，显示出“hello world!”而已，不信点 <a href="p102-demo-helloworld-p2d2.html" target="_blank">这里</a>
 
 
 <ui-line/>
@@ -48,7 +48,7 @@ body
 要修改组件状态，3个要素，什么组件？什么时机？改成什么？<br>
 下面代码演示，在输入框onchange时，拿到hello world组件对象，把它的name修改为输入框的值
 ```
-// 文件名 demo-2-3-helloworld.rpose
+// 文件名 p102-demo-helloworld-p2d3.rpose
 
 \[view]
 <div>
@@ -73,7 +73,7 @@ body
 要点2，取组件对象，沿用习惯要设定ref属性，组件对象默认提供getRefComponent方法可用<br>
 要点3，修改状态，沿用习惯通过组件的setState方法实现<br>
 <br>
-看效果点 <a href="demo-2-3-helloworld.html" target="_blank">这里</a><br>
+看效果点 <a href="p102-demo-helloworld-p2d3.html" target="_blank">这里</a><br>
 <br>
 扩充点1，组件根部是一个标签节点，多了不行。为什么要这样，习惯...其实主要是影响虚拟节点比较的算法实现<br>
 扩充点2，还有getRefComponents方法，返回的是数组，还有getRefElements、getRefElement方法，对应返回真实Dom<br>
@@ -85,7 +85,7 @@ body
 三驾马车HTML/JS/CSS就剩下CSS了<br>
 没什么难的，rpose最讲究的是姿势，直接加就是
 ```rpose
-// 文件名 demo-2-4-helloworld.rpose
+// 文件名 p102-demo-helloworld-p2d4.rpose
 
 \[view]
 <div>
@@ -106,7 +106,7 @@ body
 要点，就是不想要要点，就像html+css那样直白<br>
 当然，为了习惯，写[scss]、[less]都是可以的，尝试吧<br>
 <br>
-看效果点 <a href="demo-2-4-helloworld.html" target="_blank">这里</a><br>
+看效果点 <a href="p102-demo-helloworld-p2d4.html" target="_blank">这里</a><br>
 <br>
 <br>
 有顾虑？确实，样式问题还是很多的<br>

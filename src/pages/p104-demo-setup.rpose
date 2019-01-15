@@ -120,7 +120,7 @@ rpose build -c -r
         location.href = 'p103-demo-component.html';
     },
     next:e=>{
-        location.href = 'p105-demo-pre-render.html';
+        location.href = 'p105-demo-prerender.html';
     },
 }
 

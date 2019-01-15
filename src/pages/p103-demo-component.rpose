@@ -121,7 +121,7 @@ statekeys  = value, disabled
 <ui-line/>
 <ui-blockquote text="3.4 组装几个按钮到页面看效果"/>
 ```rpose 300px
-// 文件名 demo-3-4-button.rpose
+// 文件名 p103-demo-component-p3d4.rpose
 
 \[view]
 <div class="warp">
@@ -177,7 +177,7 @@ statekeys  = value, disabled
 body
 ```
 
-看效果点 <a href="demo-3-4-button.html" target="_blank">这里</a><br>
+看效果点 <a href="p103-demo-component-p3d4.html" target="_blank">这里</a><br>
 <br>
 也是有要点的<br>
 没有[api]声明可变属性，也就是不让外面修改，但内部自己当然是可以改state的，改完之后调用了组件的内置方法render重绘<br>

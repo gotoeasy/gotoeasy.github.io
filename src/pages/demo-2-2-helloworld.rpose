@@ -1,7 +1,0 @@
-// 文件名 demo-2-2-helloworld.btf
-
-[view]
-<ui-helloworld/>
-
-[mount] // 挂载显示
-body

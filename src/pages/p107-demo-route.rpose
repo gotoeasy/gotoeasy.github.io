@@ -5,197 +5,223 @@
     <div class="main">
 
 <ui-blockquote text="7.1 有关前端路由"/>
-前端路由欣欣向荣的样子，太多了，这并不是什么大好消息<br>
-主要原因是没有标准，所以大家按自己经验喜好做，差异体现在不同的接口设计<br>
-各自造轮子的极端，一种是简陋，说这东西很简单几行代码就搞定，然后还有例子，这是讲原理层次<br>
-另一种是复杂，称之为过度设计，本来没有的东西被设计得一天都看不完文档<br>
+前端路由没有标准，都是按经验自由发挥，差异体现在不同的接口设计<br>
+各自造轮子的极端，一种是简陋，附上例子说几行代码就能搞定，讲原理的层次<br>
+另一种是过度设计，追求无限的灵活性，为了路由而路由，谈艺术的层次<br>
 
 <br>
-rpose比较看重复杂度的控制，在前端路由上，rpose不会一股脑的支持各种功能<br>
+前端路由本质上是为了支持浏览器的前进后退操作，能模拟页面跳转但又不跳出当前SPA页<br>
+因此，rpose控制复杂度，注重易用性，不会一股脑的支持各种功能<br>
+—— 使用hash模式，暂不支持history模式，因为history模式刷新时需要服务端配合，这不科学<br>
+—— 暂不支持显式传参，比如#user/:id或#product?code=123，直接暴露业务数据，这不安全<br>
+—— 不支持嵌套路由，每看到一个地址或嵌套组件，需要脑筋也嵌套配合，不直观可维护性较差<br>
+—— 目前是使用historyApi实现hash模式路由，暂未考虑兼容低版本浏览器，因为需求很少<br>
+—— 提供路由组件，声明式组装，通配符式匹配<br>
+—— 提供路由链接组件，组件式传参，透明化内部细节<br>
+—— 提供路由事件，便于切换路由时组件自行按业务控制页面展示<br>
 
 <br>
-为什么要前端路由？ —— 为了支持浏览器的前进后退按钮操作，让页面模拟跳转但不会跳出当前SPA页<br>
-这是最最本质的功能需求<br>
+以下简要介绍用法
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.2 使用路由标签"/>
+通常，页面用路由标签包裹起来，同时指定匹配的路径就行了
+```rpose
+// p107-demo-route-p7d2.rpose 简单拼装三个页面组件为一个SPA页面
+\[view]
+<div>
+    <ul style="list-style:none">
+        <li><a href="#helloworld">helloworld</a></li>
+        <li><a href="#component">component</a></li>
+        <li><a href="#slot">slot</a></li>
+    </ul>
+    <router path="helloworld"><p102-demo-helloworld-p2d2/></router>
+    <router path="component"><p103-demo-component-p3d4/></router>
+    <router path="slot"><p106-demo-slot-p6d2/></router>
+</div>
+
+\[mount]
+body
+```
+
+这个组件就是简单的把三个页面组件拼成一个SPA页面<br>
+其中router是个内置的标签组件，path属性指定匹配的路由地址，<a href="p107-demo-route-p7d2.html" target="_blank">看看效果</a><br>
+初次打开可以直接输入指定路由地址显示相应路由，<a href="p107-demo-route-p7d2.html#component" target="_blank">直接打开component</a>
 
 
 <!-------------------------------------------------------------------------------------------------------------------------------------->
 <ui-line/>
-<ui-blockquote text="7.2 准备素材页面"/>
-准备三个页面组件，共用一个布局组件，最后合并成一个SPA<br>
-
-<details>
-<summary>布局组件源码</summary>
+<ui-blockquote text="7.3 设定初期默认页面"/>
+初次加载SPA时，如果地址有误，但仍旧希望显示默认路由，要满足这个功能加上default属性声明即可<br>
 ```rpose
-// demo-router-layout.rpose
+// p107-demo-route-p7d3.rpose
 \[view]
 <div>
-    <nav class="nav">
-        <ui-navicon/>
-        <ul class="nav-link">
-            <li><router-link path="" text="Home" /></li>
-            <li><router-link path="products" text="Products" /></li>
-            <li><router-link path="about" text="About" /></li>
+    <ul style="list-style:none">
+        <li><a href="#helloworld">helloworld</a></li>
+        <li><a href="#component">component</a></li>
+        <li><a href="#slot">slot</a></li>
+    </ul>
+    <router path="helloworld" default><p102-demo-helloworld-p2d2/></router>
+    <router path="component"><p103-demo-component-p3d4/></router>
+    <router path="slot"><p106-demo-slot-p6d2/></router>
+</div>
+
+\[mount]
+body
+```
+
+默认路由为helloworld，初期打开指定不存在的foo路由，将会显示默认页，<a href="p107-demo-route-p7d3.html#foo" target="_blank">看看效果</a><br>
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.4 设定notfound页面"/>
+SPA加载显示后，切换路由时如果出现错误地址，通常是希望显示404页，这时可以通过notfound属性声明
+```rpose
+// p107-demo-route-p7d4.rpose
+\[view]
+<div>
+    <ul style="list-style:none">
+        <li><a href="#helloworld">helloworld</a></li>
+        <li><a href="#component">component</a></li>
+        <li><a href="#slot">slot</a></li>
+        <li><a href="#bar">bar</a></li>
+    </ul>
+    <router path="helloworld" default><p102-demo-helloworld-p2d2/></router>
+    <router path="component"><p103-demo-component-p3d4/></router>
+    <router path="slot"><p106-demo-slot-p6d2/></router>
+    <router notfound><div style="color:red;font-size:5rem;"><b>404</b></div></router>
+</div>
+
+\[mount]
+body
+```
+
+打开后点击bar，由于不存在bar的路由，将显示notfound页，地址栏直接输入错误地址也是同样，<a href="p107-demo-route-p7d4.html" target="_blank">看看效果</a><br>
+默认页和notfound页都是路由找不到时才显示，区别在于默认页仅适用于初期加载显示时机
+
+
+
+<!-------------------------------------------------------------------------------------------------------------------------------------->
+<ui-line/>
+<ui-blockquote text="7.5 通配符匹配路由"/>
+路由支持使用通配符 * 进行匹配，星号表示任意字符
+```rpose
+// p107-demo-route-p7d5.rpose
+\[view]
+<div>
+    <router path="*">
+        <ul style="list-style:none">
+            <li><a href="#helloworld">helloworld</a></li>
+            <li><a href="#component">component</a></li>
+            <li><a href="#slot">slot</a></li>
+            <li><a href="#foobar">foobar</a></li>
         </ul>
-    </nav>
-    <div class="main">
-        <slot/>
-    </div>
-</div>
-
-\[css]
-// 代码省略
-```
-</details>
-
-
-<details>
-<summary>页面组件源码</summary>
-```rpose
-// demo-router-page1-home.rpose 模拟一个首页
-\[view]
-<demo-router-layout>
-    <div style="font-size:2rem;text-align:center">this is <b>Home</b> page</div>    
-</demo-router-layout>
-
-// demo-router-page2-products.rpose 模拟一个商品页
-\[view]
-<demo-router-layout>
-    <div style="font-size:2rem;text-align:center">this is <b>Products</b> page</div>    
-</demo-router-layout>
-
-// demo-router-page3-about.rpose 模拟一个关于页
-\[view]
-<demo-router-layout>
-    <div style="font-size:2rem;text-align:center">this is <b>About</b> page</div>    
-</demo-router-layout>
-```
-</details>
-
-
-
-```
-// demo-7-2-pages.rpose
-\[view]
-<div>
-    <demo-router-page1-home/>
-    <demo-router-page2-products/>
-    <demo-router-page3-about/>
-</div>
-
-\[mount]
-body
-```
-
-这是单纯的合并显示页面组件素材，有个感官认识，<a href="demo-7-2-pages.html" target="_blank">看看效果</a><br>
-上面的布局组件用到了一个内置标签： router-link，功能就是包装一下a标签<br>
-router-link的text属性指定链接文本，path属性指定路由地址（以http:或https:开头则跳转网页），不写则默认为空串“”<br>
-如果不用前端路由，直接控制三页面的隐藏/显示，那就是原始早期的SPA方式了
-
-<!-------------------------------------------------------------------------------------------------------------------------------------->
-<ui-line/>
-<ui-blockquote text="7.3 使用路由标签"/>
-现在希望支持路由功能，也就是要支持浏览器的前进后退等基本操作<br>
-使用内置的router标签，把目标内容包裹起来，指定path就行了，代码修改如下
-```rpose
-// demo-7-3-router-spa-simple.rpose
-\[view]
-<div>
-    <router path=""><demo-router-page1-home/></router>
-    <router path="products"><demo-router-page2-products/></router>
-    <router path="about"><demo-router-page3-about/></router>
-</div>
-
-\[mount]
-body
-```
-
-看似简单，如果是单纯的控制隐藏显示，那功能上是基本实现了，<a href="demo-7-3-router-spa-simple.html" target="_blank">看看效果</a><br>
-
-
-<!-------------------------------------------------------------------------------------------------------------------------------------->
-<ui-line/>
-<ui-blockquote text="7.4 初期默认显示首页"/>
-如果打开浏览器，输入页面地址加上不存在的错误路由，按上面的写法，会空白<br>
-因为没有匹配的可以显示，所以，初期显示要加个默认页，要满足这个功能写上default声明为默认就行了<br>
-来者都是客，不认路的请走大门，大体是这个意思
-```rpose
-// demo-7-4-router-spa-default.rpose
-\[view]
-<div>
-    <router path="" default><demo-router-page1-home/></router>
-    <router path="products"><demo-router-page2-products/></router>
-    <router path="about"><demo-router-page3-about/></router>
-</div>
-
-\[mount]
-body
-```
-
-这样一来，初期的错误路由会就被改到默认的Home页上去，<a href="demo-7-4-router-spa-default.html#xxxxxxxxxxxxxxxxxxxxxxxx" target="_blank">看看效果</a><br>
-留意地址栏的地址，会被改成默认地址<br>
-
-<!-------------------------------------------------------------------------------------------------------------------------------------->
-<ui-line/>
-<ui-blockquote text="7.5 指定notfound页面"/>
-如果页面已经显示，手动修改浏览器地址，输入一个不存在路由，应该模拟一个404页面<br>
-用属性notfound指定为404页面即可<br>
-```rpose
-// demo-7-5-router-spa-notfound.rpose
-\[view]
-<div>
-    <router path="" default><demo-router-page1-home/></router>
-    <router path="products"><demo-router-page2-products/></router>
-    <router path="about"><demo-router-page3-about/></router>
-    <router notfound>
-        <demo-router-layout>
-            <div style="color:red;font-size:5rem;text-align:center"><b>404</b></div>
-        </demo-router-layout>
     </router>
+    <router path="helloworld" default><p102-demo-helloworld-p2d2/></router>
+    <router path="component"><p103-demo-component-p3d4/></router>
+    <router path="slot"><p106-demo-slot-p6d2/></router>
+    <router notfound><div style="color:red;font-size:5rem;"><b>404</b></div></router>
+    <router path="foo*"><div style="font-size:3rem;"><b>foobar</b></div></router>
 </div>
 
 \[mount]
 body
 ```
 
-打开页面后输入错误路由地址可见效果，<a href="demo-7-5-router-spa-notfound.html" target="_blank">试试看</a><br>
-这里如果去掉default路由，初期错误输入就直接显示notfound页，那就是来者不善恕不接待的意思了，按需选用
+路由匹配顺序无关、数量无关，可以同时匹配多个，全部匹配的都会被显示
+本例同时匹配2个路由，将会一起显示，打开后点击foobar <a href="p107-demo-route-p7d5.html" target="_blank">看看效果</a><br>
+
 
 
 <!-------------------------------------------------------------------------------------------------------------------------------------->
 <ui-line/>
-<ui-blockquote text="7.6 匹配多路由显示"/>
+<ui-blockquote text="7.6 路由链接组件"/>
+内置router-link组件，对a标签进行包装，简化使用<br>
+```rpose
+// p107-demo-route-p7d6.rpose
+\[view]
+<div>
+    <router path="*">
+        <ul style="list-style:none">
+            <li><router-link path="helloworld" text="helloworld"/></li>
+            <li><router-link path="foo" text="foo"/></li>
+            <li><router-link path="bar" text="bar"/></li>
+        </ul>
+    </router>
+    <router path="helloworld" default><p102-demo-helloworld-p2d2/></router>
+    <router path="foo"><div style="font-size:3rem;"><b>foo</b></div></router>
+    <router path="bar"><div style="font-size:3rem;"><b>bar</b></div></router>
+    <router notfound><div style="color:red;font-size:5rem;"><b>404</b></div></router>
+</div>
 
-TODO <br>
+\[mount]
+body
+```
 
-
+本例router-link组件接受path和text属性，分别代表链接和显示的文本 <a href="p107-demo-route-p7d6.html" target="_blank">看看效果</a>
 
 
 <!-------------------------------------------------------------------------------------------------------------------------------------->
 <ui-line/>
 <ui-blockquote text="7.7 参数传递"/>
+参数传递，组件router-link按传参方式传入params属性即可，效果上在地址栏不会直接暴露数据<br>
+```rpose
+// p107-demo-route-p7d7.rpose
+\[view]
+<div>
+    <router path="*">
+        <ul style="list-style:none">
+            <li><router-link path="foo" params={{id:'id-001'}} text="foo"/></li>
+            <li><router-link path="bar" text="bar"/></li>
+        </ul>
+    </router>
+    <router path="foo"><div style="font-size:3rem;"><b>foo</b><br>id: {$state.id}</div></router>
+    <router path="bar"><div style="font-size:3rem;"><b>bar</b></div></router>
+</div>
 
-TODO <br>
+\[state]
+{id: ''}
+
+\[methods]
+{
+    init: () => {
+        rpose.on('router.onroute', ctx => {
+            let path = ctx.path;        // 这是router-link标签中传递的path值
+            let state = ctx.state;      // 这是router-link标签中传递的params值
+            path == 'foo' && (this.$state.id = state.id) && this.render(true);   // 激活foo页时更新显示id
+        });
+    }
+}
+
+\[mount]
+body
+```
+
+打开后点击foo链接 <a href="p107-demo-route-p7d7.html" target="_blank">看看效果</a><br>
+<br>
+本例出现事件router.onroute，在路由切换时将被触发<br>
+<br>
+另外，这里用到了[methods]块定义，和[actions]的区别是，[methods]中定义的方法会都会被转译为组件对象的方法<br>
+在[methods]中的init方法名是约定的初始方法，对象创建后就会被调用，所以可以用来安装相关事件<br>
+在[methods]中定义的方法如果和内置方法名重复，将会替代原内置方法，比如可以自定义render方法替代默认的render处理逻辑<br>
+<br>
+还有，用到了rpose的事件处理接口rpose.on<br>
+完整的事件接口有on：安装事件函数，off：卸载事件函数，once：安装执行一次就自动卸载的事件函数，at：触发执行事件
+
 
 <!-------------------------------------------------------------------------------------------------------------------------------------->
 <ui-line/>
-<ui-blockquote text="7.8 匹配多路由显示"/>
-
-TODO <br>
-
-
-<!-------------------------------------------------------------------------------------------------------------------------------------->
-<ui-line/>
-<ui-blockquote text="7.9 NNNNNNN"/>
-
-TODO <br>
-
-<!-------------------------------------------------------------------------------------------------------------------------------------->
-<ui-line/>
-        <ui-blockquote text="7.n 小结"/>
-        NNNNNNNNNNNNNNNNNNNN<br>
-        NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN<br>
-        NNNNNNNNNNNNNNNNNNNNNNNNN<br>
+        <ui-blockquote text="7.8 小结"/>
+        前端路由的技术原理虽然简单，但实现方式没有标准，自由发挥，rpose的定位是简便易用<br>
+        提供路由组件、路由链接组件、路由事件，没有花哨功能，基本满足常见业务需求<br>
+        使用historyApi实现hash模式路由，目前没有支持低版本浏览器，确实需要时再考虑添加支持<br>
         <br>
+        附带扩充点<br>
+        rpose事件接口： on、off、once、at<br>
+        [methods]块定义组件方法的作用，及特殊的init方法的用途<br>
         
 <br>
 <ui-line/>
