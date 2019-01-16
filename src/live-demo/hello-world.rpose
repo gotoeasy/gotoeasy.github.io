@@ -1,0 +1,8 @@
+[view]
+<span>hello {$state.name}!</span>
+
+[state]
+{name: 'world'}
+
+[mount]
+body

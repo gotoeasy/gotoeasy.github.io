@@ -1,0 +1,42 @@
+[view]
+<div>
+    <div class="title">TODO LIST</div>
+    <ul>
+        {% for ( let i=0; i<$state.items.length; i++ ) { %}
+        <li><button style="margin-right:20px" index={i} onclick="del">Del</button> { $state.items[i] }</li>
+        {% } %}
+    </ul>
+
+    <form onsubmit="add">
+        <input type="text" ref="input">
+        <button>Add #{ $state.items.length + 1 }</button>
+    </form>
+</div>
+
+[state]
+{
+    items: []
+}
+
+[actions]
+{
+    add: e => {
+        e.preventDefault();
+        let el = this.getRefElement('input');
+        el.value && this.$state.items.push(el.value) && (el.value = '');
+        this.render();
+    },
+    del: e => {
+        let index = e.target.getAttribute('index');
+        this.$state.items.splice(index, 1);
+        this.render();
+    }
+}
+
+[less]
+.title {
+    font-size: 18px;
+}
+
+[mount]
+body
