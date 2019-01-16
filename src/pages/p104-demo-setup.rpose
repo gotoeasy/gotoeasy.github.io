@@ -31,17 +31,19 @@ rpose watch -clean
 
 <ui-line/>
 <ui-blockquote text="4.3 其实应该先看配置"/>
-项目根目录下的配置文件 rpose.config.btf，内容很直白，目前是配置目录和样式风格包<br>
+项目根目录下的配置文件 rpose.config.btf，内容简单直白，但很关键<br>
 ```btf
 // 项目配置文件 rpose.config.btf
 
 \[path]
 src                 : src
-src_components      : src/components
 build               : build
 
 \[theme] // 样式风格包
 rpose-theme-demo
+
+\[prerender] // 预渲染包
+@gotoeasy/pre-render
 ```
 
 
