@@ -33,7 +33,7 @@
     }
 }
 
-[less]
+[css]
 .title {
     font-size: 18px;
 }

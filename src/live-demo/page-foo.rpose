@@ -1,0 +1,15 @@
+[view]
+<layout-foo>
+    <div slot="header">
+        <div style="text-align:center;padding-top:13px">Welcome</div>
+    </div> 
+    <div slot="body">
+        <div style="margin-top:150px;text-align:center;font-size:3rem">FOO</div>
+    </div>
+    <div slot="footer">
+        <div style="text-align:center;padding-top:3px">footer</div>
+    </div> 
+</layout-foo> 
+
+[mount]
+body
