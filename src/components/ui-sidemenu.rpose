@@ -5,9 +5,13 @@ statekeys = show
 <div class="side-menu" ref="sidemenu">
     <ul class="menu-items">
         <li><a href="#" class="btn-close" onclick="closeside">X</a></li>
-        <li><a href="#">NNNN</a></li>
-        <li><a href="#">NNNN</a></li>
-        <li><a href="#">NNNN</a></li>
+        <li><a href="../pages/p101-rpose-start.html">1 初识 rpose</a></li>
+        <li><a href="../pages/p102-demo-helloworld.html">2 第一个 hello world 组件</a></li>
+        <li><a href="../pages/p103-demo-component.html">3 再几个组件熟悉一下</a></li>
+        <li><a href="../pages/p104-demo-setup.html">4 安装，体验使用rpose</a></li>
+        <li><a href="../pages/p105-demo-prerender.html">5 简便的预渲染方案</a></li>
+        <li><a href="../pages/p106-demo-slot.html">6 插槽与布局应用例子</a></li>
+        <li><a href="../pages/p107-demo-route.html">7 简便易用的路由方案</a></li>
     </ul>
 </div>
 
@@ -37,14 +41,13 @@ statekeys = show
 
 [css]
 .side-menu{
+    z-index: 9;
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
-    background-color: #222;
-    opacity: 0.9;
+    background-color: #444;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
@@ -53,25 +56,28 @@ statekeys = show
 .side-menu a{
     padding: 10px 10px 10px 30px;
     text-decoration: none;
-    font-size: 22px;
     color: #ccc;
     display: block;
     transition: 0.3s;
 }
 
 .side-menu a:hover{
-    font-weight: bold;
     color: #fff;
 }
 
 .btn-close{
     position: absolute;
     top: 0;
-    right: 22px;
-    font-size: 36px;
+    right: 10px;
+    font-size: 30px;
     margin-left: 50px;
 }
 
 .menu-items{
     list-style: none;
+}
+
+.menu-items > li{
+    margin-left: -50px;
+    white-space: nowrap;
 }
