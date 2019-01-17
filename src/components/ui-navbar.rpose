@@ -2,24 +2,19 @@
 
 [view]
 <nav class="nav">
-    <div class="nav-icon" onclick="openside">
-        <svg width="30" height="30" onclick="openside">
-            <path d="M0,5 30,5" stroke="#ddd" stroke-width="5" onclick="openside"/>
-            <path d="M0,14 30,14" stroke="#ddd" stroke-width="5" onclick="openside"/>
-            <path d="M0,23 30,23" stroke="#ddd" stroke-width="5" onclick="openside"/>
+    <a href="javascript:rpose.at('openside')" class="nav-icon">
+        <svg width="30" height="30">
+            <path d="M0,5 30,5" stroke="#ddd" stroke-width="5"/>
+            <path d="M0,14 30,14" stroke="#ddd" stroke-width="5"/>
+            <path d="M0,23 30,23" stroke="#ddd" stroke-width="5"/>
         </svg>
-    </div>
+    </a>
     <ul class="nav-link">
         <li><a href="../index.html">Home</a></li>
         <li><a href="https://github.com/gotoeasy/rpose">Repository</a></li>
         <li><a href="https://github.com/gotoeasy/rpose/issues">Issues</a></li>
     </ul>
 </nav>
-
-[actions]
-{
-    openside: e => rpose.at('openside')
-}
 
 [css]
 .nav{
