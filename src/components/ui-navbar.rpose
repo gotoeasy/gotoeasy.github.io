@@ -2,7 +2,7 @@
 
 [view]
 <nav class="nav">
-    <a href="javascript:rpose.at('openside')" class="nav-icon">
+    <a href="javascript:rpose.at('sidemenu.open')" class="nav-icon">
         <svg width="30" height="30">
             <path d="M0,5 30,5" stroke="#ddd" stroke-width="5"/>
             <path d="M0,14 30,14" stroke="#ddd" stroke-width="5"/>
