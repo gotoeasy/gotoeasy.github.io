@@ -3,7 +3,7 @@
 [view]
 <div>
     <input onchange="fnChange">
-    <ui-helloworld ref="hello" name="rpose" />
+    <ui-helloworld @ref="hello" name="rpose" />
 </div>
 
 [actions]

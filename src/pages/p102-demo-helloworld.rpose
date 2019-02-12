@@ -53,7 +53,7 @@ body
 \[view]
 <div>
     <input onchange="fnChange">
-    <ui-helloworld ref="hello" name="rpose" />
+    <ui-helloworld @ref="hello" name="rpose" />
 </div>
 
 \[actions]
@@ -70,7 +70,7 @@ body
 ```
 
 要点1，事件的绑定，沿用html习惯直接写onchange的，处理函数是写在[actions]里的，通过名称关联起来的<br>
-要点2，取组件对象，沿用习惯要设定ref属性，组件对象默认提供getRefComponent方法可用<br>
+要点2，取组件对象，设定@ref属性，组件对象默认提供getRefComponent方法可用<br>
 要点3，修改状态，沿用习惯通过组件的setState方法实现<br>
 <br>
 看效果点 <a href="p102-demo-helloworld-p2d3.html" target="_blank">这里</a><br>
@@ -90,7 +90,7 @@ body
 \[view]
 <div>
     <input class="demo-input" onchange="fnChange">
-    <ui-helloworld ref="hello" name="rpose" />
+    <ui-helloworld @ref="hello" name="rpose" />
 </div>
 
 \[css]

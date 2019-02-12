@@ -2,7 +2,7 @@
 statekeys = show
 
 [view]
-<div class="side-menu" ref="menu">
+<div class="side-menu" @ref="menu">
     <ul class="menu-items">
         <li><a href="#" class="btn-close" onclick="close">X</a></li>
         <li><a href="../pages/p101-rpose-start.html">1 初识 rpose</a></li>

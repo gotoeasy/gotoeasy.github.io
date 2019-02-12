@@ -6,7 +6,7 @@
         <li>{$state.msg}</li>
         <li><ui-button onclick="btn1Click" value="按钮1"/></li>
         <li><ui-button onclick="btn2Click" value="按钮2"/></li>
-        <li><ui-button onclick="btn3Click" ref="btn3" value="模拟重试"/></li>
+        <li><ui-button onclick="btn3Click" @ref="btn3" value="模拟重试"/></li>
     </ul>
 </div>
 
