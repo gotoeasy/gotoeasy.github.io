@@ -82,7 +82,7 @@ statekeys  = value, disabled
 
 \[less]
 .ui-button {
-    min-width: @theme-button-width;
+    min-width: @theme-button-min-width;
     height: @theme-button-height;
     border: 1px solid #999999;
     font-weight: bold;
@@ -107,7 +107,7 @@ statekeys  = value, disabled
 }
 ```
 
-出现了新要点，less样式里面用到了变量，比如@theme-button-width等，怎么来的？<br>
+出现了新要点，less样式里面用到了变量，比如@theme-button-min-width等，怎么来的？<br>
 这关系到一个统一性思想，都各自写非常细化的独立组件，统一性又怎么解决？<br>
 对于样式风格，抽象后本质上是统一使用变量，rpose把theme变量独立出来发布成npm包来用<br>
 通过这种方式，解决样式风格统一性问题，也让风格的统一修改变得更直观更直接<br>

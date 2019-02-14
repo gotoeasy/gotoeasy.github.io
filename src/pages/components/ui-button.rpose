@@ -7,7 +7,7 @@ statekeys  = value, disabled
 
 [less]
 .ui-button {
-    min-width: @theme-button-width;
+    min-width: theme-button-min-width;
     height: @theme-button-height;
     border: 1px solid #999999;
     font-weight: bold;
