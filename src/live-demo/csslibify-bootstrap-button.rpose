@@ -1,0 +1,10 @@
+[view]
+<button type="button" class="btn@bootstrap btn-primary@bootstrap">
+    this is a bootstrap primary button
+</button>
+
+[csslib]
+bootstrap = bootstrap:**/*.min.css
+
+[mount]
+body
