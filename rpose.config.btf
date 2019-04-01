@@ -1,5 +1,4 @@
 [path]
-src                 : src
 build               : build
 
 [theme] // 样式风格包

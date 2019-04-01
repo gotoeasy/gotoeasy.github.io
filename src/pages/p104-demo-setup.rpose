@@ -24,8 +24,6 @@ cd D:/test
 // 用watch模式比较直观，加上-clean是先清除build目录，方便看新生成的东西
 rpose watch -clean
 ```
-
-目前，watch模式有已知bug，有空再改进<br>
 成功后是打开了浏览器显示了首页，接下去就可以对照源码看看build目录中的东西了
 
 
@@ -36,7 +34,6 @@ rpose watch -clean
 // 项目配置文件 rpose.config.btf
 
 \[path]
-src                 : src
 build               : build
 
 \[theme] // 样式风格包
@@ -50,7 +47,7 @@ rpose-theme-demo
 <ui-line/>
 <ui-blockquote text="4.4 另一个重要的配置文件"/>
 另一个重要的配置文件是根目录下的 .browserslistrc，配置目标浏览器<br>
-```
+```properties
 // 目标浏览器配置文件 .browserslistrc
 
 # 在线查询 https://browserl.ist
@@ -90,14 +87,13 @@ rpose build -c -r
         <ui-blockquote text="4.6 小结"/>
         效果摆在那里，小结已是多余，在此鸣谢众多开源项目及其作者<br>
         <br>
-        鸣谢node.js平台，确实方便了大家<br>
-        鸣谢babel，7.x.x版本令人愉悦<br>
+        鸣谢npm平台，确实方便了大家<br>
+        鸣谢babel，7.x版本令人愉悦<br>
         鸣谢core-js，庞大的苦活，辛苦了<br>
-        鸣谢browserify，干得漂亮<br>
-        鸣谢postcss，做得不错<br>
+        鸣谢browserify，做得不错，就是缺个sync<br>
+        鸣谢postcss，干得漂亮<br>
         鸣谢browserslist，要的就是这效果<br>
         鸣谢acorn，这是真技术<br>
-        鸣谢browser-sync，体贴到位<br>
         ...<br>
         ...<br>
         ...<br>

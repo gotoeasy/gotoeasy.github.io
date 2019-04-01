@@ -38,28 +38,28 @@ body
 <ui-blockquote text="6.2 单一插槽时支持缺省写法"/>
 有很多时候占位插槽只有一个，如果按上面的基本用法，感觉就有点啰嗦了
 ```rpose
-// component
+\---------- component ----------
 \[view]
 <ul>
-    <li><slot name="my-slot"></slot></li>              // 仅唯一一个插槽，可以省略起名
+    <li><slot name="my-slot"></slot></li>              <!-- 仅唯一一个插槽，可以省略起名 -->
 </ul>
 
-// page
+\------------- page ------------
 \[view]
 <demo-slot-component>
-    <template slot="my-slot">hello slot</template>    // 仅唯一一个模板，可以省略不写
+    <template slot="my-slot">hello slot</template>    <!-- 仅唯一一个模板，可以省略不写 -->
 </demo-slot-component>
 ```
 
 使用缺省写法，修改后就是这样了：
 ```rpose
-// demo-slot-component-default.rpose
+\---------- demo-slot-component-default.rpose ----------
 \[view]
 <ul>
     <li><slot/></li>
 </ul>
 
-// p106-demo-slot-p6d2.rpose
+\---------- p106-demo-slot-p6d2.rpose ----------
 \[view]
 <demo-slot-component-default>
     hello slot

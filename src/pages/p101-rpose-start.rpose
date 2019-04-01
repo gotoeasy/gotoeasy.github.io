@@ -81,8 +81,7 @@ statekeys  = value, disabled            // 允许修改的状态属性
 \---------
 // 模板语法简要
 直接写js代码： {% /* 这里写代码 */ %}
-默认转义特殊字符的表达式： {theVar}
-不做转义处理的表达式： {=theVar}
+表达式： {theVar}
 比如
 {% if (条件) { %}
 <div>{name}</div>

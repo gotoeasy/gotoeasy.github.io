@@ -7,8 +7,9 @@
 <ui-blockquote text="3.1 内置组件 —— 代码块语法高亮组件"/>
 免不了要展示代码，吸收md格式写法的便利性，再加上highlight.js的API，rpose就这样内置了一个组件<br>
 目前整合得还不够智能，有空会改善，但已基本能用，仿md写法嘛，很简单的
-```
+```rpose
 // 代码块语法高亮，例子1
+\[view]
 \```
 var hello = name => 'Hello ' + name + '!';
 \```
@@ -52,7 +53,7 @@ var hello = name => 'Hello ' + name + '!';
 optionkeys = height, width, color, margin
 
 \[view]
-<div style="background-color:{=color};height:{=height};width:{=width};margin:{=margin}"></div>
+<div style="background-color:{color};height:{height};width:{width};margin:{margin}"></div>
 
 \[options]
 {
@@ -78,7 +79,7 @@ optionkeys = onclick
 statekeys  = value, disabled
 
 \[view]
-<button onclick={=$options.onclick} class="ui-button" disabled={=!!$state.disabled}>{$state.value}</button>
+<button onclick={$options.onclick} class="ui-button" disabled={!!$state.disabled}>{$state.value}</button>
 
 \[less]
 .ui-button {

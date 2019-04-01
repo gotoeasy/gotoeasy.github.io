@@ -31,7 +31,7 @@ statekeys = name   // 意思是说，组件的状态不是外部所能随便改�
 <ui-blockquote text="2.2 使用 hello world 组件"/>
 为了看到 hello world 的效果，简单写一个页面<br>
 页面也是组件，不过是多了个挂载显示
-```
+```rpose
 // 文件名 p102-demo-helloworld-p2d2.rpose
 
 \[view]
@@ -47,7 +47,7 @@ body
 <ui-blockquote text="2.3 修改 hello world 组件状态"/>
 要修改组件状态，3个要素，什么组件？什么时机？改成什么？<br>
 下面代码演示，在输入框onchange时，拿到hello world组件对象，把它的name修改为输入框的值
-```
+```rpose
 // 文件名 p102-demo-helloworld-p2d3.rpose
 
 \[view]
