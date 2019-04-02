@@ -1,5 +1,6 @@
 [path]
 build               : build
+build_dist_images   : images           // 图片文件打包后的存放目录(默认images)
 
 [theme] // 样式风格包
 rpose-theme-demo
