@@ -1,7 +1,7 @@
 [view]
 <div>
     <ui-navbar />
-    <ui-sidemenu />
+    <ui-sidemenu /> 
     <div class="main">
         <ui-blockquote text="初识 rpose"/><br>
         问：简单介绍下rpose<br>

@@ -47,7 +47,7 @@ statekeys = show
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #444;
+    background-color: #2e3238;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.4s;
@@ -58,7 +58,7 @@ statekeys = show
     text-decoration: none;
     color: #ccc;
     display: block;
-    transition: 0.3s;
+ /*   transition: 0.1s;*/
 }
 
 .side-menu a:hover{
