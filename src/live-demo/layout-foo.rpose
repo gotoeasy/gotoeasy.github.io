@@ -1,0 +1,11 @@
+[view]
+<div @class="height-100vh display-flex flex-direction-column overflow-hidden color-#333">
+    <div @class="height-50px color-#fff bgcolor-#555"><slot name="header"/></div> 
+    <div @class="height--calc(100vh_-_80px) bgcolor-#eee"><slot name="body"/></div> 
+    <div @class="height-30px bgcolor-#d5d5d5"><slot name="footer"/></div> 
+</div> 
+
+[less]
+body{
+    margin: 0;
+}

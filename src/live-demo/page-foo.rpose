@@ -1,13 +1,13 @@
 [view]
 <layout-foo>
     <div slot="header">
-        <div style="text-align:center;padding-top:13px">Welcome</div>
+        <div @class="text-align-center padding-top-13px">Header</div>
     </div> 
     <div slot="body">
-        <div style="margin-top:150px;text-align:center;font-size:3rem">FOO</div>
+        <div @class="margin-top-150px text-align-center font-size-3rem">Content</div>
     </div>
     <div slot="footer">
-        <div style="text-align:center;padding-top:3px">footer</div>
+        <div @class="text-align-center padding-top-3px">Footer</div>
     </div> 
 </layout-foo> 
 
