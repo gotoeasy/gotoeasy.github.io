@@ -1,0 +1,21 @@
+[view]
+<layout-admin-shm @taglib="@rpose/ui-layout">
+    <div slot="side-menubar">
+        <rpose-docs-menubar />
+    </div>
+    <div slot="side-iconbar">
+        <rpose-docs-iconbar />
+    </div>
+    <div slot="header">
+        <rpose-docs-header />
+    </div>
+    <div slot="main">
+        
+    </div>
+</layout-admin-shm>
+
+
+
+[mount]
+body
+

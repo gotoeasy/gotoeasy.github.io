@@ -1791,225 +1791,365 @@
                 (function($$) {
                     // 组件注册
                     rpose.registerComponents({
-                        "p102-demo-helloworld-p2d2": P102DemoHelloworldP2d2,
-                        router: $rpose$buildin$Router,
-                        "router-link": $rpose$buildin$RouterLink,
-                        "ui-helloworld": UiHelloworld,
-                        "p107-demo-route-p7d6": P107DemoRouteP7d6
+                        "@rpose/ui-layout:layout-admin-shm": $rpose$uiLayout$LayoutAdminShm,
+                        "rpose-docs-header": RposeDocsHeader,
+                        "rpose-docs-iconbar": RposeDocsIconbar,
+                        "rpose-docs-menubar": RposeDocsMenubar,
+                        "rpose-docs-side-menu": RposeDocsSideMenu,
+                        "index-docs": IndexDocs
                     }); // ------------------------------------------------------------------------------------------------------
-                    // 组件 P102DemoHelloworldP2d2
+                    // 组件 $rpose$uiLayout$LayoutAdminShm
                     // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
                     // ------------------------------------------------------------------------------------------------------
                     // 属性接口定义
 
-                    P102DemoHelloworldP2d2.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
+                    $rpose$uiLayout$LayoutAdminShm.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
 
-                    P102DemoHelloworldP2d2.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
+                    $rpose$uiLayout$LayoutAdminShm.prototype.$STATE_KEYS = [
+                        "menubar-width",
+                        "iconbar-width",
+                        "side-bgcolor",
+                        "header-height",
+                        "$SLOT"
+                    ]; // 可更新的state属性，未定义则不支持外部更新state
                     // 组件函数
 
-                    function P102DemoHelloworldP2d2() {
-                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-                        // 组件默认选项值
-                        this.$options = {}; // 组件默认数据状态值
-
-                        this.$state = {};
-                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
-                    }
-                    /**
-                     * 节点模板函数
-                     */
-
-                    P102DemoHelloworldP2d2.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
-                        return {
-                            t: "ui-helloworld",
-                            r: 1,
-                            m: 1,
-                            k: 1
-                        };
-                    }; // ------------------------------------------------------------------------------------------------------
-                    // 组件 $rpose$buildin$Router
-                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
-                    // ------------------------------------------------------------------------------------------------------
-                    // 属性接口定义
-
-                    $rpose$buildin$Router.prototype.$OPTION_KEYS = ["path", "onroute", "default", "notfound"]; // 可通过标签配置的属性，未定义则不支持外部配置
-
-                    $rpose$buildin$Router.prototype.$STATE_KEYS = ["active", "$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
-                    // 组件函数
-
-                    function $rpose$buildin$Router() {
+                    function $rpose$uiLayout$LayoutAdminShm() {
                         var _this2 = this;
 
                         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
                         // 组件默认选项值
-                        this.$options = {};
-                        rpose.extend(this.$options, options, this.$OPTION_KEYS); // 按属性接口克隆配置选项
-                        // 组件默认数据状态值
+                        this.$options = {}; // 组件默认数据状态值
 
-                        this.$state = {};
+                        this.$state = {
+                            "menubar-width": "250px",
+                            "iconbar-width": "50px",
+                            "side-bgcolor": "#272c33",
+                            "header-height": "50px"
+                        };
                         rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
-                        // 自定义方法
+                        // 事件处理器
+
+                        this.$actions = {
+                            pcToggle: function pcToggle(e) {
+                                e.preventDefault();
+                                $$(".layout___o8s3pv")
+                                    .toggleClass("mode-pc-toggle___o8s3pv")
+                                    .removeClass("mode-mobile-toggle___o8s3pv");
+                            },
+                            mobileToggle: function mobileToggle(e) {
+                                e.preventDefault();
+                                $$(".layout___o8s3pv")
+                                    .toggleClass("mode-mobile-toggle___o8s3pv")
+                                    .removeClass("mode-pc-toggle___o8s3pv");
+                            },
+                            closeMobileMenu: function closeMobileMenu(e) {
+                                e.preventDefault();
+                                $$(".mode-mobile-toggle___o8s3pv").removeClass("mode-mobile-toggle___o8s3pv");
+                            }
+                        }; // 自定义方法
+
+                        this.$updater = function() {
+                            _this2.init();
+                        };
 
                         this.init = function() {
-                            rpose.router.register({
-                                path: _this2.$options.path,
-                                component: _this2,
-                                default: !!_this2.$options.default,
-                                notfound: !!_this2.$options.notfound
-                            });
-
-                            _this2.route = function(ctx) {
-                                return _this2.setState({
-                                    active: 1
-                                });
-                            };
+                            var oStyle = document.documentElement.style;
+                            oStyle.setProperty("--LASHM-menubar-width-250px", _this2.$state["menubar-width"]);
+                            oStyle.setProperty("--LASHM-iconbar-width-50px", _this2.$state["iconbar-width"]);
+                            oStyle.setProperty("--LASHM-side-bgcolor-272c33", _this2.$state["side-bgcolor"]);
+                            oStyle.setProperty("--LASHM-header-height-50px", _this2.$state["header-height"]);
                         };
                     }
                     /**
                      * 节点模板函数
                      */
 
-                    $rpose$buildin$Router.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
+                    $rpose$uiLayout$LayoutAdminShm.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
                         var v_Array = [];
-
-                        var _hasDefinedSlotTemplate,
-                            slotVnodes_15ed = [];
-
+                        var slotVnodes_1132r4x = [],
+                            slotVnodes_196cj4p = [],
+                            slotVnodes_j8svvu = [],
+                            slotVnodes_1lvuo5a = [];
                         ($state.$SLOT || []).forEach(function(vn) {
                             if (vn.a) {
-                                vn.a.slot !== undefined && (_hasDefinedSlotTemplate = 1);
-                                vn.a.slot === "" && (slotVnodes_15ed = vn.c || []);
+                                vn.a.slot === "side-menubar" && (slotVnodes_1132r4x = vn.c || []);
+                                vn.a.slot === "side-iconbar" && (slotVnodes_196cj4p = vn.c || []);
+                                vn.a.slot === "header" && (slotVnodes_j8svvu = vn.c || []);
+                                vn.a.slot === "main" && (slotVnodes_1lvuo5a = vn.c || []);
                             }
                         });
-                        !_hasDefinedSlotTemplate && !slotVnodes_15ed.length && (slotVnodes_15ed = $state.$SLOT || []);
                         v_Array.push({
                             t: "div",
                             r: 1,
-                            k: 1,
-                            c: (function(_Ary) {
-                                _Ary.push.apply(_Ary, _toConsumableArray(slotVnodes_15ed));
+                            k: 19,
+                            c: [
+                                {
+                                    t: "aside",
+                                    k: 1,
+                                    c: (function(_Ary) {
+                                        _Ary.push.apply(_Ary, _toConsumableArray(slotVnodes_1132r4x));
 
-                                return _Ary;
-                            })([]),
+                                        return _Ary;
+                                    })([]),
+                                    a: {
+                                        class: {
+                                            layout___o8s3pv: 1,
+                                            "side-menubar___o8s3pv": 1
+                                        }
+                                    },
+                                    e: {
+                                        click: $actions.closeMobileMenu
+                                    }
+                                },
+                                {
+                                    t: "aside",
+                                    k: 2,
+                                    c: (function(_Ary) {
+                                        _Ary.push.apply(_Ary, _toConsumableArray(slotVnodes_196cj4p));
+
+                                        return _Ary;
+                                    })([]),
+                                    a: {
+                                        class: {
+                                            layout___o8s3pv: 1,
+                                            "side-iconbar___o8s3pv": 1
+                                        }
+                                    }
+                                },
+                                {
+                                    t: "div",
+                                    k: 17,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 9,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 5,
+                                                    c: [
+                                                        {
+                                                            t: "circle",
+                                                            g: 1,
+                                                            k: 3,
+                                                            c: [],
+                                                            a: {
+                                                                cx: "500",
+                                                                cy: "500",
+                                                                r: "480",
+                                                                "stroke-width": "0",
+                                                                fill: "#eee"
+                                                            }
+                                                        },
+                                                        {
+                                                            t: "path",
+                                                            g: 1,
+                                                            k: 4,
+                                                            c: [],
+                                                            a: {
+                                                                d:
+                                                                    "M500 984.375C767.578125 984.375 984.375 767.578125 984.375 500S767.578125 15.625 500 15.625S15.625 232.421875 15.625 500S232.421875 984.375 500 984.375zM722.4609375 533.203125L457.8125 797.8515625C439.453125 816.2109375 409.765625 816.2109375 391.6015625 797.8515625L358.3984375 764.6484375C340.0390625 746.2890625 340.0390625 716.6015625 358.3984375 698.4375L556.8359375 500L358.3984375 301.5625C340.0390625 283.203125 340.0390625 253.5156249999999 358.3984375 235.3515625L391.6015625 202.1484375C409.9609375 183.7890625 439.6484375 183.7890625 457.8125 202.1484375L722.4609375 466.796875C740.8203124999999 485.15625 740.8203124999999 514.84375 722.4609375 533.203125z"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        fill: "#e74c3c",
+                                                        width: "20",
+                                                        height: "20",
+                                                        viewBox: "0 0 1000 1000",
+                                                        class: {
+                                                            layout___o8s3pv: 1,
+                                                            "menubar-icon-right___o8s3pv": 1
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 8,
+                                                    c: [
+                                                        {
+                                                            t: "circle",
+                                                            g: 1,
+                                                            k: 6,
+                                                            c: [],
+                                                            a: {
+                                                                cx: "500",
+                                                                cy: "500",
+                                                                r: "480",
+                                                                "stroke-width": "0",
+                                                                fill: "#eee"
+                                                            }
+                                                        },
+                                                        {
+                                                            t: "path",
+                                                            g: 1,
+                                                            k: 7,
+                                                            c: [],
+                                                            a: {
+                                                                d:
+                                                                    "M500 15.625C232.421875 15.625 15.625 232.421875 15.625 500S232.421875 984.375 500 984.375S984.375 767.578125 984.375 500S767.578125 15.625 500 15.625zM277.5390625 466.796875L542.1875 202.1484375C560.546875 183.7890625 590.2343750000001 183.7890625 608.3984375 202.1484375L641.6015625 235.3515625C659.9609375 253.7109375 659.9609375 283.3984375 641.6015625 301.5625L443.1640625 500L641.6015625 698.4375C659.9609375 716.796875 659.9609375 746.484375 641.6015625 764.6484375L608.3984375 797.8515625C590.0390625 816.2109375 560.3515625 816.2109375 542.1875 797.8515625L277.5390625 533.203125C259.1796875 514.84375 259.1796875 485.15625 277.5390625 466.796875z"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        fill: "#e74c3c",
+                                                        width: "20",
+                                                        height: "20",
+                                                        viewBox: "0 0 1000 1000",
+                                                        class: {
+                                                            layout___o8s3pv: 1,
+                                                            "menubar-icon-left___o8s3pv": 1
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    layout___o8s3pv: 1,
+                                                    "menubar-icon-pc___o8s3pv": 1
+                                                }
+                                            },
+                                            e: {
+                                                click: $actions.pcToggle
+                                            }
+                                        },
+                                        {
+                                            t: "header",
+                                            k: 15,
+                                            c: (function(_Ary) {
+                                                _Ary.push({
+                                                    t: "a",
+                                                    k: 14,
+                                                    c: [
+                                                        {
+                                                            t: "svg",
+                                                            g: 1,
+                                                            k: 13,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 10,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d: "M0,5 30,5",
+                                                                        stroke: "#222",
+                                                                        "stroke-width": "5"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 11,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d: "M0,14 30,14",
+                                                                        stroke: "#222",
+                                                                        "stroke-width": "5"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 12,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d: "M0,23 30,23",
+                                                                        stroke: "#222",
+                                                                        "stroke-width": "5"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                width: "25",
+                                                                height: "25",
+                                                                viewBox: "0 0 25 25"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        href: "#",
+                                                        class: {
+                                                            layout___o8s3pv: 1,
+                                                            "menubar-icon-mobile___o8s3pv": 1
+                                                        }
+                                                    },
+                                                    e: {
+                                                        click: $actions.mobileToggle
+                                                    }
+                                                });
+
+                                                _Ary.push.apply(_Ary, _toConsumableArray(slotVnodes_j8svvu));
+
+                                                return _Ary;
+                                            })([]),
+                                            a: {
+                                                class: {
+                                                    "layout-header___o8s3pv": 1
+                                                }
+                                            }
+                                        },
+                                        {
+                                            t: "main",
+                                            k: 16,
+                                            c: (function(_Ary) {
+                                                _Ary.push.apply(_Ary, _toConsumableArray(slotVnodes_1lvuo5a));
+
+                                                return _Ary;
+                                            })([]),
+                                            a: {
+                                                class: {
+                                                    "layout-main___o8s3pv": 1
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    a: {
+                                        class: {
+                                            layout___o8s3pv: 1,
+                                            "side-page___o8s3pv": 1
+                                        }
+                                    }
+                                },
+                                {
+                                    t: "div",
+                                    k: 18,
+                                    c: [],
+                                    a: {
+                                        class: {
+                                            layout___o8s3pv: 1,
+                                            mask___o8s3pv: 1
+                                        }
+                                    },
+                                    e: {
+                                        click: $actions.closeMobileMenu
+                                    }
+                                }
+                            ],
                             a: {
-                                style: $state.active ? "display:block;" : "display:none;",
                                 class: {
-                                    "rpose-router___16qrmwx": 1
+                                    "atclass-1922fu0___o8s3pv": 1
                                 }
                             }
                         });
                         v_Array.length > 1 && console.warn("invlid tag count");
                         return v_Array.length ? v_Array[0] : null;
                     }; // ------------------------------------------------------------------------------------------------------
-                    // 组件 $rpose$buildin$RouterLink
+                    // 组件 RposeDocsHeader
                     // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
                     // ------------------------------------------------------------------------------------------------------
                     // 属性接口定义
 
-                    $rpose$buildin$RouterLink.prototype.$OPTION_KEYS = ["path", "params", "text"]; // 可通过标签配置的属性，未定义则不支持外部配置
+                    RposeDocsHeader.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
 
-                    $rpose$buildin$RouterLink.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
+                    RposeDocsHeader.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
                     // 组件函数
 
-                    function $rpose$buildin$RouterLink() {
-                        var _this3 = this;
-
-                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-                        // 组件默认选项值
-                        this.$options = {};
-                        rpose.extend(this.$options, options, this.$OPTION_KEYS); // 按属性接口克隆配置选项
-                        // 组件默认数据状态值
-
-                        this.$state = {};
-                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
-                        // 事件处理器
-
-                        this.$actions = {
-                            click: function click(e) {
-                                e.preventDefault();
-                                var path = _this3.$options.path || "";
-                                var state = _this3.$options.params;
-                                rpose.router.page({
-                                    path: path,
-                                    state: state
-                                });
-                            }
-                        };
-                    }
-                    /**
-                     * 节点模板函数
-                     */
-
-                    $rpose$buildin$RouterLink.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
-                        var path = $options.path;
-                        var text = $options.text;
-                        return {
-                            t: "a",
-                            r: 1,
-                            k: 2,
-                            c: [
-                                {
-                                    s: text,
-                                    k: 1
-                                }
-                            ],
-                            a: {
-                                href: /^http[s]?:/i.test(path) ? path : "#" + ($options.path || "")
-                            },
-                            e: {
-                                click: $actions.click
-                            }
-                        };
-                    }; // ------------------------------------------------------------------------------------------------------
-                    // 组件 UiHelloworld
-                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
-                    // ------------------------------------------------------------------------------------------------------
-                    // 属性接口定义
-
-                    UiHelloworld.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
-
-                    UiHelloworld.prototype.$STATE_KEYS = ["name", "$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
-                    // 组件函数
-
-                    function UiHelloworld() {
-                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-                        // 组件默认选项值
-                        this.$options = {}; // 组件默认数据状态值
-
-                        this.$state = {
-                            name: "world"
-                        };
-                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
-                    }
-                    /**
-                     * 节点模板函数
-                     */
-
-                    UiHelloworld.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
-                        var name = $state.name;
-                        return {
-                            t: "span",
-                            r: 1,
-                            k: 2,
-                            c: [
-                                {
-                                    s: "hello " + name + "!",
-                                    k: 1
-                                }
-                            ]
-                        };
-                    }; // ------------------------------------------------------------------------------------------------------
-                    // 组件 P107DemoRouteP7d6
-                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
-                    // ------------------------------------------------------------------------------------------------------
-                    // 属性接口定义
-
-                    P107DemoRouteP7d6.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
-
-                    P107DemoRouteP7d6.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
-                    // 组件函数
-
-                    function P107DemoRouteP7d6() {
+                    function RposeDocsHeader() {
                         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
                         // 组件默认选项值
                         this.$options = {}; // 组件默认数据状态值
@@ -2021,187 +2161,1719 @@
                      * 节点模板函数
                      */
 
-                    P107DemoRouteP7d6.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
+                    RposeDocsHeader.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
                         return {
                             t: "div",
                             r: 1,
-                            k: 23,
+                            k: 13,
                             c: [
                                 {
-                                    t: "router",
-                                    m: 1,
-                                    k: 8,
+                                    t: "nav",
+                                    k: 7,
                                     c: [
                                         {
-                                            t: "ul",
-                                            k: 7,
+                                            t: "a",
+                                            k: 2,
                                             c: [
                                                 {
-                                                    t: "li",
-                                                    k: 2,
-                                                    c: [
-                                                        {
-                                                            t: "router-link",
-                                                            m: 1,
-                                                            k: 1,
-                                                            c: [],
-                                                            a: {
-                                                                path: "helloworld",
-                                                                text: "helloworld"
-                                                            }
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    t: "li",
-                                                    k: 4,
-                                                    c: [
-                                                        {
-                                                            t: "router-link",
-                                                            m: 1,
-                                                            k: 3,
-                                                            c: [],
-                                                            a: {
-                                                                path: "foo",
-                                                                text: "foo"
-                                                            }
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    t: "li",
-                                                    k: 6,
-                                                    c: [
-                                                        {
-                                                            t: "router-link",
-                                                            m: 1,
-                                                            k: 5,
-                                                            c: [],
-                                                            a: {
-                                                                path: "bar",
-                                                                text: "bar"
-                                                            }
-                                                        }
-                                                    ]
+                                                    s: "Home",
+                                                    k: 1
                                                 }
                                             ],
                                             a: {
-                                                style: "list-style:none"
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 4,
+                                            c: [
+                                                {
+                                                    s: "Repository",
+                                                    k: 3
+                                                }
+                                            ],
+                                            a: {
+                                                href: "https://github.com/gotoeasy/rpose"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 6,
+                                            c: [
+                                                {
+                                                    s: "Issues",
+                                                    k: 5
+                                                }
+                                            ],
+                                            a: {
+                                                href: "https://github.com/gotoeasy/rpose/issues"
                                             }
                                         }
                                     ],
                                     a: {
-                                        path: "*"
+                                        class: {
+                                            "nav-link___1psr8ga": 1
+                                        }
                                     }
                                 },
                                 {
-                                    t: "router",
-                                    m: 1,
+                                    t: "div",
+                                    k: 12,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 11,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 10,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 9,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 8,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M324.0234375 223.828125C324.0234375 219.921875 319.53125 216.796875 313.8671875000001 216.796875C307.421875 216.2109375 302.9296875000001 219.3359375 302.9296875000001 223.828125C302.9296875000001 227.734375 307.4218750000001 230.8593750000001 313.0859375 230.8593750000001C318.9453125 231.4453125000001 324.0234375 228.3203125000001 324.0234375 223.828125zM263.28125 232.6171875C261.9140625000001 228.7109375 265.8203125000001 224.21875 271.6796875000001 223.0468750000001C276.7578125000001 221.0937500000001 282.6171875000001 223.0468750000001 283.7890625 226.9531250000001S281.25 235.3515625000001 275.390625 237.1093750000001C270.3125 238.4765625 264.6484375 236.5234375 263.28125 232.6171875zM349.609375 235.9375C343.9453125 234.5703125 340.0390625 230.859375 340.625 226.3671875000001C341.2109375000001 222.4609375000001 346.2890625 219.921875 352.1484375 221.2890625C357.8125000000001 222.65625 361.7187500000001 226.3671875000001 361.1328125 230.2734375000001C360.546875 233.984375 355.2734375 236.5234375 349.609375 235.9375zM478.125 984.375C207.2265625 984.375 0 778.7109375 0 507.8125C0 291.2109375 136.328125 105.859375 331.0546875 40.625C356.0546875 36.1328125 364.84375 51.5625000000001 364.84375 64.2578125000001C364.84375 76.3671875 364.2578125 143.1640625 364.2578125 184.1796875C364.2578125 184.1796875 227.5390625 154.8828125 198.828125 242.3828125C198.828125 242.3828125 176.5625 299.2187500000001 144.53125 313.8671875000001C144.53125 313.8671875000001 99.8046875 344.5312500000001 147.65625 343.9453125C147.65625 343.9453125 196.2890625 340.0390625 223.046875 293.5546875C265.8203125 218.1640625 337.5 239.84375 365.4296875 252.7343750000001C369.921875 283.9843750000001 382.6171875 305.6640625000001 396.6796875 318.5546875C287.5 330.6640625 177.34375 346.4843750000001 177.34375 534.375C177.34375 588.0859375 192.1875 615.0390625 223.4375 649.4140625C218.359375 662.109375 201.7578125 714.453125 228.515625 782.03125C269.3359375 794.7265625 363.28125 729.296875 363.28125 729.296875C402.34375 740.234375 444.3359375 745.8984375 485.9375 745.8984375S569.53125 740.234375 608.59375 729.296875C608.59375 729.296875 702.5390625000001 794.921875 743.359375 782.03125C770.1171875 714.2578125000001 753.515625 662.109375 748.4375000000001 649.4140625C779.6875000000001 614.84375 798.8281250000001 587.890625 798.8281250000001 534.375C798.8281250000001 345.8984375 683.7890625000001 330.8593750000001 574.6093750000001 318.5546875C592.5781250000001 303.1250000000001 607.8125000000001 273.8281250000001 607.8125000000001 227.9296875000001C607.8125000000001 162.1093750000001 607.2265625000001 80.6640625000001 607.2265625000001 64.6484375C607.2265625000001 51.953125 616.2109375000001 36.5234375000001 641.0156250000001 41.015625C836.328125 105.859375 968.75 291.2109375 968.75 507.8125C968.75 778.7109375 749.0234375 984.375 478.125 984.375zM189.84375 310.7421875C187.3046875 308.7890625 187.890625 304.296875 191.2109375 300.5859375000001C194.3359375 297.4609375 198.828125 296.09375 201.3671875 298.6328125000001C203.90625 300.5859375000001 203.3203125 305.0781250000001 200 308.7890625C196.875 311.9140625000001 192.3828125 313.2812500000001 189.84375 310.7421875zM168.75 326.5625000000001C167.3828125 324.0234375000001 169.3359375 320.8984375000001 173.2421875 318.9453125000001C176.3671875 316.9921875000001 180.2734375 317.5781250000001 181.640625 320.3125000000001C183.0078125 322.8515625000001 181.0546875 325.9765625000001 177.1484375 327.9296875000001C173.2421875 329.1015625000001 170.1171875 328.5156250000001 168.75 326.5625000000001zM232.0312500000001 257.03125C228.9062500000001 254.4921875 230.0781250000001 248.6328125 234.5703125000001 244.9218750000001C239.0625 240.4296875 244.7265625000001 239.84375 247.2656250000001 242.9687500000001C249.8046875 245.5078125000001 248.6328125000001 251.3671875000001 244.7265625000001 255.078125C240.4296875000001 259.5703125000001 234.5703125000001 260.1562500000001 232.0312500000001 257.03125zM209.765625 285.7421875C206.640625 283.7890625 206.640625 278.7109375 209.765625 274.2187500000001C212.890625 269.7265625 218.1640625 267.7734375 220.703125 269.7265625C223.828125 272.2656250000001 223.828125 277.34375 220.703125 281.8359375C217.96875 286.328125 212.890625 288.28125 209.765625 285.7421875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        fill: "#333",
+                                                        viewBox: "0 0 1000 1000",
+                                                        class: {
+                                                            svgicon___1psr8ga: 1
+                                                        }
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "https://github.com/gotoeasy/rpose",
+                                                target: "_blank"
+                                            }
+                                        }
+                                    ],
+                                    a: {
+                                        class: {
+                                            "atclass-1x6j9o9___1psr8ga": 1
+                                        }
+                                    }
+                                }
+                            ],
+                            a: {
+                                class: {
+                                    "atclass-1gyi6z7___1psr8ga": 1
+                                }
+                            }
+                        };
+                    }; // ------------------------------------------------------------------------------------------------------
+                    // 组件 RposeDocsIconbar
+                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
+                    // ------------------------------------------------------------------------------------------------------
+                    // 属性接口定义
+
+                    RposeDocsIconbar.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
+
+                    RposeDocsIconbar.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
+                    // 组件函数
+
+                    function RposeDocsIconbar() {
+                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                        // 组件默认选项值
+                        this.$options = {}; // 组件默认数据状态值
+
+                        this.$state = {};
+                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
+                    }
+                    /**
+                     * 节点模板函数
+                     */
+
+                    RposeDocsIconbar.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
+                        return {
+                            t: "div",
+                            r: 1,
+                            k: 36,
+                            c: [
+                                {
+                                    t: "div",
+                                    k: 2,
+                                    c: [
+                                        {
+                                            s: "R",
+                                            k: 1
+                                        }
+                                    ],
+                                    a: {
+                                        class: {
+                                            "atclass-1ezljub___1je218v": 1
+                                        }
+                                    }
+                                },
+                                {
+                                    t: "div",
+                                    k: 35,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 6,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 5,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 4,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 3,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M547.59765625 710.4296875L187.5 413.84765625V93.75A31.25 31.25 0 0 1 218.75 62.5L437.6171875 63.06640625A31.25 31.25 0 0 1 468.7109375 94.31640625V281.25A31.25 31.25 0 0 0 499.9609375 312.5H624.9609375A31.25 31.25 0 0 0 656.2109375 281.25V94.453125A31.25 31.25 0 0 1 687.4609375 63.10546875L906.25 62.5A31.25 31.25 0 0 1 937.5 93.75V414.0625L577.48046875 710.4296875A23.808593750000004 23.808593750000004 0 0 1 547.59765625 710.4296875zM1116.40625 508.84765625L953.125 643.4375V913.96484375A23.4375 23.4375 0 0 1 929.6875 937.40234375H820.3125A23.4375 23.4375 0 0 1 796.875 913.96484375V772.1484375L622.01171875 916.015625A93.75 93.75 0 0 1 502.8710937500001 916.015625L8.4765625 508.84765625A23.4375 23.4375 0 0 1 5.3515625 475.83984375L55.15625 415.29296875A23.4375 23.4375 0 0 1 88.18359375 412.109375L547.59765625 790.5078125A23.808593750000004 23.808593750000004 0 0 0 577.48046875 790.5078125L1036.9140625 412.109375A23.4375 23.4375 0 0 1 1069.921875 415.234375L1119.7265625 475.78125A23.4375 23.4375 0 0 1 1116.4062499999998 508.8476562500001z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 10,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 9,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 8,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 7,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M0.046875 999.5H999.953125V756.5H0.046875V999.5zM0.046875 702.5H300.015625V378.5000000000001H0.046875V702.5zM0.046875 324.5H300.015625V0.5H0.046875V324.5zM350.015625 702.5H649.9843750000001V378.5000000000001H350.015625V702.5zM350.015625 324.5H649.9843750000001V0.5H350.015625V324.5zM699.984375 702.5H999.953125V378.5000000000001H699.984375zM699.984375 324.5H999.953125V0.5H699.984375zM0.046875 999.5H999.953125V756.5H0.046875V999.5zM0.046875 702.5H300.015625V378.5000000000001H0.046875V702.5zM0.046875 324.5H300.015625V0.5H0.046875V324.5zM350.015625 702.5H649.9843750000001V378.5000000000001H350.015625V702.5zM350.015625 324.5H649.9843750000001V0.5H350.015625V324.5zM699.984375 702.5H999.953125V378.5000000000001H699.984375zM699.984375 324.5H999.953125V0.5H699.984375z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 14,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 13,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 12,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 11,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M0 1000H428.5703125V571.4296875H0V1000zM0 428.5703125H428.5703125V0H0V428.5703125zM571.4296875 428.5703125H1000V0H571.4296875V428.5703125zM785.7109375 571.4296875C904.0625 571.4296875 1000 667.3671875 1000 785.703125C1000 904.0625 904.0625 1000 785.7109375 1000C667.3671875 1000 571.4296875 904.0625 571.4296875 785.7109375C571.4296875 667.3671875 667.3671875 571.4296875 785.7109375 571.4296875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 18,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 17,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 16,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 15,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M1134.765625 557.421875C1134.765625 767.3828125 880.6640625 937.5 567.3828125 937.5S0 767.3828125 0 557.421875C0 370.3125 201.7578125 214.84375 467.578125 183.3984375V62.5H661.1328125V182.6171875C708.59375 187.890625 754.1015625 197.0703125 796.6796875 209.765625L875 62.5H1093.75L962.109375 284.5703125C1068.5546875 353.7109374999999 1134.765625 450.390625 1134.765625 557.421875zM223.046875 529.1015625C223.046875 672.65625 416.2109375 788.8671875 654.296875 788.8671875S1068.1640625 709.375 1068.1640625 529.1015625C1068.1640625 431.25 1016.40625 363.0859375 930.8593749999998 321.2890625C926.171875 324.4140625 921.6796875 326.953125 918.359375 328.515625C898.4375 338.671875 864.0625 349.0234375 864.0625 349.0234375S1033.203125 361.5234374999999 1033.203125 530.078125S856.25 701.7578125 856.25 701.7578125H467.5781249999999V294.921875C322.8515625 336.9140625 223.046875 425.9765625 223.046875 529.1015625zM662.6953124999999 454.296875V562.890625C775.5859374999999 562.890625 834.1796874999999 576.171875 834.1796874999999 509.5703125C834.1796874999999 438.28125 759.5703125 454.296875 662.6953124999999 454.296875zM660.9375 312.6953125H712.890625C733.984375 312.6953125 749.8046875 289.8437500000001 759.765625 275.1953125000001C728.3203125 271.4843750000001 695.3125 269.7265625 660.9375 269.5312500000001V312.6953125000001z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 22,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 21,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 20,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 19,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M183.828125 384.5703125C183.828125 333.984375 142.5 292.65625 91.9140625 292.65625S0 333.984375 0 384.5703125C0 435.1562499999999 41.328125 476.484375 91.9140625 476.484375H183.828125V384.5703125zM230.15625 384.5703125C230.15625 435.1562499999999 271.484375 476.484375 322.0703125 476.484375S413.984375 435.1562499999999 413.984375 384.5703125V154.4140624999999C413.984375 103.8281249999999 372.65625 62.4999999999999 322.0703125 62.4999999999999S230.15625 103.8281249999999 230.15625 154.4140624999999V384.5703125zM322.0703125 753.671875C271.484375 753.671875 230.15625 795 230.15625 845.5859375S271.484375 937.5 322.0703125 937.5S413.984375 896.171875 413.984375 845.5859375V753.671875H322.0703125zM322.0703125 707.34375C372.65625 707.34375 413.984375 666.015625 413.984375 615.4296875S372.65625 523.515625 322.0703125 523.515625H91.9140625C41.328125 523.515625 0 564.84375 0 615.4296875S41.328125 707.34375 91.9140625 707.34375H322.0703125zM691.171875 615.4296875C691.171875 666.015625 732.5 707.34375 783.0859375 707.34375C833.671875 707.34375 875 666.015625 875 615.4296875S833.671875 523.515625 783.0859375 523.515625H691.171875V615.4296875zM644.8437499999999 615.4296875C644.8437499999999 564.84375 603.5156249999999 523.515625 552.9296874999999 523.515625C502.34375 523.515625 461.0156249999999 564.84375 461.0156249999999 615.4296875V845.5859375C461.0156249999999 896.171875 502.34375 937.5 552.9296874999999 937.5C603.5156249999999 937.5 644.8437499999999 896.171875 644.8437499999999 845.5859375V615.4296875zM552.9296875 246.328125C603.515625 246.328125 644.84375 205 644.84375 154.4140625C644.84375 103.828125 603.515625 62.5 552.9296875 62.5C502.3437500000001 62.5 461.0156250000001 103.828125 461.0156250000001 154.4140625V246.328125H552.9296875zM552.9296875 292.6562500000001C502.3437500000001 292.6562500000001 461.0156250000001 333.9843750000001 461.0156250000001 384.5703125000001C461.0156250000001 435.15625 502.3437500000001 476.4843750000001 552.9296875 476.4843750000001H783.0859375000001C833.6718750000001 476.4843750000001 875.0000000000001 435.15625 875.0000000000001 384.5703125000001C875.0000000000001 333.9843750000001 833.6718750000001 292.6562500000001 783.0859375000001 292.6562500000001H552.9296875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 26,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 25,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 24,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 23,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M484.375 796.875C380.859375 796.875 296.875 712.890625 296.875 609.375S380.859375 421.875 484.375 421.875S671.875 505.859375 671.875 609.375S587.890625 796.875 484.375 796.875zM484.375 515.625C432.6171875 515.625 390.625 557.6171875 390.625 609.375S432.6171875 703.125 484.375 703.125S578.125 661.1328125 578.125 609.375S536.1328125 515.625 484.375 515.625zM484.375 984.375C216.796875 984.375 0 767.578125 0 500S216.796875 15.625 484.375 15.625S968.75 232.421875 968.75 500S751.953125 984.375 484.375 984.375zM484.375 109.375C387.3046875 109.375 298.6328125 145.1171875 230.2734375 203.90625C259.375 248.828125 309.1796875 279.296875 366.2109375 281.0546875C406.8359375 268.5546875 445.5078125 262.3046874999999 484.375 262.3046874999999S561.9140625 268.359375 602.5390625 281.0546875C659.5703125 279.1015625 709.375 248.828125 738.4765625 203.90625C670.1171875 145.1171874999999 581.4453125000001 109.375 484.3750000000001 109.375zM802.1484375 273.6328125C754.4921875 334.9609375 680.8593749999999 375 596.875 375C576.9531250000001 375 546.09375 356.25 484.3750000000001 356.25C422.8515625000001 356.25 391.7968750000001 375 371.8750000000001 375C288.0859375000001 375 214.4531250000001 334.9609375 166.6015625000001 273.6328125C120.8984375 337.5 93.75 415.625 93.75 500C93.75 715.4296875 268.9453125 890.625 484.375 890.625S875 715.4296875 875 500C875 415.625 847.8515625 337.5 802.1484375 273.6328125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 30,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 29,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 28,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 27,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M1030.83984375 437.5H567.3828125L876.03515625 128.84765625C887.83203125 117.05078125 907.24609375 116.0937500000001 919.3749999999998 127.51953125C994.9609374999998 198.73046875 1046.953125 294.7265625000001 1062.2070312499998 402.6367187500001C1064.8242187499998 421.11328125 1049.4921874999998 437.5000000000001 1030.83984375 437.5000000000001zM999.921875 564.0625C983.828125 797.3828125 797.3828125 983.828125 564.0625 999.921875C546.25 1001.15234375 531.25 986.1328125 531.25 968.28125V531.25H968.30078125C986.1523437499998 531.25 1001.1523437500002 546.25 999.921875 564.0625zM437.5 437.5V900.95703125C437.5 919.609375 421.11328125 934.94140625 402.65625 932.32421875C169.90234375 899.43359375 -8.0078125 696.09375 0.2734375 452.40234375C8.7890625 202.12890625 224.27734375 -3.1054687500001 474.66796875 0.0390625C573.10546875 1.26953125 664.0625 32.98828125 738.8476562499999 86.0351562499999C754.2773437499999 96.97265625 755.29296875 119.6875 741.9140624999999 133.0664062499999L437.5 437.5z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        },
+                                        {
+                                            t: "a",
+                                            k: 34,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 33,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 32,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 31,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M786.328125 837.5L962.5 661.328125C969.921875 653.90625 969.921875 641.796875 962.5 634.375L535.9375 207.8125L354.6875 187.6953124999999C330.46875 184.9609375 309.9609375 205.46875 312.6953125 229.6874999999999L332.8125 410.9375L759.375 837.5C766.796875 844.921875 778.90625 844.921875 786.328125 837.5zM1102.734375 882.2265625L1007.4218750000002 977.5390625C977.7343750000002 1007.2265625 929.4921875000002 1007.2265625 899.6093750000001 977.5390625L830.4687500000002 908.3984375C823.0468750000002 900.9765625 823.0468750000002 888.8671875 830.4687500000002 881.4453125L1006.6406250000002 705.2734375C1014.0625000000002 697.8515625 1026.1718750000002 697.8515625 1033.59375 705.2734375L1102.734375 774.4140625C1132.4218750000002 804.296875 1132.4218750000002 852.5390625 1102.734375 882.2265625zM750 323.828125V125H125V750H573.828125C580.078125 750 585.9375 752.5390625 590.4296875 756.8359375L668.5546875 834.9609375C683.3984375000001 849.8046875 672.8515625 875 651.953125 875H93.75C41.9921875 875 0 833.0078125 0 781.25V93.75C0 41.9921875 41.9921875 0 93.75 0H781.25C833.0078125 0 875 41.9921875 875 93.75V401.953125C875 422.8515625 849.8046875 433.203125 834.9609375 418.5546875L756.8359375 340.4296875C752.5390625 335.9375 750 330.078125 750 323.828125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "../index.html"
+                                            }
+                                        }
+                                    ],
+                                    a: {
+                                        class: {
+                                            "iconbar-link___1je218v": 1
+                                        }
+                                    }
+                                }
+                            ],
+                            a: {
+                                class: {
+                                    "atclass-1bow4yp___1je218v": 1
+                                }
+                            }
+                        };
+                    }; // ------------------------------------------------------------------------------------------------------
+                    // 组件 RposeDocsMenubar
+                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
+                    // ------------------------------------------------------------------------------------------------------
+                    // 属性接口定义
+
+                    RposeDocsMenubar.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
+
+                    RposeDocsMenubar.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
+                    // 组件函数
+
+                    function RposeDocsMenubar() {
+                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                        // 组件默认选项值
+                        this.$options = {}; // 组件默认数据状态值
+
+                        this.$state = {};
+                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
+                    }
+                    /**
+                     * 节点模板函数
+                     */
+
+                    RposeDocsMenubar.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
+                        return {
+                            t: "div",
+                            r: 1,
+                            k: 5,
+                            c: [
+                                {
+                                    t: "div",
+                                    k: 2,
+                                    c: [
+                                        {
+                                            s: "Rpose Docs",
+                                            k: 1
+                                        }
+                                    ],
+                                    a: {
+                                        class: {
+                                            "atclass-f3v11y___1gmsygn": 1
+                                        }
+                                    }
+                                },
+                                {
+                                    t: "div",
+                                    k: 4,
+                                    c: [
+                                        {
+                                            t: "rpose-docs-side-menu",
+                                            m: 1,
+                                            k: 3
+                                        }
+                                    ],
+                                    a: {
+                                        class: {
+                                            "atclass-7q7d84___1gmsygn": 1
+                                        }
+                                    }
+                                }
+                            ],
+                            a: {
+                                class: {
+                                    "atclass-1bow4yp___1gmsygn": 1
+                                }
+                            }
+                        };
+                    }; // ------------------------------------------------------------------------------------------------------
+                    // 组件 RposeDocsSideMenu
+                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
+                    // ------------------------------------------------------------------------------------------------------
+                    // 属性接口定义
+
+                    RposeDocsSideMenu.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
+
+                    RposeDocsSideMenu.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
+                    // 组件函数
+
+                    function RposeDocsSideMenu() {
+                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                        // 组件默认选项值
+                        this.$options = {}; // 组件默认数据状态值
+
+                        this.$state = {};
+                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
+                    }
+                    /**
+                     * 节点模板函数
+                     */
+
+                    RposeDocsSideMenu.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
+                        return {
+                            t: "ul",
+                            r: 1,
+                            k: 121,
+                            c: [
+                                {
+                                    t: "li",
                                     k: 10,
                                     c: [
                                         {
-                                            t: "p102-demo-helloworld-p2d2",
+                                            t: "a",
+                                            k: 9,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 3,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 2,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 1,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 5,
+                                                    c: [
+                                                        {
+                                                            s: "Home",
+                                                            k: 4
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 8,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 7,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 6,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    t: "li",
+                                    k: 20,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 19,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 13,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 12,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 11,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 15,
+                                                    c: [
+                                                        {
+                                                            s: "Social Buttons",
+                                                            k: 14
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 18,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 17,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 16,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    t: "li",
+                                    k: 30,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 29,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 23,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 22,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 21,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 25,
+                                                    c: [
+                                                        {
+                                                            s: "Tabs",
+                                                            k: 24
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 28,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 27,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 26,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    t: "li",
+                                    k: 40,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 39,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 33,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 32,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 31,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 35,
+                                                    c: [
+                                                        {
+                                                            s: "Cards",
+                                                            k: 34
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 38,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 37,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 36,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    t: "li",
+                                    k: 50,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 49,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 43,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 42,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 41,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 45,
+                                                    c: [
+                                                        {
+                                                            s: "Alerts",
+                                                            k: 44
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 48,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 47,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 46,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    t: "li",
+                                    k: 60,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 59,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 53,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 52,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 51,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 55,
+                                                    c: [
+                                                        {
+                                                            s: "Progress Bars",
+                                                            k: 54
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 58,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 57,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 56,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    t: "li",
+                                    k: 120,
+                                    c: [
+                                        {
+                                            t: "a",
+                                            k: 69,
+                                            c: [
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 63,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 62,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 61,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                },
+                                                {
+                                                    t: "span",
+                                                    k: 65,
+                                                    c: [
+                                                        {
+                                                            s: "Typography",
+                                                            k: 64
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "svg",
+                                                    g: 1,
+                                                    k: 68,
+                                                    c: [
+                                                        {
+                                                            t: "g",
+                                                            g: 1,
+                                                            k: 67,
+                                                            c: [
+                                                                {
+                                                                    t: "path",
+                                                                    g: 1,
+                                                                    k: 66,
+                                                                    c: [],
+                                                                    a: {
+                                                                        d:
+                                                                            "M438.0859375 466.796875L172.4609375 201.171875C154.1015625 182.8125 124.4140625 182.8125 106.25 201.171875L62.109375 245.3125C43.75 263.671875 43.75 293.3593750000001 62.109375 311.5234375L250.3906250000001 499.8046874999999L62.109375 688.0859375C43.75 706.4453125 43.75 736.1328125 62.109375 754.296875L106.0546875 798.828125C124.4140625 817.1875 154.1015625 817.1875 172.265625 798.828125L437.890625 533.203125C456.4453125 514.84375 456.4453125 485.15625 438.0859375 466.796875z"
+                                                                    }
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                            }
+                                                        }
+                                                    ],
+                                                    a: {
+                                                        viewBox: "0 0 1000 1000"
+                                                    }
+                                                }
+                                            ],
+                                            a: {
+                                                href: "#",
+                                                class: {
+                                                    "menu-link___kaazww": 1
+                                                }
+                                            }
+                                        },
+                                        {
+                                            t: "ul",
+                                            k: 119,
+                                            c: [
+                                                {
+                                                    t: "li",
+                                                    k: 76,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 75,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 72,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 71,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 70,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 74,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Home",
+                                                                            k: 73
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "li",
+                                                    k: 83,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 82,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 79,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 78,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 77,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 81,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Social Buttons",
+                                                                            k: 80
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "li",
+                                                    k: 90,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 89,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 86,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 85,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 84,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 88,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Tabs",
+                                                                            k: 87
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "li",
+                                                    k: 97,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 96,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 93,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 92,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 91,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 95,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Cards",
+                                                                            k: 94
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "li",
+                                                    k: 104,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 103,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 100,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 99,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 98,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 102,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Alerts",
+                                                                            k: 101
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "li",
+                                                    k: 111,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 110,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 107,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 106,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 105,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 109,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Progress Bars",
+                                                                            k: 108
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    t: "li",
+                                                    k: 118,
+                                                    c: [
+                                                        {
+                                                            t: "a",
+                                                            k: 117,
+                                                            c: [
+                                                                {
+                                                                    t: "svg",
+                                                                    g: 1,
+                                                                    k: 114,
+                                                                    c: [
+                                                                        {
+                                                                            t: "g",
+                                                                            g: 1,
+                                                                            k: 113,
+                                                                            c: [
+                                                                                {
+                                                                                    t: "path",
+                                                                                    g: 1,
+                                                                                    k: 112,
+                                                                                    c: [],
+                                                                                    a: {
+                                                                                        d:
+                                                                                            "M985.3515625 664.16015625L914.6484375 735.2734375C895.1171875 754.90234375 863.4570312500001 754.90234375 843.9453125 735.2734375L375 263.6328125L156.0546875 483.828125C136.5234375 503.4765625000001 104.86328125 503.4765625000001 85.3515625 483.828125L14.6484375 412.71484375C-4.8828125 393.0859375 -4.8828125 361.23046875 14.6484375 341.6015625L339.6484375 14.7265624999999C359.1796875 -4.921875 390.83984375 -4.921875 410.3515625000001 14.7265624999999L985.3515625 593.0273437499999C1004.8828125 612.6757812499999 1004.8828125 644.5117187499999 985.3515625 664.1601562499999zM325.33203125 447.83203125C338.69140625 434.1210937500001 360.83984375 434.1210937500001 374.5703125 447.48046875L788.76953125 858.1640625C802.48046875 871.5234375 802.48046875 893.671875 789.1210937500001 907.40234375L707.1875 989.66796875C693.828125 1003.37890625 671.6796875 1003.37890625 657.94921875 990.01953125L350.99609375 685.17578125L217.734375 819.4921875C204.375 833.203125 182.2265625 833.203125 168.515625 819.84375L86.23046875 738.26171875C72.51953125 724.90234375 72.51953125 702.75390625 85.87890625 689.04296875L325.33203125 447.83203125z"
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            a: {
+                                                                                transform: "translate(0,1000) scale(-1, 1) rotate(180)"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    a: {
+                                                                        viewBox: "0 0 1000 1000"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    t: "span",
+                                                                    k: 116,
+                                                                    c: [
+                                                                        {
+                                                                            s: "Typography",
+                                                                            k: 115
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            a: {
+                                                                href: "#",
+                                                                class: {
+                                                                    "menu-link___kaazww": 1
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            a: {
+                                                class: {
+                                                    "sub-menu___kaazww": 1
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            a: {
+                                class: {
+                                    "side-menu___kaazww": 1
+                                }
+                            }
+                        };
+                    }; // ------------------------------------------------------------------------------------------------------
+                    // 组件 IndexDocs
+                    // 注:应通过rpose.newComponentProxy方法创建组件代理对象后使用，而不是直接调用方法或用new创建
+                    // ------------------------------------------------------------------------------------------------------
+                    // 属性接口定义
+
+                    IndexDocs.prototype.$OPTION_KEYS = undefined; // 可通过标签配置的属性，未定义则不支持外部配置
+
+                    IndexDocs.prototype.$STATE_KEYS = ["$SLOT"]; // 可更新的state属性，未定义则不支持外部更新state
+                    // 组件函数
+
+                    function IndexDocs() {
+                        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                        // 组件默认选项值
+                        this.$options = {}; // 组件默认数据状态值
+
+                        this.$state = {};
+                        rpose.extend(this.$state, options, this.$STATE_KEYS); // 按属性接口克隆数据状态
+                    }
+                    /**
+                     * 节点模板函数
+                     */
+
+                    IndexDocs.prototype.nodeTemplate = function nodeTemplate($state, $options, $actions, $this) {
+                        return {
+                            t: "@rpose/ui-layout:layout-admin-shm",
+                            r: 1,
+                            m: 1,
+                            k: 8,
+                            c: [
+                                {
+                                    t: "div",
+                                    k: 2,
+                                    c: [
+                                        {
+                                            t: "rpose-docs-menubar",
                                             m: 1,
-                                            k: 9
+                                            k: 1
                                         }
                                     ],
                                     a: {
-                                        path: "helloworld",
-                                        default: true
+                                        slot: "side-menubar"
                                     }
                                 },
                                 {
-                                    t: "router",
-                                    m: 1,
-                                    k: 14,
+                                    t: "div",
+                                    k: 4,
                                     c: [
                                         {
-                                            t: "div",
-                                            k: 13,
-                                            c: [
-                                                {
-                                                    t: "b",
-                                                    k: 12,
-                                                    c: [
-                                                        {
-                                                            s: "foo",
-                                                            k: 11
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            a: {
-                                                style: "font-size:3rem;"
-                                            }
+                                            t: "rpose-docs-iconbar",
+                                            m: 1,
+                                            k: 3
                                         }
                                     ],
                                     a: {
-                                        path: "foo"
+                                        slot: "side-iconbar"
                                     }
                                 },
                                 {
-                                    t: "router",
-                                    m: 1,
-                                    k: 18,
+                                    t: "div",
+                                    k: 6,
                                     c: [
                                         {
-                                            t: "div",
-                                            k: 17,
-                                            c: [
-                                                {
-                                                    t: "b",
-                                                    k: 16,
-                                                    c: [
-                                                        {
-                                                            s: "bar",
-                                                            k: 15
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            a: {
-                                                style: "font-size:3rem;"
-                                            }
+                                            t: "rpose-docs-header",
+                                            m: 1,
+                                            k: 5
                                         }
                                     ],
                                     a: {
-                                        path: "bar"
+                                        slot: "header"
                                     }
                                 },
                                 {
-                                    t: "router",
-                                    m: 1,
-                                    k: 22,
-                                    c: [
-                                        {
-                                            t: "div",
-                                            k: 21,
-                                            c: [
-                                                {
-                                                    t: "b",
-                                                    k: 20,
-                                                    c: [
-                                                        {
-                                                            s: "404",
-                                                            k: 19
-                                                        }
-                                                    ]
-                                                }
-                                            ],
-                                            a: {
-                                                style: "color:red;font-size:5rem;"
-                                            }
-                                        }
-                                    ],
+                                    t: "div",
+                                    k: 7,
+                                    c: [],
                                     a: {
-                                        notfound: true
+                                        slot: "main"
                                     }
                                 }
                             ]
                         };
                     }; // 组件挂载
 
-                    rpose.mount(rpose.newComponentProxy("p107-demo-route-p7d6").render(), "body");
+                    rpose.mount(rpose.newComponentProxy("index-docs").render(), "body");
                 })(rpose.$$);
             },
             {
