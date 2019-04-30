@@ -1,0 +1,42 @@
+[view]
+<div @class="box-sizing--border-box padding-0_20px_20px_20px">
+
+    <doc-title>图标方案概况</doc-title>
+    众所周知，说来话长<br>
+    因此，rpose默认选择内联svg作为图标首选方案 <svgicon src="@fortawesome/fontawesome-free:s*/heart" fill="red" height="16"/>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>空白代表可能</doc-title>
+```rpose
+\[view]
+<div>
+    <svgicon src="my-icon.svg" height="16"/>
+    <svgicon src="my-icon" height="16"/>
+    <svgicon src="project-icon" height="16"/>
+    <svgicon src="rpose-icon" height="16"/> <!-- TODO -->
+    <svgicon src="@fortawesome/fontawesome-free:home" height="16"/>
+    <svgicon src="@fortawesome/fontawesome-free:s*/file-image" height="16" width="16"/>
+</div>
+
+```
+
+
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>空白代表可能</doc-title>
+```rpose
+\[view]
+
+```
+
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>小结</doc-title>
+
+   
+    <doc-footer>青松 2019.04</doc-footer>
+
+</div>

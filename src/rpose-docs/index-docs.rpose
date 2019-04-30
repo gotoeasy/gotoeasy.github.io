@@ -1,5 +1,5 @@
 [view]
-<layout-admin-shm @taglib="@rpose/ui-layout">
+<layout-shm @taglib="@rpose/ui-layout">
     <div slot="side-menubar">
         <rpose-docs-menubar />
     </div>
@@ -10,10 +10,17 @@
         <rpose-docs-header />
     </div>
     <div slot="main">
-        
-    </div>
-</layout-admin-shm>
+        <router path="at"><doc-at/></router>
+        <router path="slot"><doc-slot/></router>
+        <router path="router"><doc-router/></router>
 
+        <router path="taglib"><doc-taglib/></router>
+        <router path="csslib"><doc-csslib/></router>
+        <router path="svgicon"><doc-svgicon/></router>
+
+        <router path="todo" default><doc-todo/></router>
+    </div>
+</layout-shm>
 
 
 [mount]

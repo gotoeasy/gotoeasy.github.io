@@ -1,0 +1,121 @@
+[view]
+<div @class="box-sizing--border-box padding-0_20px_20px_20px">
+
+    <doc-title>2.1 第一个 hello world 组件</doc-title>
+```rpose
+// 文件名 ui-helloworld.rpose
+
+\[api]
+statekeys = name   // 意思是说，组件的状态不是外部所能随便改的，这里声明仅接受‘name’的修改
+
+\[view]
+<span>hello {name}!</span>
+
+\[state] // 状态默认值，如果没有接收到name参数，显示的就是world了，避免空白难看
+{
+    name: 'world'
+}
+```
+
+    这就是创建了一个组件了，功能上很简单，接受name参数然后拼接显示<br>
+    组件名根据文件名转换而来，即 UiHelloworld，也就是意味着文件名不能乱写特殊字符，这应该不算事<br>
+
+
+    <doc-title>2.2 使用 hello world 组件</doc-title>
+    为了看到 hello world 的效果，简单写一个页面<br>
+    页面也是组件，不过是多了个挂载显示
+```rpose
+// 文件名 p102-demo-helloworld-p2d2.rpose
+
+\[view]
+<ui-helloworld/>
+
+\[mount] // 挂载显示
+body
+```
+    这便是把 hello world 组件用起来了，效果用想，显示出“hello world!”而已，不信点 <a href="p102-demo-helloworld-p2d2.html" target="_blank">这里</a>
+
+
+    <doc-title>2.3 修改 hello world 组件状态</doc-title>
+    要修改组件状态，3个要素，什么组件？什么时机？改成什么？<br>
+    下面代码演示，在输入框onchange时，拿到hello world组件对象，把它的name修改为输入框的值
+```rpose
+// 文件名 p102-demo-helloworld-p2d3.rpose
+
+\[view]
+<div>
+    <input onchange="fnChange">
+    <ui-helloworld @ref="hello" name="rpose" />
+</div>
+
+\[actions]
+{
+    fnChange: e=> {
+        let txt = e.target.value;
+        let helloworld = this.getRefComponent('hello');
+        helloworld.setState({name:txt});
+    }
+}
+
+\[mount] // 挂载显示
+body
+```
+
+    要点1，事件的绑定，沿用html习惯直接写onchange的，处理函数是写在[actions]里的，通过名称关联起来的<br>
+    要点2，取组件对象，设定@ref属性，组件对象默认提供getRefComponent方法可用<br>
+    要点3，修改状态，沿用习惯通过组件的setState方法实现<br>
+    <br>
+    看效果点 <a href="p102-demo-helloworld-p2d3.html" target="_blank">这里</a><br>
+    <br>
+    扩充点1，组件根部是一个标签节点，多了不行。为什么要这样，习惯...其实主要是影响虚拟节点比较的算法实现<br>
+    扩充点2，还有getRefComponents方法，返回的是数组，还有getRefElements、getRefElement方法，对应返回真实Dom<br>
+    扩充点3，还有getState方法，返回组件状态的副本<br>
+
+
+    <doc-title>2.4 使用样式</doc-title>
+    三驾马车HTML/JS/CSS就剩下CSS了<br>
+    没什么难的，rpose最讲究的是姿势，直接加就是
+```rpose
+// 文件名 p102-demo-helloworld-p2d4.rpose
+
+\[view]
+<div>
+    <input class="demo-input" onchange="fnChange">
+    <ui-helloworld @ref="hello" name="rpose" />
+</div>
+
+\[css]
+.demo-input{
+    margin: 10px;
+    background-color: gold;
+}
+
+// [actions]、[mount]的代码同上节，省略不写...
+
+```
+
+    要点，就是不想要要点，就像html+css那样直白<br>
+    当然，为了习惯，写[scss]、[less]都是可以的，尝试吧<br>
+    <br>
+    看效果点 <a href="p102-demo-helloworld-p2d4.html" target="_blank">这里</a><br>
+    <br>
+    <br>
+    有顾虑？确实，样式问题还是很多的<br>
+    比如，常规的添加前缀、压缩去重复、url地址修改图片资源复制，等等，rpose会整合相关工具处理，打消顾虑<br>
+    <br>
+    样式类名冲突？<br>
+    这个rpose花了点力气，按组件单位，把样式类名哈希化，能确保无冲突<br>
+    所以也是有推荐写法的，就是尽量使用类名，尽量不用标签名或id，避免rpose无法帮忙
+
+
+    <doc-title>小结</doc-title>
+    通过本章节，对rpose的代码写法的掌握，可以说已达60%<br>
+    写个伪html，写个样式，加上事件写些脚本，最基础的东西其实都已经有了<br>
+    <br>
+    想试试看？不急，再来几个组件熟悉一下，然后，确实有兴趣有共鸣，再随时开始不迟<br>
+
+
+   
+    <doc-footer>青松 2018.12</doc-footer>
+
+</div>

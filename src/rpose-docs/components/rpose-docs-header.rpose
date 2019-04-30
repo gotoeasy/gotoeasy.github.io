@@ -1,0 +1,52 @@
+[view]
+<div @class="height-50px width-100% bg-#fff display-flex">
+    <nav class="nav-link">
+        <a href="../index.html">
+            <svgicon src="@fortawesome/fontawesome-free:home" fill="#456789" height="14"/>
+            Home
+        </a>
+        <a href="https://github.com/gotoeasy/rpose">
+            <svgicon src="@fortawesome/fontawesome-free:database" fill="#456789" height="14"/>
+            Repository
+        </a>
+        <a href="https://github.com/gotoeasy/rpose/issues">
+            <svgicon src="@fortawesome/fontawesome-free:pen-fancy" fill="#456789" height="14"/>
+            Issues
+        </a>
+    </nav>
+    <div @class="min-width-40px display-flex justify-content-center align-items--center">
+        <a href="https://github.com/gotoeasy/rpose" target="_blank">
+            <svgicon class="header-icon" src="@fortawesome/fontawesome-free:github" />
+        </a>
+    </div>
+</div>
+
+[less]
+.nav-link {
+    display: flex;
+    width: calc(100% - 40px);
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-bottom: 5px;
+    align-items: flex-end;
+
+    & > a {
+        margin-right: 20px;
+        text-decoration: none;
+    }
+    & > a:hover {
+        background-color: #ddd;
+        color: #000;
+    }
+}
+
+.header-icon {
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+        width: 28px;
+        height: 28px;
+    }
+}

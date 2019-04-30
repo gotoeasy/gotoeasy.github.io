@@ -1,0 +1,14 @@
+[view]
+<blockquote class="blockquote"><slot/></blockquote>
+
+[css]
+.blockquote{
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 6px solid blueviolet;
+    margin: 32px 0 16px 0;
+    padding: 10px;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
