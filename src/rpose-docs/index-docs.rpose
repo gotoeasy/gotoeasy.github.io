@@ -1,3 +1,6 @@
+[api]
+prerender = loader // loader （旋转动画），loader-section（旋转动画加芝麻开门）
+
 [view]
 <layout-shm @taglib="@rpose/ui-layout">
     <div slot="side-menubar">
