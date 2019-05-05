@@ -14,7 +14,7 @@
             Issues
         </a>
     </nav>
-    <div @class="min-width-30px display-flex justify-content-center align-items--center">
+    <div class="header-icon-div">
         <a href="https://github.com/gotoeasy/rpose" target="_blank">
             <svgicon class="header-icon" src="@fortawesome/fontawesome-free:github" />
         </a>
@@ -49,5 +49,18 @@
     &:hover {
         width: 28px;
         height: 28px;
+    }
+}
+
+.header-icon-div {
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and(max-width: 449px) {
+    .header-icon-div {
+        display: none;                                                  /* 隐藏右侧图标 */
     }
 }
