@@ -25,6 +25,7 @@
 .nav-link {
     display: flex;
     width: calc(100% - 40px);
+    min-width: 350px;
     height: 100%;
     box-sizing: border-box;
     padding-left: 50px;
