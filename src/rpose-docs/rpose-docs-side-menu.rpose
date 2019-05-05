@@ -1,9 +1,6 @@
 [view]
 <ul class="side-menu">
     <li>
-        <ui-line margin="-25px 0 20px 0" color="#aaa"/>
-    </li>
-    <li>
         <router-link path="at">
             <svgicon src="@fortawesome/fontawesome-free:at" height="16" width="16"/>
             <span>内置指令集 @nnn</span>

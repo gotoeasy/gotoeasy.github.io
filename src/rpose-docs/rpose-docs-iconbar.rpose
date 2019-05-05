@@ -1,8 +1,8 @@
 [view]
-<div @class="height-100% display-flex flex-direction-column color-#eee">
+<div @class="height-100% display-flex flex-direction-column color-#eee overflow-hidden">
     <div @class="height-50px display-flex justify-content-center align-items-center font-size-25px">R</div>
+    <ui-line margin="0" color="#aaa"/>
     <div class="iconbar-link">
-        <ui-line margin="-10px 0 20px 0" color="#aaa"/>
         <router-link path="at" title="内置指令集 @nnn">
             <svgicon src="@fortawesome/fontawesome-free:at"/>
         </router-link>
@@ -37,9 +37,11 @@
     height: calc(100% - 50px);
     box-sizing: border-box;
     padding-top: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     & > a {
-        height: 42px;
+        min-height: 40px;
     }
     & svg {
         fill: #bbb;
