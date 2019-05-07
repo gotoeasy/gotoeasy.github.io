@@ -11,6 +11,6 @@
     padding: 10px;
     font-size: 1.2rem;
     box-sizing: border-box;
-    background: #eff;
+    background: #eee;
     border-radius: 3px;
 }

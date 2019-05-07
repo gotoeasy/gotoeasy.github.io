@@ -2,7 +2,7 @@
 optionkeys = onclick
 statekeys  = value, disabled
 
-[view]
+[view] 此组件仅为演示用途，并非最佳实践
 <button onclick={$options.onclick} class="ui-button" disabled={!!$state.disabled}>{$state.value}</button>
 
 [less]

@@ -1,0 +1,8 @@
+[view]
+<ui-slot-component>
+    <template slot="my-slot1">hello slot1</template>
+    <div slot="my-slot2">hello slot2</div>
+</ui-slot-component>
+
+[mount]
+body

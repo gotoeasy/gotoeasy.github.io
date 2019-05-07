@@ -12,7 +12,13 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
     <div slot="header">
         <rpose-docs-header />
     </div>
-    <div slot="main" @class=" bg-#eee">
+    <div slot="main" @class="bg-#eee">
+        <router path="intro" default><doc-intro/></router>
+        <router path="quickstart"><doc-quickstart/></router>
+        <router path="setup"><doc-setup/></router>
+
+        <router path="prerender"><doc-prerender/></router>
+
         <router path="at"><doc-at/></router>
         <router path="slot"><doc-slot/></router>
         <router path="router"><doc-router/></router>
@@ -21,7 +27,7 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
         <router path="csslib"><doc-csslib/></router>
         <router path="svgicon"><doc-svgicon/></router>
 
-        <router path="todo" default><doc-todo/></router>
+        <router path="todo"><doc-todo/></router>
     </div>
 </layout-shm>
 

@@ -1,8 +1,0 @@
-[api]
-optionkeys = onclick
-
-[view]
-<i class="fas fa-igloo"></i>
-
-[csslib]
-* = @fortawesome/fontawesome-free:**/all.min.css

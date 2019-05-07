@@ -1,0 +1,23 @@
+[view]
+<div>
+    <input class="demo-input" onchange="fnChange">
+    <ui-helloworld @ref="hello" name="rpose" />
+</div>
+
+[css]
+.demo-input{
+    margin: 10px;
+    background-color: gold;
+}
+
+[actions]
+{
+    fnChange: e=> {
+        let txt = e.target.value;
+        let helloworld = this.getRefComponent('hello');
+        helloworld.setState({name:txt});
+    }
+}
+
+[mount] // 挂载显示
+body

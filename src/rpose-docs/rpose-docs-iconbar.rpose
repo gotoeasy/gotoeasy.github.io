@@ -3,22 +3,38 @@
     <div @class="height-50px display-flex justify-content-center align-items-center font-size-25px">R</div>
     <ui-line margin="0" color="#aaa"/>
     <div class="iconbar-link">
-        <router-link path="at" title="内置指令集 @nnn">
-            <svgicon src="@fortawesome/fontawesome-free:at"/>
+        <router-link path="intro" title="初识 rpose">
+            <svgicon src="@fortawesome/fontawesome-free:book"/>
         </router-link>
-        <router-link path="slot" title="插槽 slot">
+        <router-link path="quickstart" title="快速上手">
+            <svgicon src="guide"/>
+        </router-link>
+        <router-link path="setup" title="安装使用">
+            <svgicon src="@fortawesome/fontawesome-free:check"/>
+        </router-link>
+
+        <ui-line margin="0px 0 20px 0" color="#aaa"/>
+
+        <router-link path="slot" title="插槽">
             <svgicon src="@fortawesome/fontawesome-free:s*/list-alt"/>
         </router-link>
-        <router-link path="router" title="前端路由 router">
+        <router-link path="prerender" title="预渲染">
+            <svgicon src="@fortawesome/fontawesome-free:brush"/>
+        </router-link>
+
+        <router-link path="at" title="内置指令集">
+            <svgicon src="@fortawesome/fontawesome-free:at"/>
+        </router-link>
+        <router-link path="router" title="前端路由">
             <svgicon src="@fortawesome/fontawesome-free:random"/>
         </router-link>
-        <router-link path="taglib" title="标签库 taglib">
+        <router-link path="taglib" title="标签库">
             <svgicon src="@fortawesome/fontawesome-free:tag"/>
         </router-link>
-        <router-link path="csslib" title="样式库 csslib">
+        <router-link path="csslib" title="样式库">
             <svgicon src="@fortawesome/fontawesome-free:css3-alt"/>
         </router-link>
-        <router-link path="svgicon" title="图标标签 svgicon">
+        <router-link path="svgicon" title="图标标签">
             <svgicon src="@fortawesome/fontawesome-free:s*/file-image"/>
         </router-link>
 

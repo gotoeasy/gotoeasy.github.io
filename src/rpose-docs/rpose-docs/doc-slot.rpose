@@ -1,11 +1,15 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>6.1 插槽的基本使用方式</doc-title>
-    插槽简单的说就是一个组件占位符，标准html有个slot标签，rpose也是用这个<br>
-    写一个含slot标签的组件<br>
+    <doc-title>插槽</doc-title>
+    插槽简单的说就是一个组件占位符<br>
+    标准html有个slot标签，rpose也是用这个<br>
+
+    <doc-title>4.1 插槽的基本使用方式</doc-title>
+    先写一个含slot标签的组件
 
 ```rpose
+// ui-slot-component.rpose
 \[view]
 <ul>
     <li><slot name="my-slot1"></slot></li>
@@ -13,55 +17,51 @@
 </ul>
 ```
 
-再写个使用该组件的页面<br>
+    <br>
+    再写个使用该组件的页面<br>
 ```rpose
+// demo-slot-d1.rpose
 \[view]
-<demo-slot-component>
+<ui-slot-component>
     <template slot="my-slot1">hello slot1</template>
     <div slot="my-slot2">hello slot2</div>
-</demo-slot-component>
+</ui-slot-component>
 
 \[mount]
 body
 ```
 
-效果应该是li中的slot标签分别被替换成文本“hello slot1”和“hello slot2”了<br>
+效果应该是li中的slot标签分别被替换成文本“hello slot1”和“hello slot2”了，看看 <a href="demo/demo-slot-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
 使用还算简单，写一个组件占位，需要用slot标签，再起个名<br>
 使用含占位的组件，写个要占位的模板，要用slot属性声明和什么名称的插槽关联<br>
+<br>
 占位用的模板标签并没有限制必须是template，除slot以外的能用的标准标签都行<br>
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>6.2 单一插槽时支持缺省写法</doc-title>
-    有很多时候占位插槽只有一个，如果按上面的基本用法，感觉就有点啰嗦了
+    <doc-title>4.2 单一插槽时支持缺省写法</doc-title>
+    有很多时候占位插槽只有一个，如果按上面的基本用法，感觉就有点啰嗦了<br>
+    使用缺省写法，可以简化修改成如下
 ```rpose
-\---------- demo-slot-component ----------
-\[view]
-<ul>
-    <li><slot name="my-slot"></slot></li>              <!-- 仅唯一一个插槽，可以省略起名 -->
-</ul>
-
-\------------- page ------------
-\[view]
-<demo-slot-component>
-    <template slot="my-slot">hello slot</template>    <!-- 仅唯一一个模板，可以省略不写 -->
-</demo-slot-component>
-```
-
-使用缺省写法，可以简化修改成如下
-```rpose
-\---------- demo-slot-component ----------
+\----------------- component -----------------
+// ui-slot-single.rpose
 \[view]
 <ul>
     <li><slot/></li>
 </ul>
 
-\---------- page ----------
+\-------------------- page -------------------
+// demo-slot-d2.rpose
 \[view]
-<demo-slot-component>
+<ui-slot-single>
     hello slot
-</demo-slot-component>
+</ui-slot-single>
+
+\[mount]
+body
 ```
+
+点击看看效果 <a href="demo/demo-slot-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a>
 
 
 <!---------------------------------------------------------------------------------------->

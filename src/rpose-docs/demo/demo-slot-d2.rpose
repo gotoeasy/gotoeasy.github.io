@@ -1,0 +1,7 @@
+[view]
+<ui-slot-single>
+    hello slot
+</ui-slot-single>
+
+[mount]
+body
