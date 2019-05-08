@@ -31,6 +31,10 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
     </div>
 </layout-shm>
 
+[css]
+body{
+    line-height: 1.3;
+}
 
 [mount]
 body

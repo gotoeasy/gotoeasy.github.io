@@ -3,7 +3,7 @@
 
     <doc-title>插槽</doc-title>
     插槽简单的说就是一个组件占位符<br>
-    标准html有个slot标签，rpose也是用这个<br>
+    标准html有个<ui-badge>slot</ui-badge>标签，rpose也是用这个<br>
 
     <doc-title>4.1 插槽的基本使用方式</doc-title>
     先写一个含slot标签的组件
@@ -31,11 +31,11 @@
 body
 ```
 
-效果应该是li中的slot标签分别被替换成文本“hello slot1”和“hello slot2”了，看看 <a href="demo/demo-slot-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-使用还算简单，写一个组件占位，需要用slot标签，再起个名<br>
-使用含占位的组件，写个要占位的模板，要用slot属性声明和什么名称的插槽关联<br>
+效果应该是li中的<ui-badge>slot</ui-badge>标签分别被替换成文本<ui-badge>hello slot1</ui-badge>和<ui-badge>hello slot2</ui-badge>了，看看 <a href="demo/demo-slot-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+使用还算简单，写一个组件占位，需要用<ui-badge>slot</ui-badge>标签，再起个名<br>
+使用含占位的组件，写个要占位的模板，要用<ui-badge>slot</ui-badge>属性声明和什么名称的插槽关联<br>
 <br>
-占位用的模板标签并没有限制必须是template，除slot以外的能用的标准标签都行<br>
+占位用的模板标签并没有限制必须是<ui-badge>template</ui-badge>，除<ui-badge>slot</ui-badge>以外的能用的标准标签都行<br>
 
 
 <!---------------------------------------------------------------------------------------->

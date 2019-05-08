@@ -1,0 +1,42 @@
+[api]
+optionkeys = type
+
+[view]
+<div class="ui-badge {
+        info : /info/i.test(type),
+        danger : /(err|danger)/i.test(type),
+        warn : /warn/i.test(type)
+    }"><slot/></div>
+
+[css]
+.ui-badge{
+    box-sizing:border-box;
+    min-width:1.1rem;
+    height:1.1rem;
+    padding:0 5px;
+    border-radius:3px;
+    font-size:.9rem;
+    display:inline-flex;
+    justify-content:center;
+    background: #eee;
+ }
+.ui-badge:focus,
+.ui-badge:hover {
+    text-decoration:none;
+    outline:0;
+}
+
+.info {
+    background: #1e87f0;
+    color: #fff;
+}
+
+.danger {
+    background: red;
+    color: #fff;
+}
+
+.warn {
+    background: #f9a124;
+    color: #fff;
+}

@@ -15,8 +15,8 @@ npm i -g @rpose/cli
 <!---------------------------------------------------------------------------------------->
     <doc-title>3.2 克隆本网页项目进行体验</doc-title>
     本网页效果都看了，怎么写的，下载下来直观的试试看<br>
-    本地建个目录，克隆https://github.com/gotoeasy/gotoeasy.github.io.git<br>
-    假设克隆到目录 D:/test，应该有文件D:/test/rpose.config.btf，以及D:/test/src这样的目录<br>
+    本地建个目录，克隆<ui-badge>https://github.com/gotoeasy/gotoeasy.github.io.git</ui-badge><br>
+    假设克隆到目录<ui-badge>D:/test</ui-badge>，应该有文件<ui-badge>D:/test/rpose.config.btf</ui-badge>，以及<ui-badge>D:/test/src</ui-badge>这样的目录<br>
     <br>
     命令行，准备开始
 ```
@@ -27,12 +27,12 @@ cd D:/test
 // 用watch模式比较直观，加上-clean是先清除build目录，方便看新生成的东西
 rpose watch -clean
 ```
-成功后是打开了浏览器显示了首页，接下去就可以对照源码看看build目录中的东西了
+成功后是打开了浏览器显示了首页，接下去就可以对照源码看看<ui-badge>build</ui-badge>目录中的东西了
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>3.3 其实应该先看配置</doc-title>
-    项目根目录下的配置文件 rpose.config.btf，内容简单直白，但很关键<br>
+    项目根目录下的配置文件<ui-badge>rpose.config.btf</ui-badge>，内容简单直白，但很关键<br>
 ```btf
 // 项目配置文件 rpose.config.btf
 
@@ -50,13 +50,13 @@ rpose-theme-demo
 normalize = normalize.css:normalize.css
 ```
 
-其中的[csslib]是个样式库配置，rpose的一大特性，后有专门章节介绍<br>
+其中的<ui-badge>[csslib]</ui-badge>是个样式库配置，rpose的一大特性，后有专门章节介绍<br>
 配置文件并不是必须的，没有配置文件时会使用最基本的缺省设定
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>3.4 另一个重要的配置文件</doc-title>
-    另一个重要的配置文件是根目录下的 .browserslistrc，配置目标浏览器<br>
+    另一个重要的配置文件是根目录下的<ui-badge>.browserslistrc</ui-badge>，配置目标浏览器<br>
 ```properties
 // 目标浏览器配置文件 .browserslistrc
 
@@ -79,9 +79,10 @@ ie 11
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>3.5 我们要打包了</doc-title>
-    我们要的打包效果是，按页面单位有文件html、js、css各一个，图片资源等哈希后放单独目录<br>
-    公共包抽取之类暂时不考虑，因为目前打包出来的文件实在是太小还不值得分
+    <doc-title>3.5 可以打包了</doc-title>
+    我们要的打包效果是，按页面单位有文件<ui-badge>html、js、css</ui-badge>各一个，图片资源等哈希后放单独目录<br>
+    公共包抽取按需加载之类暂时不考虑，目前打包出来的文件实在是太小还不值得分<br>
+    (好不容易决定SPA，结果导致打包文件太大又要拆分，这到底是哪跟哪的事情)
 ```
 rpose build -c -r
 ```
