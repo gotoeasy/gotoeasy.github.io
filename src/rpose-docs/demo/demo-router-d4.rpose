@@ -1,0 +1,16 @@
+[view]
+<div>
+    <ul>
+        <li><router-link path="foo">foo</router-link></li>
+        <li><router-link path="bar">bar</router-link></li>
+        <li><router-link path="baz">baz</router-link></li>
+        <li><router-link path="xyz">xyz</router-link></li>
+    </ul>
+    <router path="foo" default><section-foo/></router> <!-- default -->
+    <router path="bar"><section-bar/></router>
+    <router path="baz"><section-baz/></router>
+    <router notfound><div style="color:red;font-size:5rem;"><b>404</b></div></router>
+</div>
+
+[mount] // 挂载显示
+body

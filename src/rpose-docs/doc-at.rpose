@@ -1,23 +1,207 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>TODO</doc-title>
+    <doc-title>内置指令</doc-title>
+    为了醒目区别，rpose的全部指令都是以<ui-badge>@</ui-badge>开头<br>
+    同时，在指令的数量设计上也做了控制，避免过度发挥，不利于记忆使用
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>5.1 指令 @if</doc-title>
+    指令<ui-badge>@if</ui-badge>用于控制标签节点是否渲染
 ```rpose
+// demo-at-d1.rpose
+\[api]
+statekey = role
 
+\[view]
+<div>
+    <if @if={role === 'admin'}>
+        <span>管理员</span>
+    </if>
+    <if @if={role !== 'admin'}>
+        <span>请以管理员登录</span>
+    </if>
+</div>
 
+\[mount]
+body
 ```
+
+简单的表达式判断而已，看看效果 <a href="demo/demo-at-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+没有所谓的<ui-badge>@else</ui-badge>，没必要
 
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>TODO</doc-title>
+    <doc-title>5.2 指令 @for</doc-title>
+    指令<ui-badge>@for</ui-badge>用于遍历数组，<ui-badge type="error">注意仅适用于数组</ui-badge>，这也是出于精简目的<br>
+    完整的写法是<ui-badge>@for="(value, index from i max m) in array"</ui-badge><br>
+    根据需要可简化至<ui-badge>@for="value in array"</ui-badge>
 
+```rpose 380px
+// demo-at-d2.rpose
+\[api]
+statekeys = items
+
+\[view]
+<div>
+    @for="(value, index from 2 max 5) in items"
+    <ul>
+        <li @for="(value, index from 2 max 5) in items">value={value}，index={index}</li>
+    </ul>
+    <ui-line/>
+    @for="(value, index max 99 from 1) in items"
+    <ul>
+        <li @for="(value, index max 99 from 1) in items">value={value}，index={index}</li>
+    </ul>
+    <ui-line/>
+    @for="(value, index max 4) in items"
+    <ul>
+        <li @for="(value, index max 4) in items">value={value}，index={index}</li>
+    </ul>
+    <ui-line/>
+    @for="(value, index from 3) in items"
+    <ul>
+        <li @for="(value, index from 3) in items">value={value}，index={index}</li>
+    </ul>
+    <ui-line/>
+    @for="(value, index) in items"
+    <ul>
+        <li @for="(value, index) in items">value={value}，index={index}</li>
+    </ul>
+    <ui-line/>
+    @for="(value) in items"
+    <ul>
+        <li @for="(value) in items">value={value}</li>
+    </ul>
+    <ui-line/>
+    @for="value in items"
+    <ul>
+        <li @for="value in items">value={value}</li>
+    </ul>
+</div>
+
+\[state]
+{ items: ['foo', 'bar', 'baz', 4, 5, 6] }
+
+\[mount]
+body
+```
+
+    看看效果 <a href="demo/demo-at-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>5.3 指令 @ref</doc-title>
+    和react等是一个意思，设定一个名称，以方便直接引用该组件或节点<br>
+    <br>
+    <ui-badge type="info">特点1</ui-badge>逐渐范围内名称不要求唯一，如果重复结果就是一起取到<br>
+    <ui-badge type="info">特点2</ui-badge>通过组件内置方法取，而不是refs属性
+
+```rpose 380px
+// demo-at-d3.rpose
+\[view]
+<ul>
+    <li><ui-badge @ref="badge">微标1</ui-badge></li>
+    <li><ui-badge @ref="badge">微标2</ui-badge></li>
+    <li @ref="li"><input @ref="stdtag"></li>
+    <li><button @ref="stdtag" onclick="click">按钮</button></li>
+</ul>
+
+\[actions]
+{
+    click: e=> {
+        let comp = this.getRefComponent('badge');
+        alert('comp: ' + comp);
+        let comps = this.getRefComponents('badge');
+        alert('comps: ' + comps);
+        let el = this.getRefElement('stdtag');
+        alert('el: ' + el);
+        let els = this.getRefElements('stdtag');
+        alert('els: ' + els);
+        let li = this.getRefElement('li');
+        alert('li: ' + li);
+        let ul = this.getRootElement();
+        alert('ul: ' + ul);
+        console.info(comp, comps, el, els, li, ul);
+    }
+}
+
+\[mount]
+body
+```
+
+    看看效果 <a href="demo/demo-at-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    总之，就是有这么些内置方法配合去取到相应组件或节点
+
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>5.4 指令 @show</doc-title>
+    控制节点是否显示，相对指令<ui-badge>@if</ui-badge>区别在于<ui-badge>@show</ui-badge>总是渲染
+
+```rpose
+// demo-at-d4.rpose
+\[api]
+statekey = role
+
+\[view]
+<div>
+    <span @show={role === 'admin'}>管理员</span>
+    <span @show={role !== 'admin'}>请以管理员登录</span>
+</div>
+```
+
+也是简单的表达式判断而已，看看效果 <a href="demo/demo-at-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+没有所谓的<ui-badge>@hide</ui-badge>，同样没必要<br>
+两个span节点都渲染了，只是其中一个为<ui-badge>style="display: none;"</ui-badge><br>
+
+<br>
+<ui-badge type="info">注意到显示的时候 style="display: block;"</ui-badge><br>
+实际上布局不一定是<ui-badge>block</ui-badge>，所以还支持以修饰符的方式指定显示方式<br>
+比如<ui-badge type="info">@show.flex</ui-badge>，这样显示的时候就是<ui-badge>style="display: flex;"</ui-badge>了
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>5.5 指令 @taglib</doc-title>
+    使用第三方组件时，总是require或者import ...... 会手酸的<br>
+    rpose提供此指令，以声明的方式使用第三方组件，舒服多了
+
+```rpose
+// demo-at-d5.rpose
+\[view]
+<ul>
+    <li>
+        <ref-button @taglib="ui-button=@rpose/ui-button:ui-button">@taglib="ui-button=@rpose/ui-button:ui-button"</ref-button>
+    </li>
+    <li>
+        <aaa-button @taglib="@rpose/ui-button:ui-button">@taglib="@rpose/ui-button:ui-button"</aaa-button>
+    </li>
+    <li>
+        <ui-button @taglib="@rpose/ui-button:ui-button">@taglib="@rpose/ui-button:ui-button"</ui-button>
+    </li>
+    <li>
+        <ui-button @taglib="@rpose/ui-button">@taglib="@rpose/ui-button"</ui-button>
+    </li>
+</ul>
+```
+
+注意看上面的各种写法区别，看看效果 <a href="demo/demo-at-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+<br>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>5.6 指令 @csslib</doc-title>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>5.7 指令 @class</doc-title>
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
 
    
-    <doc-footer>青松 9999.99</doc-footer>
+    <doc-footer>青松 2019.05</doc-footer>
 
 </div>

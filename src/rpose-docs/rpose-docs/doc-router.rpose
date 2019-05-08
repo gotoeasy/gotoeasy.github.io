@@ -1,31 +1,29 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>7.1 关于前端路由</doc-title>
+    <doc-title>前端路由</doc-title>
     前端路由没有标准，都是按经验自由发挥，差异体现在不同的接口设计<br>
-    各自造轮子的极端，一种是简陋，附上例子说几行代码就能搞定，讲原理的层次<br>
-    另一种是过度设计，追求无限的灵活性，为了路由而路由，谈艺术的层次<br>
+    各自造轮子，导致一种是极端简陋，另一种是过度设计<br>
 
     <br>
-    前端路由本质上是为了支持浏览器的前进后退操作，能模拟页面跳转但又不跳出当前SPA页<br>
-    因此，rpose控制复杂度，注重易用性，不会一股脑的支持各种功能<br>
-    <ul style="">
-        <li>使用锚点hash模式，暂不支持history模式，因为history模式刷新时需要服务端配合，不科学</li>
-        <li>不支持显式传参，比如#user/:id或#product?code=123，直接暴露业务数据，不安全。通过隐式参数或哈希化参数的方式解决</li>
+    本质上，前端路由是为了支持浏览器的前进后退操作，要既能模拟页面跳转但又不跳出当前SPA页<br>
+    因此，rpose控制复杂度，注重易用性，提供以下功能<br>
+
+    <ul>
+        <li>使用锚点<ui-badge>hash</ui-badge>模式，不支持<ui-badge>history</ui-badge>模式，因为<ui-badge>history</ui-badge>模式刷新时需要服务端配合，不科学</li>
+        <li>不支持显式传参，比如<ui-badge>#user/:id</ui-badge>或<ui-badge>#product?code=123</ui-badge>，直接暴露业务数据，不安全。通过隐式参数或哈希化参数的方式解决</li>
         <li>不支持嵌套路由，每看到一个地址或嵌套组件，需要脑筋也同步嵌套配合，过于复杂化</li>
-        <li>自动检查判断，支持historyApi则优先使用，否则使用hashchange方式实现前端路由</li>
+        <li>自动检查判断，支持<ui-badge>historyApi</ui-badge>则优先使用，否则使用<ui-badge>hashchange</ui-badge>方式实现前端路由</li>
         <li>提供路由组件，声明式组装，通配符式匹配</li>
         <li>提供路由链接组件，组件式传参，透明化内部细节</li>
         <li>提供路由事件，便于切换路由时组件自行按业务控制页面展示</li>
     </ul>
 
-    <br>
-    以下简要介绍用法
-
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.2 使用路由标签</doc-title>
+    <doc-title>8.1 使用路由标签</doc-title>
     通常，页面用路由标签包裹起来，同时指定匹配的路径就行了
 ```rpose
+// demo-router-d1.rpose
 \[view]
 <div>
     <ul>
@@ -33,113 +31,120 @@
         <li><a href="#bar">bar</a></li>
         <li><a href="#baz">baz</a></li>
     </ul>
-    <router path="foo"><page-foo/></router>
-    <router path="bar"><page-bar/></router>
-    <router path="baz"><page-baz/></router>
+    <router path="foo"><section-foo/></router>
+    <router path="bar"><section-bar/></router>
+    <router path="baz"><section-baz/></router>
 </div>
 ```
 
-    这个组件就是简单的把三个页面组件拼成一个SPA页面<br>
-    其中router是个内置的标签组件，path属性指定匹配的路由地址<br>
+    这个组件就是简单的把三个页面组件拼成一个SPA页面，看效果 <a href="demo/demo-router-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    其中router是个内置的标签组件，path属性指定匹配的路由地址
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.3 设定初期默认页面</doc-title>
-    初次加载SPA时，如果路由地址有误，但仍旧希望显示默认路由，加上default属性声明即可
-
+    <doc-title>8.2 路由链接组件</doc-title>
+    锚点链接很难看，语义不够强烈，所以改进为链接组件<br>
+    下面使用内置的<ui-badge>router-link</ui-badge>组件，对a标签进行包装，简化使用<br>
 ```rpose
+// demo-router-d2.rpose
 \[view]
 <div>
     <ul>
-        <li><a href="#foo">foo</a></li>
-        <li><a href="#bar">bar</a></li>
-        <li><a href="#baz">baz</a></li>
+        <li><router-link path="foo">foo</router-link></li>
+        <li><router-link path="bar">bar</router-link></li>
+        <li><router-link path="baz">baz</router-link></li>
+        <li><router-link path="http://gotoeasy.top">http://gotoeasy.top</router-link></li>
+        <li><router-link path="https://gotoeasy.top">https://gotoeasy.top</router-link></li>
+        <li><router-link path="../../index.html">../../index.html</router-link></li>
     </ul>
-    <router path="foo" default><page-foo/></router> <!-- default -->
-    <router path="bar"><page-bar/></router>
-    <router path="baz"><page-baz/></router>
+    <router path="foo"><section-foo/></router>
+    <router path="bar"><section-bar/></router>
+    <router path="baz"><section-baz/></router>
 </div>
 ```
 
-    这里的foo页有default声明，如果初期打开时指定了不存在的路由名，foo页将作为默认页被显示
+    本例<ui-badge>router-link</ui-badge>组件接受<ui-badge>path</ui-badge>属性，代表链接地址，直接使用路由名就行，看效果 <a href="demo/demo-router-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    <ui-badge type="danger">注</ui-badge>如果<ui-badge>path</ui-badge>属性以<ui-badge>http://</ui-badge>或<ui-badge>https://</ui-badge>或<ui-badge>.</ui-badge>开头，将被视为普通链接地址使用
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.4 设定notfound页面</doc-title>
-    SPA加载显示后，切换路由时如果出现错误地址，通常是希望显示404页，这时可以通过notfound属性声明
+    <doc-title>8.3 设定初期默认页面</doc-title>
+    初次加载SPA时，如果路由地址有误，但仍旧希望显示默认路由，加上<ui-badge>default</ui-badge>属性声明即可
+
 ```rpose
+// demo-router-d3.rpose
 \[view]
 <div>
     <ul>
-        <li><a href="#foo">foo</a></li>
-        <li><a href="#bar">bar</a></li>
-        <li><a href="#baz">baz</a></li>
-        <li><a href="#xyz">xyz</a></li>
-    </ul>
-    <router path="foo" default><page-foo/></router> <!-- default -->
-    <router path="bar"><page-bar/></router>
-    <router path="baz"><page-baz/></router>
-    <router notfound>
-        <div style="color:red;font-size:5rem;"><b>404</b></div>
-    </router>
-</div>
-```
-
-    打开后点击xyz，由于不存在xyz的路由，将显示notfound页，地址栏直接输入错误地址也会是同样效果<br>
-    默认页和notfound页都是路由找不到时才显示，区别在于默认页仅适用于初期加载显示时机
-
-
-<!---------------------------------------------------------------------------------------->
-    <doc-title>7.5 通配符匹配路由</doc-title>
-    路由支持使用通配符 * 进行匹配，星号表示任意字符
-```rpose
-\[view]
-<div>
-    <ul>
-        <li><a href="#foo">foo</a></li>
-        <li><a href="#bar">bar</a></li>
-        <li><a href="#baz">baz</a></li>
-    </ul>
-    <router path="foo" default><page-foo/></router> <!-- default -->
-    <router path="bar"><page-bar/></router>
-    <router path="ba*"><page-baz/></router>
-    <router notfound>
-        <div style="color:red;font-size:5rem;"><b>404</b></div>
-    </router>
-</div>
-```
-
-    路由匹配顺序无关、数量无关，可以同时匹配多个，全部匹配的都会被显示
-    本例点击bar链接时，同时匹配bar、baz这2个路由，将会一起显示
-
-
-
-<!---------------------------------------------------------------------------------------->
-    <doc-title>7.6 路由链接组件</doc-title>
-    内置router-link组件，对a标签进行包装，简化使用<br>
-```rpose
-\[view]
-<div>
-    <ul">
         <li><router-link path="foo">foo</router-link></li>
         <li><router-link path="bar">bar</router-link></li>
         <li><router-link path="baz">baz</router-link></li>
     </ul>
-    <router path="foo" default><page-foo/></router> <!-- default -->
-    <router path="bar"><page-bar/></router>
-    <router path="baz"><page-baz/></router>
+    <router path="foo" default><section-foo/></router> <!-- default -->
+    <router path="bar"><section-bar/></router>
+    <router path="baz"><section-baz/></router>
 </div>
 ```
 
-    本例router-link组件接受path属性，代表链接，直接使用路由名就行<br>
-    注：如果path属性以http:或https:或.开头，将被视为普通链接地址使用
-    
+    这里的<ui-badge>foo</ui-badge>页有<ui-badge>default</ui-badge>声明，如果初期打开时指定了不存在的路由名，<ui-badge>foo</ui-badge>页将作为默认页被显示<br>
+    比如用一个不存在的<ui-badge>#xyz</ui-badge>锚点打开 <a href="demo/demo-router-d3.html#xyz" target="_blank"><svgicon src="link" fill="blue"/></a>
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.7 参数传递</doc-title>
-    参数传递，组件router-link按传参方式传入params属性即可，效果上在地址栏不会直接暴露数据<br>
+    <doc-title>8.4 设定notfound页面</doc-title>
+    SPA加载显示后，切换路由时如果出现错误地址，通常是希望显示404页，这时可以通过notfound属性声明
 ```rpose
+// demo-router-d4.rpose
+\[view]
+<div>
+    <ul>
+        <li><router-link path="foo">foo</router-link></li>
+        <li><router-link path="bar">bar</router-link></li>
+        <li><router-link path="baz">baz</router-link></li>
+        <li><router-link path="xyz">xyz</router-link></li>
+    </ul>
+    <router path="foo" default><section-foo/></router> <!-- default -->
+    <router path="bar"><section-bar/></router>
+    <router path="baz"><section-baz/></router>
+    <router notfound><div style="color:red;font-size:5rem;"><b>404</b></div></router>
+</div>
+```
+
+    点击 <a href="demo/demo-router-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a> 打开后点击xyz<br>
+    由于不存在<ui-badge>xyz</ui-badge>的路由，将显示<ui-badge>notfound</ui-badge>页，地址栏直接输入错误地址也会是同样效果<br>
+    <br>
+    <ui-badge type="info">区别</ui-badge>默认页和<ui-badge>notfound</ui-badge>页都是路由找不到时才显示，区别在于默认页仅适用于初期加载显示时机
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>8.5 通配符匹配路由</doc-title>
+    每次仅匹配显示一个路由，经常不够用，要匹配多个路由就使用通配符<br>
+    路由支持使用通配符<ui-badge>*</ui-badge>进行匹配，星号表示任意字符
+```rpose
+// demo-router-d5.rpose
+\[view]
+<div>
+    <ul>
+        <li><router-link path="foo">foo</router-link></li>
+        <li><router-link path="bar">bar</router-link></li>
+        <li><router-link path="baz">baz</router-link></li>
+    </ul>
+    <router path="foo" default><section-foo/></router> <!-- default -->
+    <router path="bar"><section-bar/></router>
+    <router path="ba*"><section-baz/></router>
+    <router notfound><div style="color:red;font-size:5rem;"><b>404</b></div></router>
+</div>
+```
+
+    路由匹配顺序无关、数量无关，可以同时匹配多个，全部匹配的都会被显示<br>
+    本例点击<ui-badge>bar</ui-badge>链接时，同时匹配<ui-badge>bar</ui-badge>、<ui-badge>baz</ui-badge>这2个路由，将会一起显示 <a href="demo/demo-router-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>8.6 参数传递</doc-title>
+    参数传递，组件<ui-badge>router-link</ui-badge>按传参方式传入<ui-badge>params</ui-badge>属性即可，效果上在地址栏不会直接暴露数据<br>
+```rpose
+// demo-router-d6.rpose
 \[view]
 <div>
     <ul>
@@ -165,16 +170,13 @@
 }
 ```
 
-    对于不支持historyApi的浏览器环境，传参数时地址栏将自动使用哈希串避免数据安全问题，同时也能避免参数过长的错误发生<br>
+    <ui-badge type="info">要点1</ui-badge>对于不支持<ui-badge>historyApi</ui-badge>的浏览器环境，传参数时地址栏将自动使用哈希串避免数据安全问题，同时也能避免参数过长的错误发生<br>
+    <ui-badge type="info">要点2</ui-badge>本例出现事件<ui-badge>router.onroute</ui-badge>，在路由切换时将被触发<br>
     <br>
-    本例出现事件router.onroute，在路由切换时将被触发<br>
-    <br>
-    另外，这里用到了[methods]块定义，和[actions]的区别是，[methods]中定义的方法会都会被转译为组件对象的方法<br>
-    在[methods]中的init方法名是约定的初始方法，对象创建后就会被调用，所以可以用来安装相关事件<br>
-    在[methods]中定义的方法如果和内置方法名重复，将会替代原内置方法，比如可以自定义render方法替代默认的render处理逻辑<br>
-    <br>
-    还有，用到了rpose的事件处理接口rpose.on<br>
-    完整的事件接口有on：安装事件函数，off：卸载事件函数，once：安装执行一次就自动卸载的事件函数，at：触发执行事件
+    <ui-badge type="info">扩充1</ui-badge>本例用到了<ui-badge>[methods]</ui-badge>块定义，和<ui-badge>[actions]</ui-badge>的区别是，<ui-badge>[methods]</ui-badge>中定义的方法会都会被转译为组件对象的方法<br>
+    <ui-badge type="info">扩充2</ui-badge>在<ui-badge>[methods]</ui-badge>中的<ui-badge>init</ui-badge>方法名是约定的初始方法，对象创建后就会被调用，所以可以用来安装相关事件<br>
+    <ui-badge type="info">扩充3</ui-badge>在<ui-badge>[methods]</ui-badge>中定义的方法如果和内置方法名重复，将会替代原内置方法，比如可以自定义<ui-badge>render</ui-badge>方法替代默认的<ui-badge>render</ui-badge>处理逻辑<br>
+    <ui-badge type="info">扩充4</ui-badge>本例用到了rpose的事件处理接口，完整的事件接口有<ui-badge>rpose.on</ui-badge>安装事件函数，<ui-badge>rpose.off</ui-badge>卸载事件函数，<ui-badge>rpose.once</ui-badge>安装执行一次就自动卸载的事件函数，<ui-badge>rpose.at</ui-badge>触发执行事件
 
 
 

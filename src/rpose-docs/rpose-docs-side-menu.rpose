@@ -19,7 +19,22 @@
         </router-link>
     </li>
     <li>
-        <ui-line margin="20px 0 20px 0" color="#aaa"/>
+        <ui-line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
+    </li>
+    <li>
+        <router-link path="buildin" title="内置标签组件">
+            <svgicon src="component" height="16" width="16"/>
+            <span>内置标签组件</span>
+        </router-link>
+    </li>
+    <li>
+        <router-link path="at" title="内置指令集">
+            <svgicon src="@fortawesome/fontawesome-free:at" height="16" width="16"/>
+            <span>内置指令集</span>
+        </router-link>
+    </li>
+    <li>
+        <ui-line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
     </li>
     <li>
         <router-link path="slot" title="插槽">
@@ -31,12 +46,6 @@
         <router-link path="prerender" title="预渲染">
             <svgicon src="@fortawesome/fontawesome-free:brush" height="16" width="16"/>
             <span>预渲染</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="at" title="内置指令集">
-            <svgicon src="@fortawesome/fontawesome-free:at" height="16" width="16"/>
-            <span>内置指令集</span>
         </router-link>
     </li>
     <li>
@@ -59,12 +68,12 @@
     </li>
     <li>
         <router-link path="svgicon" title="图标标签">
-            <svgicon src="@fortawesome/fontawesome-free:s*/file-image" height="16" width="16"/>
+            <svgicon src="icon" height="16" width="16"/>
             <span>图标标签</span>
         </router-link>
     </li>
     <li>
-        <ui-line margin="20px 0 20px 0" color="#aaa"/>
+        <ui-line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
     </li>
     <li>
         <router-link path="todo" title="TODO">

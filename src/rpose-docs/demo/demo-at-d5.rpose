@@ -1,0 +1,18 @@
+[view]
+<ul>
+    <li>
+        <ref-button @taglib="ui-button=@rpose/ui-button:ui-button">@taglib="ui-button=@rpose/ui-button:ui-button"</ref-button>
+    </li>
+    <li>
+        <aaa-button @taglib="@rpose/ui-button:ui-button">@taglib="@rpose/ui-button:ui-button"</aaa-button>
+    </li>
+    <li>
+        <ui-button @taglib="@rpose/ui-button:ui-button">@taglib="@rpose/ui-button:ui-button"</ui-button>
+    </li>
+    <li>
+        <ui-button @taglib="@rpose/ui-button">@taglib="@rpose/ui-button"</ui-button>
+    </li>
+</ul>
+
+[mount]
+body

@@ -1,0 +1,12 @@
+[view]
+<div>
+    <for @for="(v, i) in $state.items">
+        <span>No.{i} ...... {v}</span><br>
+    </for>
+</div>
+
+[state]
+{ items: ['foo', 'bar', 'baz'] }
+
+[mount]
+body

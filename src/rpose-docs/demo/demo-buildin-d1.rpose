@@ -1,0 +1,12 @@
+[view]
+<div>
+    <if @if={true}>
+        <span>true</span>
+    </if>
+    <if @if={false}>
+        <span>false</span> <!-- 不满足条件时不会渲染 -->
+    </if>
+</div>
+
+[mount]
+body

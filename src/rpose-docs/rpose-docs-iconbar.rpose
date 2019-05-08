@@ -13,17 +13,20 @@
             <svgicon src="@fortawesome/fontawesome-free:check"/>
         </router-link>
 
-        <ui-line margin="0px 0 20px 0" color="#aaa"/>
+        <ui-line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
+        <router-link path="buildin" title="内置标签组件">
+            <svgicon src="component"/>
+        </router-link>
+        <router-link path="at" title="内置指令集">
+            <svgicon src="@fortawesome/fontawesome-free:at"/>
+        </router-link>
+        <ui-line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
 
         <router-link path="slot" title="插槽">
             <svgicon src="@fortawesome/fontawesome-free:s*/list-alt"/>
         </router-link>
         <router-link path="prerender" title="预渲染">
             <svgicon src="@fortawesome/fontawesome-free:brush"/>
-        </router-link>
-
-        <router-link path="at" title="内置指令集">
-            <svgicon src="@fortawesome/fontawesome-free:at"/>
         </router-link>
         <router-link path="router" title="前端路由">
             <svgicon src="@fortawesome/fontawesome-free:random"/>
@@ -38,7 +41,8 @@
             <svgicon src="@fortawesome/fontawesome-free:s*/file-image"/>
         </router-link>
 
-        <ui-line margin="0px 0 20px 0" color="#aaa"/>
+        <ui-line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
+
         <router-link path="todo" title="TODO">
             <svgicon src="@fortawesome/fontawesome-free:check"/>
         </router-link>
@@ -66,8 +70,8 @@
     }
     & svg:hover {
         fill: #fff;
-        margin-top: -3px;
-        margin-left: -3px;
+        margin-top: 2px;
+        margin-left: -1px;
         width: 30px;
         height: 30px;
     }

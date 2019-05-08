@@ -1,0 +1,117 @@
+[view]
+<div @class="box-sizing--border-box padding-0_20px_20px_20px">
+
+    <doc-title>内置标签组件</doc-title>
+    rpose框架内置了一些类似于语法糖的标签<br>
+    同时，也有个内置npm包<ui-badge>@rpose/buildin</ui-badge>，提供个别特殊用途组件<br>
+    <br>
+    这些内置组件都可以直接使用
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>4.1 <![CDATA[<if>...</if>]]>标签</doc-title>
+    很简单，<ui-badge type="info">注意</ui-badge>要用<ui-badge>@if</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+```rpose
+// demo-buildin-d1.rpose
+\[view]
+<div>
+    <if @if={true}>
+        <span>true</span>
+    </if>
+    <if @if={false}>
+        <span>false</span> <!-- 不满足条件时不会渲染 -->
+    </if>
+</div>
+```
+
+    这个<ui-badge>if</ui-badge>标签设计上只是指令<ui-badge>@if</ui-badge>的语法糖
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>4.2 <![CDATA[<for>...</for>]]>标签</doc-title>
+    也很简单，<ui-badge type="info">注意</ui-badge>要用<ui-badge>@for</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+```rpose
+// demo-buildin-d2.rpose
+\[view]
+<div>
+    <for @for="(v, i) in items">
+        <span>No.{i} ...... {v}</span>
+    </for>
+</div>
+
+\[state]
+{ items: ['foo', 'bar', 'baz'] }
+```
+
+    <ui-badge type="err">注意，循环标签仅适用于 array</ui-badge>，其他不常用的对象集合之类的遍历，基于精简目的未做支持<br>
+    <br>
+    指令<ui-badge>@for</ui-badge>的写法稍微有点丰富<br>
+    完整的比如<ui-badge>@for="(value, index from i max m) in array"</ui-badge>，详细可查看指令章节<br>
+    这个<ui-badge>for</ui-badge>标签设计上只是指令<ui-badge>@for</ui-badge>的语法糖
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>4.3 语法高亮组件</doc-title>
+    那个md语法高亮写法<ui-badge>```</ui-badge>很方便，所以仿照着实现一个作为内置组件了<br>
+```
+// 可以指定语言名，以及高度
+\```js max-height=300px
+    let name = 'foo'; // ```js max-height=300px
+\```
+// max-height是表达一个免于误解的意思
+// 设计上可以直接写高度，px也可以省略，语言名也是可以省略，比如以下写法都是可以
+\```js 300px
+    let name = 'foo'; // ```js 300px
+\```
+
+\```js 300
+    let name = 'foo'; // ```js 300
+\```
+
+\```
+    let name = 'foo'; // ```js
+\```
+```
+
+效果如下
+```js max-height=300px
+    let name = 'foo'; // ```js max-height=300px
+```
+```js 300px
+    let name = 'foo'; // ```js 300px
+```
+```js 300
+    let name = 'foo'; // ```js 300
+```
+```
+    let name = 'foo'; // ```js
+```
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>4.4 内置路由组件<![CDATA[<router>...</router>]]>标签</doc-title>
+    
+    <router-link path="router" title="前端路由">前端路由</router-link>中作专节介绍
+
+        
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>4.5 内置路由链接组件<![CDATA[<router-link>...</router-link>]]>标签</doc-title>
+
+    <router-link path="router" title="前端路由">前端路由</router-link>中作专节介绍
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>4.6 内置SVG图标组件<![CDATA[<svgicon/>]]>标签</doc-title>
+
+    <router-link path="svgicon" title="图标标签">图标标签</router-link>中作专节介绍
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>小结</doc-title>
+    内置了个别语法糖标签<br>
+    通过npm包<ui-badge>@rpose/buildin</ui-badge>内置提供个别特殊用途组件<br>
+    包<ui-badge>@rpose/buildin</ui-badge>中还提供少数常用图标可直接使用
+
+
+    <doc-footer>青松 2019.05</doc-footer>
+
+</div>

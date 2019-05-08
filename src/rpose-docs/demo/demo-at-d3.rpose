@@ -1,0 +1,32 @@
+[api]
+statekeys = items
+
+[view]
+<ul>
+    <li><ui-badge @ref="badge">微标1</ui-badge></li>
+    <li><ui-badge @ref="badge">微标2</ui-badge></li>
+    <li @ref="li"><input @ref="stdtag"></li>
+    <li><button @ref="stdtag" onclick="click">按钮</button></li>
+</ul>
+
+[actions]
+{
+    click: e=> {
+        let comp = this.getRefComponent('badge');
+        alert('comp: ' + comp);
+        let comps = this.getRefComponents('badge');
+        alert('comps: ' + comps);
+        let el = this.getRefElement('stdtag');
+        alert('el: ' + el);
+        let els = this.getRefElements('stdtag');
+        alert('els: ' + els);
+        let li = this.getRefElement('li');
+        alert('li: ' + li);
+        let ul = this.getRootElement();
+        alert('ul: ' + ul);
+        console.info(comp, comps, el, els, li, ul);
+    }
+}
+
+[mount]
+body

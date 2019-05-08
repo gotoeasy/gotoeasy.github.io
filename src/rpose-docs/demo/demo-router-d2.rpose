@@ -1,0 +1,17 @@
+[view]
+<div>
+    <ul>
+        <li><router-link path="foo">foo</router-link></li>
+        <li><router-link path="bar">bar</router-link></li>
+        <li><router-link path="baz">baz</router-link></li>
+        <li><router-link path="http://gotoeasy.top">http://gotoeasy.top</router-link></li>
+        <li><router-link path="https://gotoeasy.top">https://gotoeasy.top</router-link></li>
+        <li><router-link path="../../index.html">../../index.html</router-link></li>
+    </ul>
+    <router path="foo"><section-foo/></router>
+    <router path="bar"><section-bar/></router>
+    <router path="baz"><section-baz/></router>
+</div>
+
+[mount] // 挂载显示
+body

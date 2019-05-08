@@ -2,7 +2,7 @@
 prerender = loader // loader （旋转动画），loader-section（旋转动画加芝麻开门）
 
 [view]
-<layout-shm @taglib="@rpose/ui-layout">
+<layout-shm @taglib="@rpose/ui-layout" side-bgcolor="darkslategrey">
     <div slot="side-menubar">
         <rpose-docs-menubar />
     </div>
@@ -17,23 +17,30 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
         <router path="quickstart"><doc-quickstart/></router>
         <router path="setup"><doc-setup/></router>
 
-        <router path="prerender"><doc-prerender/></router>
-
+        <router path="buildin"><doc-buildin/></router>
         <router path="at"><doc-at/></router>
-        <router path="slot"><doc-slot/></router>
-        <router path="router"><doc-router/></router>
 
+        <router path="slot"><doc-slot/></router>
+        <router path="prerender"><doc-prerender/></router>
+        <router path="router"><doc-router/></router>
         <router path="taglib"><doc-taglib/></router>
         <router path="csslib"><doc-csslib/></router>
         <router path="svgicon"><doc-svgicon/></router>
 
         <router path="todo"><doc-todo/></router>
+
+        <router notfound>
+            <div @class="height-50vh display-flex justify-content-center align-items-center">
+                <svgicon src="404" fill="#dc483d" height="128"/>
+            </div>
+        </router>
+
     </div>
 </layout-shm>
 
 [css]
 body{
-    line-height: 1.3;
+    line-height: 1.5;
 }
 
 [mount]

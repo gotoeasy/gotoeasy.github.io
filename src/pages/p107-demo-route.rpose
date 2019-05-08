@@ -228,9 +228,9 @@ body
         
 <br>
 <ui-line/>
-        <ui-button value="6 插槽与布局应用例子" onclick="pre" />
+        <ui-btn value="6 插槽与布局应用例子" onclick="pre" />
         <span style="margin:0 80px 0 0"></span>
-        <ui-button value="8 下一个姿势（TODO）" onclick="next" disabled />
+        <ui-btn value="8 下一个姿势（TODO）" onclick="next" disabled />
     </div>
 
 

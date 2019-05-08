@@ -1,0 +1,11 @@
+[api]
+statekeys = role
+
+[view]
+<div>
+    <span @show={role === 'admin'}>管理员</span>
+    <span @show={role !== 'admin'}>请以管理员登录</span>
+</div>
+
+[mount]
+body
