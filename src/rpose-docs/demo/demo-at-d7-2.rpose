@@ -1,0 +1,5 @@
+[view]
+<h1 class="animated infinite bounce delay-2s" @csslib="animate.css">Example</h1>
+
+[mount]
+body

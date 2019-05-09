@@ -1,0 +1,9 @@
+[view]
+<div @class="height-50vh display-flex flex-direction-column overflow-hidden color-#333">
+    <div @class="height-50px color-#fff bgcolor-#555">Header</div> 
+    <div @class="height--calc(50vh_-_80px) bgcolor-#eee">Main</div> 
+    <div @class="height-30px bgcolor-#d5d5d5">Footer</div> 
+</div> 
+
+[mount]
+body

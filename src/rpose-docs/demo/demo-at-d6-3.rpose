@@ -1,0 +1,7 @@
+[view]
+<button type="button" class="btn btn-primary" @csslib="bootstrap">
+    @csslib="bootstrap"
+</button>
+
+[mount]
+body

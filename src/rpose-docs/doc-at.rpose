@@ -206,15 +206,155 @@ statekey = role
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>5.6 指令 @csslib</doc-title>
+    指令<ui-badge>@csslib</ui-badge>是个样式库的概念<br>
+    历史原因众多框架遗留了很多样式，弃之不用非常可惜，样式库思路的目的就是把它们复用起来<br>
+    <br>
+    <ui-badge type="info">特点</ui-badge>就是把既有样式当库使用，而且是按需使用
+
+```rpose
+// demo-at-d6-1.rpose
+\[view]
+<button type="button" class="btn@bs btn-primary@bs" @csslib="bs=bootstrap:**.min.css">
+    this is a bootstrap primary button
+</button>
+```
+
+    这样就是创建了一个bootstrap primary button，看看效果 <a href="demo/demo-at-d6-1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    查看源码可知，所需样式会自动引用，用不到的没有引用，nice pose<br>
+    <br>
+    <ui-badge type="info">@csslib语法：</ui-badge>@csslib="<ui-badge>alias</ui-badge>=<ui-badge>npm-package-name</ui-badge>:<ui-badge>filter</ui-badge>"<br>
+    比如例子中的<ui-badge>bs=bootstrap:**.min.css</ui-badge><br>
+    意思就是，导入bootstrap包中任意以<ui-badge>.min.css</ui-badge>结尾的样式作为一个样式库，别名起为<ui-badge>bs</ui-badge><br>
+    然后，就可以使用别名来写样式名了，像上面的<ui-badge>btn@bs</ui-badge><br>
+
+    <br>
+    <br>
+    <ui-badge type="info">文件过滤器可以省略</ui-badge><br>
+    文件过滤器缺省为<ui-badge>**.min.css</ui-badge>，如下所示，看看效果 <a href="demo/demo-at-d6-2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    过滤器单个<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名
+```rpose
+// demo-at-d6-2.rpose
+\[view]
+<button type="button" class="btn@bs btn-primary@bs" @csslib="bs=bootstrap">
+    @csslib="bs=bootstrap"
+</button>
+```
+    
+    <br>
+    <br>
+    <ui-badge type="info">别名也可以省略</ui-badge><br>
+```rpose
+// demo-at-d6-3.rpose
+\[view]
+<button type="button" class="btn btn-primary" @csslib="bootstrap">
+    @csslib="bootstrap"
+</button>
+```
+    看看效果 <a href="demo/demo-at-d6-3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    
+    <br>
+```rpose
+// demo-at-d6-4.rpose
+\[view]
+<button type="button" class="btn btn-primary" @csslib="*=bootstrap">
+    @csslib="*=bootstrap"
+</button>
+```
+    别名缺省时实际等同于<ui-badge>*</ui-badge>，看看效果<a href="demo/demo-at-d6-4.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+
+    <br>
+    <br>
+    <ui-badge type="info">@csslib仅针对当前标签有效</ui-badge><br>
+```rpose
+// demo-at-d6-5.rpose
+\[view]
+<ul>
+    <li>
+        <button type="button" class="btn btn-primary" @csslib="bootstrap">
+            this is a bootstrap primary button
+        </button>
+    </li>
+    <li>
+        <button type="button" class="btn btn-primary">
+            this is a simple button
+        </button>
+    </li>
+</ul>
+```
+这个效果应该是第二个按钮的样式和bootstrap无关 <a href="demo/demo-at-d6-5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+
+    <br>
+    <br>
+    <ui-badge type="danger">指令 @csslib 的使用注意点</ui-badge><br>
+    <ui-badge type="info">1</ui-badge>建议使用别名，像上面例子虽然样式名一样但效果却不同，容易令人困惑<br>
+    <ui-badge type="info">2</ui-badge>样式库别名不能重复，否则编译失败<br>
+    <ui-badge type="info">3</ui-badge>样式库别名和<ui-badge>[csslib]</ui-badge>定义不能有冲突，否则编译失败<br>
+    <br>
+    在 <router-link path="csslib" title="样式库">样式库</router-link> 中有关于样式库的专节介绍
+
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>5.7 指令 @class</doc-title>
+    关于样式还有一种原子化的写法，能精细控制，很有趣<br>
+    就像写内联style一样一个一个写，最终会生成为css
+
+```rpose
+// demo-at-d7-1.rpose
+\[view]
+<div @class="height-50vh display-flex flex-direction-column overflow-hidden color-#333">
+    <div @class="height-50px color-#fff bgcolor-#555">Header</div> 
+    <div @class="height--calc(50vh_-_80px) bgcolor-#eee">Main</div> 
+    <div @class="height-30px bgcolor-#d5d5d5">Footer</div> 
+</div> 
+```rpose
+
+就是这样，看效果 <a href="demo/demo-at-d7-1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+想随手直接写写时会很方便<br>
+
+    <br>
+    <br>
+    <ui-badge type="info">原子化 @class 写法的重要特点</ui-badge><br>
+    如果只能图个随手方便，那也许没有设计必要<br>
+    这个指令的重要特点是能在编译期<ui-badge type="danger">动态生成样式</ui-badge><br>
+
+```rpose
+// demo-at-d7-2.rpose
+// 在animate.css上有个动画例子，延迟2秒后开始动画
+// <h1 class="animated infinite bounce delay-2s">Example</h1>
+// 这里简单加上@csslib="animate.css"，让它跑起来看看效果
+\[view]
+<h1 class="animated infinite bounce delay-2s" @csslib="animate.css">Example</h1>
+```rpose
+
+    点击看看效果 <a href="demo/demo-at-d7-2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    <br>
+    想自定义修改吗？如果你想改这个动画时间为2.345秒，通常会有点费劲，因为它没有默认提供得自己写嘛<br>
+    但使用<ui-badge>@class</ui-badge>可就简单极了<br>
+
+```rpose
+\[view]
+<h1 class="animated infinite bounce delay-2s" @csslib="animate.css"
+    @class="animation-duration-2.345s">Example</h1>
+```
+    点击看看效果 <a href="demo/demo-at-d7-3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    很直观，根据需要你可以改为1280ms或789ms之类，任性调整到你满意为止<br>
+
+
+
+    <br>
+    <br>
+    <ui-badge type="danger">最后介绍指令 @class 的使用注意点</ui-badge><br>
+    <ui-badge type="info">1</ui-badge>优先以第一个<ui-badge>--</ui-badge>作为分割点解析得样式属性和属性值<br>
+    <ui-badge type="info">2</ui-badge>没有<ui-badge>--</ui-badge>时以最后一个<ui-badge>-</ui-badge>作为分割点解析得样式属性和属性值<br>
+    <ui-badge type="info">3</ui-badge>属性值包含空格时，空格固定用下划线<ui-badge>_</ui-badge>替换<br>
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
-
+    本章节介绍了rpose的全部指令用法<br>
+    <ui-badge>@taglib</ui-badge>、<ui-badge>@csslib</ui-badge>、<ui-badge>@class</ui-badge>都是很有特色的指令<br>
+    有好姿势指令时，将会继续添加<br>
    
     <doc-footer>青松 2019.05</doc-footer>
 

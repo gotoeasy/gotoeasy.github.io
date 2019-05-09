@@ -1,0 +1,16 @@
+[view]
+<ul>
+    <li>
+        <button type="button" class="btn btn-primary" @csslib="bootstrap">
+            this is a bootstrap primary button
+        </button>
+    </li>
+    <li>
+        <button type="button" class="btn btn-primary">
+            this is a simple button
+        </button>
+    </li>
+</ul>
+
+[mount]
+body
