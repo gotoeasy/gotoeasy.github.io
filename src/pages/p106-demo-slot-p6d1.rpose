@@ -1,8 +1,0 @@
-[view]
-<demo-slot-component>
-    <template slot="my-slot1"><div>hello slot1</div></template>
-    <div slot="my-slot2"><div>hello slot2</div></div>
-</demo-slot-component>
-
-[mount]
-body

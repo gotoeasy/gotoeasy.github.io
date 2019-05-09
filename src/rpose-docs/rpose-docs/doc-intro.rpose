@@ -11,7 +11,7 @@
     
     <br>
     问：能写得比它们还好？<br>
-    答：rpose更讲究姿势，远离颈椎病<br>
+    答：rpose是<ui-badge>面向姿势</ui-badge>编程，能远离颈椎病<br>
 
     <br>
     问：rpose有什么特点？<br>
@@ -57,17 +57,22 @@ NNNNNNNNNNNNNNNN
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.2 组件式开发</doc-title>
     沿用习惯，rpose简化的把一切都作组件看待，比如页面也是组件<br>
-    一个组件对应一个<ui-badge>.rpose</ui-badge>文件<br>
-    文件所在路径包含<ui-badge>components</ui-badge>目录的，都视为单纯组件<br>
+    一个组件对应一个<ui-badge>.rpose</ui-badge>源文件<br>
     <br>
-    更多文件目录结构内容，详见工程配置<br>
+    鉴于文件管理习惯，另有如下规则
+    <br>
+    <ui-badge type="info">规则1</ui-badge>源文件所在路径包含<ui-badge>components</ui-badge>目录的，都视为单纯组件<br>
+    <ui-badge type="info">规则2</ui-badge>源文件名内不含<ui-badge>[mount]</ui-badge>声明的，都视为单纯组件<br>
+    <ui-badge type="info">规则3</ui-badge>源文件所在路径不含<ui-badge>components</ui-badge>且内容中有<ui-badge>[mount]</ui-badge>声明的，都视为页面组件，工程内的全部页面组件最终都将被打包成页面<br>
+    <ui-badge type="info">规则4</ui-badge>源文件名不能重复，如果同一工程内不同目录间有同名文件，仅其中一个有效<br>
+    <ui-badge type="info">规则5</ui-badge>源文件名有限制，仅能使用字母数字减号下划线<ui-badge>[a-zA-Z0-9_-]</ui-badge>，且必须以字母开头，若文件名不符规则该文件将被忽略<br>
 
    
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.3 约定的文本块写法</doc-title>
     rpose常用块名有<ui-badge>[api]</ui-badge>、<ui-badge>[view]</ui-badge>、<ui-badge>[options]</ui-badge>、<ui-badge>[state]</ui-badge>、<ui-badge>[actions]</ui-badge>、<ui-badge>[css]</ui-badge>、<ui-badge>[mount]</ui-badge>等<br>
-    <ui-badge type="danger">注</ui-badge>块名可能会根据实际应用情况调整<br>
+    <ui-badge type="danger">注</ui-badge>块名可能会因版本升级而调整，注意版本差异<br>
     <br>
     块名用途分别说明如下
 

@@ -16,21 +16,18 @@ statekey = role
 
 \[view]
 <div>
-    <if @if={role === 'admin'}>
-        <span>管理员</span>
-    </if>
-    <if @if={role !== 'admin'}>
-        <span>请以管理员登录</span>
-    </if>
+    <span @if={role === 'admin'}>管理员</span>
+    <span @if={role !== 'admin'}>请以管理员身份登录</span>
 </div>
 
 \[mount]
 body
 ```
 
-简单的表达式判断而已，看看效果 <a href="demo/demo-at-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-没有所谓的<ui-badge>@else</ui-badge>，没必要
-
+    简单的表达式判断而已，看看效果 <a href="demo/demo-at-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    没有设计所谓的<ui-badge>@else</ui-badge>，没必要<br>
+    <br>
+    如果要控制多个节点是否渲染，可以使用<ui-badge>{'<if></if>'}</ui-badge>标签
 
 
 <!---------------------------------------------------------------------------------------->
@@ -90,13 +87,14 @@ body
 ```
 
     看看效果 <a href="demo/demo-at-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    如果循环内容包含多个节点，可以使用<ui-badge>{'<for></for>'}</ui-badge>标签
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>5.3 指令 @ref</doc-title>
     和react等是一个意思，设定一个名称，以方便直接引用该组件或节点<br>
     <br>
-    <ui-badge type="info">特点1</ui-badge>逐渐范围内名称不要求唯一，如果重复结果就是一起取到<br>
+    <ui-badge type="info">特点1</ui-badge>组件范围内名称不要求唯一，如果重复结果就是一起取到<br>
     <ui-badge type="info">特点2</ui-badge>通过组件内置方法取，而不是refs属性
 
 ```rpose 380px
@@ -112,17 +110,17 @@ body
 \[actions]
 {
     click: e=> {
-        let comp = this.getRefComponent('badge');
+        let comp = this.getRefComponent('badge');   // 取指定名的第一个组件
         alert('comp: ' + comp);
-        let comps = this.getRefComponents('badge');
+        let comps = this.getRefComponents('badge'); // 取指定名的全部组件
         alert('comps: ' + comps);
-        let el = this.getRefElement('stdtag');
+        let el = this.getRefElement('stdtag');      // 取指定名的第一个节点
         alert('el: ' + el);
-        let els = this.getRefElements('stdtag');
+        let els = this.getRefElements('stdtag');    // 取指定名的全部节点
         alert('els: ' + els);
-        let li = this.getRefElement('li');
+        let li = this.getRefElement('li');          // 取指定名的第一个节点
         alert('li: ' + li);
-        let ul = this.getRootElement();
+        let ul = this.getRootElement();             // 取当前组件的根节点
         alert('ul: ' + ul);
         console.info(comp, comps, el, els, li, ul);
     }
@@ -149,7 +147,7 @@ statekey = role
 \[view]
 <div>
     <span @show={role === 'admin'}>管理员</span>
-    <span @show={role !== 'admin'}>请以管理员登录</span>
+    <span @show={role !== 'admin'}>请以管理员身份登录</span>
 </div>
 ```
 
@@ -158,37 +156,53 @@ statekey = role
 两个span节点都渲染了，只是其中一个为<ui-badge>style="display: none;"</ui-badge><br>
 
 <br>
-<ui-badge type="info">注意到显示的时候 style="display: block;"</ui-badge><br>
-实际上布局不一定是<ui-badge>block</ui-badge>，所以还支持以修饰符的方式指定显示方式<br>
-比如<ui-badge type="info">@show.flex</ui-badge>，这样显示的时候就是<ui-badge>style="display: flex;"</ui-badge>了
+注意到显示的时候<ui-badge>style="display: block;"</ui-badge><br>
+而实际上布局不一定是<ui-badge>block</ui-badge>，所以还支持以修饰符的方式指定显示方式<br>
+比如<ui-badge type="info">@show.flex</ui-badge>，这样显示的时候就是<ui-badge>style="display: flex;"</ui-badge>了<br>
+<br>
+<ui-badge type="error">注意</ui-badge>修饰符有合法性检查，使用无效修饰符将编译失败
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>5.5 指令 @taglib</doc-title>
-    使用第三方组件时，总是require或者import ...... 会手酸的<br>
-    rpose提供此指令，以声明的方式使用第三方组件，舒服多了
+    使用第三方组件时，总是require或import ...... 会手酸<br>
+    rpose提供指令<ui-badge>@taglib</ui-badge>，以声明的方式使用第三方组件
 
 ```rpose
 // demo-at-d5.rpose
 \[view]
 <ul>
     <li>
-        <ref-button @taglib="ui-button=@rpose/ui-button:ui-button">@taglib="ui-button=@rpose/ui-button:ui-button"</ref-button>
+        <this-is-ui-button @taglib="@rpose/ui-button:ui-button">this-is-ui-button</this-is-ui-button>
     </li>
     <li>
-        <aaa-button @taglib="@rpose/ui-button:ui-button">@taglib="@rpose/ui-button:ui-button"</aaa-button>
+        <ui-button @taglib="@rpose/ui-button">ui-button</ui-button>
     </li>
     <li>
-        <ui-button @taglib="@rpose/ui-button:ui-button">@taglib="@rpose/ui-button:ui-button"</ui-button>
-    </li>
-    <li>
-        <ui-button @taglib="@rpose/ui-button">@taglib="@rpose/ui-button"</ui-button>
+        <@ui-button @taglib="@rpose/ui-button">@ui-button</@ui-button>
     </li>
 </ul>
 ```
 
-注意看上面的各种写法区别，看看效果 <a href="demo/demo-at-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+先体会一下上面各种不同写法，虽然结果都是使用了同样的第三方组件，看看效果 <a href="demo/demo-at-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
 <br>
+<ui-badge type="info">@taglib语法：</ui-badge>@taglib="<ui-badge>npm-package-name</ui-badge>:<ui-badge>component-name</ui-badge>"<br>
+如果当前标签名和要引用的组件标签名一样，则可以省略为 @taglib="<ui-badge>npm-package-name</ui-badge>"<br>
+比如上面的<ui-badge>{'<ui-button @taglib="@rpose/ui-button">'}</ui-badge><br>
+<br>
+<ui-badge type="error">标签名限制1</ui-badge>不能使用标准标签名，比如<ui-badge>div</ui-badge>或<ui-badge>span</ui-badge>，以免引起混淆<br>
+<ui-badge type="error">标签名限制2</ui-badge>不能使用当前工程内已有组件名，同样是为避免混淆<br>
+比如已有<ui-badge>ui-button.rpose</ui-badge>文件时，上面<ui-badge>{'<ui-button @taglib="...">'}</ui-badge>将会编译失败<br>
+为了解决这个冲突，又能达到醒目提示的目的，标签名可以加上前缀<ui-badge>@</ui-badge>，比如上面的<ui-badge>@ui-button</ui-badge><br>
 
+<br>
+设计上给予<ui-badge>@taglib</ui-badge>所在标签名更多的语义灵活性，你可以根据实际需要取名<br>
+比如上面的<ui-badge>this-is-ui-button</ui-badge><br>
+通常若无特别语义要求，推荐使用@前缀标签名写法，如上面的<ui-badge>@ui-button</ui-badge><br>
+
+<br>
+<ui-badge type="info">提示</ui-badge><br>
+指令<ui-badge>@taglib</ui-badge>仅对当前所在标签有效<br>
+标签库的目的是为方便使用第三方组件，更多用法在 <router-link path="taglib" title="标签库">标签库</router-link> 中有专节介绍
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>5.6 指令 @csslib</doc-title>

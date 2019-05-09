@@ -1,9 +1,0 @@
-[view]
-<demo-layout>
-    <div slot="header">header</div> 
-    <div slot="menu">menu</div> 
-    <div slot="page">page</div> 
-</demo-layout>
-
-[mount]
-body

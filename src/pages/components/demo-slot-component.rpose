@@ -1,6 +1,0 @@
-[view]
-<ul>
-    <li><slot name="my-slot1"></slot></li>
-    <li><slot name="my-slot2"></slot></li>
-</ul>
-

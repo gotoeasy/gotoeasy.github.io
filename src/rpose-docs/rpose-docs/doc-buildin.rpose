@@ -9,7 +9,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>4.1 <![CDATA[<if>...</if>]]>标签</doc-title>
+    <doc-title>4.1 {'<if>...</if>'}标签</doc-title>
     很简单，<ui-badge type="info">注意</ui-badge>要用<ui-badge>@if</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a>
 ```rpose
 // demo-buildin-d1.rpose
@@ -24,7 +24,7 @@
 </div>
 ```
 
-    这个<ui-badge>if</ui-badge>标签设计上只是指令<ui-badge>@if</ui-badge>的语法糖
+    这个<ui-badge>{'<if></if>'}</ui-badge>标签设计上只是指令<ui-badge>@if</ui-badge>的语法糖
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>4.2 <![CDATA[<for>...</for>]]>标签</doc-title>
@@ -46,7 +46,7 @@
     <br>
     指令<ui-badge>@for</ui-badge>的写法稍微有点丰富<br>
     完整的比如<ui-badge>@for="(value, index from i max m) in array"</ui-badge>，详细可查看指令章节<br>
-    这个<ui-badge>for</ui-badge>标签设计上只是指令<ui-badge>@for</ui-badge>的语法糖
+    这个<ui-badge>{'<for></for>'}</ui-badge>标签设计上只是指令<ui-badge>@for</ui-badge>的语法糖
 
 
 <!---------------------------------------------------------------------------------------->
@@ -89,20 +89,20 @@
 <!---------------------------------------------------------------------------------------->
     <doc-title>4.4 内置路由组件<![CDATA[<router>...</router>]]>标签</doc-title>
     
-    <router-link path="router" title="前端路由">前端路由</router-link>中作专节介绍
+    在 <router-link path="router" title="前端路由">前端路由</router-link> 中有专节介绍
 
         
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>4.5 内置路由链接组件<![CDATA[<router-link>...</router-link>]]>标签</doc-title>
 
-    <router-link path="router" title="前端路由">前端路由</router-link>中作专节介绍
+    在 <router-link path="router" title="前端路由">前端路由</router-link> 中有专节介绍
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>4.6 内置SVG图标组件<![CDATA[<svgicon/>]]>标签</doc-title>
 
-    <router-link path="svgicon" title="图标标签">图标标签</router-link>中作专节介绍
+    在 <router-link path="svgicon" title="图标标签">图标标签</router-link> 中有专节介绍
 
 
 <!---------------------------------------------------------------------------------------->

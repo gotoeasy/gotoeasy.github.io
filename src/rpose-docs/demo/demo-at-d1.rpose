@@ -3,12 +3,8 @@ statekeys = role
 
 [view]
 <div>
-    <if @if={role === 'admin'}>
-        <span>管理员</span>
-    </if>
-    <if @if={role !== 'admin'}>
-        <span>请以管理员登录</span>
-    </if>
+    <span @if={role === 'admin'}>管理员</span>
+    <span @if={role !== 'admin'}>请以管理员身份登录</span>
 </div>
 
 [mount]

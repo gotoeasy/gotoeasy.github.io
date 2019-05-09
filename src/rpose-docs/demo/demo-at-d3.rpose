@@ -12,17 +12,17 @@ statekeys = items
 [actions]
 {
     click: e=> {
-        let comp = this.getRefComponent('badge');
+        let comp = this.getRefComponent('badge');   // 取指定名的第一个组件
         alert('comp: ' + comp);
-        let comps = this.getRefComponents('badge');
+        let comps = this.getRefComponents('badge'); // 取指定名的全部组件
         alert('comps: ' + comps);
-        let el = this.getRefElement('stdtag');
+        let el = this.getRefElement('stdtag');      // 取指定名的第一个节点
         alert('el: ' + el);
-        let els = this.getRefElements('stdtag');
+        let els = this.getRefElements('stdtag');    // 取指定名的全部节点
         alert('els: ' + els);
-        let li = this.getRefElement('li');
+        let li = this.getRefElement('li');          // 取指定名的第一个节点
         alert('li: ' + li);
-        let ul = this.getRootElement();
+        let ul = this.getRootElement();             // 取当前组件的根节点
         alert('ul: ' + ul);
         console.info(comp, comps, el, els, li, ul);
     }

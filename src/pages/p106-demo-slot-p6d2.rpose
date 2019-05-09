@@ -1,7 +1,0 @@
-[view]
-<demo-slot-component-default>
-    hello slot
-</demo-slot-component-default>
-
-[mount]
-body

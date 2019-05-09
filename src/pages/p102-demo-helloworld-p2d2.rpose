@@ -1,7 +1,0 @@
-// 文件名 p102-demo-helloworld-p2d2.btf
-
-[view]
-<ui-helloworld/>
-
-[mount] // 挂载显示
-body

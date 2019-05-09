@@ -186,17 +186,17 @@ optionkeys = height, width, color, margin
     这个按钮组件能修改状态<br>
     通过<ui-badge>statekeys</ui-badge>声明看出，仅有<ui-badge>value</ui-badge>和<ui-badge>disabled</ui-badge>能改，也就是只能改按钮文字以及是否禁用
 ```rpose 380px
-// 文件名 ui-button.rpose
+// 文件名 ui-btn.rpose
 
 \[api]
 optionkeys = onclick
 statekeys  = value, disabled
 
 \[view] 此组件仅为演示用途，并非最佳实践
-<button onclick={$options.onclick} class="ui-button" disabled={!!$state.disabled}>{$state.value}</button>
+<button onclick={$options.onclick} class="ui-btn" disabled={!!$state.disabled}>{$state.value}</button>
 
 \[less]
-.ui-button {
+.ui-btn {
     min-width: @theme-button-min-width;
     height: @theme-button-height;
     border: 1px solid #999999;
@@ -206,16 +206,16 @@ statekeys  = value, disabled
     background: @theme-button-bg;
 }
 
-.ui-button:hover:not([disabled]),
-.ui-button:focus{
+.ui-btn:hover:not([disabled]),
+.ui-btn:focus{
     background: @theme-button-bg-hover;
 }
 
-.ui-button:active:not([disabled]){
+.ui-btn:active:not([disabled]){
     background: @theme-button-bg-active;
 }
 
-.ui-button[disabled]{
+.ui-btn[disabled]{
     background: @theme-button-bg-disabled;
     opacity: 0.6;
     cursor: not-allowed;
