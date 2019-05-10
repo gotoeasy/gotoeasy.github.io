@@ -1,7 +1,7 @@
 [view]
 <div @class="height-100% display-flex flex-direction-column color-#eee overflow-hidden">
     <div @class="height-50px display-flex justify-content-center align-items-center font-size-25px">R</div>
-    <ui-line margin="0" color="#aaa"/>
+    <@line margin="0" color="#aaa"/>
     <div class="iconbar-link">
         <router-link path="intro" title="初识 rpose">
             <svgicon src="@fortawesome/fontawesome-free:book"/>
@@ -13,14 +13,14 @@
             <svgicon src="@fortawesome/fontawesome-free:check"/>
         </router-link>
 
-        <ui-line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
+        <@line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
         <router-link path="buildin" title="内置标签组件">
             <svgicon src="component"/>
         </router-link>
         <router-link path="at" title="内置指令集">
             <svgicon src="@fortawesome/fontawesome-free:at"/>
         </router-link>
-        <ui-line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
+        <@line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
 
         <router-link path="slot" title="插槽">
             <svgicon src="@fortawesome/fontawesome-free:s*/list-alt"/>
@@ -41,13 +41,16 @@
             <svgicon src="@fortawesome/fontawesome-free:s*/file-image"/>
         </router-link>
 
-        <ui-line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
+        <@line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
 
         <router-link path="todo" title="TODO">
             <svgicon src="@fortawesome/fontawesome-free:check"/>
         </router-link>
     </div>
 </div>
+
+[taglib]
+@line = @rpose/ui-line:ui-line
 
 [less]
 .iconbar-link {

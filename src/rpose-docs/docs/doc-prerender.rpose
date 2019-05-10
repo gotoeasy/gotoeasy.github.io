@@ -9,7 +9,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.1 先看打包好的页面文件源码</doc-title>
+    <doc-title>1.1 先看打包好的页面文件源码</doc-title>
     这是个html文件源码，内容比较简单，有个缓存时间，js按defer方式下载执行<br>
     如果js文件比较大，可能会出现页面空白期，体验比较单调乏味<br>
 ```html
@@ -36,7 +36,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.2 默认预渲染模块</doc-title>
+    <doc-title>1.2 默认预渲染模块</doc-title>
     在rpose中，预渲染是由生成html源码的模块负责<br>
     这个生成过程是个函数，一个npm包，默认为<ui-badge>@gotoeasy/pre-render</ui-badge>
 ```js
@@ -67,7 +67,7 @@ module.exports = function defaultPreRender(opts){
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.3 不定制，就想加个Loader看效果</doc-title>
+    <doc-title>1.3 不定制，就想加个Loader看效果</doc-title>
     一句话的事
 ```btf
 // 文件名 demo-prerender-d3.rpose
@@ -86,7 +86,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>7.4 简单好用，定制要注意什么</doc-title>
+    <doc-title>1.4 简单好用，定制要注意什么</doc-title>
 在浏览器触发<ui-badge>window.onload</ui-badge>事件时<br>
 rpose会按类名查找<ui-badge>.pre-render</ui-badge>节点，然后添加类<ui-badge>loaded</ui-badge><br>
 再数秒后，会删除<ui-badge>.pre-render</ui-badge>节点，这就是框架内部做的事<br>

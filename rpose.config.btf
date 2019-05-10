@@ -1,6 +1,5 @@
-[path]
-build               : build
-build_dist_images   : images           // 图片文件打包后的存放目录(默认images)
+[path] // 目录配置
+build : build
 
 [theme] // 样式风格包
 rpose-theme-demo
@@ -8,5 +7,5 @@ rpose-theme-demo
 [prerender] // 预渲染包
 @gotoeasy/pre-render
 
-[csslib]
+[csslib] // 样式库配置
 normalize = normalize.css:normalize.css

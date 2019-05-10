@@ -8,7 +8,7 @@ prerender = loader-section // loader（旋转动画），loader-section（旋转
         <h2 class="title">GOTOEASY</h2>
         <p class="text">WRITE BUSINESS, DONE <br>IT SHOULD BE SO EASY</p>
 
-        <ui-line height="3px" width="50%" color="#ff9408"/>
+        <@line @taglib="@rpose/ui-line:ui-line" height="3px" width="50%" color="#ff9408"/>
 
         <span class="text">写业务，完成，就该这么简单</span>
 

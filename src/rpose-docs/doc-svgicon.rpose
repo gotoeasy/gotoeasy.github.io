@@ -1,9 +1,7 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>图标方案概况</doc-title>
-    众所周知，说来话长<br>
-    因此，rpose默认选择内联svg作为图标首选方案 <svgicon src="@fortawesome/fontawesome-free:s*/heart" fill="red" height="16"/>
+    <doc-title>TODO</doc-title>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -25,7 +23,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>空白代表可能</doc-title>
+    <doc-title>TODO</doc-title>
 ```rpose
 \[view]
 

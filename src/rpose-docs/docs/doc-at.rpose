@@ -7,7 +7,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.1 指令 @if</doc-title>
+    <doc-title>1.1 指令 @if</doc-title>
     指令<ui-badge>@if</ui-badge>用于控制标签节点是否渲染
 ```rpose
 // demo-at-d1.rpose
@@ -31,7 +31,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.2 指令 @for</doc-title>
+    <doc-title>1.2 指令 @for</doc-title>
     指令<ui-badge>@for</ui-badge>用于遍历数组，<ui-badge type="error">注意仅适用于数组</ui-badge>，这也是出于精简目的<br>
     完整的写法是<ui-badge>@for="(value, index from i max m) in array"</ui-badge><br>
     根据需要可简化至<ui-badge>@for="value in array"</ui-badge>
@@ -91,7 +91,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.3 指令 @ref</doc-title>
+    <doc-title>1.3 指令 @ref</doc-title>
     和react等是一个意思，设定一个名称，以方便直接引用该组件或节点<br>
     <br>
     <ui-badge type="info">特点1</ui-badge>组件范围内名称不要求唯一，如果重复结果就是一起取到<br>
@@ -136,7 +136,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.4 指令 @show</doc-title>
+    <doc-title>1.4 指令 @show</doc-title>
     控制节点是否显示，相对指令<ui-badge>@if</ui-badge>区别在于<ui-badge>@show</ui-badge>总是渲染
 
 ```rpose
@@ -163,7 +163,7 @@ statekey = role
 <ui-badge type="error">注意</ui-badge>修饰符有合法性检查，使用无效修饰符将编译失败
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.5 指令 @taglib</doc-title>
+    <doc-title>1.5 指令 @taglib</doc-title>
     使用第三方组件时，总是require或import ...... 会手酸<br>
     rpose提供指令<ui-badge>@taglib</ui-badge>，以声明的方式使用第三方组件
 
@@ -205,7 +205,7 @@ statekey = role
 标签库的目的是为方便使用第三方组件，更多用法在 <router-link path="taglib" title="标签库">标签库</router-link> 中有专节介绍
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.6 指令 @csslib</doc-title>
+    <doc-title>1.6 指令 @csslib</doc-title>
     指令<ui-badge>@csslib</ui-badge>是个样式库的概念<br>
     历史原因众多框架遗留了很多样式，弃之不用非常可惜，样式库思路的目的就是把它们复用起来<br>
     <br>
@@ -295,7 +295,7 @@ statekey = role
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>5.7 指令 @class</doc-title>
+    <doc-title>1.7 指令 @class</doc-title>
     关于样式还有一种原子化的写法，能精细控制，很有趣<br>
     就像写内联style一样一个一个写，最终会生成为css
 

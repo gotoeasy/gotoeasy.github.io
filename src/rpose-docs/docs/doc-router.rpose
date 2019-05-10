@@ -20,7 +20,7 @@
     </ul>
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>8.1 使用路由标签</doc-title>
+    <doc-title>1.1 使用路由标签</doc-title>
     通常，页面用路由标签包裹起来，同时指定匹配的路径就行了
 ```rpose
 // demo-router-d1.rpose
@@ -42,7 +42,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>8.2 路由链接组件</doc-title>
+    <doc-title>1.2 路由链接组件</doc-title>
     锚点链接很难看，语义不够强烈，所以改进为链接组件<br>
     下面使用内置的<ui-badge>router-link</ui-badge>组件，对a标签进行包装，简化使用<br>
 ```rpose
@@ -56,6 +56,7 @@
         <li><router-link path="http://gotoeasy.top">http://gotoeasy.top</router-link></li>
         <li><router-link path="https://gotoeasy.top">https://gotoeasy.top</router-link></li>
         <li><router-link path="../../index.html">../../index.html</router-link></li>
+        <li><router-link path="/index.html">/index.html</router-link></li>
     </ul>
     <router path="foo"><section-foo/></router>
     <router path="bar"><section-bar/></router>
@@ -64,11 +65,11 @@
 ```
 
     本例<ui-badge>router-link</ui-badge>组件接受<ui-badge>path</ui-badge>属性，代表链接地址，直接使用路由名就行，看效果 <a href="demo/demo-router-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-    <ui-badge type="danger">注</ui-badge>如果<ui-badge>path</ui-badge>属性以<ui-badge>http://</ui-badge>或<ui-badge>https://</ui-badge>或<ui-badge>.</ui-badge>开头，将被视为普通链接地址使用
+    <ui-badge type="danger">注</ui-badge>如果<ui-badge>path</ui-badge>属性以<ui-badge>http://</ui-badge>或<ui-badge>https://</ui-badge>或<ui-badge>.</ui-badge>或<ui-badge>/</ui-badge>开头，将被视为普通链接地址使用
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>8.3 设定初期默认页面</doc-title>
+    <doc-title>1.3 设定初期默认页面</doc-title>
     初次加载SPA时，如果路由地址有误，但仍旧希望显示默认路由，加上<ui-badge>default</ui-badge>属性声明即可
 
 ```rpose
@@ -91,7 +92,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>8.4 设定notfound页面</doc-title>
+    <doc-title>1.4 设定notfound页面</doc-title>
     SPA加载显示后，切换路由时如果出现错误地址，通常是希望显示404页，这时可以通过notfound属性声明
 ```rpose
 // demo-router-d4.rpose
@@ -117,7 +118,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>8.5 通配符匹配路由</doc-title>
+    <doc-title>1.5 通配符匹配路由</doc-title>
     每次仅匹配显示一个路由，经常不够用，要匹配多个路由就使用通配符<br>
     路由支持使用通配符<ui-badge>*</ui-badge>进行匹配，星号表示任意字符
 ```rpose
@@ -141,8 +142,9 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>8.6 参数传递</doc-title>
-    参数传递，组件<ui-badge>router-link</ui-badge>按传参方式传入<ui-badge>params</ui-badge>属性即可，效果上在地址栏不会直接暴露数据<br>
+    <doc-title>1.6 参数传递</doc-title>
+    参数传递，组件<ui-badge>router-link</ui-badge>按传参方式传入<ui-badge>params</ui-badge>属性即可<br>
+    效果上在地址栏不会直接暴露数据，看看效果 <a href="demo/demo-router-d6.html" target="_blank"><svgicon src="link" fill="blue"/></a>
 ```rpose
 // demo-router-d6.rpose
 \[view]

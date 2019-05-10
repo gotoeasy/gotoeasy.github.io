@@ -7,6 +7,7 @@
         <li><router-link path="http://gotoeasy.top">http://gotoeasy.top</router-link></li>
         <li><router-link path="https://gotoeasy.top">https://gotoeasy.top</router-link></li>
         <li><router-link path="../../index.html">../../index.html</router-link></li>
+        <li><router-link path="/index.html">/index.html</router-link></li>
     </ul>
     <router path="foo"><section-foo/></router>
     <router path="bar"><section-bar/></router>

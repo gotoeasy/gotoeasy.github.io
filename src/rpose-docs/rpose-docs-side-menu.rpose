@@ -19,7 +19,7 @@
         </router-link>
     </li>
     <li>
-        <ui-line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
+        <@line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
     </li>
     <li>
         <router-link path="buildin" title="内置标签组件">
@@ -34,7 +34,7 @@
         </router-link>
     </li>
     <li>
-        <ui-line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
+        <@line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
     </li>
     <li>
         <router-link path="slot" title="插槽">
@@ -73,7 +73,7 @@
         </router-link>
     </li>
     <li>
-        <ui-line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
+        <@line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
     </li>
     <li>
         <router-link path="todo" title="TODO">
@@ -83,6 +83,8 @@
     </li>
 </ul>
 
+[taglib]
+@line = @rpose/ui-line:ui-line
 
 [css]
 .side-menu {

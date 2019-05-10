@@ -1,0 +1,12 @@
+[view]
+<ul>
+    <li><@line height="5px" color="green"/></li>
+    <li><@ui-button>@ui-button</@ui-button></li>
+</ul>
+
+[taglib]
+@line = @rpose/ui-line:ui-line
+@ui-button = @rpose/ui-button
+
+[mount]
+body

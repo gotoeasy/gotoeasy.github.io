@@ -6,7 +6,7 @@
     意思是说，关注你的业务代码就行了<br>
     怎么安装、如何配置等等，都是水到渠成的事<br>
 
-    <doc-title>2.1 第一个 hello world 组件</doc-title>
+    <doc-title>1.1 第一个 hello world 组件</doc-title>
 
 ```rpose
 // 文件名 ui-helloworld.rpose
@@ -28,7 +28,7 @@ statekeys = name   // 意思是说，组件的状态不是外部所能随便改�
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.2 使用 hello world 组件</doc-title>
+    <doc-title>1.2 使用 hello world 组件</doc-title>
     为了看到 hello world 的效果，简单写一个页面<br>
     页面也是组件，只是多了个挂载显示
 ```rpose
@@ -48,7 +48,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.3 修改 hello world 组件状态</doc-title>
+    <doc-title>1.3 修改 hello world 组件状态</doc-title>
     要修改组件状态，3个要素，什么时机？什么组件？改成什么？<br>
     下面代码演示，在输入框<ui-badge>onchange</ui-badge>时，拿到<ui-badge>hello world</ui-badge>组件对象，把它的<ui-badge>name</ui-badge>修改为输入框的值
 ```rpose
@@ -86,7 +86,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.4 使用样式</doc-title>
+    <doc-title>1.4 使用样式</doc-title>
     三驾马车<ui-badge>HTML/JS/CSS</ui-badge>就剩下<ui-badge>CSS</ui-badge>了<br>
     没什么难的，rpose最讲究的是姿势，直接加就是
 ```rpose
@@ -122,7 +122,7 @@ body
 所以也是有推荐写法的，就是尽量使用类名，尽量不用标签名或id，避免rpose无法帮忙
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.5 再来几个组件熟悉一下</doc-title>
+    <doc-title>1.5 再来几个组件熟悉一下</doc-title>
     代码块语法高亮组件<br>
     免不了要展示代码，吸收md格式写法的便利性，再加上<ui-badge>highlight.js</ui-badge>的API，rpose就这样内置了一个组件<br>
 ```rpose
@@ -158,11 +158,11 @@ var hello = name => 'Hello ' + name + '!';
 ```
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.6 简单的的分隔线组件</doc-title>
+    <doc-title>1.6 简单的的分隔线组件</doc-title>
     就是首页上的那根线<br>
     这个组件概念上等同于无状态组件，因为没有声明<ui-badge>statekeys</ui-badge>的具体项，状态无法修改
 ```rpose  380px
-// 文件名 ui-line.rpose
+// npm包‘@rpose/ui-line’的文件 ui-line.rpose
 
 \[api]
 optionkeys = height, width, color, margin
@@ -182,7 +182,7 @@ optionkeys = height, width, color, margin
 ```
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.7 简单的按钮组件</doc-title>
+    <doc-title>1.7 简单的按钮组件</doc-title>
     这个按钮组件能修改状态<br>
     通过<ui-badge>statekeys</ui-badge>声明看出，仅有<ui-badge>value</ui-badge>和<ui-badge>disabled</ui-badge>能改，也就是只能改按钮文字以及是否禁用
 ```rpose 380px
@@ -234,7 +234,7 @@ statekeys  = value, disabled
 本例的变量就是从<ui-badge>rpose-theme-demo</ui-badge>包中得来的
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>2.8 组装几个按钮到页面看效果</doc-title>
+    <doc-title>1.8 组装几个按钮到页面看效果</doc-title>
 ```rpose 380px
 // 文件名 demo-quickstart-d8.rpose
 

@@ -7,13 +7,13 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>3.1 安装rpose命令行工具</doc-title>
+    <doc-title>1.1 安装rpose命令行工具</doc-title>
 ```
 npm i -g @rpose/cli
 ```
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>3.2 克隆本网页项目进行体验</doc-title>
+    <doc-title>1.2 克隆本网页项目进行体验</doc-title>
     本网页效果都看了，怎么写的，下载下来直观的试试看<br>
     本地建个目录，克隆<ui-badge>https://github.com/gotoeasy/gotoeasy.github.io.git</ui-badge><br>
     假设克隆到目录<ui-badge>D:/test</ui-badge>，应该有文件<ui-badge>D:/test/rpose.config.btf</ui-badge>，以及<ui-badge>D:/test/src</ui-badge>这样的目录<br>
@@ -31,14 +31,12 @@ rpose watch -clean
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>3.3 其实应该先看配置</doc-title>
+    <doc-title>1.3 其实应该先看配置</doc-title>
     项目根目录下的配置文件<ui-badge>rpose.config.btf</ui-badge>，内容简单直白，但很关键<br>
 ```btf
 // 项目配置文件 rpose.config.btf
-
-\[path]
-build               : build
-build_dist_images   : images           // 图片文件打包后的存放目录(默认images)
+\[path] // 目录配置
+build : build
 
 \[theme] // 样式风格包
 rpose-theme-demo
@@ -46,20 +44,25 @@ rpose-theme-demo
 \[prerender] // 预渲染包
 @gotoeasy/pre-render
 
-\[csslib]
+\[csslib] // 样式库配置
 normalize = normalize.css:normalize.css
+
+\[taglib] // 标签库配置
+ui-line = @rpose/ui-line:ui-line
 ```
 
-其中的<ui-badge>[csslib]</ui-badge>是个样式库配置，rpose的一大特性，后有专门章节介绍<br>
+其中的样式库<ui-badge>[csslib]</ui-badge>和标签库<ui-badge>[taglib]</ui-badge>配置，是rpose的两大特性，后有专节介绍<br>
 配置文件并不是必须的，没有配置文件时会使用最基本的缺省设定<br>
 <br>
-<ui-badge type="danger">基于方便目的，配置或代码中的相关的npm包都会在编译时自动安装最新版</ui-badge><br>
+详细的配置文件说明，后有专节介绍<br>
+<br>
+<ui-badge type="danger">注： 基于方便目的，配置或代码中的相关的npm包都会在编译时自动安装最新版</ui-badge><br>
 若对版本有特殊要求，需事前自行安装<br>
 
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>3.4 另一个重要的配置文件</doc-title>
+    <doc-title>1.4 另一个重要的配置文件</doc-title>
     另一个重要的配置文件是根目录下的<ui-badge>.browserslistrc</ui-badge>，配置目标浏览器<br>
 ```properties
 // 目标浏览器配置文件 .browserslistrc
@@ -74,7 +77,7 @@ normalize = normalize.css:normalize.css
  not dead
 
 # 包含特定版本
-chrome > 70
+# chrome > 70
 # firefox > 60
 ie 11
 ```
@@ -83,7 +86,7 @@ ie 11
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>3.5 可以打包了</doc-title>
+    <doc-title>1.5 可以打包了</doc-title>
     我们要的打包效果是，按页面单位有文件<ui-badge>html、js、css</ui-badge>各一个，图片资源等哈希后放单独目录<br>
     公共包抽取按需加载之类暂时不考虑，目前打包出来的文件实在是太小还不值得分<br>
     (好不容易决定SPA，结果导致打包文件太大又要拆分，这到底是哪跟哪的事情)

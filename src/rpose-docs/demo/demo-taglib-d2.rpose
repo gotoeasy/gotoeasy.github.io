@@ -1,0 +1,5 @@
+[view]
+<@ui-line @taglib="@rpose/ui-line" height="10px" color="red"/>
+
+[mount]
+body

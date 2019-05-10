@@ -1,5 +1,5 @@
 [view]
 <div @class="width-100% margin-35px_0_60px_0 box-sizing--border-box text-align-center">
-    <ui-line/>
+    <@line @taglib="@rpose/ui-line:ui-line"/>
     <slot/>
 </div>

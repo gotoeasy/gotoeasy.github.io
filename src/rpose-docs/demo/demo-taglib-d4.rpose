@@ -1,0 +1,11 @@
+[view]
+<ul>
+    <li><line height="10px" color="#123456"/></li>
+    <li><@line height="15px" color="#abcdef"/></li> <!-- 默认提供@前缀支持 -->
+</ul>
+
+[taglib]
+line = @rpose/ui-line:ui-line
+
+[mount]
+body
