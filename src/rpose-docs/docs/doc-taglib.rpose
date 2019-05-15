@@ -2,19 +2,19 @@
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
     <doc-title>标签库</doc-title>
-    标签库的设计目的，是把npm上的rpose组件都视为库，然后以标签声明的方式按需导入使用<br>
-    专心的关注组件接口用法就行了<br>
+    标签库的设计目的，是把npm上的rpose组件集视为库<br>
+    然后以标签声明的方式按需导入使用，让你专心关注组件接口使用<br>
     <br>
-    第三方组件限于rpose组件，且必须发布为npm包<br>
+    <ui-badge type="error">注:</ui-badge>第三方组件限于rpose组件，且必须发布为npm包<br>
 
     
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.1 把rpose组件发布为npm包</doc-title>
+    <doc-title>1.1 把rpose源码发布为npm包</doc-title>
     发布npm包比较简单，这里不做介绍<br>
     组件也没特别要求，只要rpose组件源文件完整不漏，包括相关配置以及使用到的图片等资源文件<br>
     通常把工程直接发布就行，因为不同配置会影响编译结果，所以只要源文件，总是会重新编译<br>
     <br>
-    例如，已发布的一个包<ui-badge>@rpose/ui-line</ui-badge><br>
+    例如，有个已发布包<ui-badge>@rpose/ui-line</ui-badge><br>
     仅有一个源文件<ui-badge>ui-line.rpose</ui-badge>，内容如下<br>
 ```rpose
 \[api]
@@ -33,8 +33,8 @@ optionkeys = height, width, color, margin
 ```
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.2 通过指令 @taglib 使用第三方组件</doc-title>
-    这里是推荐的@标签前缀写法，用<ui-badge>@taglib</ui-badge>指定包名，然后按组件设计的接口使用就可以了<br>
+    <doc-title>1.2 通过 @taglib 使用第三方组件</doc-title>
+    这里是推荐的@标签前缀写法，以便醒目的知道，这是个第三方组件<br>
 ```rpose
 // demo-taglib-d2.rpose
 \[view]
@@ -54,7 +54,7 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.3 通过组件作用域 [taglib] 配置使用第三方组件</doc-title>
+    <doc-title>1.3 通过组件 [taglib] 配置第三方组件</doc-title>
     <ui-badge>@taglib</ui-badge>仅针对一个标签，如果组件内多处使用就比较烦<br>
     这种场景可通过<ui-badge>[taglib]</ui-badge>配置使用
 ```rpose
@@ -74,10 +74,10 @@ body
 ```
 
     同样的，别名推荐使用@前缀以示区别，看看效果 <a href="demo/demo-taglib-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-    如果别名和组件标签名一样，那组件标签名可以省略不写<br>
+    如果别名和组件标签名一样，则组件标签名可以省略<br>
     <br>
     <br>
-    向下面不写@前缀的写法也是可以，看看效果 <a href="demo/demo-taglib-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+    像下面不写@前缀的写法也是可以，看看效果 <a href="demo/demo-taglib-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a>
 ```rpose
 // demo-taglib-d4.rpose
 \[view]
@@ -92,7 +92,7 @@ line = @rpose/ui-line:ui-line
 \[mount]
 body
 ```
-    因为别名没有@前缀，在开发期间可能会出现新加的组件文件名和这个别名一样而导致冲突<br>
+    弊端就是，由于别名没有@前缀，在开发期间可能会出现新加的组件文件名和这个别名一样而导致冲突<br>
     <br>
     <ui-badge type="info">注1</ui-badge>组件内的<ui-badge>[taglib]</ui-badge>设定仅对当前组件有效<br>
     <ui-badge type="info">注2</ui-badge>同一组件内<ui-badge>[taglib]</ui-badge>中定义的别名不能有重复，否则编译出错<br>
@@ -100,17 +100,17 @@ body
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.4 通过工程配置文件的 [taglib] 配置使用第三方组件</doc-title>
-    相应的，在配置文件<ui-badge>rpose.config.btf</ui-badge>中也是能配置<ui-badge>[taglib]</ui-badge><br>
+    <doc-title>1.4 通过工程 [taglib] 配置第三方组件</doc-title>
+    相应的，在工程配置文件<ui-badge>rpose.config.btf</ui-badge>中也能配置<ui-badge>[taglib]</ui-badge><br>
     效果是当前工程范围有效<br>
     <br>
-    用法同上，注意点同上，编译期检查不能有别名冲突，例子就省略了
+    用法同上，注意点同上，编译期会检查，不能有别名冲突，例子省略
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
     本节介绍了rpose中的一大特性，标签库的概念及用法<br>
     特点是声明式的使用第三方组件，能做到较强的语义化<br>
-    另外就是很好的解决了一个组件如何命名的闹心问题<br>
+    顺便就是很好的解决了一个组件如何命名的闹心问题<br>
    
     <doc-footer>青松 2019.05</doc-footer>
 

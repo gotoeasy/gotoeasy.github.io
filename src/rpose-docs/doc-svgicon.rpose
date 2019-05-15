@@ -6,28 +6,12 @@
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>TODO</doc-title>
-```rpose
-\[view]
-<div>
-    <svgicon src="my-icon.svg" height="16"/>
-    <svgicon src="my-icon" height="16"/>
-    <svgicon src="project-icon" height="16"/>
-    <svgicon src="rpose-icon" height="16"/> <!-- TODO -->
-    <svgicon src="@fortawesome/fontawesome-free:home" height="16"/>
-    <svgicon src="@fortawesome/fontawesome-free:s*/file-image" height="16" width="16"/>
-</div>
-
-```
 
 
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>TODO</doc-title>
-```rpose
-\[view]
-
-```
 
 
 
@@ -35,6 +19,6 @@
     <doc-title>小结</doc-title>
 
    
-    <doc-footer>青松 2019.04</doc-footer>
+    <doc-footer>青松 2999.99</doc-footer>
 
 </div>

@@ -1,16 +1,22 @@
 [view]
 <ul>
     <li>
-        <this-is-ui-button @taglib="@rpose/ui-button:ui-button">this-is-ui-button</this-is-ui-button>
+        <this-is-ui-button @taglib="ui-btn=@rpose/ui-button:ui-button">1 this-is-ui-button</this-is-ui-button>
     </li>
     <li>
-        <ui-button @taglib="@rpose/ui-button">ui-button</ui-button>
+        <it-is-ui-button @taglib="@rpose/ui-button:ui-button">2 it-is-ui-button</it-is-ui-button>
     </li>
     <li>
-        <@ui-button @taglib="@rpose/ui-button:ui-button">@ui-button</@ui-button>
+        <a-ui-button @taglib="ui-button=@rpose/ui-button">3 a-ui-button</a-ui-button>
     </li>
     <li>
-        <@ui-button @taglib="@rpose/ui-button">@ui-button</@ui-button>
+        <at-ui-button @taglib="@ui-button=@rpose/ui-button">4 at-ui-button</at-ui-button>
+    </li>
+    <li>
+        <ui-button @taglib="@rpose/ui-button">5 ui-button</ui-button>
+    </li>
+    <li>
+        <@ui-button @taglib="@rpose/ui-button">6 @ui-button</@ui-button>
     </li>
 </ul>
 

@@ -1,23 +1,142 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>TODO</doc-title>
+    <doc-title>样式库</doc-title>
+    关于样式，历来实在太多痛点<br>
+    <ui-badge>命名冲突</ui-badge>首当其冲，<ui-badge>难以复用</ui-badge>悬而未决<br>
+    <br>
+    类似BEM、CSS Modules、CSS in Js，等等都姿势不美，众人都在不断尝试<br>
+    <br>
+    比较理想的是<br>
+    已经是组件式开发了嘛，命名应该在组件范围内，可以任性的使用语义化名称<br>
+    CSS是天然的声明式语言，千万个不乐意改成命令式编程方式，需要还是声明式<br>
+    众多历史遗留框架样式，希望都能方便的复用起来，而不是不断改写重写<br>
+    <br>
+    rpose创立样式库概念，试图以此解决以上关键问题<br>
+    概念上，是把众多现存样式看作一个库，然后按需引入使用，同时解决命名问题<br>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.1 使用 @csslib 指令</doc-title>
+    以流行的bootstrap按钮为例，直接看效果 <a href="demo/demo-csslib-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a>
 ```rpose
+// demo-csslib-d1.rpose
+\[view]
+<ul>
+    <li><input class="btn btn-primary" type="button" value="Input" @csslib="bootstrap"></li>
+    <li><a href="#" class="btn@bs btn-secondary@bs btn-lg@bs active@bs" @csslib="bs=bootstrap">Link</a></li>
+    <li><button type="button" class="btn@bootstrap btn-warning@bootstrap" @csslib="bootstrap=bootstrap:**.min.css">Warning</button></li>
+</ul>
 
-
+\[mount]
+body
 ```
+
+    仅此而已，想用bootstrap，按其例子略微改写就行<br>
+    由于已经表达了所要引入的样式文件，以及使用到样式类，所以，剩下的事就可以都让框架去完成<br>
+    <br>
+    当然最好是取个别名，即减少不必要的冲突可能，也能提高可读性<br>
+    指令<ui-badge>@csslib</ui-badge>适用于简单的单个标签使用，详细用法在 <router-link path="at" title="内置指令集">内置指令集</router-link> 有专节介绍
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.2 使用组件 [csslib] 配置</doc-title>
+    组件内可以配置<ui-badge>[csslib]</ui-badge>，便于在组件范围内统一使用样式库
+```rpose 380px
+// demo-csslib-d2.rpose
+\[view]
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+
+\[csslib]
+* = bootstrap
+
+\[mount]
+body
+```
+
+    这个是直接抄写bootstrap官网例子，仅加了个<ui-badge>[csslib]</ui-badge>配置，看看效果 <a href="demo/demo-csslib-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    还是那句话，表达好要引入的样式文件，以及使用到样式类，剩下的事交由框架去做吧
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.3 按需复用各框架样式</doc-title>
+    继续写个例子，使用uikit的Card组件，在里面放置上面bootstrap的pagination组件
+```rpose 380px
+// demo-csslib-d3.rpose
+\[view]
+<div class="uk-card@uk uk-card-default@uk uk-card-body@uk uk-width-1-2@uk">
+    <h3 class="uk-card-title@uk">bootstrap pagination in uk-card</h3>
+
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active">
+          <span class="page-link">
+            2
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+</div>
+
+\[csslib]
+* = bootstrap
+uk = uikit
+
+\[mount]
+body
+```
+
+    代码虽然有点多了，但那都是框架官方例子，rpose做的只是配置一个<ui-badge>[csslib]</ui-badge><br>
+    当然，在指定别名时需要把类名相应的加上别名后缀，看看效果 <a href="demo/demo-csslib-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    <br>
+    就是这样，可以把多个不同框架样式联合起来一起用<br>
+    突然之间，世界变得更加广大自由的感觉
 
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>TODO</doc-title>
+    <doc-title>1.4 使用工程 [csslib] 配置</doc-title>
+    配置的方式没什么两样<br>
+    区别在于，工程上的 [csslib] 配置，可供整个工程项目内的全部组件使用<br>
+    <br>
+    例子大同小异，省略
+    <br>
+    同样的要求，自身配置不能有别名冲突，也不能和组件配置有别名冲突
 
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
-
+    样式库是rpose中的重要特性<br>
+    在保持声明式的前提下，同时解决突出的命名冲突和样式复用问题<br>
+    并且，可以方便的同时整合使用多方样式框架，如同用的是个样式库一样
    
-    <doc-footer>青松 9999.99</doc-footer>
+    <doc-footer>青松 2019.05</doc-footer>
 
 </div>
