@@ -8,5 +8,4 @@ rpose-theme-demo
 @gotoeasy/pre-render
 
 [csslib] // 样式库配置
-normalize = normalize.css:normalize.css
-
+normalize = normalize.css: normalize.css

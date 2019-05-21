@@ -287,7 +287,8 @@ statekey = role
 
     <br>
     <br>
-    <ui-badge type="info">@csslib仅对当前标签有效</ui-badge><br>
+    <ui-badge type="danger">@csslib仅对当前标签有效</ui-badge><br>
+    也就是说，你应当清楚，你要的仅仅是当前标签当前样式类的相关样式<br>
 ```rpose
 // demo-at-d6-5.rpose
 \[view]
@@ -378,6 +379,6 @@ statekey = role
     本章节介绍了rpose的全部指令用法<br>
     <ui-badge>@taglib</ui-badge>、<ui-badge>@csslib</ui-badge>、<ui-badge>@class</ui-badge>都是很有特色的指令<br>
    
-    <doc-footer>青松 2019.05</doc-footer>
+    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

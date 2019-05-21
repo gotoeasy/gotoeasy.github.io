@@ -1,6 +1,6 @@
 [view]
-<div class="uk-card@uk uk-card-default@uk uk-card-body@uk uk-width-1-2@uk">
-    <h3 class="uk-card-title@uk">bootstrap pagination in uk-card</h3>
+<div class="uk-card@uk uk-card-default@uk uk-card-body@uk uk-width-3-4@uk">
+    <h3 class="uk-card-title@uk">pagination in uk-card</h3>
 
     <nav aria-label="...">
       <ul class="pagination">

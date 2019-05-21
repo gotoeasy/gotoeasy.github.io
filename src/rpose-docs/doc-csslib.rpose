@@ -8,11 +8,11 @@
     类似BEM、CSS Modules、CSS in Js，等等都姿势不美，众人都在不断尝试<br>
     <br>
     比较理想的是<br>
-    已经是组件式开发了嘛，命名应该在组件范围内，可以任性的使用语义化名称<br>
+    命名应该在组件范围内，可以任性的使用语义化名称<br>
     CSS是天然的声明式语言，千万个不乐意改成命令式编程方式，需要还是声明式<br>
     众多历史遗留框架样式，希望都能方便的复用起来，而不是不断改写重写<br>
     <br>
-    rpose创立样式库概念，试图以此解决以上关键问题<br>
+    rpose创建样式库概念，试图以此解决以上关键问题<br>
     概念上，是把众多现存样式看作一个库，然后按需引入使用，同时解决命名问题<br>
 
 
@@ -23,7 +23,6 @@
 // demo-csslib-d1.rpose
 \[view]
 <ul>
-    <li><input class="btn btn-primary" type="button" value="Input" @csslib="bootstrap"></li>
     <li><a href="#" class="btn@bs btn-secondary@bs btn-lg@bs active@bs" @csslib="bs=bootstrap">Link</a></li>
     <li><button type="button" class="btn@bootstrap btn-warning@bootstrap" @csslib="bootstrap=bootstrap:**.min.css">Warning</button></li>
 </ul>
@@ -35,7 +34,7 @@ body
     仅此而已，想用bootstrap，按其例子略微改写就行<br>
     由于已经表达了所要引入的样式文件，以及使用到样式类，所以，剩下的事就可以都让框架去完成<br>
     <br>
-    当然最好是取个别名，即减少不必要的冲突可能，也能提高可读性<br>
+    当然多库混用时，最好都取个别名，以减少不必要的冲突可能，也能提高可读性<br>
     指令<ui-badge>@csslib</ui-badge>适用于简单的单个标签使用，详细用法在 <router-link path="at" title="内置指令集">内置指令集</router-link> 有专节介绍
 
 
@@ -72,7 +71,17 @@ body
 ```
 
     这个是直接抄写bootstrap官网例子，仅加了个<ui-badge>[csslib]</ui-badge>配置，看看效果 <a href="demo/demo-csslib-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-    还是那句话，表达好要引入的样式文件，以及使用到样式类，剩下的事交由框架去做吧
+    还是那句话，表达好要引入的样式文件，以及使用到样式类，剩下的事交由框架去做吧<br>
+    <br>
+    <br>
+    <ui-badge type="danger">[csslib]语法</ui-badge><ui-badge>alias</ui-badge>=<ui-badge>pkg-or-dir</ui-badge>:<ui-badge>filter</ui-badge><br>
+    <ui-badge type="info">规则1</ui-badge>别名alias不能省略，用<ui-badge>*</ui-badge>时，代表适用于组件内的全部普通样式类(无@别名后缀)<br>
+    <ui-badge type="info">规则2</ui-badge>pkg-or-dir用<ui-badge>~</ui-badge>前缀时代表工程根目录开始的本地目录，否则指npm包名<br>
+    <ui-badge type="info">规则3</ui-badge>过滤器filter可以省略，缺省时等同<ui-badge>**.min.css</ui-badge><br>
+    　　　多个过滤器可以用逗号<ui-badge>,</ui-badge>或分号<ui-badge>;</ui-badge>分隔<br>
+    　　　过滤器支持通配符，用<ui-badge>?</ui-badge>代表任意单一字符，<ui-badge>*</ui-badge>代表不跨目录的任意字符，<ui-badge>**</ui-badge>代表任意目录任意字符<br>
+    <ui-badge type="info">规则4</ui-badge>一行一个csslib配置，支持注释符<ui-badge>//</ui-badge><br>
+    <ui-badge type="info">规则5</ui-badge>别名不能重复<br>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -81,8 +90,8 @@ body
 ```rpose 380px
 // demo-csslib-d3.rpose
 \[view]
-<div class="uk-card@uk uk-card-default@uk uk-card-body@uk uk-width-1-2@uk">
-    <h3 class="uk-card-title@uk">bootstrap pagination in uk-card</h3>
+<div class="uk-card@uk uk-card-default@uk uk-card-body@uk uk-width-3-4@uk">
+    <h3 class="uk-card-title@uk">pagination in uk-card</h3>
 
     <nav aria-label="...">
       <ul class="pagination">
@@ -129,7 +138,135 @@ body
     <br>
     同样的要求，自身配置不能有别名冲突，也不能和组件配置有别名冲突
 
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.5 配置本地样式库</doc-title>
+    除了npm包，还可以把本地目录中的样式文件配置成样式库使用<br>
+```rpose 380px
+// demo-csslib-d5.rpose
+\[view]
+<form class="pure-form pure-form-aligned">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="name">Username</label>
+            <input id="name" type="text" placeholder="Username">
+            <span class="pure-form-message-inline">This is a required field.</span>
+        </div>
 
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="Email Address">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="foo">Supercalifragilistic Label</label>
+            <input id="foo" type="text" placeholder="Enter something here...">
+        </div>
+
+        <div class="pure-controls">
+            <label for="cb" class="pure-checkbox">
+                <input id="cb" type="checkbox"> I've read the terms and conditions
+            </label>
+
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+\[csslib]
+* = ~resources/csslibs/pure:pure.css
+
+\[mount]
+body
+```
+
+    这个例子直接从purecss官网复制，只是加了一个本地样式库配置<br>
+    下载pure.css存放到本地，以<ui-badge>~</ui-badge>开头指定目录即可，看效果 <a href="demo/demo-csslib-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.6 自动转换脚本中的样式名</doc-title>
+    在js脚本代码中也可以使用样式库的相关样式类名<br>
+    下面例子按Submit会提示勾选，按Toggle会切换排版，看效果 <a href="demo/demo-csslib-d6.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+```rpose 380px
+// demo-csslib-d6.rpose
+\[view]
+<form class="pure-form pure-form-aligned" onsubmit="fnSubmit">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="name">Username</label>
+            <input id="name" type="text" placeholder="Username">
+            <span class="pure-form-message-inline">This is a required field.</span>
+        </div>
+
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="Email Address">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="foo">Supercalifragilistic Label</label>
+            <input id="foo" type="text" placeholder="Enter something here...">
+        </div>
+
+        <div class="pure-controls">
+            <label for="cb" class="pure-checkbox">
+                <input id="cb" type="checkbox"> I've read the terms and conditions
+            </label>
+
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+            <button type="button" class="pure-button" style="margin-left:20px" onclick="fnToggle">Toggle</button>
+        </div>
+    </fieldset>
+</form>
+
+\[actions]
+{
+    fnToggle: e => {
+        // 这里的 pure-form-stacked 虽然只在js中，由于能在样式库中找到，所以相关样式也会被自动引用
+        $$('.pure-form').toggleClass('pure-form-aligned').toggleClass('pure-form-stacked');
+    },
+    fnSubmit: e => {
+        e.preventDefault();
+        let el = this.getRootElement().querySelector('.pure-checkbox > input');
+        if ( !el.checked ) {
+            alert('read the terms and conditions please');
+        }
+    }
+}
+
+\[csslib]
+* = ~resources/csslibs:pure/pure.css
+
+\[mount]
+body
+```
+
+    注意到，第一，仅仅出现在js中的样式类，如果能在样式库中找到，相关样式也同样是会被自动引用，所以这个例子是能切换效果的<br>
+    第二点，在js中可以使用常用的api去查询样式类，如querySelector、querySelectorAll、getElementsByClassName等，rpose会自动判断并调整样式类名，很透明的体验
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.7 样式库不是万能的</doc-title>
+    样式库的最重要特点<ui-badge>按需复用</ui-badge>已有样式<br>
+    然而，已有样式的实现方式、编写规范等等都是不受控制的<br>
+    所以，样式库并不是万能的<br>
+    <br>
+    比如，输入样式依赖id或标签选择器去实现效果，那会容易冲突<br>
+    又比如，输入样式是依赖class属性选择器去实现，那就如同硬编码了样式类名，这和样式库自动调整类名的思路矛盾，极可能会导致结果和预想不符<br>
+    <br>
+    <br>
+    幸好，大部分已有的样式还是很规矩的，大多能直接用<br>
+    对于喜欢的样式，个别细节也还可以修改保存为本地样式库使用<br>
+    扬长避短便是
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
@@ -137,6 +274,6 @@ body
     在保持声明式的前提下，同时解决突出的命名冲突和样式复用问题<br>
     并且，可以方便的同时整合使用多方样式框架，如同用的是个样式库一样
    
-    <doc-footer>青松 2019.05</doc-footer>
+    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

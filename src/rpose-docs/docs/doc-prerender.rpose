@@ -106,6 +106,6 @@ rpose会按类名查找<ui-badge>.pre-render</ui-badge>节点，然后添加类<
     另外，样式的link标签也是阻塞渲染的，如果css文件较大，也应异步加载，比如可以动态创建link标签实现<br>
 
    
-    <doc-footer>青松 2019.01</doc-footer>
+    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

@@ -115,6 +115,6 @@
     包<ui-badge>@rpose/buildin</ui-badge>中还提供少数常用图标可直接使用
 
 
-    <doc-footer>青松 2019.05</doc-footer>
+    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

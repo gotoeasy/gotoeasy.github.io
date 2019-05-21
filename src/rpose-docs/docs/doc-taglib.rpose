@@ -112,6 +112,6 @@ body
     特点是声明式的使用第三方组件，能做到较强的语义化<br>
     顺便就是很好的解决了一个组件如何命名的闹心问题<br>
    
-    <doc-footer>青松 2019.05</doc-footer>
+    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

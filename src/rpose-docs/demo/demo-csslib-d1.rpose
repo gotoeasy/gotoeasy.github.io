@@ -1,6 +1,5 @@
 [view]
 <ul>
-    <li><input class="btn btn-primary" type="button" value="Input" @csslib="bootstrap"></li>
     <li><a href="#" class="btn@bs btn-secondary@bs btn-lg@bs active@bs" @csslib="bs=bootstrap">Link</a></li>
     <li><button type="button" class="btn@bootstrap btn-warning@bootstrap" @csslib="bootstrap=bootstrap:**.min.css">Warning</button></li>
 </ul>

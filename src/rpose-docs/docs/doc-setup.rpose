@@ -56,7 +56,7 @@ ui-line = @rpose/ui-line:ui-line
 <br>
 详细的配置文件说明，后有专节介绍<br>
 <br>
-<ui-badge type="danger">注： 基于方便目的，配置或代码中的相关的npm包都会在编译时自动安装最新版</ui-badge><br>
+<ui-badge type="danger">注：</ui-badge>基于方便目的，配置或代码中的相关的npm包都会在编译时自动安装最新版<br>
 若对版本有特殊要求，需事前自行安装<br>
 
 
@@ -114,6 +114,6 @@ rpose build -c -r
     不罗列鸣谢过意不去，一旦罗列又必定有漏，虽有漏，但内心感激，赞<br>
 
    
-    <doc-footer>青松 2018.12</doc-footer>
+    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>
