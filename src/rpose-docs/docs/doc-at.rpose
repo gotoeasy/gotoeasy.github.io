@@ -29,7 +29,7 @@ statekey = role
 body
 ```
 
-    简单的表达式判断而已，看看效果 <a href="demo/demo-at-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    简单的表达式判断而已，看看效果 <a href="demo/demo-at-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     没有设计所谓的<ui-badge>@else</ui-badge>，没必要<br>
     <br>
     如果要控制多个节点是否渲染，可以使用<ui-badge>{'<if></if>'}</ui-badge>标签
@@ -91,7 +91,7 @@ statekeys = items
 body
 ```
 
-    看看效果 <a href="demo/demo-at-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    看看效果 <a href="demo/demo-at-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     如果循环内容包含多个节点，可以使用<ui-badge>{'<for></for>'}</ui-badge>标签
 
 
@@ -135,7 +135,7 @@ body
 body
 ```
 
-    看看效果 <a href="demo/demo-at-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    看看效果 <a href="demo/demo-at-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     总之，就是有这么些内置方法配合去取到相应组件或节点
 
 
@@ -156,7 +156,7 @@ statekey = role
 </div>
 ```
 
-也是简单的表达式判断而已，看看效果 <a href="demo/demo-at-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+也是简单的表达式判断而已，看看效果 <a href="demo/demo-at-d4.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 没有所谓的<ui-badge>@hide</ui-badge>，同样没必要<br>
 两个span节点都渲染了，只是其中一个为<ui-badge>style="display: none;"</ui-badge><br>
 
@@ -197,7 +197,7 @@ statekey = role
 </ul>
 ```
 
-先体会一下上面各种不同写法，虽然结果都是使用了同样的第三方组件，看看效果 <a href="demo/demo-at-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+先体会一下上面各种不同写法，虽然结果都是使用了同样的第三方组件，看看效果 <a href="demo/demo-at-d5.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 <br>
 <ui-badge type="info">@taglib语法：</ui-badge>@taglib="<ui-badge>alias</ui-badge>=<ui-badge>npm-package-name</ui-badge>:<ui-badge>component-name</ui-badge>"<br>
 关键是要能确定包名、目标组件名<br>
@@ -242,7 +242,7 @@ statekey = role
 </button>
 ```
 
-    这样就是创建了一个bootstrap button，看看效果 <a href="demo/demo-at-d6-1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    这样就是创建了一个bootstrap button，看看效果 <a href="demo/demo-at-d6-1.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     查看源码可知，所需样式会自动引用，用不到的没有引用，好姿势<br>
     <br>
     <ui-badge type="info">@csslib语法：</ui-badge>@csslib="<ui-badge>alias</ui-badge>=<ui-badge>npm-package-name</ui-badge>:<ui-badge>filter</ui-badge>"<br>
@@ -253,7 +253,7 @@ statekey = role
     <br>
     <br>
     <ui-badge type="info">文件过滤器可以省略</ui-badge><br>
-    文件过滤器缺省为<ui-badge>**.min.css</ui-badge>，如下所示，看看效果 <a href="demo/demo-at-d6-2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    文件过滤器缺省为<ui-badge>**.min.css</ui-badge>，如下所示，看看效果 <a href="demo/demo-at-d6-2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     过滤器单个<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名
 ```rpose
 // demo-at-d6-2.rpose
@@ -273,7 +273,7 @@ statekey = role
     @csslib="bootstrap"
 </button>
 ```
-    看看效果 <a href="demo/demo-at-d6-3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    看看效果 <a href="demo/demo-at-d6-3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     
     <br>
 ```rpose
@@ -283,7 +283,7 @@ statekey = role
     @csslib="*=bootstrap"
 </button>
 ```
-    别名缺省时实际等同于<ui-badge>*</ui-badge>，看看效果<a href="demo/demo-at-d6-4.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    别名缺省时实际等同于<ui-badge>*</ui-badge>，看看效果<a href="demo/demo-at-d6-4.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 
     <br>
     <br>
@@ -305,7 +305,7 @@ statekey = role
     </li>
 </ul>
 ```
-这个效果应该是第二个按钮的样式和bootstrap无关 <a href="demo/demo-at-d6-5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+这个效果应该是第二个按钮的样式和bootstrap无关 <a href="demo/demo-at-d6-5.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 
     <br>
     <br>
@@ -333,7 +333,7 @@ statekey = role
 </div> 
 ```rpose
 
-就是这样，看效果 <a href="demo/demo-at-d7-1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+就是这样，看效果 <a href="demo/demo-at-d7-1.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 想随手直接写写时会很方便<br>
 
     <br>
@@ -351,7 +351,7 @@ statekey = role
 <h1 class="animated infinite bounce delay-2s" @csslib="animate.css">Example</h1>
 ```rpose
 
-    点击看看效果 <a href="demo/demo-at-d7-2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    点击看看效果 <a href="demo/demo-at-d7-2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
     想自定义修改吗？如果你想改这个动画时间为2.345秒，通常会有点费劲，因为它没有默认提供得自己写嘛<br>
     <br>
@@ -364,7 +364,7 @@ statekey = role
 ```
 
     很直观，根据需要你可以改为1280ms或789ms之类<br>
-    任性调整到你满意为止，看看效果 <a href="demo/demo-at-d7-3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    任性调整到你满意为止，看看效果 <a href="demo/demo-at-d7-3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 
 
 

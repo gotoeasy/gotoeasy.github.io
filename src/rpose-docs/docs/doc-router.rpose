@@ -40,7 +40,7 @@
 </div>
 ```
 
-    这个组件就是简单的把三个页面组件拼成一个SPA页面，看效果 <a href="demo/demo-router-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    这个组件就是简单的把三个页面组件拼成一个SPA页面，看效果 <a href="demo/demo-router-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     其中router是个内置的标签组件，path属性指定匹配的路由地址
 
 
@@ -67,7 +67,7 @@
 </div>
 ```
 
-    本例<ui-badge>router-link</ui-badge>组件接受<ui-badge>path</ui-badge>属性，代表链接地址，直接使用路由名就行，看效果 <a href="demo/demo-router-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    本例<ui-badge>router-link</ui-badge>组件接受<ui-badge>path</ui-badge>属性，代表链接地址，直接使用路由名就行，看效果 <a href="demo/demo-router-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
     <ui-badge type="danger">注</ui-badge>如果<ui-badge>path</ui-badge>属性以<ui-badge>http://</ui-badge>或<ui-badge>https://</ui-badge>或<ui-badge>.</ui-badge>或<ui-badge>/</ui-badge>开头，将被视为普通链接地址使用
 
@@ -92,7 +92,7 @@
 ```
 
     这里的<ui-badge>foo</ui-badge>页有<ui-badge>default</ui-badge>声明，如果初期打开时指定了不存在的路由名，<ui-badge>foo</ui-badge>页将作为默认页被显示<br>
-    比如用一个不存在的<ui-badge>#xyz</ui-badge>锚点打开 <a href="demo/demo-router-d3.html#xyz" target="_blank"><svgicon src="link" fill="blue"/></a>
+    比如用一个不存在的<ui-badge>#xyz</ui-badge>锚点打开 <a href="demo/demo-router-d3.html#xyz" target="_blank"><svgicon name="link" fill="blue"/></a>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -115,7 +115,7 @@
 </div>
 ```
 
-    点击 <a href="demo/demo-router-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a> 打开后点击xyz<br>
+    点击 <a href="demo/demo-router-d4.html" target="_blank"><svgicon name="link" fill="blue"/></a> 打开后点击xyz<br>
     由于不存在<ui-badge>xyz</ui-badge>的路由，将显示<ui-badge>notfound</ui-badge>页，地址栏直接输入错误地址也会是同样效果<br>
     <br>
     <ui-badge type="info">区别</ui-badge>默认页和<ui-badge>notfound</ui-badge>页都是路由找不到时才显示，区别在于默认页仅适用于初期加载显示时机
@@ -142,13 +142,13 @@
 ```
 
     路由匹配顺序无关、数量无关，可以同时匹配多个，全部匹配的都会被显示<br>
-    本例点击<ui-badge>bar</ui-badge>链接时，同时匹配<ui-badge>bar</ui-badge>、<ui-badge>baz</ui-badge>这2个路由，将会一起显示 <a href="demo/demo-router-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+    本例点击<ui-badge>bar</ui-badge>链接时，同时匹配<ui-badge>bar</ui-badge>、<ui-badge>baz</ui-badge>这2个路由，将会一起显示 <a href="demo/demo-router-d5.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.6 参数传递</doc-title>
     参数传递，组件<ui-badge>router-link</ui-badge>按传参方式传入<ui-badge>params</ui-badge>属性即可<br>
-    效果上在地址栏不会直接暴露数据，看看效果 <a href="demo/demo-router-d6.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+    效果上在地址栏不会直接暴露数据，看看效果 <a href="demo/demo-router-d6.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-router-d6.rpose
 \[view]

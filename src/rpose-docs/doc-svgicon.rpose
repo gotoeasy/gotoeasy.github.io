@@ -1,17 +1,81 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>TODO</doc-title>
+    <doc-title>图标库</doc-title>
+    图标基本上是以SVG为主了，通常，是到图标网站搜索图标、注册用户、下载、本地整理制作．．．等等步骤，终于拿下，但是，这种重复劳动实在太不科学<br>
+    <br>
+    <ui-badge>{'<svgicon>'}</ui-badge>就是个为方便使用svg图标的组件<br>
+    <br>
+    概念上，是把npm上的svg图标集视为库，按需使用<br>
+    图标使用，被设计为只要声明就行，繁琐步骤全由框架代劳
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.1 直接引用SVG</doc-title>
+    已有一个svg图标文件，要直接用起来？<br>
+    在<ui-badge>{'<svgicon>'}</ui-badge>上指定<ui-badge>name</ui-badge>属性就行
+```rpose
+// demo-svgicon-d1.rpose
+\[view]
+<svgicon name="chart"/> <!-- chart.svg 放在 demo-svgicon-d1.rpose 同一目录 -->
+
+\[mount]
+body
+```
+
+    就是这样如同图片的src一样用，且svg后缀名可以省略<br>
+    效果上就是单纯的一个svg标签，显示一个图标，看效果 <a href="demo/demo-svgicon-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
+    <br>
+    总之，会优先以相对目录的形式查找显示svg文件，可以省略后缀名
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>TODO</doc-title>
+    <doc-title>1.2 按配置目录引用SVG</doc-title>
+    工程上，为了统一管理，通常有个特定的图标目录<br>
+    怎么引用工程上配置的图标目录下的指定svg文件？<br>
+    用法依旧是<ui-badge>{'<svgicon>'}</ui-badge>上指定<ui-badge>name</ui-badge>属性，看效果 <a href="demo/demo-svgicon-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
+```rpose
+// demo-svgicon-d2.rpose
+\[view]
+<ul>
+    <li><svgicon name="example"/></li> <!-- example.svg 在工程内的 resources/svgicons 目录 -->
+    <li><svgicon name="ex*"/></li> <!-- 使用通配符查找的引用方式 -->
+</ul>
 
+\[mount]
+body
+```
 
+    <ui-badge type="info">区别1</ui-badge>简单的说就是次优先查找配置目录<br>
+    <ui-badge type="info">区别2</ui-badge>工程配置目录中的svg文件，是被设计为按<ui-badge>文件过滤器</ui-badge>方式查找，这是为了避免相对路径混淆，更是为了方便仅书写文件名就能达到效果<br>
+    <br>
+    管理上，配置目录中可以建子目录分级管理，如果没有重复文件名，那<ui-badge>{'<svgicon>'}</ui-badge>依旧只需写文件名，简洁直观<br>
+    <br>
+    工程上配置个图表目录（默认resources/svgicons），放置svg图标文件，起不重复的意思直白的文件名，这种情况下用<ui-badge>{'<svgicon>'}</ui-badge>可达到语义非常清晰的效果<br>
+    当然也支持复杂点的过滤器，可以用通配符，单一<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>TODO</doc-title>
+    <doc-title>1.3 引用内置SVG图标</doc-title>
+    内置包<ui-badge>@rpose/buildin</ui-badge>中提供部分常用图标<br>
+    依旧相同用法使用就行，看效果 <a href="demo/demo-svgicon-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
+```rpose
+// demo-svgicon-d3.rpose
+\[view]
+<ul>
+    <li><svgicon name="home"/></li> <!-- home.svg 在内置包@rpose/buildin中 -->
+</ul>
+
+\[mount]
+body
+```
+
+    <ui-badge type="info">区别</ui-badge>不过是查找优先度不同而已，最低的优先度<br>
+    也是按<ui-badge>文件过滤器</ui-badge>方式查找<br>
+    <br>
+    还找不到呢？编译期报错
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.4 引用指定包中的SVG</doc-title>
 
 
 

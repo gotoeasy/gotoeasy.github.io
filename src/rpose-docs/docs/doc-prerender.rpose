@@ -80,7 +80,7 @@ prerender = loader-section  // 就是这里，目前有loader和loader-section�
 \[mount]
 body
 ```
-点击看看效果 <a href="demo/demo-prerender-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a>，相应的html会在body里会添加预渲染的相关<ui-badge>pre-render</ui-badge>节点<br>
+点击看看效果 <a href="demo/demo-prerender-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a>，相应的html会在body里会添加预渲染的相关<ui-badge>pre-render</ui-badge>节点<br>
 详细查看build目录中生成的html文件内容便知
 
 

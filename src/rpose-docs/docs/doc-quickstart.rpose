@@ -42,7 +42,7 @@ body
 ```
 
 这便是把<ui-badge>UiHelloworld</ui-badge>组件用起来了，效果用想，显示出<ui-badge>hello world!</ui-badge>而已<br>
-不信点这里 <a href="demo/demo-quickstart-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+不信点这里 <a href="demo/demo-quickstart-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 
 
 
@@ -77,7 +77,7 @@ body
 <ui-badge type="info">要点2</ui-badge>取组件对象，设定@ref属性，组件对象默认提供<ui-badge>getRefComponent</ui-badge>方法可用<br>
 <ui-badge type="info">要点3</ui-badge>修改状态，沿用习惯通过组件的<ui-badge>setState</ui-badge>方法实现<br>
 <br>
-看效果点这里 <a href="demo/demo-quickstart-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+看效果点这里 <a href="demo/demo-quickstart-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 <br>
 <ui-badge type="info">扩充1</ui-badge>组件根部是一个标签节点，多了不行。为什么要这样，习惯...其实主要是影响虚拟节点比较的算法实现<br>
 <ui-badge type="info">扩充2</ui-badge>还有<ui-badge>getRefComponents</ui-badge>方法，返回的是数组，还有<ui-badge>getRefElements</ui-badge>、<ui-badge>getRefElement</ui-badge>方法，对应返回真实Dom<br>
@@ -111,7 +111,7 @@ body
 要点，就是不想要要点，就像<ui-badge>html+css</ui-badge>那样直白<br>
 当然，为了习惯，写<ui-badge>[scss]</ui-badge>、<ui-badge>[less]</ui-badge>都是可以的，尝试吧<br>
 <br>
-看效果点这里 <a href="demo/demo-quickstart-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+看效果点这里 <a href="demo/demo-quickstart-d4.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 <br>
 <br>
 有顾虑？确实，样式问题还是很多的<br>
@@ -292,7 +292,7 @@ statekeys  = value, disabled
 body
 ```
 
-看效果点这里 <a href="demo/demo-quickstart-d8.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+看效果点这里 <a href="demo/demo-quickstart-d8.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 <br>
 也是有要点的<br>
 没有<ui-badge>[api]</ui-badge>声明可变属性，也就是不让外面修改，但内部自己当然是可以改state的，改完之后调用了组件的内置方法render重绘<br>

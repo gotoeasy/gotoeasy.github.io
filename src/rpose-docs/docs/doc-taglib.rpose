@@ -44,7 +44,7 @@ optionkeys = height, width, color, margin
 body
 ```
 
-    用法比较直观，会自动安装导入，只需要关心怎么用，看效果 <a href="demo/demo-taglib-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    用法比较直观，会自动安装导入，只需要关心怎么用，看效果 <a href="demo/demo-taglib-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
     <ui-badge type="info">@taglib语法：</ui-badge>@taglib="<ui-badge>alias</ui-badge>=<ui-badge>npm-package-name</ui-badge>:<ui-badge>tag-name</ui-badge>"<br>
     其中<ui-badge>npm-package-name</ui-badge>必须指定，<ui-badge>alias</ui-badge>和<ui-badge>tag-name</ui-badge>视情形可以省略<br>
@@ -73,11 +73,11 @@ body
 body
 ```
 
-    同样的，别名推荐使用@前缀以示区别，看看效果 <a href="demo/demo-taglib-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    同样的，别名推荐使用@前缀以示区别，看看效果 <a href="demo/demo-taglib-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     如果别名和组件标签名一样，则组件标签名可以省略<br>
     <br>
     <br>
-    像下面不写@前缀的写法也是可以，看看效果 <a href="demo/demo-taglib-d4.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+    像下面不写@前缀的写法也是可以，看看效果 <a href="demo/demo-taglib-d4.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-taglib-d4.rpose
 \[view]

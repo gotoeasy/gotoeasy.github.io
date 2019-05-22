@@ -4,47 +4,47 @@
     <@line margin="0" color="#aaa"/>
     <div class="iconbar-link">
         <router-link path="intro" title="初识 rpose">
-            <svgicon src="@fortawesome/fontawesome-free:book"/>
+            <svgicon name="@fortawesome/fontawesome-free:book"/>
         </router-link>
         <router-link path="quickstart" title="快速上手">
-            <svgicon src="guide"/>
+            <svgicon name="guide"/>
         </router-link>
         <router-link path="setup" title="安装使用">
-            <svgicon src="@fortawesome/fontawesome-free:check"/>
+            <svgicon name="@fortawesome/fontawesome-free:check"/>
         </router-link>
 
         <@line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
         <router-link path="buildin" title="内置标签组件">
-            <svgicon src="component"/>
+            <svgicon name="component"/>
         </router-link>
         <router-link path="at" title="内置指令集">
-            <svgicon src="@fortawesome/fontawesome-free:at"/>
+            <svgicon name="@fortawesome/fontawesome-free:at"/>
         </router-link>
         <@line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
 
         <router-link path="slot" title="插槽">
-            <svgicon src="@fortawesome/fontawesome-free:s*/list-alt"/>
+            <svgicon name="@fortawesome/fontawesome-free:s*/list-alt"/>
         </router-link>
         <router-link path="prerender" title="预渲染">
-            <svgicon src="@fortawesome/fontawesome-free:brush"/>
+            <svgicon name="@fortawesome/fontawesome-free:brush"/>
         </router-link>
         <router-link path="router" title="前端路由">
-            <svgicon src="@fortawesome/fontawesome-free:random"/>
+            <svgicon name="@fortawesome/fontawesome-free:random"/>
         </router-link>
         <router-link path="taglib" title="标签库">
-            <svgicon src="@fortawesome/fontawesome-free:tag"/>
+            <svgicon name="@fortawesome/fontawesome-free:tag"/>
         </router-link>
         <router-link path="csslib" title="样式库">
-            <svgicon src="@fortawesome/fontawesome-free:css3-alt"/>
+            <svgicon name="@fortawesome/fontawesome-free:css3-alt"/>
         </router-link>
-        <router-link path="svgicon" title="图标标签">
-            <svgicon src="@fortawesome/fontawesome-free:s*/file-image"/>
+        <router-link path="svgicon" title="图标库">
+            <svgicon name="icon"/>
         </router-link>
 
         <@line margin="5px 0 10px 0" color="#aaa"/><!---------------------------------------------->
 
-        <router-link path="todo" title="TODO">
-            <svgicon src="@fortawesome/fontawesome-free:check"/>
+        <router-link path="todo" title="TODO" @if={false}>
+            <svgicon name="@fortawesome/fontawesome-free:check"/>
         </router-link>
     </div>
 </div>

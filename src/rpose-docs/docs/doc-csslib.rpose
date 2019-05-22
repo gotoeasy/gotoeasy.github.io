@@ -18,7 +18,7 @@
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.1 使用 @csslib 指令</doc-title>
-    以流行的bootstrap按钮为例，直接看效果 <a href="demo/demo-csslib-d1.html" target="_blank"><svgicon src="link" fill="blue"/></a>
+    以流行的bootstrap按钮为例，直接看效果 <a href="demo/demo-csslib-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-csslib-d1.rpose
 \[view]
@@ -70,7 +70,7 @@ body
 body
 ```
 
-    这个是直接抄写bootstrap官网例子，仅加了个<ui-badge>[csslib]</ui-badge>配置，看看效果 <a href="demo/demo-csslib-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    这个是直接抄写bootstrap官网例子，仅加了个<ui-badge>[csslib]</ui-badge>配置，看看效果 <a href="demo/demo-csslib-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     还是那句话，表达好要引入的样式文件，以及使用到样式类，剩下的事交由框架去做吧<br>
     <br>
     <br>
@@ -122,7 +122,7 @@ body
 ```
 
     代码虽然有点多了，但那都是框架官方例子，rpose做的只是配置一个<ui-badge>[csslib]</ui-badge><br>
-    当然，在指定别名时需要把类名相应的加上别名后缀，看看效果 <a href="demo/demo-csslib-d3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    当然，在指定别名时需要把类名相应的加上别名后缀，看看效果 <a href="demo/demo-csslib-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
     就是这样，可以把多个不同框架样式联合起来一起用<br>
     突然之间，世界变得更加广大自由的感觉
@@ -185,13 +185,13 @@ body
 ```
 
     这个例子直接从purecss官网复制，只是加了一个本地样式库配置<br>
-    下载pure.css存放到本地，以<ui-badge>~</ui-badge>开头指定目录即可，看效果 <a href="demo/demo-csslib-d5.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    下载pure.css存放到本地，以<ui-badge>~</ui-badge>开头指定目录即可，看效果 <a href="demo/demo-csslib-d5.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.6 自动转换脚本中的样式名</doc-title>
     在js脚本代码中也可以使用样式库的相关样式类名<br>
-    下面例子按Submit会提示勾选，按Toggle会切换排版，看效果 <a href="demo/demo-csslib-d6.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    下面例子按Submit会提示勾选，按Toggle会切换排版，看效果 <a href="demo/demo-csslib-d6.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 ```rpose 380px
 // demo-csslib-d6.rpose
 \[view]

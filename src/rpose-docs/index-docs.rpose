@@ -29,7 +29,7 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
 
         <router notfound>
             <div @class="height-50vh display-flex justify-content-center align-items-center">
-                <svgicon src="404" fill="#dc483d" height="128"/>
+                <svgicon name="404" fill="#dc483d" height="128"/>
             </div>
         </router>
 
