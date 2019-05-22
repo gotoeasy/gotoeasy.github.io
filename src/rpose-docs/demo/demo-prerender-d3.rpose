@@ -2,7 +2,7 @@
 prerender = loader-section  // 就是这里，目前有loader和loader-section两种效果可选，一试便知
 
 [view] // 图片相对路径是相对于源文件自身
-<img src="../../resources/images/bg.jpg" height="100" width="200" />
+<img src="../../bg.jpg" height="100" width="200" />
 
 [mount]
 body

@@ -242,8 +242,8 @@ statekey = role
 </button>
 ```
 
-    这样就是创建了一个bootstrap primary button，看看效果 <a href="demo/demo-at-d6-1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-    查看源码可知，所需样式会自动引用，用不到的没有引用，nice pose<br>
+    这样就是创建了一个bootstrap button，看看效果 <a href="demo/demo-at-d6-1.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    查看源码可知，所需样式会自动引用，用不到的没有引用，好姿势<br>
     <br>
     <ui-badge type="info">@csslib语法：</ui-badge>@csslib="<ui-badge>alias</ui-badge>=<ui-badge>npm-package-name</ui-badge>:<ui-badge>filter</ui-badge>"<br>
     比如例子中的<ui-badge>bs=bootstrap:**.min.css</ui-badge><br>
@@ -310,7 +310,7 @@ statekey = role
     <br>
     <br>
     <ui-badge type="danger">指令 @csslib 使用注意点</ui-badge><br>
-    <ui-badge type="info">1</ui-badge>建议使用别名，像上面例子虽然样式名一样但效果却不同，容易令人困惑<br>
+    <ui-badge type="info">1</ui-badge>推荐使用别名，像上面例子虽然样式名一样但效果却不同，容易令人困惑<br>
     <ui-badge type="info">2</ui-badge>样式库别名不能重复，否则编译失败<br>
     <ui-badge type="info">3</ui-badge>样式库别名和<ui-badge>[csslib]</ui-badge>定义不能有冲突，否则编译失败<br>
     <br>
@@ -354,15 +354,17 @@ statekey = role
     点击看看效果 <a href="demo/demo-at-d7-2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
     <br>
     想自定义修改吗？如果你想改这个动画时间为2.345秒，通常会有点费劲，因为它没有默认提供得自己写嘛<br>
-    但使用<ui-badge>@class</ui-badge>可就简单极了<br>
+    <br>
+    但使用<ui-badge>@class</ui-badge>可就简单极了
 
 ```rpose
 \[view]
 <h1 class="animated infinite bounce delay-2s" @csslib="animate.css"
     @class="animation-duration-2.345s">Example</h1>
 ```
-    点击看看效果 <a href="demo/demo-at-d7-3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
-    很直观，根据需要你可以改为1280ms或789ms之类，任性调整到你满意为止<br>
+
+    很直观，根据需要你可以改为1280ms或789ms之类<br>
+    任性调整到你满意为止，看看效果 <a href="demo/demo-at-d7-3.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
 
 
 
@@ -379,6 +381,6 @@ statekey = role
     本章节介绍了rpose的全部指令用法<br>
     <ui-badge>@taglib</ui-badge>、<ui-badge>@csslib</ui-badge>、<ui-badge>@class</ui-badge>都是很有特色的指令<br>
    
-    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
+    <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

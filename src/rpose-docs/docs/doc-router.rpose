@@ -2,11 +2,14 @@
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
     <doc-title>前端路由</doc-title>
-    前端路由没有标准，都是按经验自由发挥，差异体现在不同的接口设计<br>
+    前端路由没有标准，都是按经验自由发挥<br>
+    差异体现在不同的接口设计<br>
     各自造轮子，导致一种是极端简陋，另一种是过度设计<br>
 
     <br>
-    本质上，前端路由是为了支持浏览器的前进后退操作，要既能模拟页面跳转但又不跳出当前SPA页<br>
+    本质上，前端路由是为了支持浏览器的前进后退操作<br>
+    要求既能模拟页面跳转但又不跳出当前SPA页<br>
+    <br>
     因此，rpose控制复杂度，注重易用性，提供以下功能<br>
 
     <ul>
@@ -21,7 +24,7 @@
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.1 使用路由标签</doc-title>
-    通常，页面用路由标签包裹起来，同时指定匹配的路径就行了
+    通常，页面用路由标签包裹后，指定匹配的路径即可
 ```rpose
 // demo-router-d1.rpose
 \[view]
@@ -65,6 +68,7 @@
 ```
 
     本例<ui-badge>router-link</ui-badge>组件接受<ui-badge>path</ui-badge>属性，代表链接地址，直接使用路由名就行，看效果 <a href="demo/demo-router-d2.html" target="_blank"><svgicon src="link" fill="blue"/></a><br>
+    <br>
     <ui-badge type="danger">注</ui-badge>如果<ui-badge>path</ui-badge>属性以<ui-badge>http://</ui-badge>或<ui-badge>https://</ui-badge>或<ui-badge>.</ui-badge>或<ui-badge>/</ui-badge>开头，将被视为普通链接地址使用
 
 
@@ -193,6 +197,6 @@
     [methods]块定义组件方法的作用，及特殊的init方法的用途<br>
 
    
-    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
+    <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

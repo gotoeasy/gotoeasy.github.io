@@ -3,7 +3,7 @@
 
     <doc-title>安装使用</doc-title>
     目前rpose是采用命令行方式进行编译打包<br>
-    node.js环境，npm全局安装命令行工具，参数有限一目了然
+    npm全局安装命令行工具，参数有限一目了然
 
 
 <!---------------------------------------------------------------------------------------->
@@ -114,6 +114,6 @@ rpose build -c -r
     不罗列鸣谢过意不去，一旦罗列又必定有漏，虽有漏，但内心感激，赞<br>
 
    
-    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
+    <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

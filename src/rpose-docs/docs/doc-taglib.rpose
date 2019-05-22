@@ -50,7 +50,7 @@ body
     其中<ui-badge>npm-package-name</ui-badge>必须指定，<ui-badge>alias</ui-badge>和<ui-badge>tag-name</ui-badge>视情形可以省略<br>
 
     <br>
-    指令<ui-badge>@taglib</ui-badge>的更多细节用法可在<ui-badge>内置指令集</ui-badge>章节中查阅<br>
+    <ui-badge>@taglib</ui-badge>的更多细节用法可在<ui-badge>内置指令集</ui-badge>章节中查阅<br>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -112,6 +112,6 @@ body
     特点是声明式的使用第三方组件，能做到较强的语义化<br>
     顺便就是很好的解决了一个组件如何命名的闹心问题<br>
    
-    <doc-footer>Rpose Docs | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
+    <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
 </div>

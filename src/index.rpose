@@ -38,7 +38,7 @@ html,body{
     background-size: cover;
     
     display: table;
-    background: url(./resources/images/bg.jpg) top center no-repeat;
+    background: url(./bg.jpg) top center no-repeat;
 }
 .center {
     display: table-cell;
