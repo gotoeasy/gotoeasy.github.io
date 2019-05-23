@@ -79,7 +79,7 @@ body
     <ui-badge type="info">规则2</ui-badge>pkg-or-dir用<ui-badge>~</ui-badge>前缀时代表工程根目录开始的本地目录，否则指npm包名<br>
     <ui-badge type="info">规则3</ui-badge>过滤器filter可以省略，缺省时等同<ui-badge>**.min.css</ui-badge><br>
     　　　多个过滤器可以用逗号<ui-badge>,</ui-badge>或分号<ui-badge>;</ui-badge>分隔<br>
-    　　　过滤器支持通配符，用<ui-badge>?</ui-badge>代表任意单一字符，<ui-badge>*</ui-badge>代表不跨目录的任意字符，<ui-badge>**</ui-badge>代表任意目录任意字符<br>
+    　　　支持通配符，用<ui-badge>?</ui-badge>代表任意单一字符，<ui-badge>*</ui-badge>代表不跨目录的任意字符，<ui-badge>**</ui-badge>代表任意目录任意字符<br>
     <ui-badge type="info">规则4</ui-badge>一行一个csslib配置，支持注释符<ui-badge>//</ui-badge><br>
     <ui-badge type="info">规则5</ui-badge>别名不能重复<br>
 
@@ -264,7 +264,7 @@ body
     又比如，输入样式是依赖class属性选择器去实现，那就如同硬编码了样式类名，这和样式库自动调整类名的思路矛盾，极可能会导致结果和预想不符<br>
     <br>
     <br>
-    幸好，大部分已有的样式还是很规矩的，大多能直接用<br>
+    幸好，大部分已有样式还是很规矩，大多能直接用<br>
     对于喜欢的样式，个别细节也还可以修改保存为本地样式库使用<br>
     <br>
     扬长避短便是

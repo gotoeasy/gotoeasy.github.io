@@ -1,0 +1,15 @@
+[view]
+<div>
+    <svgicon name="{'@fortawesome/fontawesome-free:apple'}" height="64" type="link-symbol"/>
+    <svgicon name="{'dashboard'}" height="64" fill="deeppink" type="link-symbol"/>
+    <svgicon name='@fortawesome/fontawesome-free:android' height="64" type="link-symbol"/>
+</div>
+
+[css]
+.icon-bug{
+    fill: red;
+    height: 64px
+}
+
+[mount]
+body

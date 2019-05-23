@@ -1,7 +1,7 @@
 [view]
 <div @class="height-100% display-flex flex-direction-column color-#eee overflow-hidden">
     <div @class="height-50px display-flex justify-content-center align-items-center font-size-25px">R</div>
-    <@line margin="0" color="#aaa"/>
+    <@line margin="0 auto" color="#aaa"/>
     <div class="iconbar-link">
         <router-link path="intro" title="初识 rpose">
             <svgicon name="@fortawesome/fontawesome-free:book"/>

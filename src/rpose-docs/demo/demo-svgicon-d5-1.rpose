@@ -1,0 +1,7 @@
+[view]
+<div @class="height-50vh display-flex justify-content-center align-items-center">
+    <svgicon name="404" fill="#dc483d" height="128"/>
+</div>
+
+[mount]
+body

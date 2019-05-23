@@ -1,5 +1,5 @@
 [view]
-<svgicon name="chart"/>
+<svgicon name="@fortawesome/fontawesome-free:angular"/> <!-- 通常，如果svg文件名没有重复，那只需要直接写文件名就行，有意义的文件名能达到很好的语义化效果 -->
 
 [mount]
 body

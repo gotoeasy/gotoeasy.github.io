@@ -30,9 +30,9 @@
 可以添加个Loader，缺点是不知道要“等”多久，时间长时体验较差<br>
 或是加个骨架屏，缺点是不同页面的骨架屏可能不一样，要分别写<br>
 或是参考桌面应用写个类似舒服的Splash启动页面，个性化，等等<br>
-追根到底是审美疲劳的原因，看多了还会继续想换花样<br>
+追根到底是审美疲劳的原因，看多了还会想换花样<br>
 <br>
-所以这个页面html源码的生成，自然的就有模块需求了
+所以页面html源码的生成，自然就有了模块化需求
 
 
 <!---------------------------------------------------------------------------------------->
@@ -88,12 +88,12 @@ body
     <doc-title>1.4 简单好用，定制要注意什么</doc-title>
 在浏览器触发<ui-badge>window.onload</ui-badge>事件时<br>
 rpose会按类名查找<ui-badge>.pre-render</ui-badge>节点，然后添加类<ui-badge>loaded</ui-badge><br>
-再数秒后，会删除<ui-badge>.pre-render</ui-badge>节点，这就是框架内部做的事<br>
+再数秒后，会删除<ui-badge>.pre-render</ui-badge>节点，这是内部做的事<br>
 <br>
 所以，预渲染的根节点添加类<ui-badge>pre-render</ui-badge>，再写个<ui-badge>.loaded</ui-badge>的相关样式，做隐藏或动画隐藏处理<br>
 这样rpose就会代劳隐藏和删除逻辑，<ui-badge>@gotoeasy/pre-render</ui-badge>就是这么做的<br>
 <br>
-当然，也可以不管这些，自己写脚本实现是完全可以的<br>
+当然，也可以不管这些，完全可以自己写脚本实现<br>
 另外注意，渲染效果的浏览器兼容性，目前是要自行处理的<br>
 
 
@@ -102,7 +102,7 @@ rpose会按类名查找<ui-badge>.pre-render</ui-badge>节点，然后添加类<
     内置提供一种简易的预渲染方案，特殊需求再另行实现，是这样的一个思路<br>
     无关业务的东西，希望声明一下就能实现，这是主要目的<br>
     <br>
-    另外，样式的link标签也是阻塞渲染的，如果css文件较大，也应异步加载，比如可以动态创建link标签实现<br>
+    另外，样式的link标签也是阻塞渲染的，若css文件较大，也应异步加载，比如可以动态建link标签实现<br>
 
    
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>

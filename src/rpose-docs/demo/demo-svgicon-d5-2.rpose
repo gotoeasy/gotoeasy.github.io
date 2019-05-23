@@ -1,0 +1,13 @@
+[view]
+<div @class="height-50vh display-flex justify-content-center align-items-center">
+    <svgicon name="404" class="icon404"/>
+</div>
+
+[css]
+.icon404{
+    fill: darkgoldenrod;
+    height: 200px;
+}
+
+[mount]
+body

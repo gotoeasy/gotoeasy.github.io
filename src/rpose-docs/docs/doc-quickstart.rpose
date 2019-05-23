@@ -50,7 +50,7 @@ body
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.3 修改 hello world 组件状态</doc-title>
     要修改组件状态，3个要素，什么时机？什么组件？改成什么？<br>
-    下面代码演示，在输入框<ui-badge>onchange</ui-badge>时，拿到<ui-badge>hello world</ui-badge>组件对象，把它的<ui-badge>name</ui-badge>修改为输入框的值
+    下面代码演示，在输入框<ui-badge>onchange</ui-badge>时，拿到<ui-badge>hello world</ui-badge>组件对象，把它的<ui-badge>name</ui-badge>改为输入框的值
 ```rpose
 // 文件名 demo-quickstart-d3.rpose
 
@@ -314,7 +314,7 @@ body
     <ui-badge>[view]</ui-badge>就像html，模板语法很大众，免试入门<br>
     <ui-badge>[actions]</ui-badge>写事件函数，一个个js方法，没有特别的技术要求<br>
     <ui-badge>[css]</ui-badge>或<ui-badge>[less]</ui-badge>或<ui-badge>[scss]</ui-badge>写样式，样式的众多顾虑问题，rpose都帮忙铲除，还提供了theme风格方案<br>
-    组件，有那么些内置方法如<ui-badge>getState、setState、getRefComponent、getRefElement、render</ui-badge>等<br>
+    组件，有那么些内置方法如<ui-badge>getState</ui-badge>、<ui-badge>setState</ui-badge>、<ui-badge>getRefComponent</ui-badge>、<ui-badge>getRefElement</ui-badge>、<ui-badge>render</ui-badge>等<br>
     <br>
     到目前为止，已经能应付大部分的功能实现，有兴趣就可以开始动手尝试了<br>
 

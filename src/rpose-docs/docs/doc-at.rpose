@@ -92,7 +92,7 @@ body
 ```
 
     看看效果 <a href="demo/demo-at-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
-    如果循环内容包含多个节点，可以使用<ui-badge>{'<for></for>'}</ui-badge>标签
+    如果循环内容含多个节点，可以使用<ui-badge>{'<for>'}</ui-badge>标签
 
 
 <!---------------------------------------------------------------------------------------->
@@ -136,7 +136,7 @@ body
 ```
 
     看看效果 <a href="demo/demo-at-d3.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
-    总之，就是有这么些内置方法配合去取到相应组件或节点
+    总之，有这么些内置方法配合去取到相应组件或节点
 
 
 
@@ -165,12 +165,12 @@ statekey = role
 而实际上布局不一定是<ui-badge>block</ui-badge>，所以还支持以修饰符的方式指定显示方式<br>
 比如<ui-badge type="info">@show.flex</ui-badge>，这样显示的时候就是<ui-badge>style="display: flex;"</ui-badge>了<br>
 <br>
-<ui-badge type="error">注意</ui-badge>修饰符有合法性检查，使用无效修饰符将编译失败
+<ui-badge type="error">注意</ui-badge>修饰符有合法性检查，无效修饰符将编译失败
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.5 指令 @taglib</doc-title>
     使用第三方组件时，总是require或import ...... 会手酸<br>
-    rpose提供指令<ui-badge>@taglib</ui-badge>，以声明的方式使用第三方组件
+    rpose提供指令<ui-badge>@taglib</ui-badge>，以声明方式使用第三方组件
 
 ```rpose 380px
 // demo-at-d5.rpose
@@ -207,9 +207,9 @@ statekey = role
 例子1，完整写法，由于指定了目标组件名，别名实际上被忽视，标签名自行按语义书写<br>
 例子2，省略别名，标签名自行按语义书写<br>
 例子3，目标组件名根据别名提示确定，标签名自行按语义书写<br>
-例子4，同上，目的在于说明，标签名有默认@前缀支持<br>
+例子4，同上，为说明标签名有默认@前缀支持<br>
 例子5，目标组件名根据当前标签名提示确定<br>
-例子6，同上，目的在于说明，标签名有默认@前缀支持<br>
+例子6，同上，为说明标签名有默认@前缀支持<br>
 <br>
 <br>
 <ui-badge type="error">标签名限制1</ui-badge>不能使用标准标签名，比如<ui-badge>div</ui-badge>或<ui-badge>span</ui-badge>，以免引起混淆<br>
@@ -253,8 +253,8 @@ statekey = role
     <br>
     <br>
     <ui-badge type="info">文件过滤器可以省略</ui-badge><br>
-    文件过滤器缺省为<ui-badge>**.min.css</ui-badge>，如下所示，看看效果 <a href="demo/demo-at-d6-2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
-    过滤器单个<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名
+    文件过滤器中，单个<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名
+    过滤器缺省为<ui-badge>**.min.css</ui-badge>，如下例子，看效果 <a href="demo/demo-at-d6-2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 ```rpose
 // demo-at-d6-2.rpose
 \[view]
@@ -312,7 +312,7 @@ statekey = role
     <ui-badge type="danger">指令 @csslib 使用注意点</ui-badge><br>
     <ui-badge type="info">1</ui-badge>推荐使用别名，像上面例子虽然样式名一样但效果却不同，容易令人困惑<br>
     <ui-badge type="info">2</ui-badge>样式库别名不能重复，否则编译失败<br>
-    <ui-badge type="info">3</ui-badge>样式库别名和<ui-badge>[csslib]</ui-badge>定义不能有冲突，否则编译失败<br>
+    <ui-badge type="info">3</ui-badge>别名和<ui-badge>[csslib]</ui-badge>定义不能有冲突，否则编译失败<br>
     <br>
     在 <router-link path="csslib" title="样式库">样式库</router-link> 中有关于样式库的专节介绍
 
@@ -320,7 +320,7 @@ statekey = role
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.7 指令 @class</doc-title>
-    关于样式还有一种原子化的写法，能精细控制，很有趣<br>
+    关于样式还有一种原子化写法，能精细控制，很有趣<br>
     就像写内联style一样一个一个写，最终会生成为css
 
 ```rpose
@@ -353,7 +353,7 @@ statekey = role
 
     点击看看效果 <a href="demo/demo-at-d7-2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
-    想自定义修改吗？如果你想改这个动画时间为2.345秒，通常会有点费劲，因为它没有默认提供得自己写嘛<br>
+    想自定义修改吗？如果你想改这个动画时间为2.345秒，会有点费劲，因为它没有默认提供得自己写<br>
     <br>
     但使用<ui-badge>@class</ui-badge>可就简单极了
 
@@ -371,8 +371,8 @@ statekey = role
     <br>
     <br>
     <ui-badge type="danger">指令 @class 使用注意点</ui-badge><br>
-    <ui-badge type="info">1</ui-badge>优先以第一个<ui-badge>--</ui-badge>作为分割点解析得样式属性和属性值<br>
-    <ui-badge type="info">2</ui-badge>没有<ui-badge>--</ui-badge>时以最后一个<ui-badge>-</ui-badge>作为分割点解析得样式属性和属性值<br>
+    <ui-badge type="info">1</ui-badge>优先以第一个<ui-badge>--</ui-badge>作为分割点拆解得属性和属性值<br>
+    <ui-badge type="info">2</ui-badge>没有<ui-badge>--</ui-badge>时以最后一个<ui-badge>-</ui-badge>作为分割点拆解<br>
     <ui-badge type="info">3</ui-badge>属性值包含空格时，空格固定用下划线<ui-badge>_</ui-badge>替换<br>
 
 

@@ -1,7 +1,5 @@
 [view]
-<ul>
-    <li><svgicon name="home"/></li> <!-- home.svg 在内置包@rpose/buildin中 -->
-</ul>
+<svgicon name="example"/> <!-- example.svg 在工程内的 resources/svgicons 目录 -->
 
 [mount]
 body

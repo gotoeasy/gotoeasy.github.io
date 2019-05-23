@@ -1,8 +1,5 @@
 [view]
-<ul>
-    <li><svgicon name="example"/></li> <!-- example.svg 在工程内的 resources/svgicons 目录 -->
-    <li><svgicon name="ex*"/></li> <!-- 使用通配符查找的引用方式 -->
-</ul>
+<svgicon name="chart"/>
 
 [mount]
 body

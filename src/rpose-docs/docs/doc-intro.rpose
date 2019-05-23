@@ -11,7 +11,7 @@
     
     <br>
     问：能写得比它们还好？<br>
-    答：rpose是<ui-badge>面向姿势</ui-badge>编程，能远离颈椎病<br>
+    答：rpose是<ui-badge>“面向姿势”</ui-badge>编程，远离颈椎病<br>
 
     <br>
     问：rpose有什么特点？<br>
@@ -32,7 +32,7 @@
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.1 基于Block-Text-File的源码格式</doc-title>
-    代码文件基于<ui-badge>Block-Text-File</ui-badge>格式，格式定义链接 <a href="https://github.com/gotoeasy/block-text-file" target="_blank"><svgicon name="link" fill="blue"/></a><br>
+    代码基于<ui-badge>Block-Text-File</ui-badge>格式，格式定义链接 <a href="https://github.com/gotoeasy/block-text-file" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     出于简化目的不使用其中的多文档功能，所以源码文件的后缀名统一为<ui-badge>.rpose</ui-badge>，以示区别<br>
     <br>
     <ui-badge type="info">特点</ui-badge>有声明式特征，人性化、易读性高，如下所示

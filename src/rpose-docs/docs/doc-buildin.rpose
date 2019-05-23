@@ -10,7 +10,7 @@
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.1 {'<if>...</if>'}标签</doc-title>
-    很简单，<ui-badge type="info">注意</ui-badge>要用<ui-badge>@if</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a>
+    很简单，<ui-badge type="info">注意</ui-badge>用<ui-badge>@if</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-buildin-d1.rpose
 \[view]
@@ -29,7 +29,7 @@
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.2 <![CDATA[<for>...</for>]]>标签</doc-title>
-    <ui-badge type="info">注意</ui-badge>要用<ui-badge>@for</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a>
+    <ui-badge type="info">注意</ui-badge>用<ui-badge>@for</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-buildin-d2.rpose
 \[view]

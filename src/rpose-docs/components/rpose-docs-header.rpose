@@ -28,7 +28,7 @@
     min-width: 350px;
     height: 100%;
     box-sizing: border-box;
-    padding-left: 50px;
+    padding-left: 35px;
     padding-bottom: 5px;
     align-items: flex-end;
 
