@@ -67,9 +67,9 @@
         </router-link>
     </li>
     <li>
-        <router-link path="svgicon" title="图标库">
+        <router-link path="svgicon" title="图标组件">
             <svgicon name="icon" height="16" width="16"/>
-            <span>图标库</span>
+            <span>图标组件</span>
         </router-link>
     </li>
     <li>

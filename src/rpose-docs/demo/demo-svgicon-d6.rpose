@@ -1,9 +1,8 @@
 [view]
 <div>
-    <svgicon name="chart" height="64" type="inline-symbol"/>
-    <svgicon name="example" height="64" type="inline-symbol"/>
-    <svgicon name="home" height="64" fill="#fff" type="inline-symbol"/>
     <svgicon name="404" height="64" type="inline-symbol"/>
+    <svgicon name="bug" height="64" type="inline-symbol"/>
+    <svgicon name="example" height="64" type="inline-symbol"/>
 </div>
 
 [mount]

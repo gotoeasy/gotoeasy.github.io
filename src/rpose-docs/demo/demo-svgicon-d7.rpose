@@ -3,7 +3,6 @@
     <svgicon name="dashboard" height="64" fill="blue" type="link-symbol"/>
     <svgicon name="bug" class="icon-bug" type="link-symbol"/>
     <svgicon name="example" height="64" fill="deeppink" type="link-symbol"/>
-    <svgicon name="@fortawesome/fontawesome-free:angular" height="64" type="link-symbol"/>
 </div>
 
 [css]

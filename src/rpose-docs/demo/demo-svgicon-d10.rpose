@@ -1,0 +1,5 @@
+[view]
+<svgicon name={'clipboard'} height="200" fill="#abcdef" type="link-symbol"/>
+
+[mount]
+body

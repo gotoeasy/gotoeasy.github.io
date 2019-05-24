@@ -37,7 +37,7 @@
         <router-link path="csslib" title="样式库">
             <svgicon name="@fortawesome/fontawesome-free:css3-alt"/>
         </router-link>
-        <router-link path="svgicon" title="图标库">
+        <router-link path="svgicon" title="图标组件">
             <svgicon name="icon"/>
         </router-link>
 

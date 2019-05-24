@@ -1,16 +1,10 @@
 [view]
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
-    <doc-title>图标库</doc-title>
+    <doc-title>图标组件</doc-title>
     图标基本上是以SVG为主了，通常，是到图标网站搜索图标、注册用户、下载、本地整理．．．等等步骤，终于拿下，然后，然后下回继续重复<br>
     <br>
     <ui-badge>{'<svgicon>'}</ui-badge>就是为减少这些重复劳动而来，是个透明化使用svg图标的组件<br>
-    <br>
-    概念上，是把本地或npm上的svg图标集视为图标库<br>
-    要做的事，仅仅只是声明索用<br>
-    <br>
-    最终效果，就是按需引用了相应图标<br>
-    中间过程，透明化，全部代劳
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.1 引用npm包中的SVG</doc-title>
@@ -25,16 +19,16 @@
 body
 ```
 
-    使用简单，在<ui-badge>{'<svgicon>'}</ui-badge>上指定<ui-badge>name</ui-badge>属性就行<br>
+    使用时指定<ui-badge>{'<svgicon>'}</ui-badge>的<ui-badge>name</ui-badge>属性就行<br>
     有了包名，有了合适的文件过滤条件，就能找到唯一的svg图标文件，就能生成一个svg标签，显示一个图标，看效果 <a href="demo/demo-svgicon-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
     这里的name属性值，<ui-badge type="info">格式为</ui-badge><ui-badge>pkg</ui-badge>:<ui-badge>svgfilter</ui-badge><br>
-    <ui-badge>svgfilter</ui-badge>过滤器可以使用通配符，单一<ui-badge>?</ui-badge>代表文件名的任意一个字符，单一<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名<br>
+    文件过滤器<ui-badge>svgfilter</ui-badge>可以使用通配符，单一<ui-badge>?</ui-badge>代表文件名的任意一个字符，单一<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名<br>
     <br>
     <ui-badge type="danger">注意</ui-badge><ui-badge>svgfilter</ui-badge>必须要能找到唯一的svg图标文件，找不到或找到多个都会编译失败<br>
     比如这个包里就有regular和solid目录，包含一些相同的svg文件名，如果想用，就需要加目录过滤条件，比如<ui-badge>solid/clock</ui-badge><br>
     <br>
-    （如何修改显示方式，待后面说明）
+    （修改显示方式，往下章节介绍）
 
 
 
@@ -72,11 +66,10 @@ body
 ```
 
     <ui-badge type="info">区别1</ui-badge>简单的说，就是次优先查找配置目录<br>
-    <ui-badge type="info">区别2</ui-badge>工程配置目录中的svg文件，是被设计为按<ui-badge>文件过滤器</ui-badge>方式查找，这是为了避免和相对路径方式混淆，更是为了方便仅书写文件名<br>
+    <ui-badge type="info">区别2</ui-badge>工程配置目录中的svg文件，是设计为按<ui-badge>文件过滤器</ui-badge>方式查找，这是为了避免和相对路径方式混淆，更是为了方便仅书写文件名<br>
     <br>
-    管理上，配置目录中可以建子目录分级管理，如果没有重复文件名，那<ui-badge>{'<svgicon>'}</ui-badge>可以只写文件名，很舒服<br>
-    <br>
-    工程上配置个图标目录（默认resources/svgicons），放置svg图标文件，都起不重复的有意义的文件名，这种情况下用<ui-badge>{'<svgicon>'}</ui-badge>能达到语义非常清晰的效果<br>
+    管理上，配置目录中可以建子目录分级管理，如果没有重复文件名，那<ui-badge>{'<svgicon>'}</ui-badge>就可以只写文件名<br>
+    图标目录通过<ui-badge>rpose.config.btf</ui-badge>的<ui-badge>[path]</ui-badge>配置，缺省为svgicons： resources/svgicons
 
 
 <!---------------------------------------------------------------------------------------->
@@ -137,15 +130,14 @@ body
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.6 按内联symbol定义方式显示</doc-title>
     不同方式有不同的特点<br>
-    如果想内联按use/symbol方式显示，需指定<ui-badge>type</ui-badge>属性 <a href="demo/demo-svgicon-d6.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
+    如果想按内联symbol定义的方式显示，需指定<ui-badge>type</ui-badge>属性 <a href="demo/demo-svgicon-d6.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 ```rpose
 // demo-svgicon-d6.rpose
 \[view]
 <div>
-    <svgicon name="chart" height="64" type="inline-symbol"/>
-    <svgicon name="example" height="64" type="inline-symbol"/>
-    <svgicon name="home" height="64" fill="#fff" type="inline-symbol"/>
     <svgicon name="404" height="64" type="inline-symbol"/>
+    <svgicon name="bug" height="64" type="inline-symbol"/>
+    <svgicon name="example" height="64" type="inline-symbol"/>
 </div>
 
 \[mount]
@@ -153,11 +145,13 @@ body
 ```
 
     目前type共三种方式可选：<br>
-    <ui-badge type="info">1</ui-badge>直接内联<ui-badge>svg</ui-badge>（缺省时默认）<br>
+    <ui-badge type="info">1</ui-badge>直接内联显示<ui-badge>svg</ui-badge>（缺省时默认）<br>
     <ui-badge type="info">2</ui-badge>内联symbol定义<ui-badge>inline-symbol</ui-badge><br>
     <ui-badge type="info">3</ui-badge>外部symbol定义<ui-badge>link-symbol</ui-badge><br>
     <br>
     各有长短，按需选用
+    <br>
+    <ui-badge type="danger">注：</ui-badge>symbol定义的范围，是工程配置的图标目录中的全部svg图标文件<br>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -172,7 +166,6 @@ body
     <svgicon name="dashboard" height="64" fill="blue" type="link-symbol"/>
     <svgicon name="bug" class="icon-bug" type="link-symbol"/>
     <svgicon name="example" height="64" fill="deeppink" type="link-symbol"/>
-    <svgicon name="@fortawesome/fontawesome-free:angular" height="64" type="link-symbol"/>
 </div>
 
 \[css]
@@ -185,42 +178,57 @@ body
 body
 ```
 
-    这种外部symbol定义的使用方式<br>
-    用法背后的意图，其实比较微妙<br>
+    <ui-badge type="danger">注：</ui-badge>symbol定义的范围，也是工程配置的图标目录中的全部svg图标文件<br>
     
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.8 外部symbol定义带表达式</doc-title>
-    直接内联以及内联symbol定义，都是要在编译时确定图标文件，都不支持表达式<br>
-    而外部symbol定义，是单个文件包含了多个图标定义，所以得支持表达式，要能动态显示<br>
+    <doc-title>1.8 直接内联并用表达式</doc-title>
+    没有表达式时，是编译确定文件<br>
+    有时需要运行期确定图标，这时可用表达式达到目的，看效果 <a href="demo/demo-svgicon-d8.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-svgicon-d8.rpose
 \[view]
-<div>
-    <svgicon name="{'@fortawesome/fontawesome-free:apple'}" height="64" type="link-symbol"/>
-    <svgicon name="{'dashboard'}" height="64" fill="deeppink" type="link-symbol"/>
-    <svgicon name='@fortawesome/fontawesome-free:android' height="64" type="link-symbol"/>
-</div>
+<svgicon name="{'40' + '4'}"/>
 
 \[mount]
 body
 ```
 
-    效果是apple不显示，另两个能显示，看看 <a href="demo/demo-svgicon-d8.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
-    <br>
-    <ui-badge type="danger">有微妙</ui-badge><br>
-    因为apple在npm包中，由于使用了表达式，所以编译时无法确定该图标会被使用，不会去定义它，这是一个微妙点<br>
-    使用表达式的dashboard能找到，是因为它在工程配置的图标目录中，既然是要用外部symbol定义，那应该是有图标范围的，rpose认为配置的图标目录中的全部图标都是，这是第二个微妙点<br>
-    上面没用表达式的android，编译时能确定，所以也是属于定义范围，这是第三个微妙点<br>
-    <br>
-    具体可查看生成的symbol定义文件
+    表达式的最终结果应该是文件名<br>
+    组件通过比较文件名确定要显示的图标，范围限于工程图标目录
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.9 内联symbol定义并用表达式</doc-title>
+    也是支持表达式的，看效果 <a href="demo/demo-svgicon-d9.html" target="_blank"><svgicon name="link" fill="blue"/></a>
+    也是按文件名来确定要显示的图标，范围限于工程图标目录
+```rpose
+// demo-svgicon-d9.rpose
+\[view]
+<svgicon name={'clip'+'board'} height="200" type="inline-symbol"/>
+
+\[mount]
+body
+```
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.10 外部symbol定义并用表达式</doc-title>
+    同样支持表达式，同样按文件名确定图标，同样的范围限制，看效果 <a href="demo/demo-svgicon-d10.html" target="_blank"><svgicon name="link" fill="blue"/></a>
+```rpose
+// demo-svgicon-d10.rpose
+\[view]
+<svgicon name={'clipboard'} height="200" fill="#abcdef" type="link-symbol"/>
+
+\[mount]
+body
+```
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
     本节介绍了<ui-badge>{'<svgicon>'}</ui-badge>组件的用法<br>
-    把众多svg图标文件视为图标库，声明式的使用它们，透明化中间过程<br>
    
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 
