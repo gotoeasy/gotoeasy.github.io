@@ -1,15 +1,5 @@
 [view]
-<div>
-    <svgicon name="dashboard" height="64" fill="blue" type="link-symbol"/>
-    <svgicon name="bug" class="icon-bug" type="link-symbol"/>
-    <svgicon name="example" height="64" fill="deeppink" type="link-symbol"/>
-</div>
-
-[css]
-.icon-bug{
-    fill: red;
-    height: 64px
-}
+<svgicon name={'clipboard'} height="200" fill="#abcdef" type="link-symbol"/>
 
 [mount]
 body

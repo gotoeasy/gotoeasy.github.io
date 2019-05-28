@@ -1,5 +1,9 @@
 [view]
-<svgicon name="example"/> <!-- example.svg 在工程内的 resources/svgicons 目录 -->
+<div>
+    <svgicon name="404" height="64" type="inline-symbol"/>
+    <svgicon name="bug" height="64" type="inline-symbol"/>
+    <svgicon name="example" height="64" type="inline-symbol"/>
+</div>
 
 [mount]
 body

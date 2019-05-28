@@ -1,5 +1,8 @@
 [view]
-<svgicon name="{'40' + '4'}"/>
+<div>
+    <svgicon name={'500px'} height="200" fill="#abcdef" type="link-symbol"/>
+    <svgicon name={'size-500'} height="100" fill="#abcdef" type="inline-symbol"/>
+</div>
 
 [mount]
 body

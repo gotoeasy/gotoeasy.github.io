@@ -1,5 +1,16 @@
 [view]
-<svgicon name="home"/> <!-- home.svg 在内置包@rpose/buildin中 -->
+<div>
+    <svgicon name="dashboard" height="64" fill="blue" type="link-symbol"/>
+    <svgicon name="bug" class="icon-bug" type="link-symbol"/>
+    <svgicon name="example" height="64" fill="deeppink" type="link-symbol"/>
+</div>
+
+[css]
+.icon-bug{
+    fill: red;
+    width: 64px;
+    height: 64px;
+}
 
 [mount]
 body

@@ -2,19 +2,19 @@
 <ul class="side-menu">
     <li>
         <router-link path="intro" title="初识 rpose">
-            <svgicon name="@fortawesome/fontawesome-free:book"/>
+            <svgicon type="inline-symbol" name="bullhorn"/>
             <span>初识 rpose</span>
         </router-link>
     </li>
     <li>
         <router-link path="quickstart" title="快速上手">
-            <svgicon name="guide"/>
+            <svgicon type="inline-symbol" name="guide"/>
             <span>快速上手</span>
         </router-link>
     </li>
     <li>
         <router-link path="setup" title="安装使用">
-            <svgicon name="@fortawesome/fontawesome-free:check"/>
+            <svgicon type="inline-symbol" name="check"/>
             <span>安装使用</span>
         </router-link>
     </li>
@@ -23,13 +23,13 @@
     </li>
     <li>
         <router-link path="buildin" title="内置标签组件">
-            <svgicon name="component" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="component" height="16" width="16"/>
             <span>内置标签组件</span>
         </router-link>
     </li>
     <li>
         <router-link path="at" title="内置指令集">
-            <svgicon name="@fortawesome/fontawesome-free:at" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="at" height="16" width="16"/>
             <span>内置指令集</span>
         </router-link>
     </li>
@@ -38,37 +38,37 @@
     </li>
     <li>
         <router-link path="slot" title="插槽">
-            <svgicon name="@fortawesome/fontawesome-free:s*/list-alt" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="list-alt" height="16" width="16"/>
             <span>插槽</span>
         </router-link>
     </li>
     <li>
         <router-link path="prerender" title="预渲染">
-            <svgicon name="@fortawesome/fontawesome-free:brush" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="brush" height="16" width="16"/>
             <span>预渲染</span>
         </router-link>
     </li>
     <li>
         <router-link path="router" title="前端路由">
-            <svgicon name="@fortawesome/fontawesome-free:random" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="random" height="16" width="16"/>
             <span>前端路由</span>
         </router-link>
     </li>
     <li>
         <router-link path="taglib" title="标签库">
-            <svgicon name="@fortawesome/fontawesome-free:tag" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="tag" height="16" width="16"/>
             <span>标签库</span>
         </router-link>
     </li>
     <li>
         <router-link path="csslib" title="样式库">
-            <svgicon name="@fortawesome/fontawesome-free:css3-alt" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="css3-alt" height="16" width="16"/>
             <span>样式库</span>
         </router-link>
     </li>
     <li>
         <router-link path="svgicon" title="图标组件">
-            <svgicon name="icon" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="icon" height="16" width="16"/>
             <span>图标组件</span>
         </router-link>
     </li>
@@ -77,7 +77,7 @@
     </li>
     <li>
         <router-link path="todo" title="TODO" @if={false}>
-            <svgicon name="@fortawesome/fontawesome-free:check" height="16" width="16"/>
+            <svgicon type="inline-symbol" name="check" height="16" width="16"/>
             <span>todo</span>
         </router-link>
     </li>

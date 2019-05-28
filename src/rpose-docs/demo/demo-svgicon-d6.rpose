@@ -1,9 +1,5 @@
 [view]
-<div>
-    <svgicon name="404" height="64" type="inline-symbol"/>
-    <svgicon name="bug" height="64" type="inline-symbol"/>
-    <svgicon name="example" height="64" type="inline-symbol"/>
-</div>
+<svgicon name={'clip'+'board'} height="200" type="inline-symbol"/>
 
 [mount]
 body

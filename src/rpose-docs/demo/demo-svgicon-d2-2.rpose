@@ -6,6 +6,7 @@
 [css]
 .icon404{
     fill: darkgoldenrod;
+    width: 200px;
     height: 200px;
 }
 

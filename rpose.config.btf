@@ -9,3 +9,8 @@ rpose-theme-demo
 
 [csslib] // 样式库配置
 normalize = normalize.css: normalize.css
+
+[svgicon]
+500px = @fortawesome/fontawesome-free:500px
+size-500 = @fortawesome/fontawesome-free:500px
+

@@ -1,0 +1,5 @@
+[view]
+<svgicon name="{'40' + '4'}" @if={true}/>
+
+[mount]
+body

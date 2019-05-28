@@ -2,21 +2,21 @@
 <div @class="height-50px width-100% bg-#fff display-flex">
     <nav class="nav-link">
         <a href="../index.html">
-            <svgicon name="@fortawesome/fontawesome-free:home" fill="#456789" height="14"/>
+            <svgicon name="home" type="inline-symbol" fill="#fff" height="14"/>
             Home
         </a>
         <a href="https://github.com/gotoeasy/rpose">
-            <svgicon name="@fortawesome/fontawesome-free:database" fill="#456789" height="14"/>
+            <svgicon name="database" type="inline-symbol" fill="#456789" height="14"/>
             Repository
         </a>
         <a href="https://github.com/gotoeasy/rpose/issues">
-            <svgicon name="@fortawesome/fontawesome-free:pen-fancy" fill="#456789" height="14"/>
+            <svgicon name="pen-fancy" type="inline-symbol" fill="#456789" height="14"/>
             Issues
         </a>
     </nav>
     <div class="header-icon-div">
         <a href="https://github.com/gotoeasy/rpose" target="_blank">
-            <svgicon class="header-icon" name="@fortawesome/fontawesome-free:github" />
+            <svgicon class="header-icon" type="inline-symbol" name="github" />
         </a>
     </div>
 </div>

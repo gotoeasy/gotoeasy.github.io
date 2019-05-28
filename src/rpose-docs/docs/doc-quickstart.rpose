@@ -2,9 +2,10 @@
 <div @class="box-sizing--border-box padding-0_20px_20px_20px">
 
     <doc-title>快速上手</doc-title>
-    给一份源码，我就让他跑起来<br>
-    意思是说，关注你的业务代码就行了<br>
-    怎么安装、如何配置等等，都是水到渠成的事<br>
+    关注你的业务代码，提交你的业务代码，行了<br>
+    其他事都属于rpose要淡化的范围<br>
+    <br>
+    意思是说，不能让大家的精力都耗费在怎么安装环境、如何配置插件、怎样打包等等诸如此类的问题上，这些都应该是水到渠成的事<br>
 
     <doc-title>1.1 第一个 hello world 组件</doc-title>
 
