@@ -90,7 +90,8 @@ body
     <br>
     各有长短，按需选用
     <br>
-    <ui-badge type="danger">注：</ui-badge>图标目录中的全部svg图标文件都会被定义为symbol
+    <ui-badge type="danger">注：</ui-badge>图标目录中的全部svg图标文件都会被定义为symbol<br>
+    图标的默认高宽都是16px，如果图标原始高宽不等，需自行设定合适高宽属性
 
 
 <!---------------------------------------------------------------------------------------->
@@ -136,7 +137,7 @@ body
 ```
 
     表达式的最终结果应该是文件名<br>
-    组件通过比较文件名确定要显示的图标，范围限于工程图标目录
+    组件通过比较文件名确定要显示的图标，工程图标目录中的图标都能用<br>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -155,13 +156,8 @@ body
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.7 外部symbol定义并用表达式</doc-title>
-    同样支持表达式，同样按文件名确定图标，同样的范围限制，看效果 <a href="demo/demo-svgicon-d7.html" target="_blank"><svgicon name="link" fill="blue"/></a>
+    同样支持表达式，同样按文件名确定图标，同样是工程图标目录中的图标都能用，看效果 <a href="demo/demo-svgicon-d7.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
-\[svgicon]
-500px = @fortawesome/fontawesome-free:500px
-size-500 = @fortawesome/fontawesome-free:500px
-
-
 // demo-svgicon-d7.rpose
 \[view]
 <svgicon name={'clipboard'} height="200" fill="#abcdef" type="link-symbol"/>
@@ -178,8 +174,8 @@ body
 ```rpose
 // rpose.config.btf
 \[svgicon]
-500px = @fortawesome/fontawesome-free:500px
-size-500 = @fortawesome/fontawesome-free:500px
+500px = @fortawesome/fontawesome-free:500px     // 引入图标500px.svg，图标名还是用500px
+size-500 = @fortawesome/fontawesome-free:500px  // 引入图标500px.svg，图标名改成size-500
 
 
 // demo-svgicon-d8.rpose
@@ -193,16 +189,17 @@ size-500 = @fortawesome/fontawesome-free:500px
 body
 ```
     
-    <ui-badge type="info">[svgicon]格式</ui-badge><br>
-    一行一个图标，格式为<ui-badge>alias</ui-badge>=<ui-badge>pkg</ui-badge>:<ui-badge>svgfilter</ui-badge><br>
+    <ui-badge type="info">[svgicon]格式：</ui-badge><ui-badge>name</ui-badge>=<ui-badge>pkg</ui-badge>:<ui-badge>svgfilter</ui-badge><br>
     <ui-badge>pkg</ui-badge>是个npm包名<br>
     <ui-badge>svgfilter</ui-badge>是文件过滤器，可以使用通配符，单一<ui-badge>?</ui-badge>代表文件名的任意一个字符，单一<ui-badge>*</ui-badge>代表任意文件名，两个<ui-badge>**</ui-badge>代表任意目录任意文件名<br>
-    <ui-badge>alias</ui-badge>是给这个图标起的别名，不想改名是可简化的用<ui-badge>*</ui-badge>替代<br>
+    <ui-badge>name</ui-badge>是重新起的图标名，不想改名时也可简化的用<ui-badge>*</ui-badge>替代<br>
+    为了方便确认，一行定义一个图标
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
-    本节介绍了<ui-badge>{'<svgicon>'}</ui-badge>组件的用法<br>
+    通过使用<ui-badge>{'<svgicon>'}</ui-badge>，关于图标，就只需关心图标的来源，以及声明展示方式，剩余事情由框架代劳<br>
+    为方便管理，图标的来源设计为图标目录以及配置文件<br>
    
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
 

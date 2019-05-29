@@ -5,7 +5,7 @@ prerender = loader-section // loader（旋转动画），loader-section（旋转
 <div class="page-section">
 
 	<div class="center">
-        <h2 class="title" sss="\"">GOTOEASY</h2>
+        <h2 class="title">GOTOEASY</h2>
         <p class="text">WRITE BUSINESS, DONE <br>IT SHOULD BE SO EASY</p>
 
         <@line @taglib="@rpose/ui-line:ui-line" height="3px" width="50%" color="#ff9408"/>

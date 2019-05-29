@@ -9,7 +9,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.1 {'<if>...</if>'}标签</doc-title>
+    <doc-title>1.1 {'<if>'}标签</doc-title>
     很简单，<ui-badge type="info">注意</ui-badge>用<ui-badge>@if</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d1.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-buildin-d1.rpose
@@ -28,7 +28,7 @@
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.2 <![CDATA[<for>...</for>]]>标签</doc-title>
+    <doc-title>1.2 <![CDATA[<for>]]>标签</doc-title>
     <ui-badge type="info">注意</ui-badge>用<ui-badge>@for</ui-badge>指令写条件表达式，看效果 <a href="demo/demo-buildin-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a>
 ```rpose
 // demo-buildin-d2.rpose
@@ -90,29 +90,29 @@
 ```
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.4 内置路由组件<![CDATA[<router>...</router>]]>标签</doc-title>
+    <doc-title>1.4 内置路由组件<![CDATA[<router>]]></doc-title>
     
     在 <router-link path="router" title="前端路由">前端路由</router-link> 中有专节介绍
 
         
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.5 内置路由链接组件<![CDATA[<router-link>...</router-link>]]>标签</doc-title>
+    <doc-title>1.5 内置路由链接组件<![CDATA[<router-link>]]></doc-title>
 
     在 <router-link path="router" title="前端路由">前端路由</router-link> 中有专节介绍
 
 
 <!---------------------------------------------------------------------------------------->
-    <doc-title>1.6 内置SVG图标组件<![CDATA[<svgicon/>]]>标签</doc-title>
+    <doc-title>1.6 内置图标组件<![CDATA[<svgicon/>]]></doc-title>
 
     在 <router-link path="svgicon" title="图标组件">图标组件</router-link> 中有专节介绍
 
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
-    内置了个别语法糖标签<br>
+    内置了个别语法标签<br>
     通过npm包<ui-badge>@rpose/buildin</ui-badge>内置提供个别特殊用途组件<br>
-    包<ui-badge>@rpose/buildin</ui-badge>中还提供少数常用图标可直接使用
+    包<ui-badge>@rpose/buildin</ui-badge>中还放置少许常用图标供选用
 
 
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
