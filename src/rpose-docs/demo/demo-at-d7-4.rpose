@@ -1,0 +1,5 @@
+[view]
+<input @class="focus:bg-yellow">
+
+[mount]
+body

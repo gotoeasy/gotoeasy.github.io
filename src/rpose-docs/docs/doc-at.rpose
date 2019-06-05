@@ -334,6 +334,7 @@ statekey = role
 就是这样，看效果 <a href="demo/demo-at-d7-1.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a><br>
 想随手直接写写时会很方便<br>
 
+<!----------------------------------->
     <br>
     <br>
     <ui-badge type="info">原子化 @class 写法特点</ui-badge><br>
@@ -356,6 +357,7 @@ statekey = role
     但使用<ui-badge>@class</ui-badge>可就简单极了
 
 ```rpose
+// demo-at-d7-3.rpose
 \[view]
 <h1 class="animated infinite bounce delay-2s" @csslib="animate.css"
     @class="animation-duration-2.345s">Example</h1>
@@ -364,14 +366,28 @@ statekey = role
     很直观，根据需要你可以改为1280ms或789ms之类<br>
     任性调整到你满意为止，看看效果 <a href="demo/demo-at-d7-3.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a><br>
 
+<!----------------------------------->
+    <br>
+    <br>
+    <ui-badge type="info">书写伪类原子样式</ui-badge><br>
+    伪类写法，以伪类名开始再冒号分隔<br>
+    下面例子演示输入框获得焦点时改变背景颜色 <a href="demo/demo-at-d7-4.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a>
+```rpose
+// demo-at-d7-4.rpose
+\[view]
+<input @class="focus:bg-yellow">
+```rpose
 
 
+<!----------------------------------->
     <br>
     <br>
     <ui-badge type="danger">指令 @class 使用注意点</ui-badge><br>
     <ui-badge type="info">1</ui-badge>优先以第一个<ui-badge>--</ui-badge>作为分割点拆解得属性和属性值<br>
     <ui-badge type="info">2</ui-badge>没有<ui-badge>--</ui-badge>时以最后一个<ui-badge>-</ui-badge>作为分割点拆解<br>
     <ui-badge type="info">3</ui-badge>属性值包含空格时，空格固定用下划线<ui-badge>_</ui-badge>替换<br>
+    <ui-badge type="info">4</ui-badge>伪类以<ui-badge>:</ui-badge>作为分割点，伪类名在前<br>
+    <ui-badge type="info">5</ui-badge>多个原子样式时，用空格分隔<br>
 
 
 <!---------------------------------------------------------------------------------------->
