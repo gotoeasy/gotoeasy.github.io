@@ -15,32 +15,34 @@
   cnt2:0,
 }
 
-[actions]
-{
-    btn1Click: e=>{
-        this.$state.cnt1++;
-        this.$state.msg = '点击按钮1，共 ' + this.$state.cnt1 + ' 次';
-        this.render();
-    },
-    btn2Click: function(e){
-        this.$state.cnt2++;
-        this.$state.msg = '点击按钮2，共 ' + this.$state.cnt2 + ' 次';
-        this.render();
-    },
-    btn3Click: function(e){
+[methods]
+btn1Click(e) {
+    let $private = this.#private;
+    $private.state.cnt1++;
+    $private.state.msg = '点击按钮1，共 ' + $private.state.cnt1 + ' 次';
+    this.render();
+}
 
-        let sec = 5;
-        let btn3 = this.getRefComponent("btn3");
-       
+btn2Click(e){
+    let $private = this.#private;
+    $private.state.cnt2++;
+    $private.state.msg = '点击按钮2，共 ' + $private.state.cnt2 + ' 次';
+    this.render();
+}
+
+btn3Click(e){
+
+    let sec = 5;
+    let btn3 = this.getRefComponent("btn3");
+   
+    btn3.setState({disabled:true, value: sec-- + '秒后重试'});
+    let tid = setInterval(()=>{
         btn3.setState({disabled:true, value: sec-- + '秒后重试'});
-        let tid = setInterval(()=>{
-            btn3.setState({disabled:true, value: sec-- + '秒后重试'});
-            if (sec < 0 ){
-                clearInterval(tid);
-                btn3.setState({disabled:false, value:'模拟重试'});
-            }
-        }, 1000);
-    },
+        if (sec < 0 ){
+            clearInterval(tid);
+            btn3.setState({disabled:false, value:'模拟重试'});
+        }
+    }, 1000);
 }
 
 [css]

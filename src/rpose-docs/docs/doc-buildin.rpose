@@ -41,6 +41,9 @@
 
 \[state]
 { items: ['foo', 'bar', 'baz'] }
+
+\[mount]
+body
 ```
 
     <ui-badge type="err">注意，循环标签仅适用于 array</ui-badge>，其他不常用的对象集合之类的遍历，基于精简目的未做支持<br>

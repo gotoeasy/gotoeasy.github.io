@@ -229,18 +229,17 @@ body
     </fieldset>
 </form>
 
-\[actions]
-{
-    fnToggle: e => {
-        // 这里的 pure-form-stacked 虽然只在js中，由于能在样式库中找到，所以相关样式也会被自动引用
-        $$('.pure-form').toggleClass('pure-form-aligned').toggleClass('pure-form-stacked');
-    },
-    fnSubmit: e => {
-        e.preventDefault();
-        let el = this.getRootElement().querySelector('.pure-checkbox > input');
-        if ( !el.checked ) {
-            alert('read the terms and conditions please');
-        }
+\[methods]
+fnToggle(e) {
+    // 这里的 pure-form-stacked 虽然只在js中，由于能在样式库中找到，所以相关样式也会被自动引用
+    $$('.pure-form').toggleClass('pure-form-aligned').toggleClass('pure-form-stacked');
+}
+
+fnSubmit(e) {
+    e.preventDefault();
+    let el = this.getRootElement().querySelector('.pure-checkbox > input');
+    if ( !el.checked ) {
+        alert('read the terms and conditions please');
     }
 }
 

@@ -165,24 +165,25 @@
 {id: ''}
 
 \[methods]
-{
-    init: () => {
-        rpose.on('router.onroute', ctx => {
-            let path = ctx.path;        // 这是router-link标签中传递的path值
-            let state = ctx.state;      // 这是router-link标签中传递的params值
-            path == 'foo' && (this.$state.id = state.id) && this.render(true);   // 激活foo页时更新显示id
-        });
-    }
+init() {
+    let $private = this.#private;
+    rpose.on('router.onroute', ctx => {
+        let path = ctx.path;        // 这是router-link标签中传递的path值
+        let state = ctx.state;      // 这是router-link标签中传递的params值
+        path == 'foo' && ($private.state.id = state.id) && this.render();   // 激活foo页时更新显示id
+    });
 }
+
+\[mount] // 挂载显示
+body
 ```
 
     <ui-badge type="info">要点1</ui-badge>对于不支持<ui-badge>historyApi</ui-badge>的浏览器环境，传参数时地址栏将自动使用哈希串避免数据安全问题，同时也能避免参数过长的错误发生<br>
     <ui-badge type="info">要点2</ui-badge>本例出现事件<ui-badge>router.onroute</ui-badge>，在路由切换时将被触发<br>
     <br>
-    <ui-badge type="info">扩充1</ui-badge>本例用到了<ui-badge>[methods]</ui-badge>块定义，和<ui-badge>[actions]</ui-badge>的区别是，<ui-badge>[methods]</ui-badge>中定义的方法会都会被转译为组件对象的方法<br>
-    <ui-badge type="info">扩充2</ui-badge>在<ui-badge>[methods]</ui-badge>中的<ui-badge>init</ui-badge>方法名是约定的初始方法，对象创建后就会被调用，所以可以用来安装相关事件<br>
-    <ui-badge type="info">扩充3</ui-badge>在<ui-badge>[methods]</ui-badge>中定义的方法如果和内置方法名重复，将会替代原内置方法，比如可以自定义<ui-badge>render</ui-badge>方法替代默认的<ui-badge>render</ui-badge>处理逻辑<br>
-    <ui-badge type="info">扩充4</ui-badge>本例用到了rpose的事件处理接口，完整的事件接口有<ui-badge>rpose.on</ui-badge>安装事件函数，<ui-badge>rpose.off</ui-badge>卸载事件函数，<ui-badge>rpose.once</ui-badge>安装执行一次就自动卸载的事件函数，<ui-badge>rpose.at</ui-badge>触发执行事件
+    <ui-badge type="info">扩充1</ui-badge>在<ui-badge>[methods]</ui-badge>中的<ui-badge>init</ui-badge>方法名是约定的初始方法，对象创建后就会被调用，所以可以用来安装相关事件<br>
+    <ui-badge type="info">扩充2</ui-badge>在<ui-badge>[methods]</ui-badge>中定义的方法如果和内置方法名重复，将会替代原内置方法，比如可以自定义<ui-badge>render</ui-badge>方法替代默认的<ui-badge>render</ui-badge>处理逻辑<br>
+    <ui-badge type="info">扩充3</ui-badge>本例用到了rpose的事件处理接口，完整的事件接口有<ui-badge>rpose.on</ui-badge>安装事件函数，<ui-badge>rpose.off</ui-badge>卸载事件函数，<ui-badge>rpose.once</ui-badge>安装执行一次就自动卸载的事件函数，<ui-badge>rpose.at</ui-badge>触发执行事件
 
 
 
@@ -194,7 +195,7 @@
     <br>
     附带扩充点<br>
     rpose事件接口： on、off、once、at<br>
-    [methods]块定义组件方法的作用，及特殊的init方法的用途<br>
+    [methods]可自定义同名方法覆盖组件的默认逻辑实现，及特殊的init方法用途<br>
 
    
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>

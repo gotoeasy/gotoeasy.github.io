@@ -10,13 +10,11 @@
     background-color: gold;
 }
 
-[actions]
-{
-    fnChange: e=> {
-        let txt = e.target.value;
-        let helloworld = this.getRefComponent('hello');
-        helloworld.setState({name:txt});
-    }
+[methods]
+fnChange(e) {
+    let txt = e.target.value;
+    let helloworld = this.getRefComponent('hello');
+    helloworld.setState({name:txt});
 }
 
 [mount] // 挂载显示

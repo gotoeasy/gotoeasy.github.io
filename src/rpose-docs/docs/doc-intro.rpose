@@ -71,7 +71,7 @@ NNNNNNNNNNNNNNNN
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.3 约定的文本块写法</doc-title>
-    rpose常用块名有<ui-badge>[api]</ui-badge>、<ui-badge>[view]</ui-badge>、<ui-badge>[options]</ui-badge>、<ui-badge>[state]</ui-badge>、<ui-badge>[actions]</ui-badge>、<ui-badge>[css]</ui-badge>、<ui-badge>[mount]</ui-badge>等<br>
+    rpose常用块名有<ui-badge>[api]</ui-badge>、<ui-badge>[view]</ui-badge>、<ui-badge>[options]</ui-badge>、<ui-badge>[state]</ui-badge>、<ui-badge>[methods]</ui-badge>、<ui-badge>[css]</ui-badge>、<ui-badge>[mount]</ui-badge>等<br>
     <ui-badge type="danger">注</ui-badge>块名可能会因版本升级而调整，注意版本差异<br>
     <br>
     块名用途分别说明如下
@@ -106,12 +106,10 @@ statekeys  = value, disabled            // 允许修改的状态属性
 }
 ```
 ```rpose
-\[actions] // 写事件响应函数，如按钮点击等
-{
-    // 响应“确定”按钮点击事件，通过view中onclick的设定进行关联
-    fnClick: e => {
-        console.info("点击了按钮", e);
-    }
+\[methods] // 写事件响应函数，如按钮点击等
+// 响应“确定”按钮点击事件
+fnClick(e) {
+    console.info("点击了按钮", e);
 }
 ```
 ```rpose
@@ -131,7 +129,7 @@ body
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
     通过本章节，对rpose的代码结构有个初步了解<br>
-    实现效果放一边，意会下rpose的姿势优劣，感兴趣或有共鸣，随时继续了解<br>
+    实现效果放一边，意会下rpose的姿势优劣，若感兴趣，随时继续了解<br>
 
    
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>

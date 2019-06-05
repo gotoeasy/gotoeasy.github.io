@@ -7,7 +7,7 @@
         </for>
     </ul>
 
-    <form onsubmit="add">
+    <form>
         <input type="text" @ref="input">
         <button>Add #{ $state.items.length + 1 }</button>
     </form>
@@ -18,19 +18,21 @@
     items: []
 }
 
-[actions]
-{
-    add: e => {
-        e.preventDefault();
-        let el = this.getRefElement('input');
-        el.value && this.$state.items.push(el.value) && (el.value = '');
-        this.render();
-    },
-    del: e => {
-        let index = e.target.getAttribute('index');
-        this.$state.items.splice(index, 1);
-        this.render();
-    }
+[methods]
+@action('submit', 'form')
+add(e) {
+    e.preventDefault();
+    let el = this.getRefElement('input');
+    let items = this.#private.state.items;
+    el.value && items.push(el.value) && (el.value = '');
+    this.render();
+}
+
+del(e) {
+    let index = e.target.getAttribute('index');
+    let items = this.#private.state.items;
+    items.splice(index, 1);
+    this.render();
 }
 
 [css]

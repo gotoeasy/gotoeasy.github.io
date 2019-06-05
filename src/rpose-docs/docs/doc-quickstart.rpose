@@ -3,7 +3,7 @@
 
     <doc-title>快速上手</doc-title>
     关注你的业务代码，提交你的业务代码，行了<br>
-    其他事都属于rpose要淡化的范围<br>
+    其他事都属于rpose努力透明化的范围<br>
     <br>
     意思是说，不能让大家的精力都耗费在怎么安装环境、如何配置插件、怎样打包等等诸如此类的问题上，这些都应该是水到渠成的事<br>
 
@@ -11,7 +11,6 @@
 
 ```rpose
 // 文件名 ui-helloworld.rpose
-
 \[api]
 statekeys = name   // 意思是说，组件的状态不是外部所能随便改的，这里声明仅接受‘name’的修改
 
@@ -34,7 +33,6 @@ statekeys = name   // 意思是说，组件的状态不是外部所能随便改�
     页面也是组件，只是多了个挂载显示
 ```rpose
 // 文件名 demo-quickstart-d2.rpose
-
 \[view]
 <ui-helloworld/>
 
@@ -54,27 +52,24 @@ body
     下面代码演示，在输入框<ui-badge>onchange</ui-badge>时，拿到<ui-badge>hello world</ui-badge>组件对象，把它的<ui-badge>name</ui-badge>改为输入框的值
 ```rpose
 // 文件名 demo-quickstart-d3.rpose
-
 \[view]
 <div>
     <input onchange="fnChange">
     <ui-helloworld @ref="hello" name="rpose" />
 </div>
 
-\[actions]
-{
-    fnChange: e=> {
-        let txt = e.target.value;
-        let helloworld = this.getRefComponent('hello');
-        helloworld.setState({name:txt});
-    }
+\[methods]
+fnChange(e) {
+    let txt = e.target.value;
+    let helloworld = this.getRefComponent('hello');
+    helloworld.setState({name:txt});
 }
 
 \[mount] // 挂载显示
 body
 ```
 
-<ui-badge type="info">要点1</ui-badge>事件的绑定，沿用html习惯直接写<ui-badge>onchange</ui-badge>的，处理函数是写在<ui-badge>[actions]</ui-badge>里的，通过名称关联起来的<br>
+<ui-badge type="info">要点1</ui-badge>事件的绑定，沿用html习惯可以直接写<ui-badge>onchange</ui-badge>，处理函数是写在<ui-badge>[methods]</ui-badge>中，通过名称关联起来的<br>
 <ui-badge type="info">要点2</ui-badge>取组件对象，设定@ref属性，组件对象默认提供<ui-badge>getRefComponent</ui-badge>方法可用<br>
 <ui-badge type="info">要点3</ui-badge>修改状态，沿用习惯通过组件的<ui-badge>setState</ui-badge>方法实现<br>
 <br>
@@ -92,7 +87,6 @@ body
     没什么难的，rpose最讲究的是姿势，直接加就是
 ```rpose
 // 文件名 demo-quickstart-d4.rpose
-
 \[view]
 <div>
     <input class="demo-input" onchange="fnChange">
@@ -105,8 +99,15 @@ body
     background-color: gold;
 }
 
-// [actions]、[mount]的代码同上节，省略...
+\[methods]
+fnChange(e) {
+    let txt = e.target.value;
+    let helloworld = this.getRefComponent('hello');
+    helloworld.setState({name:txt});
+}
 
+\[mount] // 挂载显示
+body
 ```
 
 要点，就是不想要要点，就像<ui-badge>html+css</ui-badge>那样直白<br>
@@ -164,7 +165,6 @@ var hello = name => 'Hello ' + name + '!';
     这个组件概念上等同于无状态组件，因为没有声明<ui-badge>statekeys</ui-badge>的具体项，状态无法修改
 ```rpose  380px
 // npm包‘@rpose/ui-line’的文件 ui-line.rpose
-
 \[api]
 optionkeys = height, width, color, margin
 
@@ -178,7 +178,6 @@ optionkeys = height, width, color, margin
     color: '#e6e6e6',
     margin: '20px auto 20px auto',
 }
- 
 // 用法，比如这样用：<ui-line/>，或是这样用：<ui-line height="3px" width="50%" color="#ff9408"/>
 ```
 
@@ -188,7 +187,6 @@ optionkeys = height, width, color, margin
     通过<ui-badge>statekeys</ui-badge>声明看出，仅有<ui-badge>value</ui-badge>和<ui-badge>disabled</ui-badge>能改，也就是只能改按钮文字以及是否禁用
 ```rpose 380px
 // 文件名 ui-btn.rpose
-
 \[api]
 optionkeys = onclick
 statekeys  = value, disabled
@@ -256,32 +254,34 @@ statekeys  = value, disabled
   cnt2:0,
 }
 
-\[actions]
-{
-    btn1Click: e=>{
-        this.$state.cnt1++;
-        this.$state.msg = '点击按钮1，共 ' + this.$state.cnt1 + ' 次';
-        this.render();
-    },
-    btn2Click: function(e){
-        this.$state.cnt2++;
-        this.$state.msg = '点击按钮2，共 ' + this.$state.cnt2 + ' 次';
-        this.render();
-    },
-    btn3Click: function(e){
+\[methods]
+btn1Click(e) {
+    let $private = this.#private;
+    $private.state.cnt1++;
+    $private.state.msg = '点击按钮1，共 ' + $private.state.cnt1 + ' 次';
+    this.render();
+}
 
-        let sec = 5;
-        let btn3 = this.getRefComponent("btn3");
-       
+btn2Click(e){
+    let $private = this.#private;
+    $private.state.cnt2++;
+    $private.state.msg = '点击按钮2，共 ' + $private.state.cnt2 + ' 次';
+    this.render();
+}
+
+btn3Click(e){
+
+    let sec = 5;
+    let btn3 = this.getRefComponent("btn3");
+   
+    btn3.setState({disabled:true, value: sec-- + '秒后重试'});
+    let tid = setInterval(()=>{
         btn3.setState({disabled:true, value: sec-- + '秒后重试'});
-        let tid = setInterval(()=>{
-            btn3.setState({disabled:true, value: sec-- + '秒后重试'});
-            if (sec < 0 ){
-                clearInterval(tid);
-                btn3.setState({disabled:false, value:'模拟重试'});
-            }
-        }, 1000);
-    },
+        if (sec < 0 ){
+            clearInterval(tid);
+            btn3.setState({disabled:false, value:'模拟重试'});
+        }
+    }, 1000);
 }
 
 \[css]
@@ -296,12 +296,9 @@ body
 看效果点这里 <a href="demo/demo-quickstart-d8.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
 <br>
 也是有要点的<br>
-没有<ui-badge>[api]</ui-badge>声明可变属性，也就是不让外面修改，但内部自己当然是可以改state的，改完之后调用了组件的内置方法render重绘<br>
-主要是那个<ui-badge>[actions]</ui-badge>里面有function啊，function用了this，但function却没有<ui-badge>bind(this)</ui-badge>！？<br>
+没有<ui-badge>[api]</ui-badge>声明可变属性，也就是不让外面修改，默认有个内部私有属性<ui-badge>#private</ui-badge>，存放着state，组件内部可以取出直接修改，改完后调用render重绘<br>
 <br>
-确实，不管习惯上或事实上，都是让this指向组件对象，rpose也是这样，this一定是本组件对象<br>
-既然如此，为什么还要写<ui-badge>bind(this)</ui-badge>呢？写<ui-badge>bind(this)</ui-badge>不过是再次强调，this就是本组件自己<br>
-我不喜欢这种啰嗦的姿势，更怕万一漏写而导致出bug，所以rpose选择自动把function改成了箭头函数，放心的使用this吧<br>
+沿用习惯，<ui-badge>this</ui-badge>总是指向本组件对象
 
 
 
@@ -313,7 +310,7 @@ body
     <br>
     <ui-badge>[api]</ui-badge>声明选项配置项、声明状态可变项，不是使用时能乱改的<br>
     <ui-badge>[view]</ui-badge>就像html，模板语法很大众，免试入门<br>
-    <ui-badge>[actions]</ui-badge>写事件函数，一个个js方法，没有特别的技术要求<br>
+    <ui-badge>[methods]</ui-badge>写事件函数，一个个js方法，没有特别的技术要求<br>
     <ui-badge>[css]</ui-badge>或<ui-badge>[less]</ui-badge>或<ui-badge>[scss]</ui-badge>写样式，样式的众多顾虑问题，rpose都帮忙铲除，还提供了theme风格方案<br>
     组件，有那么些内置方法如<ui-badge>getState</ui-badge>、<ui-badge>setState</ui-badge>、<ui-badge>getRefComponent</ui-badge>、<ui-badge>getRefElement</ui-badge>、<ui-badge>render</ui-badge>等<br>
     <br>
