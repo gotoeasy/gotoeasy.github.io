@@ -1,10 +1,8 @@
 [view]
 <div>
     <div class="title">TODO LIST</div>
-    <ul>
-        <for @for="(item, index) in $state.items">
+    <ul @for="(item, index) in $state.items">
         <li><button style="margin-right:20px" onclick={ ()=>this.del(index) }>Del</button> {item}</li>
-        </for>
     </ul>
     <form>
         <input type="text" @ref="input">
