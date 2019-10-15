@@ -2,7 +2,7 @@
 <div>
     <div class="title">TODO LIST</div>
     <ul>
-        <li @for="(item, index) in $state.items" @key={index}><button style="margin-right:20px" onclick={ ()=>this.del(index) }>Del</button> {item}</li>
+        <li @for="(item, index) in $state.items" @key={item + index}><button style="margin-right:20px" onclick={ ()=>this.del(index) }>Del</button> {item}</li>
     </ul>
     <form>
         <input type="text" @ref="input">
