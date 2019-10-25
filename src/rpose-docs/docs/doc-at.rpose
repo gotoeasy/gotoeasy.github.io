@@ -8,7 +8,8 @@
     全部指令：<ui-badge type="info">@if</ui-badge>、<ui-badge type="info">@for</ui-badge>
     、<ui-badge type="info">@ref</ui-badge>、<ui-badge type="info">@show</ui-badge>
     、<ui-badge type="info">@taglib</ui-badge>、<ui-badge type="info">@csslib</ui-badge>
-    、<ui-badge type="info">@class</ui-badge>、<ui-badge type="info">@key</ui-badge><br>
+    、<ui-badge type="info">@class</ui-badge>、<ui-badge type="info">@key</ui-badge>
+    、<ui-badge type="info">@html</ui-badge>、<ui-badge type="info">@text</ui-badge><br>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -412,6 +413,32 @@ statekey = role
 ```
     <br>
     <ui-badge type="danger">注</ui-badge>应自行确保<ui-badge>@key</ui-badge>的值在兄弟节点范围内的唯一性<br>
+
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.9 指令 @html</doc-title>
+    类似于<ui-badge>innerHTML</ui-badge>的作用，有破坏性，谨慎使用 <a href="demo/demo-at-d9-1.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a>
+```rpose
+// demo-at-d9-1.rpose
+\[view]
+<div>
+    <div @html="rpose&trade;">（使用@html后这里的内容将被忽略）</div>
+</div>
+```
+
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.10 指令 @text</doc-title>
+    类似于<ui-badge>innerTEXT</ui-badge>的作用，这个指令只是为了和<ui-badge>innerTEXT</ui-badge>配对 <a href="demo/demo-at-d10-1.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a>
+```rpose
+// demo-at-d10-1.rpose
+\[view]
+<div>
+    <div @text="<span>@text</span>">（使用@text后这里的内容将被忽略）</div>
+</div>
+```
 
 
 <!---------------------------------------------------------------------------------------->

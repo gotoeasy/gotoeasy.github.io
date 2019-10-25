@@ -1,0 +1,7 @@
+[view]
+<div>
+    <div @html="rpose&trade;">（使用@html后这里的内容将被忽略）</div>
+</div>
+
+[mount]
+body

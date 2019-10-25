@@ -1,0 +1,7 @@
+[view]
+<div>
+    <div @text="<span>@text</span>">（使用@text后这里的内容将被忽略）</div>
+</div>
+
+[mount]
+body
