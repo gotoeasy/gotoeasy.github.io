@@ -431,7 +431,7 @@ statekey = role
 
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.10 指令 @text</doc-title>
-    类似于<ui-badge>innerTEXT</ui-badge>的作用，这个指令只是为了和<ui-badge>innerTEXT</ui-badge>配对 <a href="demo/demo-at-d10-1.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a>
+    类似于<ui-badge>innerTEXT</ui-badge>的作用，设计<ui-badge>@text</ui-badge>的目的只是为了和<ui-badge>@html</ui-badge>配对 <a href="demo/demo-at-d10-1.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a>
 ```rpose
 // demo-at-d10-1.rpose
 \[view]
