@@ -5,7 +5,7 @@
     name: <input type="text" value={$state.name}><br>
     price: <input type="text" value={$state.price}><br>
     <br>
-    <ui-btn>Submit</ui-btn>
+    <button>Submit</button>
 </div>
 
 [state]
@@ -16,7 +16,7 @@
 }
 
 [methods]
-@action('onclick', 'ui-btn')
+@action('click', 'button')
 add(e) {
     alert(JSON.stringify(this.#private.state))
 }
