@@ -1,0 +1,25 @@
+[view]
+<div>
+    <h2>FORM</h2>
+    code: <input type="text" value={$state.code} @merge="code"><br>
+    name: <input type="text" value={$state.name}><br>
+    price: <input type="text" value={$state.price}><br>
+    <br>
+    <button>Submit</button>
+</div>
+
+[state]
+{
+    code: 'A001',
+    name: '名称',
+    price: 1024,
+}
+
+[methods]
+@action('click', 'button')
+add(e) {
+    alert(JSON.stringify(this.#private.state))
+}
+
+[mount]
+body

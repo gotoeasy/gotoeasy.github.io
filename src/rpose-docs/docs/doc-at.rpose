@@ -9,7 +9,8 @@
     、<ui-badge type="info">@ref</ui-badge>、<ui-badge type="info">@show</ui-badge>
     、<ui-badge type="info">@taglib</ui-badge>、<ui-badge type="info">@csslib</ui-badge>
     、<ui-badge type="info">@class</ui-badge>、<ui-badge type="info">@key</ui-badge>
-    、<ui-badge type="info">@html</ui-badge>、<ui-badge type="info">@text</ui-badge><br>
+    、<ui-badge type="info">@html</ui-badge>、<ui-badge type="info">@text</ui-badge>
+    、<ui-badge type="info">@merge</ui-badge><br>
 
 
 <!---------------------------------------------------------------------------------------->
@@ -439,6 +440,47 @@ statekey = role
     <div @text="<span>@text</span>">（使用@text后这里的内容将被忽略）</div>
 </div>
 ```
+
+
+<!---------------------------------------------------------------------------------------->
+    <doc-title>1.11 指令 @merge</doc-title>
+    针对特定标准标签的特殊场景，提供简化写法<br>
+    比如input标签输入变更后，有时想把输入值写入state但又不想触发渲染<br>
+    通常需要写onchange实现，数量一多就变得繁琐，这时可以简化的用类似的<ui-badge>@merge="fieldname"</ui-badge>写法达到目的<br>
+    <br>
+    下面例子修改code后会更新state的code属性值 <a href="demo/demo-at-d11-1.html" target="_blank"><svgicon name="link" type="inline-symbol" fill="blue"/></a>
+```rpose height=250
+// demo-at-d11-1.rpose
+\[view]
+<div>
+    <h2>FORM</h2>
+    code: <input type="text" value={$state.code} @merge="code"><br>
+    name: <input type="text" value={$state.name}><br>
+    price: <input type="text" value={$state.price}><br>
+    <br>
+    <button>Submit</button>
+</div>
+
+\[state]
+{
+    code: 'A001',
+    name: '名称',
+    price: 1024,
+}
+
+\[methods]
+@action('click', 'button')
+add(e) {
+    alert(JSON.stringify(this.#private.state))
+}
+```
+    <br>
+    类似早期各种框架的双向板顶指令虽然不难实现<br>
+    但组件化开发模式中应用的话，有时非常难找到变更源，徒增困惑<br>
+    折中后采用主动声明反向绑定的<ui-badge>@merge</ui-badge>指令<br>
+    有一定的鸡肋特性，一定程度的特殊场景能提供便利性又不失可控性，这是本指令的设计目的<br>
+    <br>
+    <ui-badge type="warn">注</ui-badge>对于div等非输入标签无效<br>
 
 
 <!---------------------------------------------------------------------------------------->
