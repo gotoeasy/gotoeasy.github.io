@@ -1,14 +1,21 @@
 [view]
 <div>
-    <input onchange="fnChange">
+    <input onchange="fnChangeInput">
+    <textarea/>
     <ui-helloworld @ref="hello" name="rpose" />
 </div>
 
 [methods]
-fnChange(e) {
+fnChangeInput(e) {
     let txt = e.target.value;
     let helloworld = this.getRefComponent('hello');
     helloworld.setState({name:txt});
+}
+
+@action('change', 'textarea')
+fnChangeTextarea(e) {
+    let name = e.target.value;
+    this.getRefComponent('hello').setState({name});
 }
 
 [mount] // 挂载显示

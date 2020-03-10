@@ -7,15 +7,15 @@
 
     <br>
     问：为何放着angular react vue等不用，还要造轮子？<br>
-    答：angular太复杂，react的jsx难以忍受，vue指令太多，(回答像是有点假) ......<br>
+    答：不造不知道，一造吓一跳<br>
     
     <br>
     问：能写得比它们还好？<br>
-    答：rpose是<ui-badge>“面向姿势”</ui-badge>编程，远离颈椎病<br>
+    答：<ui-badge>“面向姿势”</ui-badge>编程，远离颈椎病<br>
 
     <br>
     问：rpose有什么特点？<br>
-    答：精致（精力有限简化导致）、更少的概念、更多的便易、换取更多的精力关注业务实现<br>
+    答：精致、更少的概念、更多的便易、换取更多的精力关注业务实现<br>
 
     <br>
     问：rpose主要适用于什么类型的项目？<br>
@@ -23,7 +23,7 @@
 
     <br>
     问：使用rpose需要什么技能？<br>
-    答：要求基础，不必技能，三驾马车<ui-badge>HTML/JS/CSS</ui-badge>大体就够了<br>
+    答：会开三驾马车<ui-badge>HTML/JS/CSS</ui-badge><br>
 
     <br>
     问：有实际例子吗？<br>
@@ -129,7 +129,7 @@ body
 <!---------------------------------------------------------------------------------------->
     <doc-title>小结</doc-title>
     通过本章节，对rpose的代码结构有个初步了解<br>
-    实现效果放一边，意会下rpose的姿势优劣，若感兴趣，随时继续了解<br>
+    意会下rpose的姿势优劣，随时继续了解<br>
 
    
     <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>

@@ -15,7 +15,7 @@ npm i -g @rpose/cli
 <!---------------------------------------------------------------------------------------->
     <doc-title>1.2 克隆本网页项目进行体验</doc-title>
     本网页效果都看了，怎么写的，下载下来直观的试试看<br>
-    本地建个目录，克隆<ui-badge>https://github.com/gotoeasy/gotoeasy.github.io.git</ui-badge><br>
+    克隆<ui-badge>https://github.com/gotoeasy/gotoeasy.github.io.git</ui-badge><br>
     假设克隆到目录<ui-badge>D:/test</ui-badge>，应该有文件<ui-badge>D:/test/rpose.config.btf</ui-badge>，以及<ui-badge>D:/test/src</ui-badge>这样的目录<br>
     <br>
     命令行，准备开始
@@ -91,7 +91,11 @@ ie 11
     公共包抽取按需加载之类暂时不考虑，目前打包出来的文件实在是太小还不值得分<br>
     (好不容易决定SPA，结果导致打包文件太大又要拆分，这到底是哪跟哪的事情)
 ```
+// 打包命令
 rpose build -c -r
+
+// 开发时自动打开浏览器看效果的命令
+rpose watch
 ```
 
 这里并没有提到打包的什么配置<br>
@@ -101,13 +105,11 @@ rpose build -c -r
     <doc-title>小结</doc-title>
     效果摆在那里，小结已是多余，在此鸣谢众多开源项目及其作者<br>
     <br>
-    鸣谢npm平台，确实方便了大家<br>
+    鸣谢npm平台，确实方便<br>
     鸣谢babel，7.x版本令人愉悦<br>
     鸣谢core-js，庞大的苦活，辛苦了<br>
-    鸣谢browserify，做得不错，就是缺个sync<br>
     鸣谢postcss，干得漂亮<br>
     鸣谢browserslist，要的就是这效果<br>
-    鸣谢acorn，这是真技术<br>
     ...<br>
     ...<br>
     ...<br>
