@@ -1,87 +1,94 @@
-[view]
+[view] // 最大3级菜单
 <ul class="side-menu">
-    <li>
-        <router-link path="intro" title="初识 rpose">
-            <svgicon type="inline-symbol" name="bullhorn"/>
-            <span>初识 rpose</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="quickstart" title="快速上手">
-            <svgicon type="inline-symbol" name="guide"/>
-            <span>快速上手</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="setup" title="安装使用">
-            <svgicon type="inline-symbol" name="check"/>
-            <span>安装使用</span>
-        </router-link>
-    </li>
-    <li>
-        <@line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
-    </li>
-    <li>
-        <router-link path="buildin" title="内置标签组件">
-            <svgicon type="inline-symbol" name="component" height="16" width="16"/>
-            <span>内置标签组件</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="at" title="内置指令集">
-            <svgicon type="inline-symbol" name="at" height="16" width="16"/>
-            <span>内置指令集</span>
-        </router-link>
-    </li>
-    <li>
-        <@line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
-    </li>
-    <li>
-        <router-link path="slot" title="插槽">
-            <svgicon type="inline-symbol" name="list-alt" height="16" width="16"/>
-            <span>插槽</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="prerender" title="预渲染">
-            <svgicon type="inline-symbol" name="brush" height="16" width="16"/>
-            <span>预渲染</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="router" title="前端路由">
-            <svgicon type="inline-symbol" name="random" height="16" width="16"/>
-            <span>前端路由</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="taglib" title="标签库">
-            <svgicon type="inline-symbol" name="tag" height="16" width="16"/>
-            <span>标签库</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="csslib" title="样式库">
-            <svgicon type="inline-symbol" name="css3-alt" height="16" width="16"/>
-            <span>样式库</span>
-        </router-link>
-    </li>
-    <li>
-        <router-link path="svgicon" title="图标组件">
-            <svgicon type="inline-symbol" name="icon" height="16" width="16"/>
-            <span>图标组件</span>
-        </router-link>
-    </li>
-    <li>
-        <@line margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
-    </li>
-    <li>
-        <router-link path="todo" title="TODO" @if={false}>
-            <svgicon type="inline-symbol" name="check" height="16" width="16"/>
-            <span>todo</span>
-        </router-link>
-    </li>
+    <for @for="(item1) in $state.menus">
+        <li>
+            <router-link @if={item1.title} path={item1.path} title={item1.title} click={e=>this.clickMenu(e, item1)}><!----------click item1----------->
+                <svgicon type="inline-symbol" name={item1.icon}/>
+                <span>{item1.title}</span>
+                <svgicon type="inline-symbol" @if={item1.menus && item1.menus.length} name={item1.opened ? 'angle-down' : 'angle-right'} height="16" width="16"/>
+            </router-link>
+            <ul class="side-menu side-sub-menu" @if={item1.title && item1.opened}>
+                <for @for="item2 in item1.menus">
+                    <li @if={item2.title}>
+                        <router-link @if={item2.title} path={item2.path} title={item2.title} click={e=>this.clickMenu(e, item2)}><!----------click item2----------->
+                            <svgicon type="inline-symbol" name={item2.icon}/>
+                            <span>{item2.title}</span>
+                            <svgicon type="inline-symbol" @if={item2.menus && item2.menus.length} name={item2.opened ? 'angle-down' : 'angle-right'} height="16" width="16"/>
+                        </router-link>
+                        <ul class="side-menu side-sub-menu" @if={item2.title && item2.opened}>
+                            <for @for="item3 in item2.menus">
+                                <li>
+                                    <router-link @if={item3.title} path={item3.path} title={item3.title}>
+                                        <svgicon type="inline-symbol" name={item3.icon}/>
+                                        <span>{item3.title}</span>
+                                    </router-link>
+                                    <@line @if={!item3.title} margin="20px 0 20px 0" color="#aaa"/>
+                                </li>
+                            </for>
+                        </ul>
+
+                        <@line @if={!item2.title} margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
+                    </li>
+                </for>
+            </ul>
+
+            <@line @if={!item1.title} margin="20px 0 20px 0" color="#aaa"/><!---------------------------------------------->
+        </li>
+    </for>
 </ul>
+
+[state]
+{
+    menus : [
+        { path : 'intro',           icon : 'bullhorn',      title : '初识 rpose'},
+        { path : 'quickstart',      icon : 'guide',         title : '快速上手', },
+        { path : 'setup',           icon : 'check',         title : '安装使用', },
+        { },
+        { path : 'buildin',         icon : 'component',     title : '内置标签组件', },
+        { path : 'at',              icon : 'at',            title : '内置指令集', },
+        { },
+        { path : 'slot',            icon : 'list-alt',      title : '插槽', },
+        { path : 'prerender',       icon : 'brush',         title : '预渲染', },
+        { path : 'router',          icon : 'random',        title : '前端路由', },
+        { path : 'taglib',          icon : 'tag',           title : '标签库', },
+        { path : 'csslib',          icon : 'css3-alt',      title : '样式库', },
+        { path : 'svgicon',         icon : 'icon',          title : '图标组件', },
+        { },
+/*
+        { path : 'svgicon',         icon : 'icon',          title : '组件库',
+          menus: [
+            { path : 'slot',            icon : 'list-alt',      title : '插槽', },
+            { path : 'prerender',       icon : 'brush',         title : '预渲染', },
+            { path : 'router',          icon : 'random',        title : '前端路由',
+                  menus: [
+                    { path : 'slot',            icon : 'list-alt',      title : 'sssss', },
+                    { path : 'prerender',       icon : 'brush',         title : 'ddddd', },
+                    { path : 'router',          icon : 'random',        title : 'fffff', },
+                  ],
+            },
+          ],
+        },
+        { path : 'svgicon',         icon : 'icon',          title : '组件库',
+          menus: [
+            { path : 'slot',            icon : 'list-alt',      title : '插槽', },
+            { path : 'prerender',       icon : 'brush',         title : '预渲染', },
+            { path : 'router',          icon : 'random',        title : '前端路由', },
+          ],
+        },
+ */
+    ],
+}
+
+[methods]
+clickMenu(e, item){
+    if (item.disabled) return false;    // 禁用的菜单，不做响应处理
+
+    if (item.menus) {
+        item.opened = !item.opened;
+        this.render();
+        return false;                   // 仅控制子菜单的显示，不做路由跳转
+    }
+}
 
 [taglib]
 @line = @rpose/ui-line:ui-line
@@ -118,4 +125,10 @@
         }    
     
     }
+}
+
+.side-sub-menu {
+    margin-left : 25px;
+    margin-top : 12px;
+    margin-bottom : 12px;
 }

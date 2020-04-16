@@ -70,6 +70,8 @@
     本例<ui-badge>router-link</ui-badge>组件接受<ui-badge>path</ui-badge>属性，代表链接地址，直接使用路由名就行，看效果 <a href="demo/demo-router-d2.html" target="_blank"><svgicon name="link" fill="blue"/></a><br>
     <br>
     <ui-badge type="danger">注</ui-badge>如果<ui-badge>path</ui-badge>属性以<ui-badge>http://</ui-badge>或<ui-badge>https://</ui-badge>或<ui-badge>.</ui-badge>或<ui-badge>/</ui-badge>开头，将被视为普通链接地址使用
+    <br>
+    <ui-badge type="danger">注</ui-badge>接受<ui-badge>click</ui-badge>属性传入函数，当函数返回<ui-badge>false</ui-badge>时不再继续做路由处理或跳转
 
 
 <!---------------------------------------------------------------------------------------->

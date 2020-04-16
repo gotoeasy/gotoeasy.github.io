@@ -8,6 +8,6 @@
   not dead
 
 # 包含特定版本
-# chrome > 80
-# firefox > 60
- ie 11
+chrome > 80
+firefox > 70
+ie 11
