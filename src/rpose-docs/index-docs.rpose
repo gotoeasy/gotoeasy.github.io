@@ -42,6 +42,10 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
             </div>
         </router>
 
+        <router path="demo-alert"><demo-alert/></router>
+        <router path="ui-admin"><ui-admin/></router>
+
+
         <router notfound>
             <div @class="height-50vh display-flex justify-content-center align-items-center">
                 <svgicon name="404" fill="#dc483d" height="128"/>
@@ -55,39 +59,41 @@ mounted(){
     let menus = [
         { path : 'intro',               icon : 'bullhorn',      title : '初识 rpose'},
         { path : 'quickstart',          icon : 'guide',         title : '快速上手', },
-        { path : 'setup',               icon : 'check',         title : '安装使用', },
+        { path : 'setup',               icon : 'wrench',        title : '安装使用', },
+        { },
         { path : 'component',           icon : 'component',     title : '组件库',
             menus:[
-                { path : 'doing',       icon : 'doing',      title : '按钮', },
-                { path : 'todo',       icon : 'question',      title : '敬请期待', },
-                { path : 'todo',       icon : 'question',      title : '敬请期待', },
-                { path : 'todo',       icon : 'question',      title : '敬请期待', },
-                { path : 'todo',       icon : 'question',      title : '敬请期待', },
-                { path : 'todo',       icon : 'question',      title : '敬请期待', },
+                { path : 'demo-alert',    icon : 'check',         title : 'alert', },
+                { path : 'ui-admin',    icon : 'check',         title : 'Admin布局', },
+                { path : 'doing',       icon : 'doing',         title : '按钮', },
+                { path : 'todo',        icon : 'question',      title : '敬请期待', },
+                { path : 'todo',        icon : 'question',      title : '敬请期待', },
+                { path : 'todo',        icon : 'question',      title : '敬请期待', },
+                { path : 'todo',        icon : 'question',      title : '敬请期待', },
             ]
         },
         { },
-        { path : 'buildin',         icon : 'invision',      title : '内置标签组件', },
-        { path : 'at',              icon : 'at',            title : '内置指令集', },
+        { path : 'buildin',             icon : 'invision',      title : '内置标签组件', },
+        { path : 'at',                  icon : 'at',            title : '内置指令集', },
         { },
-        { path : 'slot',            icon : 'list-alt',      title : '插槽', },
-        { path : 'prerender',       icon : 'brush',         title : '预渲染', },
-        { path : 'router',          icon : 'random',        title : '前端路由', },
-        { path : 'taglib',          icon : 'tag',           title : '标签库', },
-        { path : 'csslib',          icon : 'css3-alt',      title : '样式库', },
-        { path : 'svgicon',         icon : 'icon',          title : '图标组件', },
+        { path : 'slot',                icon : 'list-alt',      title : '插槽', },
+        { path : 'prerender',           icon : 'brush',         title : '预渲染', },
+        { path : 'router',              icon : 'random',        title : '前端路由', },
+        { path : 'taglib',              icon : 'tags',          title : '标签库', },
+        { path : 'csslib',              icon : 'css3-alt',      title : '样式库', },
+        { path : 'svgicon',             icon : 'icons',         title : '图标组件', },
         { },
     ];
+
     Promise.resolve({menus}).then(state => {
         this.getRefComponents('menu').forEach( m=>m.setState(state) );
     });
 }
 
 [taglib]
-@layout = @rpose/ui-layout:layout-admin-shm
+@layout = @rpose/ui-layout:ui-admin
 @side-menubar = @rpose/ui-layout:side-menubar
 @side-iconbar = @rpose/ui-layout:side-iconbar
 
 [mount]
 body
-

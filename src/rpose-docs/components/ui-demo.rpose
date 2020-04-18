@@ -1,0 +1,28 @@
+[view]
+<div @class="box-sizing--border-box padding-0_20px_20px_20px">
+    <doc-title><slot name="title"/></doc-title>
+    <div>
+        <slot name="demo"/>
+    </div>
+    <div @class="width-100% text-align-center">
+        <span><svgicon class="code" type="inline-symbol" height="30" name="code"/></span>
+    </div>
+    <div class="hidden" @ref="code">
+        <slot name="code"/>
+    </div>
+</div>
+
+[methods]
+@action('click', 'span')
+click(e){
+    $$(this.getRefElement('code')).toggleClass('hidden');
+}
+
+[css]
+.code{
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}

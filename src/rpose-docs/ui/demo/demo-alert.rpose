@@ -1,0 +1,61 @@
+[view]
+<div>
+    <ui-demo>
+        <div slot="title">{`警告框<@alert>`}</div>
+        <div slot="demo">
+            <@alert type="primary">primary</@alert>
+            <@alert type="secondary">secondary</@alert>
+            <@alert type="success">success</@alert>
+            <@alert type="danger">danger</@alert>
+            <@alert type="warning">warning</@alert>
+            <@alert type="info">info</@alert>
+            <@alert>default</@alert>
+            <@alert type="dark">dark</@alert>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+    <@alert type="primary">primary</@alert>
+    <@alert type="secondary">secondary</@alert>
+    <@alert type="success">success</@alert>
+    <@alert type="danger">danger</@alert>
+    <@alert type="warning">warning</@alert>
+    <@alert type="info">info</@alert>
+    <@alert>default</@alert>
+    <@alert type="dark">dark</@alert>
+
+\[taglib]
+@alert = @rpose/ui: ui-alert
+```
+    </div>
+    </ui-demo>
+
+    <ui-demo>
+        <div slot="title">可关闭的警告框</div>
+        <div slot="demo">
+            <@alert type="info" closable>info</@alert>
+            <@alert type="warning" closable>warning</@alert>
+            <@alert type="danger" closable>danger</@alert>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+    <@alert type="info" closable>info</@alert>
+    <@alert type="warning" closable>warning</@alert>
+    <@alert type="danger" closable>danger</@alert>
+
+\[taglib]
+@alert = @rpose/ui: ui-alert
+```
+    </div>
+    </ui-demo>
+
+    <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
+
+</div>
+
+[taglib]
+@alert = @rpose/ui: ui-alert
+
+[mount]
+body
