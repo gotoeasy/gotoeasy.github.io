@@ -31,6 +31,17 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
         <router path="csslib"><doc-csslib/></router>
         <router path="svgicon"><doc-svgicon/></router>
 
+        <router path="doing">
+            <div @class="height-50vh display-flex justify-content-center align-items-center">
+                <svgicon name="doing" fill="blueviolet" height="128"/>
+            </div>
+        </router>
+        <router path="todo">
+            <div @class="height-50vh display-flex justify-content-center align-items-center">
+                <svgicon name="todo" fill="green" height="128"/>
+            </div>
+        </router>
+
         <router notfound>
             <div @class="height-50vh display-flex justify-content-center align-items-center">
                 <svgicon name="404" fill="#dc483d" height="128"/>
@@ -42,11 +53,21 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
 [methods]
 mounted(){
     let menus = [
-        { path : 'intro',           icon : 'bullhorn',      title : '初识 rpose'},
-        { path : 'quickstart',      icon : 'guide',         title : '快速上手', },
-        { path : 'setup',           icon : 'check',         title : '安装使用', },
+        { path : 'intro',               icon : 'bullhorn',      title : '初识 rpose'},
+        { path : 'quickstart',          icon : 'guide',         title : '快速上手', },
+        { path : 'setup',               icon : 'check',         title : '安装使用', },
+        { path : 'component',           icon : 'component',     title : '组件库',
+            menus:[
+                { path : 'doing',       icon : 'doing',      title : '按钮', },
+                { path : 'todo',       icon : 'question',      title : '敬请期待', },
+                { path : 'todo',       icon : 'question',      title : '敬请期待', },
+                { path : 'todo',       icon : 'question',      title : '敬请期待', },
+                { path : 'todo',       icon : 'question',      title : '敬请期待', },
+                { path : 'todo',       icon : 'question',      title : '敬请期待', },
+            ]
+        },
         { },
-        { path : 'buildin',         icon : 'component',     title : '内置标签组件', },
+        { path : 'buildin',         icon : 'invision',      title : '内置标签组件', },
         { path : 'at',              icon : 'at',            title : '内置指令集', },
         { },
         { path : 'slot',            icon : 'list-alt',      title : '插槽', },
