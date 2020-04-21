@@ -43,6 +43,7 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
         </router>
 
         <div style="margin:20px">
+            <router path="ui-admin"><ui-admin/></router>
             <router path="demo-badge"><demo-badge/></router>
             <router path="demo-button"><demo-button/></router>
             <router path="demo-checkbox"><demo-checkbox/></router>
@@ -75,6 +76,7 @@ mounted(){
         { },
         { path : 'component',           icon : 'component',     title : 'components',
             menus:[
+                { path : 'ui-admin',        icon : 'check',         title : 'admin', },
                 { path : 'demo-badge',      icon : 'check',         title : 'badge', },
                 { path : 'demo-button',     icon : 'check',         title : 'button', },
                 { path : 'demo-checkbox',   icon : 'check',         title : 'checkbox', },

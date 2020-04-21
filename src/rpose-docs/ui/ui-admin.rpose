@@ -1,0 +1,114 @@
+[view]
+<div @class="box-sizing--border-box padding-0_20px_20px_20px">
+
+    <doc-title>后端Admin布局组件</doc-title>
+    封装常用功能，即拿即用 <a href="./ui/demo-admin.html" target="_blank"><svgicon name="link" type="link-symbol" fill="blue"/></a><br>
+    <br>
+    <ui-badge type="info">布局相关组件</ui-badge><br>
+    <ui-badge>@rpose/ui-layout:layout-admin</ui-badge><br>
+    <ui-badge>@rpose/ui-layout:header</ui-badge><br>
+    <ui-badge>@rpose/ui-layout:side-menubar</ui-badge><br>
+    <ui-badge>@rpose/ui-layout:side-iconbar</ui-badge><br>
+    <br>
+
+```rpose
+\[api]
+prerender = loader // loader （旋转动画），loader-section（旋转动画加芝麻开门）
+
+\[view]
+<@layout side-bgcolor="darkslategrey">
+    <div slot="header">
+        <@header>
+            <div slot="header"></div>
+            <div slot="corner">
+                <svgicon class="header-icon" type="inline-symbol" name="user" />
+            </div>
+        </@header>
+    </div>
+    <div slot="side-menubar">
+        <@menubar @ref="menu"><div slot="title">Admin</div></@menubar>
+    </div>
+    <div slot="side-iconbar">
+        <@iconbar @ref="menu"><div slot="title">A</div></@iconbar>
+    </div>
+    <div slot="main">
+        <router path="quickstart">quickstart</router>
+        <router path="doing">
+            <div @class="height-50vh display-flex justify-content-center align-items-center">
+                <svgicon type="inline-symbol" name="doing" fill="#dc483d" height="128"/>
+            </div>
+        </router>
+        <router notfound>
+            <div @class="height-50vh display-flex justify-content-center align-items-center">
+                <svgicon type="inline-symbol" name="todo" fill="green" height="128"/>
+            </div>
+        </router>
+    </div>
+</@layout>
+
+\[methods]
+mounted(){
+    let menus = [
+        { path : 'quickstart',          icon : 'guide',     title : 'quickstart', },
+        { },
+        { path : 'component',           icon : 'todo',      title : '值得期待',
+            menus:[
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+            ]
+        },
+        { path : 'component',           icon : 'todo',      title : '值得期待',
+            menus:[
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+            ]
+        },
+        { path : 'component',           icon : 'todo',      title : '值得期待',
+            menus:[
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+                { path : 'doing',       icon : 'doing',     title : '敬请期待', },
+            ]
+        },
+       { },
+    ];
+
+    Promise.resolve({menus}).then(state => {
+        this.getRefComponents('menu').forEach( m=>m.setState(state) );
+    });
+}
+
+\[taglib]
+@layout  = @rpose/ui-layout:ui-admin
+@menubar = @rpose/ui-layout:side-menubar
+@iconbar = @rpose/ui-layout:side-iconbar
+@header = @rpose/ui-layout:header
+
+\[css]
+.header-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+\[mount]
+body
+```
+
+    <doc-footer>Rpose Documents | <a href="https://github.com/gotoeasy/rpose/blob/master/LICENSE" style="text-decoration:none">MIT License</a></doc-footer>
+
+</div>
+
+[mount]
+body
