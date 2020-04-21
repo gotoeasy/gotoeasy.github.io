@@ -1,0 +1,45 @@
+[view]
+<div>
+    <example>
+        <div slot="title">checkbox</div>
+        <div slot="content"></div>
+        <div slot="demo">
+            <div class="demo">
+                <@checkbox>default</@checkbox><br>
+                <@checkbox type="filled-in" checked>filled-in</@checkbox><br>
+                <@checkbox disabled>uncheck disabled</@checkbox><br>
+                <@checkbox checked disabled>checked disabled</@checkbox><br>
+                <@checkbox type="filled-in" checked disabled>filled-in checked disabled</@checkbox><br>
+                <@checkbox onclick={e=>console.info(e.targetNode.checked)}>onclick</@checkbox><br>
+            </div>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+<@checkbox>default</@checkbox><br>
+<@checkbox type="filled-in" checked>filled-in</@checkbox><br>
+<@checkbox disabled>uncheck disabled</@checkbox><br>
+<@checkbox checked disabled>checked disabled</@checkbox><br>
+<@checkbox type="filled-in" checked disabled>filled-in checked disabled</@checkbox><br>
+<@checkbox onclick={e=>console.info(e.targetNode.checked)}>onclick</@checkbox><br>
+
+\[taglib]
+@checkbox = @rpose/ui:ui-checkbox
+```
+        </div>
+    </example>
+
+</div>
+
+[css]
+.demo > *{
+    margin-right: 10px;
+}
+
+[csslib]
+* = materialize-css
+[taglib]
+@checkbox = @rpose/ui:ui-checkbox
+
+[mount]
+body

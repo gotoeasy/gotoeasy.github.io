@@ -1,0 +1,8 @@
+[view]
+<div>
+    <h2><slot name="title"/></h2>
+    <p><slot name="content"/></p>
+    <div><slot name="demo"/></div>
+    <div><slot name="code"/></div>
+    <br>
+</div>

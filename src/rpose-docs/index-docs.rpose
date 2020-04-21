@@ -42,9 +42,21 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
             </div>
         </router>
 
-        <router path="demo-alert"><demo-alert/></router>
-        <router path="ui-admin"><ui-admin/></router>
+        <div style="margin:20px">
+            <router path="demo-badge"><demo-badge/></router>
+            <router path="demo-button"><demo-button/></router>
+            <router path="demo-checkbox"><demo-checkbox/></router>
+            <router path="demo-radio"><demo-radio/></router>
+            <router path="demo-text"><demo-text/></router>
+            <router path="demo-textarea"><demo-textarea/></router>
+        </div>
+<!--
+         <router path="demo-alert"><demo-alert/></router>
+        <router path="demo-badge"><demo-badge/></router>
+        <router path="demo-button"><demo-button/></router>
+        <router path="demo-modal"><demo-modal/></router>
 
+       <router path="ui-admin"><ui-admin/></router> -->
 
         <router notfound>
             <div @class="height-50vh display-flex justify-content-center align-items-center">
@@ -61,13 +73,15 @@ mounted(){
         { path : 'quickstart',          icon : 'guide',         title : '快速上手', },
         { path : 'setup',               icon : 'wrench',        title : '安装使用', },
         { },
-        { path : 'component',           icon : 'component',     title : '组件库',
+        { path : 'component',           icon : 'component',     title : 'components',
             menus:[
-                { path : 'demo-alert',    icon : 'check',         title : 'alert', },
-                { path : 'ui-admin',    icon : 'check',         title : 'Admin布局', },
-                { path : 'doing',       icon : 'doing',         title : '按钮', },
-                { path : 'todo',        icon : 'question',      title : '敬请期待', },
-                { path : 'todo',        icon : 'question',      title : '敬请期待', },
+                { path : 'demo-badge',      icon : 'check',         title : 'badge', },
+                { path : 'demo-button',     icon : 'check',         title : 'button', },
+                { path : 'demo-checkbox',   icon : 'check',         title : 'checkbox', },
+                { path : 'demo-radio',      icon : 'check',         title : 'radio', },
+                { path : 'demo-text',       icon : 'check',         title : 'text', },
+                { path : 'demo-textarea',   icon : 'check',         title : 'textarea', },
+                { path : 'doing',       icon : 'doing',         title : '敬请期待', },
                 { path : 'todo',        icon : 'question',      title : '敬请期待', },
                 { path : 'todo',        icon : 'question',      title : '敬请期待', },
             ]

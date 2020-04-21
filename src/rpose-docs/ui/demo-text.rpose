@@ -1,0 +1,43 @@
+[view]
+<div>
+    <example>
+        <div slot="title">text</div>
+        <div slot="content"></div>
+        <div slot="demo">
+            <div class="demo">
+                <@text label="First Name" placeholder="placeholder"/>
+                <@text label="Last Name" value="NNNNNN" maxlength=20/>
+                <@text label="Label only"/>
+                <@text label="readonly" value="abcd" readonly />
+                <@text label="disabled" value="1234" disabled />
+            </div>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+<@text label="First Name" placeholder="placeholder"/>
+<@text label="Last Name" value="NNNNNN" maxlength=20/>
+<@text label="Label only"/>
+<@text label="readonly" value="abcd" readonly />
+<@text label="disabled" value="1234" disabled />
+
+\[taglib]
+@text = @rpose/ui:ui-text
+```
+        </div>
+    </example>
+
+</div>
+
+[css]
+.demo > *{
+    margin-right: 10px;
+}
+
+[csslib]
+* = materialize-css
+[taglib]
+@text = @rpose/ui:ui-text
+
+[mount]
+body

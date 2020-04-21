@@ -1,0 +1,43 @@
+[view]
+<div>
+    <example>
+        <div slot="title">radio</div>
+        <div slot="content"></div>
+        <div slot="demo">
+            <div class="demo">
+                <@radio name="group1">default</@radio><br>
+                <@radio name="group1" checked>checked</@radio><br>
+                <@radio disabled>uncheck disabled</@radio><br>
+                <@radio checked disabled>checked disabled</@radio><br>
+                <@radio value="1" onclick="{e=>console.info(e.targetNode.value)}">onclick</@radio><br>
+            </div>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+<@radio name="group1">default</@radio><br>
+<@radio name="group1" checked>checked</@radio><br>
+<@radio disabled>uncheck disabled</@radio><br>
+<@radio checked disabled>checked disabled</@radio><br>
+<@radio value="1" onclick="{e=>console.info(e.targetNode.value)}">onclick</@radio><br>
+
+\[taglib]
+@checkbox = @rpose/ui:ui-checkbox
+```
+        </div>
+    </example>
+
+</div>
+
+[css]
+.demo > *{
+    margin-right: 10px;
+}
+
+[csslib]
+* = materialize-css
+[taglib]
+@radio = @rpose/ui:ui-radio
+
+[mount]
+body

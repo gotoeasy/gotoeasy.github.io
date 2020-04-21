@@ -1,0 +1,44 @@
+[view]
+<div>
+    <example>
+        <div slot="title">badge</div>
+        <div slot="content"></div>
+        <div slot="demo">
+            <div class="demo">
+                <@badge>1</@badge>
+                <@badge type="new">2</@badge>
+                <@badge type="blue">blue</@badge>
+                <@badge type="yellow">yellow</@badge>
+                <@badge type="red">red</@badge>
+                <@badge type="green">green</@badge>
+                <br>
+            </div>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+<@badge>1</@badge>
+<@badge type="new">2</@badge>
+<@badge type="blue">blue</@badge>
+<@badge type="yellow">yellow</@badge>
+<@badge type="red">red</@badge>
+<@badge type="green">green</@badge>
+
+\[taglib]
+@badge = @rpose/ui:ui-badge
+```
+        </div>
+    </example>
+
+</div>
+
+[css]
+.demo > *{
+    margin-right: 10px;
+}
+
+[taglib]
+@badge = @rpose/ui:ui-badge
+
+[mount]
+body

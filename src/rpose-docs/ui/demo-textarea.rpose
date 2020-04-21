@@ -1,0 +1,41 @@
+[view]
+<div>
+    <example>
+        <div slot="title">textarea</div>
+        <div slot="content"></div>
+        <div slot="demo">
+            <div class="demo">
+                <@textarea label="默认最多显示5行"/>
+                <@textarea label="默认并带placeholder" placeholder="placeholder"/>
+                <@textarea label="指定rows为3则最多显示3行" rows="3"/>
+                <@textarea label="带初始值" value={`1\n2\n3\n4\n5\n6\n7\n8\n9`}/>
+            </div>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+<@textarea label="默认最多显示5行"/>
+<@textarea label="默认并带placeholder" placeholder="placeholder"/>
+<@textarea label="指定rows为3则最多显示3行" rows="3"/>
+<@textarea label="带初始值" value={`1\n2\n3\n4\n5\n6\n7\n8\n9`}/>
+
+\[taglib]
+@text = @rpose/ui:ui-textarea
+```
+        </div>
+    </example>
+
+</div>
+
+[css]
+.demo > *{
+    margin-right: 10px;
+}
+
+[csslib]
+* = materialize-css
+[taglib]
+@textarea = @rpose/ui:ui-textarea
+
+[mount]
+body
