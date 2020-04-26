@@ -48,8 +48,8 @@ prerender = loader // loader （旋转动画），loader-section（旋转动画�
             <router path="demo-button"><demo-button/></router>
             <router path="demo-checkbox"><demo-checkbox/></router>
             <router path="demo-radio"><demo-radio/></router>
-            <router path="demo-text"><demo-text/></router>
-            <router path="demo-textarea"><demo-textarea/></router>
+            <router path="demo-text"><@demo-text/></router>
+            <router path="demo-textarea"><@demo-textarea/></router>
         </div>
 <!--
          <router path="demo-alert"><demo-alert/></router>
@@ -83,9 +83,7 @@ mounted(){
                 { path : 'demo-radio',      icon : 'check',         title : 'radio', },
                 { path : 'demo-text',       icon : 'check',         title : 'text', },
                 { path : 'demo-textarea',   icon : 'check',         title : 'textarea', },
-                { path : 'doing',       icon : 'doing',         title : '敬请期待', },
-                { path : 'todo',        icon : 'question',      title : '敬请期待', },
-                { path : 'todo',        icon : 'question',      title : '敬请期待', },
+                { path : 'todo',       icon : 'doing',         title : '敬请期待', },
             ]
         },
         { },
