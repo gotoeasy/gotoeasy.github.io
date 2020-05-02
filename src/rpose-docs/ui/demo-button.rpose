@@ -5,13 +5,20 @@
         <div slot="content"></div>
         <div slot="demo">
             <div class="demo">
-                <@button>default</@button>
-                <@button type="blue">blue</@button>
-                <@button type="yellow">yellow</@button>
-                <@button type="red">red</@button>
-                <@button type="green">green</@button>
+                <@button onclick="{e=>alert(e)}">default</@button>
+                <@button type="primary">primary</@button>
+                <@button type="danger">danger</@button>
+                <@button type="link">link</@button>
+                <@button type="primary round">round</@button>
+                <@button type="primary circle">C</@button>
+                <@button type="primary ghost">ghost</@button>
+                <@button type="primary dashed">dashed</@button>
+                <@button type="primary large">large</@button>
+                <@button type="primary small">small</@button>
                 <@button disabled>disabled</@button>
-                <@button onclick="{e=>alert(e)}">onclick</@button>
+                <@button type="primary" icon="search">检索</@button>
+                <@button type="primary icon-right" icon="down">Dropdown</@button>
+                <@button type="primary block">block</@button>
             </div>
         </div>
         <div slot="code">
@@ -26,7 +33,7 @@
 <@button onclick="{e=>alert(e)}">onclick</@button>
 
 \[taglib]
-@button = @rpose/ui:ui-button
+@button = ant-design-rpose:button
 ```
         </div>
     </example>
@@ -39,7 +46,7 @@
 }
 
 [taglib]
-@button = @rpose/ui:ui-button
+@button = ant-design-rpose:button
 
 [mount]
 body

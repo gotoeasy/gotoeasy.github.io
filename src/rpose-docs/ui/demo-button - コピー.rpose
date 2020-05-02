@@ -1,0 +1,45 @@
+[view]
+<div>
+    <example>
+        <div slot="title">button</div>
+        <div slot="content"></div>
+        <div slot="demo">
+            <div class="demo">
+                <@button>default</@button>
+                <@button type="blue">blue</@button>
+                <@button type="yellow">yellow</@button>
+                <@button type="red">red</@button>
+                <@button type="green">green</@button>
+                <@button disabled>disabled</@button>
+                <@button onclick="{e=>alert(e)}">onclick</@button>
+            </div>
+        </div>
+        <div slot="code">
+```rpose
+\[view]
+<@button>default</@button>
+<@button type="blue">blue</@button>
+<@button type="yellow">yellow</@button>
+<@button type="red">red</@button>
+<@button type="green">green</@button>
+<@button disabled>disabled</@button>
+<@button onclick="{e=>alert(e)}">onclick</@button>
+
+\[taglib]
+@button = ant-design-rpose:button
+```
+        </div>
+    </example>
+
+</div>
+
+[css]
+.demo > *{
+    margin-right: 10px;
+}
+
+[taglib]
+@button = ant-design-rpose:button
+
+[mount]
+body

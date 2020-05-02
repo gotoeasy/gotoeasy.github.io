@@ -1,8 +1,41 @@
+[api]
+statekeys = items, expandable
+
 [view]
 <div>
-    <h2><slot name="title"/></h2>
+    <h3><slot name="title"/></h3>
     <p><slot name="content"/></p>
-    <div><slot name="demo"/></div>
-    <div><slot name="code"/></div>
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header" onclick={e=>this.click(e,'showSample')}>
+                <@svgicon type="inline-symbol" name="example"/>
+                <span style="margin-left:10px">DEMO</span>
+            </div>
+            <div @show={$state.showSample} class="collapsible-body" style="padding:20px 30px;background:#fcfcfc;"><slot name="demo"/></div>
+        </li>
+        <li>
+            <div class="collapsible-header" onclick={e=>this.click(e,'showCode')}>
+                <@svgicon type="inline-symbol" name="code"/>
+                <span style="margin-left:10px">CODE</span>
+            </div>
+            <div @show={$state.showCode} class="collapsible-body" style="padding:20px 30px;background:#fcfcfc;"><slot name="code"/></div>
+        </li>
+    </ul>
     <br>
 </div>
+
+
+[state]
+{
+    showSample : true,
+    showCode : false,
+}
+
+[methods]
+click(e, field){
+    this.#private.state[field] = !this.#private.state[field];
+    this.render();
+}
+
+[csslib]
+* = materialize-css

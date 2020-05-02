@@ -83,7 +83,7 @@ mounted(){
                 { path : 'demo-radio',      icon : 'check',         title : 'radio', },
                 { path : 'demo-text',       icon : 'check',         title : 'text', },
                 { path : 'demo-textarea',   icon : 'check',         title : 'textarea', },
-                { path : 'todo',       icon : 'doing',         title : '敬请期待', },
+                { path : 'todo',       icon : 'doing',         title : 'todo', },
             ]
         },
         { },
