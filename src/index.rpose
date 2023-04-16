@@ -13,8 +13,8 @@ prerender = loader-section // loader（旋转动画），loader-section（旋转
         <span class="text">写业务，完成，就该这么简单</span>
 
 		<div class="group" style="size:13px;">
-            <a href="https://github.com/gotoeasy/block-text-file" style="margin:5px;width:110px">BTF SPEC</a>
-            <a href="./rpose-docs/index-docs.html" style="margin:5px;width:110px">RPOSE</a>
+            <a href="https://github.com/gotoeasy/docker-ubuntu-desktop" style="margin:5px;width:200px">docker-ubuntu-desktop</a>
+            <a href="https://github.com/gotoeasy/glogcenter" style="margin:5px;width:200px">GLogCenter</a>
         </div>
 
     </div>                
